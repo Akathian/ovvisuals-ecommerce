@@ -1,16 +1,15 @@
 <div class="card mb-4 shadow-sm">
-    <img class="bd-placeholder-img card-img-top" width="100%"
-        src="https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80">
+    <img class="bd-placeholder-img card-img-top" width="100%" [src]="productItem.imageUrl">
 
     <div class="card-body">
         <p class="card-text">
-            <small class="text-muted">{{ 39 | currency: 'CAD'}}</small>
+            <small class="text-muted">{{ productItem.price | currency: 'CAD'}}</small>
         </p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
+        <p class="card-text">{{ productItem.description }}</p>
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary product-btn">Buy</button>
+                <button type="button" class="btn btn-sm btn-outline-primary 
+                product-btn" (click)='handleAddToCart()'>Buy</button>
             </div>
         </div>
     </div>
