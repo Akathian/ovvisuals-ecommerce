@@ -1,9 +1,9 @@
-<div class="card mb-4 shadow-sm">
+<div class="card mb-4 ">
     <img class="bd-placeholder-img card-img-top" width="100%" [src]="productItem.imageUrl">
 
-    <div class="card-body">
+    <div class="card-body shadow-sm">
         <p class="card-text">
-            <small class="text-muted">{{ productItem.price | currency: 'CAD'}}</small>
+            <small class="text-muted">{{ productItem.price | currency: 'CAD'}}+</small>
         </p>
         <p class="card-text">{{ productItem.description }}</p>
         <div class="d-flex justify-content-between align-items-center">
