@@ -1,6 +1,6 @@
 <div class="bg-light">
-    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 bg-light">
-        <div class="d-flex align-items-center p-3 px-md-4 mb-3 flex-nowrap">
+    <div class="d-flex align-items-center justify-content-between p-3 px-md-4 bg-light flex-nowrap nav-r-1">
+        <div class="d-flex align-items-center p-3 px-md-4 mb-3 flex-nowrap ">
             <div class="p-2 fb">
                 <a href="https://www.facebook.com/OVVisuals-108014684346868">
                     <i class="fa fa-facebook-official" style="font-size:1.5em"></i>
@@ -12,8 +12,8 @@
                 </a>
             </div>
         </div>
-        <img class="p-2 logo" src="../../../../assets/logo1.png" />
-        <div class="d-flex align-items-center p-3 px-md-4 mb-3 flex-nowrap">
+        <a routerLink="/"><img class="p-2 logo" src="../../../../assets/logo1.png" /></a>
+        <div class="d-flex align-items-center p-3 px-md-4 mb-3 flex-nowrap ">
             <div class="p-2 login"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-circle"
                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -32,10 +32,10 @@
     <div
         class="d-flex flex-column flex-md-row align-items-center justify-content-center p-3 px-md-4 mb-3 border-bottom shadow-sm ">
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#">Posters</a>
-            <a class="p-2 text-dark" href="#">Paintings</a>
-            <a class="p-2 text-dark" href="#">Lamps</a>
-            <a class="p-2 text-dark" href="#">Custom Request</a>
+            <a class="p-2 text-dark" routerLink="/posters">Posters</a>
+            <a class="p-2 text-dark" href="/paintings">Paintings</a>
+            <a class="p-2 text-dark" href="/lamps">Lamps</a>
+            <a class="p-2 text-dark" routerLink="/custom">Custom Request</a>
         </nav>
     </div>
 </div>
