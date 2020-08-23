@@ -1,3 +1,39 @@
-<img class="bd-placeholder-img card-img-top" width="100%" [src]="product.imageUrl">
-<p>{{ this.product.name }}, {{ this.product.description }},
-    {{ this.product.price | currency: 'CAD' }}</p>
+<p>Products / <a [routerLink]="['/products', this.type]">{{ this.product.type }}</a> / {{ this.product.name }}</p>
+<!-- <img class="bd-placeholder-img card-img-top" width="100%" [src]="product.imageUrl"> -->
+<div class="d-flex flex-column flex-md-row justify-content-center p-3 px-md-4 mb-3">
+    <img class="p-2" [src]="product.imageUrl" />
+    <div class="d-flex flex-column justify-content-start p-3 px-md-4 mb-3">
+        <div class="p-2">
+            <h2>{{ product.name }}</h2>
+        </div>
+        <div class="p-2">
+            <h4>{{ product.price | currency: 'CAD'}}+</h4>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Size:</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>12x18in {{ product.price | currency: 'CAD'}}</option>
+                <option>24x36in {{ product.price + 10 | currency: 'CAD'}}</option>
+            </select>
+        </div>
+        <div class="d-flex flex-column justify-content-start p-3 px-md-4 mb-3">
+            <div><b>Estimated Delivery Time:</b></div>
+            <div>3 - 5 Days</div>
+
+        </div>
+        <div class="p-2">
+            <p>{{product.description}}</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Turpis cursus in hac habitasse. Elit sed vulputate mi sit amet mauris commodo.
+                Quisque egestas diam in arcu. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Est
+                placerat in egestas erat. Dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in.
+                Pharetra magna ac placerat vestibulum lectus mauris ultrices. Turpis tincidunt id aliquet risus feugiat
+                in. Leo integer malesuada nunc vel risus commodo viverra maecenas accumsan. Vitae sapien pellentesque
+                habitant morbi tristique. Nullam non nisi est sit.</p>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-primary 
+            product-btn" (click)='handleAddToCart()'>Add To Cart</button>
+        </div>
+    </div>
+</div>
