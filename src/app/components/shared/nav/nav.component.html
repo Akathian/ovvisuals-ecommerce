@@ -32,9 +32,9 @@
     <div
         class="d-flex flex-column flex-md-row align-items-center justify-content-center p-3 px-md-4 mb-3 border-bottom shadow-sm ">
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" routerLink="/posters">Posters</a>
-            <a class="p-2 text-dark" href="/paintings">Paintings</a>
-            <a class="p-2 text-dark" href="/lamps">Lamps</a>
+            <a class="p-2 text-dark" [routerLink]="['/products', 'posters']">Posters</a>
+            <a class="p-2 text-dark" [routerLink]="['/products', 'paintings']">Paintings</a>
+            <!-- <a class="p-2 text-dark" href="/lamps">Lamps</a> -->
             <a class="p-2 text-dark" routerLink="/custom">Custom Request</a>
         </nav>
     </div>
