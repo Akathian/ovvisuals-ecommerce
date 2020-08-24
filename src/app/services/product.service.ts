@@ -7,13 +7,13 @@ import { Product } from 'src/app/models/product'
 
 export class ProductService {
   posters: Product[] = [
-    new Product(1, 'Kobe Bryant Poster', "Posters", 'Poster of Kobe Bryant', 39, 'https://i.postimg.cc/NFQDgcjd/il-1588x-N-2397324387-enwp.jpg'),
-    new Product(2, 'Eelam Poster', "Posters", 'Poster of Tamil Eelam', 29, 'https://i.postimg.cc/sxKcxNBs/Eelam-No-writing-1.jpg'),
-    new Product(3, 'Iron Man Poster', "Posters", 'Poster of Iron Man', 29, 'https://i.postimg.cc/RVsdz25T/Iron-1.jpg'),
-    new Product(4, 'Pop Smoke Poster', "Posters", 'Poster of Pop Smoke', 39, 'https://i.postimg.cc/BQQpk4y6/meet-the-woo-1.jpg'),
-    new Product(5, 'Majin Buu Poster', "Posters", 'Poster of Majin Buu', 39, 'https://i.postimg.cc/MZYt9v9N/Majin-1.jpg'),
-    new Product(6, 'Tiger Poster', "Posters", 'Poster of a Tiger', 39, 'https://i.postimg.cc/KzPQSzxK/il-1588x-N-2349742354-54fn.jpg'),
-    new Product(7, 'Joker Poster', "Posters", 'Poster of Joker', 59, 'https://i.postimg.cc/FR5GBc55/il-1588x-N-2397377197-kbv5.jpg'),
+    new Product(1, 'Kobe Bryant Poster', "Posters", 'Poster of Kobe Bryant', 19.99, 'https://i.postimg.cc/NFQDgcjd/il-1588x-N-2397324387-enwp.jpg'),
+    new Product(2, 'Eelam Poster', "Posters", 'Poster of Tamil Eelam', 19.99, 'https://i.postimg.cc/sxKcxNBs/Eelam-No-writing-1.jpg'),
+    new Product(3, 'Iron Man Poster', "Posters", 'Poster of Iron Man', 19.99, 'https://i.postimg.cc/RVsdz25T/Iron-1.jpg'),
+    new Product(4, 'Pop Smoke Poster', "Posters", 'Poster of Pop Smoke', 19.99, 'https://i.postimg.cc/BQQpk4y6/meet-the-woo-1.jpg'),
+    new Product(5, 'Majin Buu Poster', "Posters", 'Poster of Majin Buu', 19.99, 'https://i.postimg.cc/MZYt9v9N/Majin-1.jpg'),
+    new Product(6, 'Tiger Poster', "Posters", 'Poster of a Tiger', 19.99, 'https://i.postimg.cc/KzPQSzxK/il-1588x-N-2349742354-54fn.jpg'),
+    new Product(7, 'Joker Poster', "Posters", 'Poster of Joker', 19.99, 'https://i.postimg.cc/FR5GBc55/il-1588x-N-2397377197-kbv5.jpg'),
   ]
 
   paintings: Product[] = [
