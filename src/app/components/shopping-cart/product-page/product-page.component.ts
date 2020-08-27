@@ -15,7 +15,7 @@ export class ProductPageComponent implements OnInit {
   type: string;
   productList: Product[] = []
   product: Product;
-  itemProd: [][] = [[]];
+  itemProd: {}[] = [{}];
 
 
   constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private db: AngularFireDatabase) { }

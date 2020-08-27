@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
   type: string;
-  productList: [][] = []
+  productList: {}[] = []
   constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {

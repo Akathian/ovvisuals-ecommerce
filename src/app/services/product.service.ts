@@ -9,10 +9,7 @@ import { timer } from 'rxjs';
 })
 
 export class ProductService {
-  todos$: AngularFireList<any[]>;
-
-  postersDB: [][] = [[]];
-  tmpItem: [][] = [[]];
+  tmpItem: {}[] = [{}];
 
   posters: Product[] = [
 
@@ -50,16 +47,7 @@ export class ProductService {
     return this.products;
   }
 
-  getPostersFromDB() {
-    this.af.list('/Products/Posters').valueChanges().subscribe(s => {
-      this.postersDB[0] = s
-      return this.postersDB
-    }
-    );
-    return this.postersDB
-  }
-
-  getItemFromDB(type) {
+  getItemFromDB(type): {}[] {
     let t = type.charAt(0).toUpperCase() + type.slice(1);
     let url = '/Products/' + t
     console.log(url)
@@ -68,6 +56,7 @@ export class ProductService {
       return this.tmpItem
     }
     );
+    console.log(this.tmpItem)
     return this.tmpItem
   }
 
