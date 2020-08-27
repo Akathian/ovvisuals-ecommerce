@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service'
 import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Component({
   selector: 'app-product-page',
@@ -14,17 +15,23 @@ export class ProductPageComponent implements OnInit {
   type: string;
   productList: Product[] = []
   product: Product;
-  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
+  itemProd: [][] = [[]];
+
+
+  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this._Activatedroute.paramMap.subscribe(params => {
+    this._Activatedroute.paramMap.subscribe(async params => {
       this.id = +params.get('id');
       this.type = params.get('type');
+      this.type = this.type.charAt(0).toUpperCase() + this.type.slice(1);
       this.getProductsOfType(this.type);
-      this.getIndividual();
-      // this.qty();
+      this.itemProd = this.productService.getItemFromDB(this.type);
+      console.log(this.itemProd)
     });
   }
+
+
   getProductsOfType(type: String) {
     switch (type) {
       case "posters": {
@@ -34,14 +41,6 @@ export class ProductPageComponent implements OnInit {
       case "paintings": {
         this.productList = this.productService.getPaintings();
         break;
-      }
-    }
-  }
-
-  getIndividual() {
-    for (let i = 0; i < this.productList.length; i++) {
-      if (this.productList[i].id === this.id) {
-        this.product = this.productList[i];
       }
     }
   }

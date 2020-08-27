@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
   type: string;
-  productList: Product[] = []
+  productList: [][] = []
   constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,16 +21,8 @@ export class ProductListComponent implements OnInit {
   }
 
   renderProducts(type: String) {
-    switch (type) {
-      case "posters": {
-        this.productList = this.productService.getPosters();
-        break;
-      }
-      case "paintings": {
-        this.productList = this.productService.getPaintings();
-        break;
-      }
-    }
-  }
+    this.productList = this.productService.getItemFromDB(type);
 
+  }
 }
+

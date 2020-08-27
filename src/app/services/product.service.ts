@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product'
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { timer } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductService {
+  todos$: AngularFireList<any[]>;
+
+  postersDB: [][] = [[]];
+  tmpItem: [][] = [[]];
+
   posters: Product[] = [
-    new Product(1, 'Kobe Bryant Poster', "Posters", 'Poster of Kobe Bryant', 19.99, 'https://i.postimg.cc/NFQDgcjd/il-1588x-N-2397324387-enwp.jpg'),
-    new Product(2, 'Eelam Poster', "Posters", 'Poster of Tamil Eelam', 19.99, 'https://i.postimg.cc/sxKcxNBs/Eelam-No-writing-1.jpg'),
-    new Product(3, 'Iron Man Poster', "Posters", 'Poster of Iron Man', 19.99, 'https://i.postimg.cc/RVsdz25T/Iron-1.jpg'),
+
     new Product(4, 'Pop Smoke Poster', "Posters", 'Poster of Pop Smoke', 19.99, 'https://i.postimg.cc/BQQpk4y6/meet-the-woo-1.jpg'),
     new Product(5, 'Majin Buu Poster', "Posters", 'Poster of Majin Buu', 19.99, 'https://i.postimg.cc/MZYt9v9N/Majin-1.jpg'),
     new Product(6, 'Tiger Poster', "Posters", 'Poster of a Tiger', 19.99, 'https://i.postimg.cc/KzPQSzxK/il-1588x-N-2349742354-54fn.jpg'),
@@ -26,11 +32,10 @@ export class ProductService {
 
   ]
 
-
   products: Product[][] = [
     this.posters
   ]
-  constructor() {
+  constructor(private af: AngularFireDatabase) {
   }
 
   getPosters(): Product[] {
@@ -44,5 +49,28 @@ export class ProductService {
   getAll(): Product[][] {
     return this.products;
   }
+
+  getPostersFromDB() {
+    this.af.list('/Products/Posters').valueChanges().subscribe(s => {
+      this.postersDB[0] = s
+      return this.postersDB
+    }
+    );
+    return this.postersDB
+  }
+
+  getItemFromDB(type) {
+    let t = type.charAt(0).toUpperCase() + type.slice(1);
+    let url = '/Products/' + t
+    console.log(url)
+    this.af.list(url).valueChanges().subscribe(s => {
+      this.tmpItem[0] = s
+      return this.tmpItem
+    }
+    );
+    return this.tmpItem
+  }
+
 }
+
 

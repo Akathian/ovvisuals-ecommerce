@@ -17,6 +17,10 @@ import { CustomComponent } from './components/shopping-cart/product-list/custom/
 import { AboutComponent } from './components/about/about.component';
 import { ProductPageComponent } from './components/shopping-cart/product-page/product-page.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -38,7 +42,9 @@ import { ProductPageComponent } from './components/shopping-cart/product-page/pr
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'ovvisuals'),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

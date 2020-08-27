@@ -1,0 +1,1 @@
+npm i jasmine-core@3.5 && npm i @angular/common@6.0.0  && npm i @angular/core@6.0.0  && npm i @angular/platform-browser@6.0.0  && npm i @angular/platform-browser-dynamic@6.0.0 && npm i zone.js@^0.8.0 
