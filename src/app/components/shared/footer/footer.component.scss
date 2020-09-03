@@ -1,3 +1,60 @@
 a {
     color: inherit;
 }
+
+.prog {
+    position: center;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    width: 50%;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    border-radius: 5%;
+    height: 23px;
+    display: flex;
+
+}
+
+.p-bar1 {
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 12.5%,
+            #FF0000 0%, #FF0000 25%,
+            #FF7F00 0%, #FF7F00 37.5%,
+            #FFFF00 0%, #FFFF00 50%,
+            #00FF00 0%, #00FF00 62.5%,
+            #0000FF 0%, #0000FF 75%,
+            #9400D3 0%, #9400D3 87.5%,
+            rgba(255, 255, 255, 0) 0%);
+    height: 22px;
+    width: 3%;
+}
+
+.p-bar2 {
+    background: linear-gradient(to bottom,
+            #FF0000 0%, #FF0000 12.5%,
+            #FF7F00 0%, #FF7F00 25%,
+            #FFFF00 0%, #FFFF00 37.5%,
+            #00FF00 0%, #00FF00 50%,
+            #0000FF 0%, #0000FF 62.5%,
+            #9400D3 0%, #9400D3 75%,
+            rgba(255, 255, 255, 0) 0%);
+    height: 22px;
+    width: 3%;
+
+}
+
+.flag {
+    background: url(../../../../assets/flag.png) no-repeat;
+    background-size: contain;
+    width: 3%;
+    margin-left: auto;
+
+}
+
+
+.nyan {
+    background: url(../../../../assets/nyan.png) no-repeat;
+    background-size: contain;
+    width: 6%
+}
