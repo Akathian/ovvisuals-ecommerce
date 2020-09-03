@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,9 +52,9 @@ import { LoginComponent } from './components/login/login.component';
     AngularFireModule.initializeApp(environment.firebaseConfig, 'ovvisuals'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ModalModule.forRoot()
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [BsModalRef],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

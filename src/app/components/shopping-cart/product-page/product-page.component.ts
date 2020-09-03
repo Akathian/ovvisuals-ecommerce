@@ -3,8 +3,6 @@ import { ProductService } from 'src/app/services/product.service'
 import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'
 import * as firebase from 'firebase'
 
 
@@ -20,8 +18,8 @@ export class ProductPageComponent implements OnInit {
   product: Product;
   itemProd: {}[] = [{}];
   currUser: {};
-  modalRef: BsModalRef;
-  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private modalService: BsModalService) { }
+
+  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe(async params => {
@@ -154,7 +152,4 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { backdrop: 'static', keyboard: false });
-  }
 }
