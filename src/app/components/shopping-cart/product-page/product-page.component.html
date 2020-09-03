@@ -11,21 +11,36 @@
                     </span>
                 </div>
                 <div class="p-2">
-                    <h4>{{ product.price.sm | currency: 'CAD' }}+</h4>
+                    <h4>{{ product.price.sm | currency: 'CAD' }}</h4>
                 </div>
-                <div class="p-2 form-group">
-                    <label for="exampleFormControlSelect1">Size:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>12x18in <p>| {{ product.price.sm | currency: 'CAD'}}</p>
-                        </option>
-                        <option>24x36in <p>| {{ product.price.rg | currency: 'CAD'}}</p>
-                        </option>
-                    </select>
-                </div>
-                <div class="p-2 btn-group">
-                    <button type="button" class="btn btn-lg btn-outline-primary 
-                    product-btn" (click)=' handleAddToCart()'>Add To Cart</button>
-                </div>
+                <form>
+                    <div class="p-2 form-group">
+                        <label for="sizeSelect">Size:</label>
+                        <select class="form-control" id="sizeSelect" name='sizeSelect'>
+                            <option label="-- Select something --"></option>
+                            <option value='sm'>{{product.size.sm}} <p>|
+                                    {{ product.price.sm | currency: 'CAD'}}</p>
+                            </option>
+                            <option value='rg' *ngIf='product.size.rg'>{{product.size.rg}} <p>|
+                                    {{ product.price.rg | currency: 'CAD'}}
+                                </p>
+                            <option value='md' *ngIf='product.size.md'>{{product.size.md}} <p>|
+                                    {{ product.price.md | currency: 'CAD'}}
+                                </p>
+                            <option value='lg' *ngIf='product.size.lg'>{{product.size.lg}} <p>|
+                                    {{ product.price.lg | currency: 'CAD'}}
+                                </p>
+                            <option value='xl' *ngIf='product.size.xl'>{{product.size.xl}} <p>|
+                                    {{ product.price.xl | currency: 'CAD'}}
+                                </p>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="p-2 form-group">
+                        <button type="button" class="btn btn-lg btn-outline-primary 
+                    product-btn" (click)=' addToCart()'>Add To Cart</button>
+                    </div>
+                </form>
                 <!-- <div class="form-group">
                     <label for="exampleFormControlSelect1">Shipping:</label>
                     <select class="form-control" id="exampleFormControlSelect1">
@@ -41,23 +56,59 @@
                 </div> -->
                 <div class="p-2">
                     <p>{{ product.description }}</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et
-                        dolore magna aliqua. Turpis cursus in hac habitasse. Elit sed vulputate mi sit amet mauris
-                        commodo.
-                        Quisque egestas diam in arcu. Mattis vulputate enim nulla aliquet porttitor lacus luctus
-                        accumsan.
-                        Est
-                        placerat in egestas erat. Dignissim diam quis enim lobortis scelerisque fermentum dui faucibus
-                        in.
-                        Pharetra magna ac placerat vestibulum lectus mauris ultrices. Turpis tincidunt id aliquet risus
-                        feugiat
-                        in. Leo integer malesuada nunc vel risus commodo viverra maecenas accumsan. Vitae sapien
-                        pellentesque
-                        habitant morbi tristique. Nullam non nisi est sit.</p>
+                    <p *ngIf='this.type==="Posters"'>Museum-quality posters made on thick and durable matte paper. Each
+                        poster is giclée-printed on
+                        archival, acid-free paper that yields brilliant prints to brighten up any room.</p>
+                    <ul *ngIf='this.type==="Posters"'>
+                        <li>Paper thickness: 10.3 mil</li>
+                        <li>Paper weight: 5.6 oz/y² (192 g/m²)</li>
+                        <li>Giclée printing quality</li>
+                        <li>Opacity: 94%</li>
+                        <li>ISO brightness: 104%</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="exampleModal">
+            Launch demo modal
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm"
+            (click)="openModal()">Small modal</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div id="firebaseui-auth-container"></div> -->
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+
+        <ng-template #template>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Modal</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This is a modal.
+            </div>
+        </ng-template>
     </span>
 </span>

@@ -7,6 +7,13 @@ import { ProductListComponent } from './components/shopping-cart/product-list/pr
 import { CustomComponent } from './components/shopping-cart/product-list/custom/custom.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProductPageComponent } from './components/shopping-cart/product-page/product-page.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { environment } from 'src/environments/environment';
+
+import * as firebase from 'firebase';
+
+firebase.initializeApp(environment.firebaseConfig);
 
 const routes: Routes = [
   { path: '', component: AboutComponent },
@@ -14,10 +21,12 @@ const routes: Routes = [
   { path: 'products/:type', component: ProductListComponent },
   { path: 'products/:type/:id', component: ProductPageComponent },
   { path: 'custom', component: CustomComponent },
+  { path: 'login', component: LoginComponent },
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

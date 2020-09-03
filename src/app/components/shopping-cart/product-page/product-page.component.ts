@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service'
 import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service'
+import * as firebase from 'firebase'
+
 
 @Component({
   selector: 'app-product-page',
@@ -16,33 +19,17 @@ export class ProductPageComponent implements OnInit {
   productList: Product[] = []
   product: Product;
   itemProd: {}[] = [{}];
-
-
-  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private db: AngularFireDatabase) { }
+  currUser: {};
+  modalRef: BsModalRef;
+  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private modalService: BsModalService) { }
 
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe(async params => {
       this.id = +params.get('id');
       this.type = params.get('type');
       this.type = this.type.charAt(0).toUpperCase() + this.type.slice(1);
-      this.getProductsOfType(this.type);
       this.itemProd = this.productService.getItemFromDB(this.type);
-      console.log(this.itemProd)
     });
-  }
-
-
-  getProductsOfType(type: String) {
-    switch (type) {
-      case "posters": {
-        this.productList = this.productService.getPosters();
-        break;
-      }
-      case "paintings": {
-        this.productList = this.productService.getPaintings();
-        break;
-      }
-    }
   }
 
   qty() {
@@ -117,5 +104,57 @@ export class ProductPageComponent implements OnInit {
         e.preventDefault();
       }
     });
+  }
+
+  addToCart() {
+    let size = (<HTMLInputElement>document.getElementById('sizeSelect')).value;
+    if (size) {
+      let prods = this.productService.tmpItem[0]
+      let keys = Object.keys(prods)
+      let sku, prodSize;
+      let itemData;
+      for (let key in keys) {
+        let prod = prods[key]
+        if (prod.sku == this.id) {
+          itemData = {
+            sku: prod.sku,
+            price: prod.price[size],
+            size: prod.size[size],
+            name: prod.name,
+            img: prod.img.cover,
+            qty: 1
+          }
+          sku = prod.sku
+          prodSize = prod.size[size]
+        }
+      }
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          firebase.database().ref('Users/' + user.uid + '/Cart/' + sku + '/' + size).once('value', function (sizeData) {
+            if (!sizeData.val()) {
+              let updates = {};
+              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size] = itemData;
+              return firebase.database().ref().update(updates);
+            } else {
+              let updates = {};
+              let newQty = sizeData.val().qty
+              itemData.qty = newQty + 1
+              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size] = itemData;
+              return firebase.database().ref().update(updates);
+            }
+          })
+          console.log("added to cart!")
+        } else {
+          firebase.auth().signInAnonymously
+        }
+      })
+    }
+    else {
+      console.log('select a size!')
+    }
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { backdrop: 'static', keyboard: false });
   }
 }

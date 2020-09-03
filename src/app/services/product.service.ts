@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product'
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { timer } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 
 
 @Injectable({
@@ -10,14 +10,8 @@ import { timer } from 'rxjs';
 
 export class ProductService {
   tmpItem: {}[] = [{}];
+  user: {} = {};
 
-  posters: Product[] = [
-
-    new Product(4, 'Pop Smoke Poster', "Posters", 'Poster of Pop Smoke', 19.99, 'https://i.postimg.cc/BQQpk4y6/meet-the-woo-1.jpg'),
-    new Product(5, 'Majin Buu Poster', "Posters", 'Poster of Majin Buu', 19.99, 'https://i.postimg.cc/MZYt9v9N/Majin-1.jpg'),
-    new Product(6, 'Tiger Poster', "Posters", 'Poster of a Tiger', 19.99, 'https://i.postimg.cc/KzPQSzxK/il-1588x-N-2349742354-54fn.jpg'),
-    new Product(7, 'Joker Poster', "Posters", 'Poster of Joker', 19.99, 'https://i.postimg.cc/FR5GBc55/il-1588x-N-2397377197-kbv5.jpg'),
-  ]
 
   paintings: Product[] = [
     new Product(8, 'Kid Goku Painting', "Paintings", 'Painting of Kid Goku', 59, 'https://instagram.fybz2-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117092271_1515057462015493_5444572033813428653_n.jpg?_nc_ht=instagram.fybz2-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=EOLLDRgbwOEAX9X8kBO&oh=2f8b442f93d3ff2b92bcb1864c2f9ad7&oe=5F6C3639'),
@@ -29,35 +23,35 @@ export class ProductService {
 
   ]
 
-  products: Product[][] = [
-    this.posters
-  ]
   constructor(private af: AngularFireDatabase) {
-  }
-
-  getPosters(): Product[] {
-    return this.posters;
   }
 
   getPaintings(): Product[] {
     return this.paintings;
   }
 
-  getAll(): Product[][] {
-    return this.products;
-  }
 
   getItemFromDB(type): {}[] {
     let t = type.charAt(0).toUpperCase() + type.slice(1);
     let url = '/Products/' + t
-    console.log(url)
     this.af.list(url).valueChanges().subscribe(s => {
       this.tmpItem[0] = s
       return this.tmpItem
     }
     );
-    console.log(this.tmpItem)
     return this.tmpItem
+  }
+
+  writeToDB(url, data) {
+    this.af.list(url).push(data);
+  }
+
+  getUserFromDB(url) {
+    this.af.list(url).valueChanges().subscribe(s => {
+      this.user = s
+      return this.user;
+    })
+    return this.user;
   }
 
 }
