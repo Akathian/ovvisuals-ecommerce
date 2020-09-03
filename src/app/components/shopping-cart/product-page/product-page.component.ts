@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service'
 import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
@@ -12,18 +12,20 @@ import { ModalDirective } from 'angular-bootstrap-md'
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss']
 })
-export class ProductPageComponent implements OnInit {
-  @ViewChild('basicModal', { static: false }) demoBasic: ModalDirective
+export class ProductPageComponent implements AfterViewInit {
+  @ViewChild('loginModal', { static: false }) loginModal: ModalDirective
+  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
+
   id: number;
   type: string;
   productList: Product[] = []
   product: Product;
   itemProd: {}[] = [{}];
-  currUser: {};
+  cartItem: {} = {};
 
   constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this._Activatedroute.paramMap.subscribe(async params => {
       this.id = +params.get('id');
       this.type = params.get('type');
@@ -121,12 +123,16 @@ export class ProductPageComponent implements OnInit {
             sku: prod.sku,
             price: prod.price[size],
             size: prod.size[size],
+            sizeCode: size,
             name: prod.name,
             img: prod.img.cover,
-            qty: 1
+            qty: 1,
+            type: this.type,
           }
+          itemData.type = itemData.type.charAt(0).toLowerCase() + itemData.type.slice(1);
           sku = prod.sku
           prodSize = prod.size[size]
+          this.cartItem = itemData;
         }
       }
       let self = this
@@ -135,6 +141,7 @@ export class ProductPageComponent implements OnInit {
           console.log('login')
           self.doModal()
         } else {
+          document.getElementById('no-size-err').style.display = 'none'
           firebase.database().ref('Users/' + user.uid + '/Cart/' + sku + '/' + size).once('value', function (sizeData) {
             if (!sizeData.val()) {
               let updates = {};
@@ -142,23 +149,45 @@ export class ProductPageComponent implements OnInit {
               return firebase.database().ref().update(updates);
             } else {
               let updates = {};
-              let newQty = sizeData.val().qty
-              itemData.qty = newQty + 1
-              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size] = itemData;
-              return firebase.database().ref().update(updates);
+              let dta = itemData
+              console.log(itemData.qty)
+              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size] = dta;
+              firebase.database().ref().update(updates);
+              updates = {};
+              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size + '/' + 'qty'] = sizeData.val().qty + 1;
+              firebase.database().ref().update(updates);
             }
           })
+          firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').once('value', function (itemQtyData) {
+            let currQty = itemQtyData.val() || 0
+            let updates = {};
+            updates['/Users/' + user.uid + '/Cart/' + 'itemQty'] = itemData.qty + currQty;
+            return firebase.database().ref().update(updates);
+          })
+          firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').once('value', function (totalData) {
+            let currTotal = totalData.val() || 0
+            let updates = {};
+            updates['/Users/' + user.uid + '/Cart/' + 'total'] = itemData.price * itemData.qty + currTotal;
+            return firebase.database().ref().update(updates);
+          })
+          self.confirmModal.show();
           console.log("added to cart!")
         }
       })
     }
     else {
+      document.getElementById('no-size-err').style.display = '';
       console.log('select a size!')
     }
   }
 
+
   doModal() {
-    this.demoBasic.show()
+    try {
+      this.loginModal.show()
+    } catch (e) {
+      this.loginModal.show()
+    }
     let typeLow = this.type.charAt(0).toLowerCase() + this.type.slice(1);
     console.log(`/products/${typeLow}/${this.id}`)
     var uiConfig = {

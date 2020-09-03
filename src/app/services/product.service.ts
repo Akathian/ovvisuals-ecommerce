@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product'
 import { AngularFireDatabase } from '@angular/fire/database';
+import * as firebase from 'firebase'
 
 
 
@@ -11,6 +12,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class ProductService {
   tmpItem: {}[] = [{}];
   user: {} = {};
+  userCart: {}[] = [{}];
 
 
   paintings: Product[] = [
@@ -30,6 +32,19 @@ export class ProductService {
     return this.paintings;
   }
 
+  getCart() {
+    let self = this
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        self.af.list('/Users/' + user.uid + '/Cart').valueChanges().subscribe(s => {
+          self.userCart[0] = s
+        })
+      } else {
+        self.userCart[0] = [{}]
+      }
+    })
+    return this.userCart
+  }
 
   getItemFromDB(type): {}[] {
     let t = type.charAt(0).toUpperCase() + type.slice(1);

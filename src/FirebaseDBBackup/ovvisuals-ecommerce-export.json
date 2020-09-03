@@ -1,0 +1,138 @@
+{
+  "Products" : {
+    "Paintings" : {
+      "8" : {
+        "description" : "Painting of Deku",
+        "img" : {
+          "cover" : "https://instagram.fymy1-2.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117291560_2541778786134826_8561922847214786418_n.jpg?_nc_ht=instagram.fymy1-2.fna.fbcdn.net&_nc_cat=110&_nc_ohc=f7Gv8Ekm7agAX_EkoYW&oh=3a757227d7f1e314217d03146bb53bae&oe=5F6A9F86"
+        },
+        "name" : "Deku Painting",
+        "price" : {
+          "sm" : 69.99
+        },
+        "size" : {
+          "sm" : "8x12in"
+        },
+        "sku" : 8
+      }
+    },
+    "Posters" : [ null, {
+      "description" : "Poster of Kobe",
+      "img" : {
+        "cover" : "https://i.postimg.cc/NFQDgcjd/il-1588x-N-2397324387-enwp.jpg"
+      },
+      "name" : "Kobe Poster",
+      "price" : {
+        "rg" : 29.99,
+        "sm" : 19.99
+      },
+      "size" : {
+        "rg" : "24x36in",
+        "sm" : "12x18in"
+      },
+      "sku" : 1
+    }, {
+      "description" : "Poster of Tamil Eelam",
+      "img" : {
+        "cover" : "https://i.postimg.cc/sxKcxNBs/Eelam-No-writing-1.jpg"
+      },
+      "name" : "Eelam Poster",
+      "price" : {
+        "rg" : 29.99,
+        "sm" : 19.99
+      },
+      "size" : {
+        "rg" : "24x36in",
+        "sm" : "12x18in"
+      },
+      "sku" : 2
+    }, {
+      "desription" : "Poster of Iron Man",
+      "img" : {
+        "cover" : "https://i.postimg.cc/RVsdz25T/Iron-1.jpg"
+      },
+      "name" : "Iron Man Poster",
+      "price" : {
+        "rg" : 29.99,
+        "sm" : 19.99
+      },
+      "size" : {
+        "rg" : "24x36in",
+        "sm" : "12x18in"
+      },
+      "sku" : 3
+    }, {
+      "description" : "Poster of Pop Smoke",
+      "img" : {
+        "cover" : "https://i.postimg.cc/BQQpk4y6/meet-the-woo-1.jpg"
+      },
+      "name" : "Pop Smoke Poster",
+      "price" : {
+        "rg" : 34.99,
+        "sm" : 19.99
+      },
+      "size" : {
+        "rg" : "24x36in",
+        "sm" : "12x18in"
+      },
+      "sku" : 4
+    }, {
+      "description" : "Poster of Majin Buu",
+      "img" : {
+        "cover" : "https://i.postimg.cc/MZYt9v9N/Majin-1.jpg"
+      },
+      "name" : "Majin Buu Poster",
+      "price" : {
+        "lg" : 21.99,
+        "md" : 19.99,
+        "rg" : 17.99,
+        "sm" : 15.99,
+        "xl" : 23.99
+      },
+      "size" : {
+        "lg" : "16x16in",
+        "md" : "14x14in",
+        "rg" : "12x12in",
+        "sm" : "10x10in",
+        "xl" : "18x18in"
+      },
+      "sku" : 5
+    }, {
+      "description" : "Poster of a Tiger",
+      "img" : {
+        "cover" : "https://i.postimg.cc/KzPQSzxK/il-1588x-N-2349742354-54fn.jpg"
+      },
+      "name" : "Tiger Poster",
+      "price" : {
+        "lg" : 21.99,
+        "md" : 19.99,
+        "rg" : 17.99,
+        "sm" : 15.99,
+        "xl" : 23.99
+      },
+      "size" : {
+        "lg" : "16x16in",
+        "md" : "14x14in",
+        "rg" : "12x12in",
+        "sm" : "10x10in",
+        "xl" : "18x18in"
+      },
+      "sku" : 6
+    }, {
+      "description" : "Poster of Joker",
+      "img" : {
+        "cover" : "https://i.postimg.cc/FR5GBc55/il-1588x-N-2397377197-kbv5.jpg"
+      },
+      "name" : "Joker Poster",
+      "price" : {
+        "rg" : 34.99,
+        "sm" : 19.99
+      },
+      "size" : {
+        "rg" : "24x36in",
+        "sm" : "12x18in"
+      },
+      "sku" : 7
+    } ]
+  }
+}

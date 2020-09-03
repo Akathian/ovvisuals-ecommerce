@@ -3,7 +3,7 @@
         <p>Products / <a [routerLink]="['/products', this.type]">{{ this.type }}</a> / {{ this.id }}
         </p>
         <div class="d-flex flex-column flex-md-row justify-content-center mb-4 ">
-            <img width="100%" class="flex-shrink-0" [src]="product.img.cover" />
+            <img width="100%" height="100%" [src]="product.img.cover" />
             <div class="d-flex flex-column justify-content-start p-3 px-md-4 mb-3">
                 <div class="p-2">
                     <span>
@@ -15,7 +15,7 @@
                 </div>
                 <form>
                     <div class="p-2 form-group">
-                        <label for="sizeSelect">Size:</label>
+                        <label class="mb-3 text-muted text-uppercase small" for="sizeSelect">Size:</label>
                         <select class="form-control" id="sizeSelect" name='sizeSelect'>
                             <option label="-- Select something --"></option>
                             <option value='sm'>{{product.size.sm}} <p>|
@@ -35,7 +35,11 @@
                                 </p>
                             </option>
                         </select>
+                        <p style="color: red; display: none;" class="text-uppercase small" id="no-size-err">*Please
+                            select a size
+                        </p>
                     </div>
+
                     <div class="p-2 form-group">
                         <button type="button" class="btn btn-lg btn-outline-primary 
                     product-btn" (click)='addToCart()'>Add To Cart</button>
@@ -70,8 +74,9 @@
             </div>
         </div>
 
-        <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="myBasicModalLabel" aria-hidden="true" id="basicModal">
+
+        <div mdbModal #loginModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="myBasicModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -84,12 +89,52 @@
                         <div id="firebaseui-auth-container"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                            (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+                        <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close"
+                            (click)="loginModal.hide()" mdbWavesEffect>Close</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="firebaseui-auth-container"></div>
+        <div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                            <span (click)="confirmModal.hide()" aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">Item Added To Cart</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th><img [src]='cartItem.img' width='50px' /></th>
+                                <td>{{ cartItem.name }}</td>
+                                <td>{{ cartItem.size }}</td>
+                                <td>{{ cartItem.price | currency: 'CAD' }}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" mdbBtn color="primary" routerLink="/checkout" class="waves-light"
+                            aria-label="Close" (click)="confirmModal.hide()" mdbWavesEffect>TO Checkout</button>
+                        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
+                            (click)="confirmModal.hide()" [routerLink]="['/products', this.type]" mdbWavesEffect>to
+                            {{ this.type }}</button>
+                        <button type="button" mdbBtn color="dark" class="waves-light" aria-label="Close"
+                            (click)="confirmModal.hide()" mdbWavesEffect>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </span>
 </span>

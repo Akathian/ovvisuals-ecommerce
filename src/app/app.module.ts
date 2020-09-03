@@ -26,6 +26,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { LoginComponent } from './components/login/login.component';
     AboutComponent,
     ProductPageComponent,
     LoginComponent,
+    CheckoutComponent,
 
   ],
   imports: [

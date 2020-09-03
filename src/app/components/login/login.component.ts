@@ -10,7 +10,8 @@ import { ModalDirective } from 'angular-bootstrap-md'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('basicModal', { static: false }) demoBasic: ModalDirective
+  @ViewChild('loginModal', { static: false }) loginModal: ModalDirective
+  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
 
   constructor() { }
 
@@ -19,9 +20,11 @@ export class LoginComponent implements OnInit {
   }
 
   signOut() {
-    if (this.demoBasic) {
-      console.log('this is uself')
-      this.demoBasic.hide()
+    if (this.loginModal) {
+      this.loginModal.hide()
+    }
+    if (this.confirmModal) {
+      this.confirmModal.hide()
     }
     firebase.auth().signOut();
   }
@@ -59,13 +62,6 @@ export class LoginComponent implements OnInit {
             providerData: providerData
           }, null, '  ');
           document.getElementById('account-details').textContent = displayName + '\n' + email;
-          if (photoURL) {
-            document.getElementById('login').innerHTML = `<img id='loginImg' src='${photoURL}' width='26px'/> `
-            document.getElementById('loginImg').style.borderRadius = '100%'
-          } else {
-            document.getElementById('logoutImg').style.fill = 'green'
-          }
-
         });
       } else {
         document.getElementById('sign-in').style.display = 'none';
