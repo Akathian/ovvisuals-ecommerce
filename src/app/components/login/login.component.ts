@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebaseui from 'firebaseui'
 import * as firebase from 'firebase'
+import { ModalDirective } from 'angular-bootstrap-md'
 
 
 @Component({
@@ -9,6 +10,7 @@ import * as firebase from 'firebase'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('basicModal', { static: false }) demoBasic: ModalDirective
 
   constructor() { }
 
@@ -17,6 +19,10 @@ export class LoginComponent implements OnInit {
   }
 
   signOut() {
+    if (this.demoBasic) {
+      console.log('this is uself')
+      this.demoBasic.hide()
+    }
     firebase.auth().signOut();
   }
 

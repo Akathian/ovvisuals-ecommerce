@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service'
 import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 import * as firebase from 'firebase'
-
+import * as firebaseui from 'firebaseui'
+import { ModalDirective } from 'angular-bootstrap-md'
 
 @Component({
   selector: 'app-product-page',
@@ -12,6 +13,7 @@ import * as firebase from 'firebase'
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
+  @ViewChild('basicModal', { static: false }) demoBasic: ModalDirective
   id: number;
   type: string;
   productList: Product[] = []
@@ -27,6 +29,7 @@ export class ProductPageComponent implements OnInit {
       this.type = params.get('type');
       this.type = this.type.charAt(0).toUpperCase() + this.type.slice(1);
       this.itemProd = this.productService.getItemFromDB(this.type);
+      this.doModal();
     });
   }
 
@@ -126,8 +129,12 @@ export class ProductPageComponent implements OnInit {
           prodSize = prod.size[size]
         }
       }
+      let self = this
       firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
+        if (!user) {
+          console.log('login')
+          self.doModal()
+        } else {
           firebase.database().ref('Users/' + user.uid + '/Cart/' + sku + '/' + size).once('value', function (sizeData) {
             if (!sizeData.val()) {
               let updates = {};
@@ -142,14 +149,42 @@ export class ProductPageComponent implements OnInit {
             }
           })
           console.log("added to cart!")
-        } else {
-          firebase.auth().signInAnonymously
         }
       })
     }
     else {
       console.log('select a size!')
     }
+  }
+
+  doModal() {
+    this.demoBasic.show()
+    let typeLow = this.type.charAt(0).toLowerCase() + this.type.slice(1);
+    console.log(`/products/${typeLow}/${this.id}`)
+    var uiConfig = {
+      signInSuccessUrl: `/products/${typeLow}/${this.id}`,
+      'signInFlow': 'popup',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+      ],
+      tosUrl: '<your-tos-url>',
+      privacyPolicyUrl: function () {
+        window.location.assign('<your-privacy-policy-url>');
+      }
+    };
+    try {
+      var ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start('#firebaseui-auth-container', uiConfig);
+    } catch (e) {
+      console.log(e);
+    }
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user)
+    })
   }
 
 }
