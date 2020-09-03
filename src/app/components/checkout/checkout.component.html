@@ -12,7 +12,8 @@
             <div class="mb-3">
                 <div class="pt-4 wish-list">
 
-                    <h5 class="mb-4">Cart (<span>{{this.userCart[0][this.userCart[0].length-2]}}</span> items)</h5>
+                    <h5 class="mb-4">Cart (<span>{{this.userCart[0][this.userCart[0].length-2]}}</span> item<span
+                            *ngIf="userCart[0][this.userCart[0].length-2] > 1">s</span>)</h5>
                     <span *ngFor='let cartItem of userCart[0]'>
                         <span *ngFor='let item of cartItem | keyvalue'>
                             <div class="row mb-4">
@@ -43,14 +44,11 @@
                                             </div>
                                             <div>
                                                 <div class="def-number-input number-input safari_only mb-0 w-100">
-                                                    <button
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                        class="minus decrease"></button>
-                                                    <input class="quantity" min="0" name="quantity"
-                                                        [value]="item.value.qty" type="number">
-                                                    <button
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                        class="plus increase"></button>
+                                                    <i (click)='qtyChange(item.value, -1)'
+                                                        class="p-2 fa-minus-circle fa qtyCh"></i>
+                                                    <span>{{ item.value.qty }}</span>
+                                                    <i (click)='qtyChange(item.value, 1)'
+                                                        class="p-2 fa-plus-circle fa qtyCh"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +59,7 @@
                                                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
                                                 <a href="#!" type="button"
                                                     class="card-link-secondary small text-uppercase"><i
-                                                        class="fas fa-heart mr-1"></i> Move to wish list </a>
+                                                        class="fa fa-heart-o"></i> Move to wish list </a>
                                             </div>
                                             <p class="mb-0"><span><strong
                                                         id="summary">{{ item.value.price * item.value.qty | currency: 'CAD' }}</strong></span>

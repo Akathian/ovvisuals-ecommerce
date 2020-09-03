@@ -85,11 +85,9 @@ export class LoginComponent implements OnInit {
           var ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
           ui.start('#firebaseui-auth-container', uiConfig);
         } catch (e) {
-          console.log(e);
         }
       }
     }, function (error) {
-      console.log(error);
     });
   };
 }

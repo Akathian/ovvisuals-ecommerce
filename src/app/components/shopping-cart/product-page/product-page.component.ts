@@ -138,7 +138,6 @@ export class ProductPageComponent implements AfterViewInit {
       let self = this
       firebase.auth().onAuthStateChanged(function (user) {
         if (!user) {
-          console.log('login')
           self.doModal()
         } else {
           document.getElementById('no-size-err').style.display = 'none'
@@ -150,7 +149,6 @@ export class ProductPageComponent implements AfterViewInit {
             } else {
               let updates = {};
               let dta = itemData
-              console.log(itemData.qty)
               updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size] = dta;
               firebase.database().ref().update(updates);
               updates = {};
@@ -171,13 +169,11 @@ export class ProductPageComponent implements AfterViewInit {
             return firebase.database().ref().update(updates);
           })
           self.confirmModal.show();
-          console.log("added to cart!")
         }
       })
     }
     else {
       document.getElementById('no-size-err').style.display = '';
-      console.log('select a size!')
     }
   }
 
@@ -189,7 +185,6 @@ export class ProductPageComponent implements AfterViewInit {
       this.loginModal.show()
     }
     let typeLow = this.type.charAt(0).toLowerCase() + this.type.slice(1);
-    console.log(`/products/${typeLow}/${this.id}`)
     var uiConfig = {
       signInSuccessUrl: `/products/${typeLow}/${this.id}`,
       'signInFlow': 'popup',
@@ -208,12 +203,7 @@ export class ProductPageComponent implements AfterViewInit {
       var ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
       ui.start('#firebaseui-auth-container', uiConfig);
     } catch (e) {
-      console.log(e);
     }
-
-    firebase.auth().onAuthStateChanged(function (user) {
-      console.log(user)
-    })
   }
 
 }
