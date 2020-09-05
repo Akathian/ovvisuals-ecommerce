@@ -9,6 +9,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ProductPageComponent } from './components/shopping-cart/product-page/product-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 import { environment } from 'src/environments/environment';
 
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'custom', component: CustomComponent },
   { path: 'login', component: LoginComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'gallery/:content', component: GalleryComponent }
+
 ];
 
 @NgModule({

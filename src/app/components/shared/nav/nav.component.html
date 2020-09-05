@@ -42,11 +42,40 @@
     </div>
     <div
         class="d-flex flex-column flex-md-row align-items-center justify-content-center p-3 px-md-4 mb-3 border-bottom shadow-sm ">
-        <nav class="my-2 my-md-0 mr-md-3">
+        <nav class="my-2 my-md-0 mr-md-3 d-flex">
             <a class="p-2 text-dark" [routerLink]="['/products', 'posters']">Posters</a>
             <a class="p-2 text-dark" [routerLink]="['/products', 'paintings']">Paintings</a>
-            <!-- <a class="p-2 text-dark" href="/lamps">Lamps</a> -->
+            <a class="nav-item dropdown text-dark" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                    mdbWavesEffect>
+                    Gallery<span class="caret"></span></a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/gallery', 'all']">All
+                        Art</a>
+                    <div class=" divider dropdown-divider"></div>
+                    <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/gallery', 'for-sale']">For
+                        Sale</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect [routerLink]="['/gallery', 'lamps']">Lamps</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'others']">Others</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'paintings']">Paintings</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect [routerLink]="['/gallery', '']">Pencil and
+                        Inkings</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'portraits']">Portraits</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'posters']">Posters</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'sketches']">Sketches</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'social-awareness']">Social Awareness</a>
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'watercolors']">Watercolors</a>
+                </div>
+            </a>
             <a class="p-2 text-dark" routerLink="/custom">Custom Request</a>
+
         </nav>
     </div>
 </div>

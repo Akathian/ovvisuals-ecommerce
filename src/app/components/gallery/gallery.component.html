@@ -1,0 +1,27 @@
+<div class="page-body">
+  <!-- <div class="col-sm-12">
+    <div class="column has-text-centered">
+      <div class="img-row" *ngFor="let image of albums; let i=index">
+        <img class="img-frame" [src]="image.thumb" (click)="open(i)" />
+      </div>
+    </div> -->
+
+  <div class="card-columns">
+    <div class="card" *ngFor='let image of images1; let i=index'>
+      <img class="card-img-top" (click)="open(i, 0)" [src]="image.src" alt="Card image cap">
+    </div>
+    <div class="card" *ngFor='let image of images2; let i=index'>
+      <img class="card-img-top" (click)="open(i, images1.length)" [src]="image.src" alt="Card image cap">
+    </div>
+    <div class="card" *ngFor='let image of images3; let i=index'>
+      <img class="card-img-top" (click)="open(i, images1.length + images2.length)" [src]="image.src"
+        alt="Card image cap">
+    </div>
+  </div>
+</div>
+
+<!-- {
+  src: 'assets/images/light-box/l3.jpg',
+  caption: 'Image 3 caption here',
+  thumb: 'assets/images/light-box/sl3.jpg'
+} -->

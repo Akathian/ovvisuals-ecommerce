@@ -1,50 +1,50 @@
 {
   "Gallery": {
-    "all": [
+    "All": [
       {
-        "caption": "Poster of Kobe ovvisuals.com/products/posters/1",
+        "caption": "Poster of Kobe (available for sale)",
         "sku": 1,
         "src": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
         "thumb": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
         "type": "Posters"
       },
       {
-        "caption": "Poster of Tamil Eelam ovvisuals.com/products/posters/2",
+        "caption": "Poster of Tamil Eelam (available for sale)",
         "sku": 2,
         "src": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
         "thumb": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
         "type": "Posters"
       },
       {
-        "caption": "Poster of Iron Man ovvisuals.com/products/posters/3",
+        "caption": "Poster of Iron Man (available for sale)",
         "sku": 3,
         "src": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
         "thumb": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
         "type": "Posters"
       },
       {
-        "caption": "Poster of Pop Smoke ovvisuals.com/products/posters/4",
+        "caption": "Poster of Pop Smoke (available for sale)",
         "sku": 4,
         "src": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
         "thumb": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
         "type": "Posters"
       },
       {
-        "caption": "Poster of Majin Buu ovvisuals.com/products/posters/5",
+        "caption": "Poster of Majin Buu (available for sale)",
         "sku": 5,
         "src": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
         "thumb": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
         "type": "Posters"
       },
       {
-        "caption": "Poster of a Tiger ovvisuals.com/products/posters/6",
+        "caption": "Poster of a Tiger (available for sale)",
         "sku": 6,
         "src": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
         "thumb": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
         "type": "Posters"
       },
       {
-        "caption": "Poster of Joker ovvisuals.com/products/posters/7",
+        "caption": "Poster of Joker (available for sale)",
         "sku": 7,
         "src": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
         "thumb": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
@@ -301,378 +301,89 @@
         "thumb": "https://i.postimg.cc/2jxDdhnH/20200904-122257.jpg"
       }
     ],
-    "for-sale": [
-      {
-        "caption": "Poster of Kobe ovvisuals.com/products/posters/1",
-        "sku": 1,
-        "src": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "thumb": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Tamil Eelam ovvisuals.com/products/posters/2",
-        "sku": 2,
-        "src": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-        "thumb": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Iron Man ovvisuals.com/products/posters/3",
-        "sku": 3,
-        "src": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "thumb": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Pop Smoke ovvisuals.com/products/posters/4",
-        "sku": 4,
-        "src": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "thumb": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Majin Buu ovvisuals.com/products/posters/5",
-        "sku": 5,
-        "src": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "thumb": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of a Tiger ovvisuals.com/products/posters/6",
-        "sku": 6,
-        "src": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "thumb": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Joker ovvisuals.com/products/posters/7",
-        "sku": 7,
-        "src": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "thumb": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "type": "Posters"
-      }
+    "For Sale": [
+      "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
+      "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
+      "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
+      "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
+      "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
+      "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
+      "https://i.postimg.cc/2ybmVbrG/Joker.jpg"
     ],
-    "lamps": [
-      {
-        "caption": "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
-        "src": "https://i.postimg.cc/C5Xg9zW6/117300682-622271195353065-2093009850100198108-n.jpg",
-        "thumb": "https://i.postimg.cc/C5Xg9zW6/117300682-622271195353065-2093009850100198108-n.jpg"
-      },
-      {
-        "caption": "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
-        "src": "https://i.postimg.cc/44SsYSmb/117408318-331494894881307-6450961782276248704-n.jpg",
-        "thumb": "https://i.postimg.cc/44SsYSmb/117408318-331494894881307-6450961782276248704-n.jpg"
-      },
-      {
-        "caption": "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
-        "src": "https://i.postimg.cc/3wYTMMc7/118288710-872039809988327-5013842189352119279-n.jpg",
-        "thumb": "https://i.postimg.cc/3wYTMMc7/118288710-872039809988327-5013842189352119279-n.jpg"
-      }
+    "Lamps": [
+      "https://i.postimg.cc/C5Xg9zW6/117300682-622271195353065-2093009850100198108-n.jpg",
+      "https://i.postimg.cc/44SsYSmb/117408318-331494894881307-6450961782276248704-n.jpg",
+      "https://i.postimg.cc/3wYTMMc7/118288710-872039809988327-5013842189352119279-n.jpg"
     ],
-    "others": [
-      {
-        "caption": "Custom dbz guitar pick guard for @athis.guitar This was inspired by a Pinterest post",
-        "src": "https://i.postimg.cc/QtnGWFxx/118042227-3341435292580153-3736985001265089089-n.jpg",
-        "thumb": "https://i.postimg.cc/QtnGWFxx/118042227-3341435292580153-3736985001265089089-n.jpg"
-      },
-      {
-        "caption": "Custom dbz guitar pick guard for @athis.guitar This was inspired by a Pinterest post",
-        "src": "https://i.postimg.cc/5yYc5f65/118540717-1021086674988127-8145650436553627211-n.jpg",
-        "thumb": "https://i.postimg.cc/5yYc5f65/118540717-1021086674988127-8145650436553627211-n.jpg"
-      }
+    "Others": [
+      "https://i.postimg.cc/QtnGWFxx/118042227-3341435292580153-3736985001265089089-n.jpg",
+      "https://i.postimg.cc/5yYc5f65/118540717-1021086674988127-8145650436553627211-n.jpg"
     ],
-    "paintings": [
-      {
-        "caption": "Painting of my favourite animal!",
-        "src": "https://i.postimg.cc/3wF3Wrvd/104452916-2768985453329293-5322906944499794104-n.jpg",
-        "thumb": "https://i.postimg.cc/3wF3Wrvd/104452916-2768985453329293-5322906944499794104-n.jpg"
-      },
-      {
-        "caption": "My favourite villain was shego. Who was yours? I was inspired by digital artist Zarory and recreated it using acrylic paints!",
-        "src": "https://i.postimg.cc/3RwQRXhc/117904491-734179704099675-2422552156820759730-n.jpg",
-        "thumb": "https://i.postimg.cc/3RwQRXhc/117904491-734179704099675-2422552156820759730-n.jpg"
-      },
-      {
-        "caption": "What’s your favourite smash of Deku? I made such a mess using oil paints to create this piece, but it was so worth it.",
-        "src": "https://i.postimg.cc/L6gRL3Pd/117291560-2541778786134826-8561922847214786418-n.jpg",
-        "thumb": "https://i.postimg.cc/L6gRL3Pd/117291560-2541778786134826-8561922847214786418-n.jpg"
-      },
-      {
-        "caption": "Going back to the basics. Who doesn’t love kid goku. Made a billion mistakes, forgot I can’t just undo on paper, but more old school art coming up! ",
-        "src": "https://i.postimg.cc/FRPmgPGv/117092271-1515057462015493-5444572033813428653-n.jpg",
-        "thumb": "https://i.postimg.cc/FRPmgPGv/117092271-1515057462015493-5444572033813428653-n.jpg"
-      }
+    "Paintings": [
+      "https://i.postimg.cc/3wF3Wrvd/104452916-2768985453329293-5322906944499794104-n.jpg",
+      "https://i.postimg.cc/3RwQRXhc/117904491-734179704099675-2422552156820759730-n.jpg",
+      "https://i.postimg.cc/L6gRL3Pd/117291560-2541778786134826-8561922847214786418-n.jpg"
     ],
-    "pencil-and-inkings": [
-      {
-        "caption": "Venom Color Pencil",
-        "src": "https://i.postimg.cc/qM0Mx1PC/Screenshot-20200904-122023-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/qM0Mx1PC/Screenshot-20200904-122023-Instagram.jpg"
-      },
-      {
-        "caption": "Dragon Color Pencil",
-        "src": "https://i.postimg.cc/nckVRvxS/Screenshot-20200904-122032-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/nckVRvxS/Screenshot-20200904-122032-Instagram.jpg"
-      },
-      {
-        "caption": "Dedicated to our brothers and sisters who made the ultimate sacrifice for us in Mullivaikkal. Color Pencil",
-        "src": "https://i.postimg.cc/d0zJk6R3/Screenshot-20200904-122038-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/d0zJk6R3/Screenshot-20200904-122038-Instagram.jpg"
-      },
-      {
-        "caption": "Blue Feather Color Pencil",
-        "src": "https://i.postimg.cc/sgHjysvp/Screenshot-20200904-122048-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/sgHjysvp/Screenshot-20200904-122048-Instagram.jpg"
-      },
-      {
-        "caption": "Tranquil forest Color Pencil",
-        "src": "https://i.postimg.cc/9f4WQK7s/Screenshot-20200904-122053-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/9f4WQK7s/Screenshot-20200904-122053-Instagram.jpg"
-      },
-      {
-        "caption": "Precious face Color Pencil",
-        "src": "https://i.postimg.cc/dVVszLts/Screenshot-20200904-122059-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/dVVszLts/Screenshot-20200904-122059-Instagram.jpg"
-      },
-      {
-        "caption": "Quick practice piece of a rose using pencil crayons on tan paper",
-        "src": "https://i.postimg.cc/6psK04V8/117823682-223781725690274-8476338986781606388-n.jpg",
-        "thumb": "https://i.postimg.cc/6psK04V8/117823682-223781725690274-8476338986781606388-n.jpg"
-      }
+    "Pencil and Inkings": [
+      "https://i.postimg.cc/6psK04V8/117823682-223781725690274-8476338986781606388-n.jpg",
+      "https://i.postimg.cc/qM0Mx1PC/Screenshot-20200904-122023-Instagram.jpg",
+      "https://i.postimg.cc/nckVRvxS/Screenshot-20200904-122032-Instagram.jpg",
+      "https://i.postimg.cc/d0zJk6R3/Screenshot-20200904-122038-Instagram.jpg",
+      "https://i.postimg.cc/sgHjysvp/Screenshot-20200904-122048-Instagram.jpg",
+      "https://i.postimg.cc/9f4WQK7s/Screenshot-20200904-122053-Instagram.jpg",
+      "https://i.postimg.cc/dVVszLts/Screenshot-20200904-122059-Instagram.jpg"
     ],
-    "portraits": [
-      {
-        "caption": "Portrait for a birthday present (Harrani and Vaamitha)",
-        "src": "https://i.postimg.cc/TYK2QXZ4/101244790-786316948566879-9081768222806188417-n.jpg",
-        "thumb": "https://i.postimg.cc/TYK2QXZ4/101244790-786316948566879-9081768222806188417-n.jpg"
-      },
-      {
-        "caption": "Early wedding present for my favourite couple. A digital painting using hyperrealism. Congratulations you guys!!!! (Gonjeev and Su)",
-        "src": "https://i.postimg.cc/T3mdMJ2j/116369646-352630652394330-5111824718805050159-n.jpg",
-        "thumb": "https://i.postimg.cc/T3mdMJ2j/116369646-352630652394330-5111824718805050159-n.jpg"
-      },
-      {
-        "caption": "I had so much fun drawing this custom digital piece a a birthday present for Ruben from Harrani",
-        "src": "https://i.postimg.cc/YSHppLj5/116839141-831621500706542-6144089292548844117-n.jpg",
-        "thumb": "https://i.postimg.cc/YSHppLj5/116839141-831621500706542-6144089292548844117-n.jpg"
-      },
-      {
-        "caption": "I always find myself amazed by @noorbeauty.official makeup/fashion posts so i wanted to make a little something inspired by her",
-        "src": "https://i.postimg.cc/vB8bnRrX/117232680-673027453285704-7826911503186923596-n.jpg",
-        "thumb": "https://i.postimg.cc/vB8bnRrX/117232680-673027453285704-7826911503186923596-n.jpg"
-      },
-      {
-        "caption": "A digital painting, printed and framed as a gift for a friend! (Mithila) ",
-        "src": "https://i.postimg.cc/XvL042R5/118246965-311102193456692-6425455804611335699-n.jpg",
-        "thumb": "https://i.postimg.cc/XvL042R5/118246965-311102193456692-6425455804611335699-n.jpg"
-      },
-      {
-        "caption": "Nivetha requested this piece for as a gift for a friend of hers. Print it, frame it and gift your friends and family the perfect gift",
-        "src": "https://i.postimg.cc/52wVk9pn/118589260-195758541912243-7007980343232398064-n.jpg",
-        "thumb": "https://i.postimg.cc/52wVk9pn/118589260-195758541912243-7007980343232398064-n.jpg"
-      },
-      {
-        "caption": "Little something for Jey’s birthday",
-        "src": "https://i.postimg.cc/4dw424fr/61042646-1098269930358525-4516071940625104745-n.jpg",
-        "thumb": "https://i.postimg.cc/4dw424fr/61042646-1098269930358525-4516071940625104745-n.jpg"
-      },
-      {
-        "caption": "பிறந்தநாள் வாழ்த்துக்கள்",
-        "src": "https://i.postimg.cc/mgFDZGjH/75545969-561320111079830-4919997992790833929-n.jpg",
-        "thumb": "https://i.postimg.cc/mgFDZGjH/75545969-561320111079830-4919997992790833929-n.jpg"
-      },
-      {
-        "caption": "Portrait request from a client",
-        "src": "https://i.postimg.cc/FRhsxk4y/79272645-1039812019709873-4247253998526262605-n.jpg",
-        "thumb": "https://i.postimg.cc/FRhsxk4y/79272645-1039812019709873-4247253998526262605-n.jpg"
-      },
-      {
-        "caption": "Portrait request from a client",
-        "src": "https://i.postimg.cc/pdbdp1c1/79792889-451484095543854-2480193457095729361-n.jpg",
-        "thumb": "https://i.postimg.cc/pdbdp1c1/79792889-451484095543854-2480193457095729361-n.jpg"
-      },
-      {
-        "caption": "For all the Vijay fans",
-        "src": "https://i.postimg.cc/Gt5LrMsK/95008853-862726410913925-6444029205021333688-n.jpg",
-        "thumb": "https://i.postimg.cc/Gt5LrMsK/95008853-862726410913925-6444029205021333688-n.jpg"
-      }
+    "Portraits": [
+      "https://i.postimg.cc/TYK2QXZ4/101244790-786316948566879-9081768222806188417-n.jpg",
+      "https://i.postimg.cc/T3mdMJ2j/116369646-352630652394330-5111824718805050159-n.jpg",
+      "https://i.postimg.cc/YSHppLj5/116839141-831621500706542-6144089292548844117-n.jpg",
+      "https://i.postimg.cc/vB8bnRrX/117232680-673027453285704-7826911503186923596-n.jpg",
+      "https://i.postimg.cc/XvL042R5/118246965-311102193456692-6425455804611335699-n.jpg",
+      "https://i.postimg.cc/52wVk9pn/118589260-195758541912243-7007980343232398064-n.jpg",
+      "https://i.postimg.cc/4dw424fr/61042646-1098269930358525-4516071940625104745-n.jpg",
+      "https://i.postimg.cc/mgFDZGjH/75545969-561320111079830-4919997992790833929-n.jpg",
+      "https://i.postimg.cc/FRhsxk4y/79272645-1039812019709873-4247253998526262605-n.jpg",
+      "https://i.postimg.cc/pdbdp1c1/79792889-451484095543854-2480193457095729361-n.jpg",
+      "https://i.postimg.cc/Gt5LrMsK/95008853-862726410913925-6444029205021333688-n.jpg"
     ],
-    "posters": [
-      {
-        "caption": "Poster of Kobe ovvisuals.com/products/posters/1",
-        "sku": 1,
-        "src": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "thumb": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Tamil Eelam ovvisuals.com/products/posters/2",
-        "sku": 2,
-        "src": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-        "thumb": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Iron Man ovvisuals.com/products/posters/3",
-        "sku": 3,
-        "src": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "thumb": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Pop Smoke ovvisuals.com/products/posters/4",
-        "sku": 4,
-        "src": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "thumb": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Majin Buu ovvisuals.com/products/posters/5",
-        "sku": 5,
-        "src": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "thumb": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of a Tiger ovvisuals.com/products/posters/",
-        "sku": 6,
-        "src": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "thumb": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Poster of Joker ovvisuals.com/products/posters/",
-        "sku": 7,
-        "src": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "thumb": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "type": "Posters"
-      },
-      {
-        "caption": "Custom Vijay poster for a client. (Black border not included)",
-        "src": "https://i.postimg.cc/KjRb9nsM/115050680-586754718927704-8861882134388417164-n.jpg",
-        "thumb": "https://i.postimg.cc/KjRb9nsM/115050680-586754718927704-8861882134388417164-n.jpg"
-      },
-      {
-        "caption": "Joker",
-        "src": "https://i.postimg.cc/FzRrMt11/72277641-868008120260323-765220464274102847-n.jpg",
-        "thumb": "https://i.postimg.cc/FzRrMt11/72277641-868008120260323-765220464274102847-n.jpg"
-      },
-      {
-        "caption": "Custom Poster",
-        "src": "https://i.postimg.cc/2jxDdhnH/20200904-122257.jpg",
-        "thumb": "https://i.postimg.cc/2jxDdhnH/20200904-122257.jpg"
-      }
+    "Posters": [
+      "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
+      "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
+      "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
+      "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
+      "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
+      "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
+      "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
+      "https://i.postimg.cc/KjRb9nsM/115050680-586754718927704-8861882134388417164-n.jpg",
+      "https://i.postimg.cc/FzRrMt11/72277641-868008120260323-765220464274102847-n.jpg",
+      "https://i.postimg.cc/2jxDdhnH/20200904-122257.jpg"
     ],
-    "sketches": [
-      {
-        "caption": "Cat Sketch",
-        "src": "https://i.postimg.cc/3JWMQ6DG/Screenshot-20200904-122152-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/3JWMQ6DG/Screenshot-20200904-122152-Instagram.jpg"
-      },
-      {
-        "caption": "Jellyfish Sketch",
-        "src": "https://i.postimg.cc/MpjhvQ5K/Screenshot-20200904-122156-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/MpjhvQ5K/Screenshot-20200904-122156-Instagram.jpg"
-      },
-      {
-        "caption": "Owl Sketch",
-        "src": "https://i.postimg.cc/0NYFC1hT/Screenshot-20200904-122200-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/0NYFC1hT/Screenshot-20200904-122200-Instagram.jpg"
-      },
-      {
-        "caption": "Bunny Sketch",
-        "src": "https://i.postimg.cc/HsNqY2Qh/Screenshot-20200904-122203-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/HsNqY2Qh/Screenshot-20200904-122203-Instagram.jpg"
-      },
-      {
-        "caption": "Bird Sketch",
-        "src": "https://i.postimg.cc/25RgvS9d/Screenshot-20200904-122206-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/25RgvS9d/Screenshot-20200904-122206-Instagram.jpg"
-      }
+    "Sketches": [
+      "https://i.postimg.cc/3JWMQ6DG/Screenshot-20200904-122152-Instagram.jpg",
+      "https://i.postimg.cc/MpjhvQ5K/Screenshot-20200904-122156-Instagram.jpg",
+      "https://i.postimg.cc/0NYFC1hT/Screenshot-20200904-122200-Instagram.jpg",
+      "https://i.postimg.cc/HsNqY2Qh/Screenshot-20200904-122203-Instagram.jpg",
+      "https://i.postimg.cc/25RgvS9d/Screenshot-20200904-122206-Instagram.jpg"
     ],
-    "social-awareness": [
-      {
-        "caption": "No is not the only word a person needs to say for you to understand they don’t want to be touched. People say in many different ways when they are not interested. Some may say I’m not in the mood. I’m not ready yet. etc. If u have to go out of your way to convince, lie and trick someone to be intimate with you, it is still assault. Learn your boundaries and don’t cross them. It’s as simple as that.",
-        "src": "https://i.postimg.cc/ZKXbMMmK/105942284-2840891949343505-3910302397620154920-n.jpg",
-        "thumb": "https://i.postimg.cc/ZKXbMMmK/105942284-2840891949343505-3910302397620154920-n.jpg"
-      },
-      {
-        "caption": "This statue was made to celebrate the victory of the Sri Lankan army. I wanted to depict how their victory was not a victory at all but a bunch of lies that were built on unjust deaths, kidnappings, rape and torture of innocent Tamil men, women and children. They purposely grouped tamil people into one area and slaughtered them like animals for a forced surrender. For those who lost their lives and still live with a scar mentally or physically from this massacre, I stand with you and my heart aches for you. உங்கள் தியாகங்கள் நிறைவேற நெஞ்சுருகி நிற்கின்றோம். தமிழரின் தாகம் தமிழீழத் தாயகம்.",
-        "src": "https://i.postimg.cc/wBXjJcSx/97861043-536112020364801-8707608283306872187-n.jpg",
-        "thumb": "https://i.postimg.cc/wBXjJcSx/97861043-536112020364801-8707608283306872187-n.jpg"
-      },
-      {
-        "caption": "Dedicated to our brothers and sisters who made the ultimate sacrifice for us in Mullivaikkal.",
-        "src": "https://i.postimg.cc/BZYQxvwF/98179906-806966749832938-2934847109394325988-n.jpg",
-        "thumb": "https://i.postimg.cc/BZYQxvwF/98179906-806966749832938-2934847109394325988-n.jpg"
-      },
-      {
-        "caption": "Dedicated to our brothers and sisters who made the ultimate sacrifice for us in Mullivaikkal.",
-        "src": "https://i.postimg.cc/900CRk46/97350208-1140826619609420-5513824554568248783-n.jpg",
-        "thumb": "https://i.postimg.cc/900CRk46/97350208-1140826619609420-5513824554568248783-n.jpg"
-      },
-      {
-        "caption": "Dedicated to our brothers and sisters who made the ultimate sacrifice for us in Mullivaikkal. Color Pencil",
-        "src": "https://i.postimg.cc/d0zJk6R3/Screenshot-20200904-122038-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/d0zJk6R3/Screenshot-20200904-122038-Instagram.jpg"
-      }
+    "Social Awareness": [
+      "https://i.postimg.cc/ZKXbMMmK/105942284-2840891949343505-3910302397620154920-n.jpg",
+      "https://i.postimg.cc/wBXjJcSx/97861043-536112020364801-8707608283306872187-n.jpg",
+      "https://i.postimg.cc/BZYQxvwF/98179906-806966749832938-2934847109394325988-n.jpg",
+      "https://i.postimg.cc/900CRk46/97350208-1140826619609420-5513824554568248783-n.jpg",
+      "https://i.postimg.cc/d0zJk6R3/Screenshot-20200904-122038-Instagram.jpg"
     ],
-    "watercolors": [
-      {
-        "caption": "Deer Watercolor",
-        "src": "https://i.postimg.cc/P5qQRzgS/Screenshot-20200904-122104-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/P5qQRzgS/Screenshot-20200904-122104-Instagram.jpg"
-      },
-      {
-        "caption": "Pig Watercolor",
-        "src": "https://i.postimg.cc/T2r0LPjJ/Screenshot-20200904-122108-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/T2r0LPjJ/Screenshot-20200904-122108-Instagram.jpg"
-      },
-      {
-        "caption": "Side Profile Watercolor",
-        "src": "https://i.postimg.cc/yYsPFzv4/Screenshot-20200904-122111-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/yYsPFzv4/Screenshot-20200904-122111-Instagram.jpg"
-      },
-      {
-        "caption": "Pink Bird Watercolor",
-        "src": "https://i.postimg.cc/8znmQfDN/Screenshot-20200904-122116-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/8znmQfDN/Screenshot-20200904-122116-Instagram.jpg"
-      },
-      {
-        "caption": "Ashen Hair Watercolor",
-        "src": "https://i.postimg.cc/LsckhdnW/Screenshot-20200904-122120-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/LsckhdnW/Screenshot-20200904-122120-Instagram.jpg"
-      },
-      {
-        "caption": "Red Hair Watercolor",
-        "src": "https://i.postimg.cc/d1G2yWCV/Screenshot-20200904-122124-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/d1G2yWCV/Screenshot-20200904-122124-Instagram.jpg"
-      },
-      {
-        "caption": "Black Hair Watercolor",
-        "src": "https://i.postimg.cc/q7hXkBMn/Screenshot-20200904-122130-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/q7hXkBMn/Screenshot-20200904-122130-Instagram.jpg"
-      },
-      {
-        "caption": "Brown Hair Watercolor",
-        "src": "https://i.postimg.cc/j2KzQz6Q/Screenshot-20200904-122133-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/j2KzQz6Q/Screenshot-20200904-122133-Instagram.jpg"
-      },
-      {
-        "caption": "Brown Hair Watercolor",
-        "src": "https://i.postimg.cc/T2qj24Gk/Screenshot-20200904-122138-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/T2qj24Gk/Screenshot-20200904-122138-Instagram.jpg"
-      },
-      {
-        "caption": "Rose Watercolor",
-        "src": "https://i.postimg.cc/9QzypX9S/Screenshot-20200904-122143-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/9QzypX9S/Screenshot-20200904-122143-Instagram.jpg"
-      },
-      {
-        "caption": "Tiger Watercolor",
-        "src": "https://i.postimg.cc/LXFf2zWK/Screenshot-20200904-122147-Instagram.jpg",
-        "thumb": "https://i.postimg.cc/LXFf2zWK/Screenshot-20200904-122147-Instagram.jpg"
-      }
+    "Watercolors": [
+      "https://i.postimg.cc/P5qQRzgS/Screenshot-20200904-122104-Instagram.jpg",
+      "https://i.postimg.cc/T2r0LPjJ/Screenshot-20200904-122108-Instagram.jpg",
+      "https://i.postimg.cc/yYsPFzv4/Screenshot-20200904-122111-Instagram.jpg",
+      "https://i.postimg.cc/8znmQfDN/Screenshot-20200904-122116-Instagram.jpg",
+      "https://i.postimg.cc/LsckhdnW/Screenshot-20200904-122120-Instagram.jpg",
+      "https://i.postimg.cc/d1G2yWCV/Screenshot-20200904-122124-Instagram.jpg",
+      "https://i.postimg.cc/q7hXkBMn/Screenshot-20200904-122130-Instagram.jpg",
+      "https://i.postimg.cc/j2KzQz6Q/Screenshot-20200904-122133-Instagram.jpg",
+      "https://i.postimg.cc/T2qj24Gk/Screenshot-20200904-122138-Instagram.jpg",
+      "https://i.postimg.cc/9QzypX9S/Screenshot-20200904-122143-Instagram.jpg",
+      "https://i.postimg.cc/LXFf2zWK/Screenshot-20200904-122147-Instagram.jpg"
     ]
   },
   "Products": {

@@ -27,6 +27,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { LightboxModule } from 'ngx-lightbox';
+
+
 
 
 @NgModule({
@@ -46,7 +50,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     ProductPageComponent,
     LoginComponent,
     CheckoutComponent,
-
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +58,11 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     AngularFireModule.initializeApp(environment.firebaseConfig, 'ovvisuals'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    LightboxModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
