@@ -44,7 +44,8 @@
         class="d-flex flex-column flex-md-row align-items-center justify-content-center p-3 px-md-4 mb-3 border-bottom shadow-sm ">
         <nav class="my-2 my-md-0 mr-md-3 d-flex">
             <a class="p-2 text-dark" [routerLink]="['/products', 'posters']">Posters</a>
-            <a class="p-2 text-dark" [routerLink]="['/products', 'paintings']">Paintings</a>
+            <a class="p-2 text-dark" routerLink="/custom">Custom Request</a>
+            <!-- <a class="p-2 text-dark" [routerLink]="['/products', 'paintings']">Paintings</a> -->
             <a class="nav-item dropdown text-dark" dropdown>
                 <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                     mdbWavesEffect>
@@ -60,7 +61,8 @@
                         [routerLink]="['/gallery', 'others']">Others</a>
                     <a class=" dropdown-item waves-light" mdbWavesEffect
                         [routerLink]="['/gallery', 'paintings']">Paintings</a>
-                    <a class=" dropdown-item waves-light" mdbWavesEffect [routerLink]="['/gallery', '']">Pencil and
+                    <a class=" dropdown-item waves-light" mdbWavesEffect
+                        [routerLink]="['/gallery', 'pencil-and-inkings']">Pencil and
                         Inkings</a>
                     <a class=" dropdown-item waves-light" mdbWavesEffect
                         [routerLink]="['/gallery', 'portraits']">Portraits</a>
@@ -74,8 +76,6 @@
                         [routerLink]="['/gallery', 'watercolors']">Watercolors</a>
                 </div>
             </a>
-            <a class="p-2 text-dark" routerLink="/custom">Custom Request</a>
-
         </nav>
     </div>
 </div>

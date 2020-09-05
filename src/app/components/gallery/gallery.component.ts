@@ -33,6 +33,9 @@ export class GalleryComponent implements OnInit {
 
   getGallery(content) {
     let self = this
+    if (!content) {
+      content = 'all'
+    }
     firebase.database().ref('/Gallery/' + content).on('value', function (galData) {
       self.allImages = self.shuffle(galData.val())
       self.chunks = self.chunk(self.allImages, 3)
