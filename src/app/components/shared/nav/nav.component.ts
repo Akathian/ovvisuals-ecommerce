@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase'
+import { ModalDirective } from 'angular-bootstrap-md'
 
 @Component({
   selector: 'app-nav',

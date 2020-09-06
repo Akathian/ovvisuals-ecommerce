@@ -39,25 +39,11 @@
                             select a size
                         </p>
                     </div>
-
                     <div class="p-2 form-group">
-                        <button type="button" class="btn btn-lg btn-outline-primary 
+                        <button type="button" class="btn btn-lg btn-primary 
                     product-btn" (click)='addToCart()'>Add To Cart</button>
                     </div>
                 </form>
-                <!-- <div class="form-group">
-                    <label for="exampleFormControlSelect1">Shipping:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Meet-up within GTA <p>| {{ 0 | currency: 'CAD'}} Bridlewood Mall Friday 1:00p.m. </p>
-                        </option>
-                        <option>Delivery within GTA <p>| {{ 4.99 | currency: 'CAD'}} To your door by Friday 9:00p.m</p>
-                        </option>
-                        <option>Worldwide Standard <p>| {{ 9.99 | currency: 'CAD'}} 4-5 business days</p>
-                        </option>
-                        <option>Worldwide Express <p>| {{ 9.99 | currency: 'CAD'}} 2-4 business days</p>
-                        </option>
-                    </select>
-                </div> -->
                 <div class="p-2">
                     <p>{{ product.description }}</p>
                     <p *ngIf='this.type==="Posters"'>Museum-quality posters made on thick and durable matte paper. Each
@@ -80,7 +66,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="loginModal.hide()">
                             <span aria-hidden="true">×</span>
                         </button>
                         <h4 class="modal-title w-100" id="myModalLabel">Please Sign-in To Add To Cart</h4>
@@ -89,8 +75,8 @@
                         <div id="firebaseui-auth-container"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close"
-                            (click)="loginModal.hide()" mdbWavesEffect>Close</button>
+                        <button type="button" class="btn btn-lg btn-primary 
+                        product-btn" aria-label="Close" (click)="loginModal.hide()" mdbWavesEffect>Close</button>
                     </div>
                 </div>
             </div>
@@ -100,7 +86,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="confirmModal.hide()">
                             <span (click)="confirmModal.hide()" aria-hidden="true">×</span>
                         </button>
                         <h4 class="modal-title w-100" id="myModalLabel">Item Added To Cart</h4>
@@ -125,13 +111,14 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" mdbBtn color="primary" routerLink="/checkout" class="waves-light"
-                            aria-label="Close" (click)="confirmModal.hide()" mdbWavesEffect>TO Checkout</button>
-                        <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close"
-                            (click)="confirmModal.hide()" [routerLink]="['/products', this.type]" mdbWavesEffect>to
+
+                        <button type="button" class="btn btn-md btn-primary" routerLink="/checkout"
+                            (click)="confirmModal.hide()">To Checkout</button>
+                        <button type="button" class="btn btn-md btn-info" (click)="confirmModal.hide()"
+                            [routerLink]="['/products', this.type]">To
                             {{ this.type }}</button>
-                        <button type="button" mdbBtn color="dark" class="waves-light" aria-label="Close"
-                            (click)="confirmModal.hide()" mdbWavesEffect>Close</button>
+                        <button type="button" class="btn btn-md btn-dark" aria-label="Close"
+                            (click)="confirmModal.hide()">Close</button>
                     </div>
                 </div>
             </div>
