@@ -11,13 +11,53 @@ import { isEmptyExpression } from '@angular/compiler';
 })
 export class CheckoutComponent implements OnInit {
 
-  userCart: {}[] = [{}]
-  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
+  userCart = [];
+  constructor(private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe(params => {
-      this.userCart = this.productService.getCart();
+      this.userCart = this.getCart();
     });
+  }
+
+  getCart() {
+    let self = this
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        firebase.database().ref('/Users/' + user.uid + '/Cart').on('value', function (cartData) {
+          self.userCart = Object.values(cartData.val())
+        })
+      } else {
+        self.userCart = []
+      }
+    });
+    return this.userCart
+  }
+
+  addToWishList(item) {
+    console.log(item)
+    item.qty = 1;
+    let self = this
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        firebase.database().ref('Users/' + user.uid + '/Wishlist/' + item.sku + '/' + item.sizeCode).once('value', function (wListData) {
+          if (!wListData.val()) {
+            firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function (itemQtyData) {
+              let currQty = itemQtyData.val() || 0
+              let updates = {};
+              updates['/Users/' + user.uid + '/Wishlist/' + 'itemQty'] = item.qty + currQty;
+              return firebase.database().ref().update(updates);
+            })
+            let updates = {}
+            updates['Users/' + user.uid + '/Wishlist/' + item.sku + '/' + item.sizeCode] = item
+            return firebase.database().ref().update(updates);
+          }
+        })
+
+
+        self.removeItem(item);
+      }
+    })
   }
 
   removeItem(item) {

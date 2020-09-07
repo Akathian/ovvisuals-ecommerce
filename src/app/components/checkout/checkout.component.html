@@ -3,7 +3,7 @@
     <p class="mb-3 text-muted text-uppercase small your-cart p-2">Your Cart
     </p>
     <!--Grid row-->
-    <div class="row" *ngIf='userCart[0][userCart[0].length-2]'>
+    <div class="row" *ngIf='userCart[userCart.length-2]'>
 
         <!--Grid column-->
         <div class="col-lg-8">
@@ -12,9 +12,9 @@
             <div class="mb-3">
                 <div class="pt-4 wish-list">
 
-                    <h5 class="mb-4">Cart (<span>{{this.userCart[0][this.userCart[0].length-2]}}</span> item<span
-                            *ngIf="userCart[0][this.userCart[0].length-2] > 1">s</span>)</h5>
-                    <span *ngFor='let cartItem of userCart[0]'>
+                    <h5 class="mb-4">Cart (<span>{{this.userCart[this.userCart.length-2]}}</span> item<span
+                            *ngIf="userCart[this.userCart.length-2] > 1">s</span>)</h5>
+                    <span *ngFor='let cartItem of userCart'>
                         <span *ngFor='let item of cartItem | keyvalue'>
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
@@ -57,7 +57,7 @@
                                                 <a (click)='removeItem(item.value)' type="button"
                                                     class="card-link-secondary small text-uppercase mr-3"><i
                                                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                                                <a href="#!" type="button"
+                                                <a (click)='addToWishList(item.value)' type="button"
                                                     class="card-link-secondary small text-uppercase"><i
                                                         class="fa fa-heart-o"></i> Move to wish list </a>
                                             </div>
@@ -124,7 +124,7 @@
                         <li
                             class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                             Subtotal
-                            <span>{{ this.userCart[0][this.userCart[0].length-1] | currency: 'CAD'  }}</span>
+                            <span>{{ this.userCart[this.userCart.length-1] | currency: 'CAD'  }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             Shipping
@@ -138,7 +138,7 @@
                                     <p class="mb-0">(including taxes)</p>
                                 </strong>
                             </div>
-                            <span><strong>{{ this.userCart[0][this.userCart[0].length-1] | currency: 'CAD'  }}</strong></span>
+                            <span><strong>{{ this.userCart[this.userCart.length-1] | currency: 'CAD'  }}</strong></span>
                         </li>
                     </ul>
 
@@ -174,7 +174,7 @@
         <!--Grid column-->
 
     </div>
-    <div class="p-2" style="margin: auto; text-align: center;" *ngIf='!userCart[0][userCart[0].length-2]'>
+    <div class="p-2" style="margin: auto; text-align: center;" *ngIf='!userCart[userCart.length-2]'>
         <p class="mb-3 text-muted text-uppercase small"><i>Your Cart is Empty</i></p>
     </div>
     <!-- Grid row -->

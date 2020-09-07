@@ -29,6 +29,11 @@ import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { LightboxModule } from 'ngx-lightbox';
+import { UserProfileComponent } from './components/login/user-profile/user-profile.component';
+import { OverviewComponent } from './components/login/user-profile/overview/overview.component';
+import { OrdersComponent } from './components/login/user-profile/orders/orders.component';
+import { WishlistComponent } from './components/login/user-profile/wishlist/wishlist.component';
+import { SettingsComponent } from './components/login/user-profile/settings/settings.component';
 
 
 
@@ -51,6 +56,11 @@ import { LightboxModule } from 'ngx-lightbox';
     LoginComponent,
     CheckoutComponent,
     GalleryComponent,
+    UserProfileComponent,
+    OverviewComponent,
+    OrdersComponent,
+    WishlistComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

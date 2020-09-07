@@ -35,8 +35,19 @@ export class ProductPageComponent implements AfterViewInit {
     });
   }
 
+  qtyChange(amt: number) {
+    let curr = +(document.getElementById('qtyNum').innerText)
+    if (amt < 0 && curr <= 1) {
+      return
+    }
+    document.getElementById('qtyNum').innerText = `${curr + amt}`
+  }
+
+
   addToCart() {
     let size = (<HTMLInputElement>document.getElementById('sizeSelect')).value;
+    let qty = +(document.getElementById('qtyNum').innerText);
+    console.log(qty)
     if (size) {
       let prods = this.productService.tmpItem[0]
       let keys = Object.keys(prods)
@@ -52,7 +63,7 @@ export class ProductPageComponent implements AfterViewInit {
             sizeCode: size,
             name: prod.name,
             img: prod.img.cover,
-            qty: 1,
+            qty,
             type: this.type,
           }
           itemData.type = itemData.type.charAt(0).toLowerCase() + itemData.type.slice(1);
@@ -78,7 +89,7 @@ export class ProductPageComponent implements AfterViewInit {
               updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size] = dta;
               firebase.database().ref().update(updates);
               updates = {};
-              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size + '/' + 'qty'] = sizeData.val().qty + 1;
+              updates['/Users/' + user.uid + '/Cart/' + sku + '/' + size + '/' + 'qty'] = sizeData.val().qty + itemData.qty;
               firebase.database().ref().update(updates);
             }
           })
@@ -95,6 +106,7 @@ export class ProductPageComponent implements AfterViewInit {
             return firebase.database().ref().update(updates);
           })
           self.confirmModal.show();
+          document.getElementById('qtyNum').innerText = "1";
         }
       })
     }
@@ -103,6 +115,59 @@ export class ProductPageComponent implements AfterViewInit {
     }
   }
 
+  // addToWishList() {
+  //   let size = (<HTMLInputElement>document.getElementById('sizeSelect')).value;
+  //   if (size) {
+  //     let prods = this.productService.tmpItem[0]
+  //     let keys = Object.keys(prods)
+  //     let sku, prodSize;
+  //     let itemData;
+  //     for (let key in keys) {
+  //       let prod = prods[key]
+  //       if (prod.sku == this.id) {
+  //         itemData = {
+  //           sku: prod.sku,
+  //           price: prod.price[size],
+  //           size: prod.size[size],
+  //           sizeCode: size,
+  //           name: prod.name,
+  //           img: prod.img.cover,
+  //           qty: 1,
+  //           type: this.type,
+  //         }
+  //         itemData.type = itemData.type.charAt(0).toLowerCase() + itemData.type.slice(1);
+  //         sku = prod.sku
+  //         prodSize = prod.size[size]
+  //         this.cartItem = itemData;
+  //       }
+  //     }
+  //     let self = this
+  //     firebase.auth().onAuthStateChanged(function (user) {
+  //       if (!user) {
+  //         self.doModal()
+  //       } else {
+  //         document.getElementById('no-size-err').style.display = 'none'
+  //         firebase.database().ref('Users/' + user.uid + '/Wishlist/' + sku + '/' + size).once('value', function (sizeData) {
+  //           if (!sizeData.val()) {
+  //             let updates = {};
+  //             updates['/Users/' + user.uid + '/Wishlist/' + sku + '/' + size] = itemData;
+  //             return firebase.database().ref().update(updates);
+  //           }
+  //         })
+  //         firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function (itemQtyData) {
+  //           let currQty = itemQtyData.val() || 0
+  //           let updates = {};
+  //           updates['/Users/' + user.uid + '/Wishlist/' + 'itemQty'] = itemData.qty + currQty;
+  //           return firebase.database().ref().update(updates);
+  //         })
+  //         document.getElementById('wishButton').innerHTML = `<i id='wishHeart' class="fa fa-heart"></i> In your wishlist`
+  //       }
+  //     })
+  //   }
+  //   else {
+  //     document.getElementById('no-size-err').style.display = '';
+  //   }
+  // }
 
   doModal() {
     try {

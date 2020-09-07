@@ -1,3 +1,4 @@
-<button id="sign-in" type="button" class="btn btn-sm btn-primary product-btn" (click)='signOut()'></button>
 <div id="firebaseui-auth-container"></div>
-<pre id="account-details"></pre>
+<span *ngIf='userLoggedIn'>
+    <app-user-profile [user]='user'></app-user-profile>
+</span>

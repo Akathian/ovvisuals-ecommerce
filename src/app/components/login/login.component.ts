@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as firebaseui from 'firebaseui'
 import * as firebase from 'firebase'
-import { ModalDirective } from 'angular-bootstrap-md'
 
 
 @Component({
@@ -10,26 +9,17 @@ import { ModalDirective } from 'angular-bootstrap-md'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('loginModal', { static: false }) loginModal: ModalDirective
-  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
 
+  userLoggedIn = false;
+  user;
   constructor() { }
 
   ngOnInit() {
     this.renderAccInfo();
   }
 
-  signOut() {
-    if (this.loginModal) {
-      this.loginModal.hide()
-    }
-    if (this.confirmModal) {
-      this.confirmModal.hide()
-    }
-    firebase.auth().signOut();
-  }
-
   renderAccInfo() {
+    let self = this
     firebase.auth().onAuthStateChanged(function (user) {
       const loginIMG = `<svg id='logoutImg' width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-circle"
       fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -41,6 +31,8 @@ export class LoginComponent implements OnInit {
   </svg>`
       if (user) {
         // User is signed in.
+        self.userLoggedIn = true
+        self.user = user;
         var displayName = user.displayName || 'Guest';
         var email = user.email || '';
         var emailVerified = user.emailVerified;
@@ -49,9 +41,7 @@ export class LoginComponent implements OnInit {
         var phoneNumber = user.phoneNumber;
         var providerData = user.providerData;
         user.getIdToken().then(function (accessToken) {
-          document.getElementById('sign-in').style.display = 'block'
-          document.getElementById('sign-in').textContent = 'Sign out';
-          document.getElementById('account-details').textContent = JSON.stringify({
+          let a = JSON.stringify({
             displayName: displayName,
             email: email,
             emailVerified: emailVerified,
@@ -61,11 +51,10 @@ export class LoginComponent implements OnInit {
             accessToken: accessToken,
             providerData: providerData
           }, null, '  ');
-          document.getElementById('account-details').textContent = displayName + '\n' + email;
         });
       } else {
-        document.getElementById('sign-in').style.display = 'none';
-        document.getElementById('account-details').textContent = '';
+        self.user = '';
+        self.userLoggedIn = false
         document.getElementById('login').innerHTML = loginIMG
         document.getElementById('logoutImg').style.fill = 'black'
         var uiConfig = {
