@@ -3,18 +3,18 @@
     <p class="mb-3 text-muted text-uppercase small your-cart p-2">Your Cart
     </p>
     <!--Grid row-->
-    <div class="row" *ngIf='this.numItems'>
+    <div class="row">
 
         <!--Grid column-->
         <div class="col-lg-8">
 
             <!-- Card -->
-            <div class="mb-3">
+            <div class="mb-3" *ngIf='this.numItems'>
                 <div class="pt-4 wish-list">
 
                     <h5 class="mb-4">Cart (<span>{{this.numItems}}</span> item<span *ngIf="this.numItems > 1">s</span>)
                     </h5>
-                    <span *ngFor='let cartItem of userCart'>
+                    <span *ngFor=' let cartItem of userCart'>
                         <span *ngFor='let item of cartItem | keyvalue'>
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
@@ -56,7 +56,7 @@
                                             <div>
                                                 <a (click)='removeItem(item.value)' type="button"
                                                     class="card-link-secondary small text-uppercase mr-3"><i
-                                                        class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                                                        class="fas fa-trash-alt"></i> Remove item </a>
                                                 <a (click)='addToWishList(item.value)' type="button"
                                                     class="card-link-secondary small text-uppercase"><i
                                                         class="fa fa-heart-o"></i> Move to wish list </a>
@@ -72,6 +72,9 @@
                     </span>
                     <hr class="mb-4">
                 </div>
+            </div>
+            <div class="p-2" style="margin: auto; text-align: center;" *ngIf='!this.numItems'>
+                <p class="mb-3 text-muted text-uppercase small"><i>Your Cart is Empty</i></p>
             </div>
             <!-- Card -->
 
@@ -169,14 +172,15 @@
                                     <div class="form-group">
                                         <select class="form-control-sm" id="shippingSelect" name='shippingSelect'
                                             [ngModel]="chosenShip" (ngModelChange)="shippingMethod($event)">
-                                            <option label="-- Select something --"></option>
+                                            <option label="-- Select something --">-- Select something --</option>
                                             <option value="1">Pickup</option>
                                             <option value="2">Hand-Delivery</option>
                                             <option value="3">Standard Delivery</option>
                                             <option value="4">Express Delivery</option>
                                         </select>
                                         <p style="color: red; display: none;" class="text-uppercase small"
-                                            id="no-size-err">*Please
+                                            id="no-size-err">
+                                            *Please
                                             select a size
                                         </p>
                                     </div>
@@ -229,10 +233,7 @@
         <!--Grid column-->
 
     </div>
-    <div class="p-2" style="margin: auto; text-align: center;" *ngIf='!this.numItems'>
-        <p class="mb-3 text-muted text-uppercase small"><i>Your Cart is Empty</i></p>
-    </div>
-    <!-- Grid row -->
 
+    <!-- Grid row -->
 </section>
 <!--Section: Block Content-->
