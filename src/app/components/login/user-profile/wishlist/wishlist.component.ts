@@ -61,6 +61,9 @@ export class WishlistComponent implements OnInit {
           updates['/Users/' + user.uid + '/Cart/' + 'total'] = item.price * item.qty + currTotal;
           return firebase.database().ref().update(updates);
         })
+        let updates = {}
+        updates['Users/' + user.uid + '/Cart/' + "totalWithSH"] = 0
+        firebase.database().ref().update(updates);
         self.removeItem(item)
       }
     })

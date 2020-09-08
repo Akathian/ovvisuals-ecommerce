@@ -10,10 +10,12 @@ import { ProductPageComponent } from './components/shopping-cart/product-page/pr
 import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
-
+import { TermsComponent } from './components/legal/terms/terms.component';
+import { LegalComponent } from './components/legal/legal.component';
 import { environment } from 'src/environments/environment';
 
 import * as firebase from 'firebase';
+import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -25,7 +27,9 @@ const routes: Routes = [
   { path: 'custom', component: CustomComponent },
   { path: 'login', component: LoginComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'gallery/:content', component: GalleryComponent }
+  { path: 'gallery/:content', component: GalleryComponent },
+  { path: 'terms', component: TermsComponent },
+  { path: 'privacy', component: PrivacyComponent }
 
 ];
 

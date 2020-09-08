@@ -105,6 +105,9 @@ export class ProductPageComponent implements AfterViewInit {
             updates['/Users/' + user.uid + '/Cart/' + 'total'] = itemData.price * itemData.qty + currTotal;
             return firebase.database().ref().update(updates);
           })
+          let updates = {}
+          updates['Users/' + user.uid + '/Cart/' + "totalWithSH"] = 0
+          firebase.database().ref().update(updates);
           self.confirmModal.show();
           document.getElementById('qtyNum').innerText = "1";
         }

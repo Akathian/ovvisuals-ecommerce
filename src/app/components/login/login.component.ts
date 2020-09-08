@@ -65,9 +65,9 @@ export class LoginComponent implements OnInit {
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
             firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
           ],
-          tosUrl: '<your-tos-url>',
+          tosUrl: '/terms',
           privacyPolicyUrl: function () {
-            window.location.assign('<your-privacy-policy-url>');
+            window.location.assign('/privacy');
           }
         };
         try {

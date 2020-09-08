@@ -3,7 +3,7 @@
     <p class="mb-3 text-muted text-uppercase small your-cart p-2">Your Cart
     </p>
     <!--Grid row-->
-    <div class="row" *ngIf='userCart[userCart.length-2]'>
+    <div class="row" *ngIf='this.numItems'>
 
         <!--Grid column-->
         <div class="col-lg-8">
@@ -12,8 +12,8 @@
             <div class="mb-3">
                 <div class="pt-4 wish-list">
 
-                    <h5 class="mb-4">Cart (<span>{{this.userCart[this.userCart.length-2]}}</span> item<span
-                            *ngIf="userCart[this.userCart.length-2] > 1">s</span>)</h5>
+                    <h5 class="mb-4">Cart (<span>{{this.numItems}}</span> item<span *ngIf="this.numItems > 1">s</span>)
+                    </h5>
                     <span *ngFor='let cartItem of userCart'>
                         <span *ngFor='let item of cartItem | keyvalue'>
                             <div class="row mb-4">
@@ -79,9 +79,45 @@
             <div class="mb-3">
                 <div class="pt-4">
 
-                    <h5 class="mb-4">Expected shipping delivery</h5>
+                    <h5 class="mb-4">Expected Delivery Times</h5>
 
-                    <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
+                    <table class="table table-striped" style="font-size: 0.83em;">
+                        <thead class='thead-dark'>
+                            <tr>
+                                <th scope="col">Method</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Estimated Date</th>
+                                <th scope="col">Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">Pickup</td>
+                                <td style="color: green;">Free</td>
+                                <td id="pickup"></td>
+                                <td>2900 Markham Rd, Scarborough, ON M1X 1E6 Unit #B5</td>
+
+                            </tr>
+                            <tr>
+                                <td scope="row">Hand-Delivery</td>
+                                <td>+{{ 2 | currency: 'CAD'}}</td>
+                                <td id='hand-delivery'>Otto</td>
+                                <td>Within the Greater Toronto Area</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Standard Delivery</td>
+                                <td>+{{ 10 | currency: 'CAD'}}</td>
+                                <td id='standard'>Otto</td>
+                                <td>Worldwide</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Express Delivery</td>
+                                <td>+{{ 20 | currency: 'CAD'}}</td>
+                                <td id='express'>Otto</td>
+                                <td>Worldwide</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Card -->
@@ -124,11 +160,28 @@
                         <li
                             class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                             Subtotal
-                            <span>{{ this.userCart[this.userCart.length-1] | currency: 'CAD'  }}</span>
+                            <span>{{ this.total | currency: 'CAD'  }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             Shipping
-                            <span></span>
+                            <span>
+                                <form>
+                                    <div class="form-group">
+                                        <select class="form-control-sm" id="shippingSelect" name='shippingSelect'
+                                            [ngModel]="chosenShip" (ngModelChange)="shippingMethod($event)">
+                                            <option label="-- Select something --"></option>
+                                            <option value="1">Pickup</option>
+                                            <option value="2">Hand-Delivery</option>
+                                            <option value="3">Standard Delivery</option>
+                                            <option value="4">Express Delivery</option>
+                                        </select>
+                                        <p style="color: red; display: none;" class="text-uppercase small"
+                                            id="no-size-err">*Please
+                                            select a size
+                                        </p>
+                                    </div>
+                                </form>
+                            </span>
                         </li>
                         <li
                             class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
@@ -138,7 +191,9 @@
                                     <p class="mb-0">(including taxes)</p>
                                 </strong>
                             </div>
-                            <span><strong>{{ this.userCart[this.userCart.length-1] | currency: 'CAD'  }}</strong></span>
+                            <span *ngIf='totalWithSH'><strong>{{ this.totalWithSH | currency: 'CAD'  }}</strong></span>
+                            <span *ngIf='!totalWithSH'><strong>Select a shipping
+                                    method</strong></span>
                         </li>
                     </ul>
 
@@ -174,7 +229,7 @@
         <!--Grid column-->
 
     </div>
-    <div class="p-2" style="margin: auto; text-align: center;" *ngIf='!userCart[userCart.length-2]'>
+    <div class="p-2" style="margin: auto; text-align: center;" *ngIf='!this.numItems'>
         <p class="mb-3 text-muted text-uppercase small"><i>Your Cart is Empty</i></p>
     </div>
     <!-- Grid row -->

@@ -3,11 +3,11 @@
 
         <figure class="icontext">
             <div class="icon">
-                <img class="rounded-circle img-sm border" [src]="user.photoURL" width="50px">
+                <img *ngIf='user.photoURL' class="rounded-circle img-sm border" [src]="user.photoURL" width="50px">
             </div>
             <div class="text">
-                <strong>{{ this.user.displayName }}</strong> <br>
-                {{ this.user.email }}<br>
+                <strong>{{ this.user.displayName || "Guest" }}</strong> <br>
+                {{ this.user.email || "No email for guest" }}<br>
             </div>
         </figure>
         <hr>
@@ -21,7 +21,7 @@
             <figure class="card bg">
                 <div class="p-3">
                     <h5 class="card-title">{{ this.wishListNum }}</h5>
-                    <span>Wishlist items</span>
+                    <span>Wishlist Item<span *ngIf='wishListNum > 1'>s</span></span>
                 </div>
             </figure>
             <figure class="card bg">

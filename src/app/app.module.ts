@@ -35,6 +35,11 @@ import { OrdersComponent } from './components/login/user-profile/orders/orders.c
 import { WishlistComponent } from './components/login/user-profile/wishlist/wishlist.component';
 import { SettingsComponent } from './components/login/user-profile/settings/settings.component';
 
+import { TermsComponent } from './components/legal/terms/terms.component';
+import { LegalComponent } from './components/legal/legal.component';
+import { PrivacyComponent } from './components/legal/privacy/privacy.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -61,6 +66,9 @@ import { SettingsComponent } from './components/login/user-profile/settings/sett
     OrdersComponent,
     WishlistComponent,
     SettingsComponent,
+    TermsComponent,
+    LegalComponent,
+    PrivacyComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +77,8 @@ import { SettingsComponent } from './components/login/user-profile/settings/sett
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MDBBootstrapModule.forRoot(),
-    LightboxModule
+    LightboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
