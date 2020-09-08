@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import * as firebase from 'firebase'
 import { ModalDirective } from 'angular-bootstrap-md'
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-user-profile',
@@ -16,6 +17,7 @@ export class UserProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
   signOut() {

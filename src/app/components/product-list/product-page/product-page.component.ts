@@ -118,59 +118,91 @@ export class ProductPageComponent implements AfterViewInit {
     }
   }
 
-  // addToWishList() {
-  //   let size = (<HTMLInputElement>document.getElementById('sizeSelect')).value;
-  //   if (size) {
-  //     let prods = this.productService.tmpItem[0]
-  //     let keys = Object.keys(prods)
-  //     let sku, prodSize;
-  //     let itemData;
-  //     for (let key in keys) {
-  //       let prod = prods[key]
-  //       if (prod.sku == this.id) {
-  //         itemData = {
-  //           sku: prod.sku,
-  //           price: prod.price[size],
-  //           size: prod.size[size],
-  //           sizeCode: size,
-  //           name: prod.name,
-  //           img: prod.img.cover,
-  //           qty: 1,
-  //           type: this.type,
-  //         }
-  //         itemData.type = itemData.type.charAt(0).toLowerCase() + itemData.type.slice(1);
-  //         sku = prod.sku
-  //         prodSize = prod.size[size]
-  //         this.cartItem = itemData;
-  //       }
-  //     }
-  //     let self = this
-  //     firebase.auth().onAuthStateChanged(function (user) {
-  //       if (!user) {
-  //         self.doModal()
-  //       } else {
-  //         document.getElementById('no-size-err').style.display = 'none'
-  //         firebase.database().ref('Users/' + user.uid + '/Wishlist/' + sku + '/' + size).once('value', function (sizeData) {
-  //           if (!sizeData.val()) {
-  //             let updates = {};
-  //             updates['/Users/' + user.uid + '/Wishlist/' + sku + '/' + size] = itemData;
-  //             return firebase.database().ref().update(updates);
-  //           }
-  //         })
-  //         firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function (itemQtyData) {
-  //           let currQty = itemQtyData.val() || 0
-  //           let updates = {};
-  //           updates['/Users/' + user.uid + '/Wishlist/' + 'itemQty'] = itemData.qty + currQty;
-  //           return firebase.database().ref().update(updates);
-  //         })
-  //         document.getElementById('wishButton').innerHTML = `<i id='wishHeart' class="fa fa-heart"></i> In your wishlist`
-  //       }
-  //     })
-  //   }
-  //   else {
-  //     document.getElementById('no-size-err').style.display = '';
-  //   }
-  // }
+  addToWishList() {
+    let size = (<HTMLInputElement>document.getElementById('sizeSelect')).value;
+    if (size) {
+      let prods = this.productService.tmpItem[0]
+      let keys = Object.keys(prods)
+      let sku, prodSize;
+      let itemData;
+      for (let key in keys) {
+        let prod = prods[key]
+        if (prod.sku == this.id) {
+          itemData = {
+            sku: prod.sku,
+            price: prod.price[size],
+            size: prod.size[size],
+            sizeCode: size,
+            name: prod.name,
+            img: prod.img.cover,
+            qty: 1,
+            type: this.type,
+          }
+          itemData.type = itemData.type.charAt(0).toLowerCase() + itemData.type.slice(1);
+          sku = prod.sku
+          prodSize = prod.size[size]
+          this.cartItem = itemData;
+        }
+      }
+      let self = this
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (!user) {
+          self.doModal()
+        } else {
+          document.getElementById('no-size-err').style.display = 'none'
+          firebase.database().ref('Users/' + user.uid + '/Wishlist/' + sku + '/' + size).once('value', function (sizeData) {
+            if (!sizeData.val()) {
+              let updates = {};
+              updates['/Users/' + user.uid + '/Wishlist/' + sku + '/' + size] = itemData;
+              firebase.database().ref().update(updates);
+              firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function (itemQtyData) {
+                let currQty = itemQtyData.val() || 0
+                let updates = {};
+                updates['/Users/' + user.uid + '/Wishlist/' + 'itemQty'] = itemData.qty + currQty;
+                document.getElementById('wishButton').innerHTML = `<i id='wishHeart' class="fa fa-heart"></i> In your wishlist`
+                return firebase.database().ref().update(updates);
+              })
+            } else {
+              firebase.database().ref('Users/' + user.uid + '/Wishlist/' + sku + '/' + size).remove()
+              firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function (itemQtyData) {
+                let currQty = itemQtyData.val() || 0
+                let updates = {};
+                let newQty = currQty - 1
+                if (newQty < 0) {
+                  newQty = 0;
+                }
+                updates['/Users/' + user.uid + '/Wishlist/' + 'itemQty'] = newQty;
+                document.getElementById('wishButton').innerHTML = `<i id='wishHeart' class="fa fa-heart-o"></i> Add to wishlist`
+                return firebase.database().ref().update(updates);
+              })
+            }
+          })
+        }
+      })
+    }
+    else {
+      document.getElementById('no-size-err').style.display = '';
+    }
+  }
+
+  sizeSelect(size) {
+    this.changeWishListButton(size)
+  }
+
+  changeWishListButton(size) {
+    let self = this
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        firebase.database().ref('Users/' + user.uid + '/Wishlist/' + self.id + '/' + size).on('value', function (wData) {
+          if (wData.val()) {
+            document.getElementById('wishButton').innerHTML = `<i id='wishHeart' class="fa fa-heart"></i> In your wishlist`
+          } else {
+            document.getElementById('wishButton').innerHTML = `<i id='wishHeart' class="fa fa-heart-o"></i> Add to wishlist`
+          }
+        })
+      }
+    })
+  }
 
   doModal() {
     try {

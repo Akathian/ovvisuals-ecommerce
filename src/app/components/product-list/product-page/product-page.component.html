@@ -16,7 +16,8 @@
                 <form>
                     <div class="p-2 form-group">
                         <label class="mb-3 text-muted text-uppercase small" for="sizeSelect">Size:</label>
-                        <select class="form-control" id="sizeSelect" name='sizeSelect'>
+                        <select class="form-control" id="sizeSelect" name='sizeSelect' [ngModel]="chosenSize"
+                            (ngModelChange)="sizeSelect($event)">
                             <option label="-- Select something --"></option>
                             <option value='sm'>{{product.size.sm}} <p>|
                                     {{ product.price.sm | currency: 'CAD'}}</p>
@@ -50,13 +51,12 @@
                         <button type="button" class="btn btn-lg btn-primary 
                     product-btn" (click)='addToCart()'>Add To Cart</button>
                     </div>
-                    <!-- <div class="pl-2 form-group">
+                    <div class="pl-2 form-group">
                         <a id='wishButton' (click)='addToWishList()' type="button"
                             class="card-link-secondary small text-uppercase">
                             <i id='wishHeart' class="fa fa-heart-o"></i> Add to wishlist
                         </a>
-                    </div> -->
-
+                    </div>
                 </form>
                 <div class="p-2">
                     <p>{{ product.description }}</p>

@@ -9,22 +9,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
-
   @Input() productItem: Product
   type: string;
 
-  constructor(private msg: MessengerService, private _Activatedroute: ActivatedRoute) {
-
+  constructor(private _Activatedroute: ActivatedRoute) {
   }
 
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe(params => {
       this.type = params.get('type');
     });
-  }
-
-  handleAddToCart() {
-    this.msg.sendMsg(this.productItem)
   }
 
 }
