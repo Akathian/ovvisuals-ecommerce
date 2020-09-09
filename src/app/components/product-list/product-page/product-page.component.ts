@@ -47,7 +47,6 @@ export class ProductPageComponent implements AfterViewInit {
   addToCart() {
     let size = (<HTMLInputElement>document.getElementById('sizeSelect')).value;
     let qty = +(document.getElementById('qtyNum').innerText);
-    console.log(qty)
     if (size) {
       let prods = this.productService.tmpItem[0]
       let keys = Object.keys(prods)

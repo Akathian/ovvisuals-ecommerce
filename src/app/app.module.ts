@@ -32,6 +32,7 @@ import { TermsComponent } from './components/legal/terms/terms.component';
 import { LegalComponent } from './components/legal/legal.component';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { FormsModule } from '@angular/forms';
+import { ShippingComponent } from './components/checkout/shipping/shipping.component';
 
 
 
@@ -58,6 +59,7 @@ import { FormsModule } from '@angular/forms';
     TermsComponent,
     LegalComponent,
     PrivacyComponent,
+    ShippingComponent,
   ],
   imports: [
     BrowserModule,

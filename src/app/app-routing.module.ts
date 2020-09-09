@@ -11,9 +11,9 @@ import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { TermsComponent } from './components/legal/terms/terms.component';
-import { LegalComponent } from './components/legal/legal.component';
-import { environment } from 'src/environments/environment';
 
+import { environment } from 'src/environments/environment';
+import { ShippingComponent } from './components/checkout/shipping/shipping.component';
 import * as firebase from 'firebase';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 
@@ -29,7 +29,8 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'gallery/:content', component: GalleryComponent },
   { path: 'terms', component: TermsComponent },
-  { path: 'privacy', component: PrivacyComponent }
+  { path: 'privacy', component: PrivacyComponent },
+  { path: 'shipping', component: ShippingComponent }
 
 ];
 

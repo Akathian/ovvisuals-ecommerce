@@ -1,5 +1,9 @@
-"https://i.postimg.cc/3JWMQ6DG/Screenshot-20200904-122152-Instagram.jpg",
-"https://i.postimg.cc/MpjhvQ5K/Screenshot-20200904-122156-Instagram.jpg",
-"https://i.postimg.cc/0NYFC1hT/Screenshot-20200904-122200-Instagram.jpg",
-"https://i.postimg.cc/HsNqY2Qh/Screenshot-20200904-122203-Instagram.jpg",
-"https://i.postimg.cc/25RgvS9d/Screenshot-20200904-122206-Instagram.jpg"
+{img: "https://i.postimg.cc/W16VFPLB/kobe24.jpg", name: "Kobe Poster", price: 29.99, qty: 2, size: "24x36in", …}
+img: "https://i.postimg.cc/W16VFPLB/kobe24.jpg"
+name: "Kobe Poster"
+price: 29.99
+qty: 2
+size: "24x36in"
+sizeCode: "rg"
+sku: 1
+type: "posters"

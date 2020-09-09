@@ -1,33 +1,108 @@
-import { Component, OnInit, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as firebase from 'firebase'
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service'
 import { isEmptyExpression } from '@angular/compiler';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+declare const paypal;
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, AfterViewChecked {
-  d: Date = new Date(); // but the type can also be inferred from "new Date()" already
+export class CheckoutComponent implements OnInit {
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
+  paidFor = false;
   userCart = [];
   numItems = 0;
   total = 0;
   totalWithSH = 0;
+  purchase_units;
   constructor(private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     this._Activatedroute.paramMap.subscribe(params => {
       this.userCart = this.getCart();
+      this.payPalCalc()
     });
 
   }
 
-  ngAfterViewChecked() {
-    this.calculateShip()
+  payPalCalc() {
+    let self = this
+    paypal
+      .Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: self.purchase_units
+          })
+        },
+      })
+      .render(this.paypalElement.nativeElement)
   }
+
+  toPaypalFormat(self, cart) {
+    let total = cart.pop()
+    let subtotal = cart.pop()
+    let shipMethod = cart.pop()
+    switch (shipMethod) {
+      case "1": {
+        shipMethod = 'Pickup'
+        break;
+      }
+      case "2": {
+        shipMethod = 'Hand-Delivery Withing the GTA'
+        break;
+      }
+      case "3": {
+        shipMethod = 'Standard Worldwide Shipping'
+        break;
+      }
+      case "4": {
+        shipMethod = 'Express Worldwide Shipping'
+        break;
+      }
+    }
+    let itemNum = cart.pop()
+    let purchase_units = [{
+      amount: {
+        currency_code: 'CAD',
+        value: `${total}`,
+        breakdown: {
+          item_total: {
+            currency_code: 'CAD',
+            value: `${subtotal}`
+          },
+          shipping: {
+            currency_code: 'CAD',
+            value: `${total - subtotal}`
+          }
+        }
+      },
+      items: []
+    }]
+    for (let cartItem of cart) {
+      let prod = self.getProdData(cartItem);
+      let item = {
+        name: `${prod.name} ${prod.size}`,
+        quantity: `${prod.qty}`,
+        unit_amount: {
+          currency_code: 'CAD',
+          value: `${prod.price}`
+        }
+      }
+      purchase_units[0].items.push(item)
+    }
+    self.purchase_units = purchase_units
+  }
+
+  getProdData(cartItem) {
+    let prod = cartItem.lg || cartItem.md || cartItem.rg || cartItem.sm || cartItem.xl
+    return prod
+  }
+
 
   getCart() {
     let self = this
@@ -37,6 +112,7 @@ export class CheckoutComponent implements OnInit, AfterViewChecked {
           self.userCart = Object.values(cartData.val())
           self.numItems = self.userCart[self.userCart.length - 4]
           self.total = self.userCart[self.userCart.length - 2]
+          self.toPaypalFormat(self, self.userCart)
         })
       } else {
         self.userCart = []
@@ -46,7 +122,6 @@ export class CheckoutComponent implements OnInit, AfterViewChecked {
   }
 
   addToWishList(item) {
-    console.log(item)
     item.qty = 1;
     let self = this
     firebase.auth().onAuthStateChanged(function (user) {
@@ -177,59 +252,8 @@ export class CheckoutComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  calculateShip() {
-    let d1 = this.addWorkDays(this.d, 12, 5)
-    let d2 = new Date()
-    d2.setDate(this.addWorkDays(this.d, 12, 5).getDate() + 1)
-    document.getElementById('pickup').innerText = d2.toDateString() + " before 9:00p.m.";
-    document.getElementById('hand-delivery').innerText = d1.toDateString() + " before 9:00p.m.";
 
-    let d3Min = this.addWorkDays(this.d, 6, null)
-    let d3Max = this.addWorkDays(this.d, 10, null)
-    document.getElementById('standard').innerText = d3Min.toDateString() + ' - ' + d3Max.toDateString();
 
-    let d4Min = this.addWorkDays(this.d, 4, null)
-    let d4Max = this.addWorkDays(this.d, 6, null)
-    document.getElementById('express').innerText = d4Min.toDateString() + ' - ' + d4Max.toDateString();
-  }
 
-  addWorkDays(startDate, days, roundToDay) {
-    if (isNaN(days)) {
-      console.log("Value provided for \"days\" was not a number");
-      return
-    }
-    if (!(startDate instanceof Date)) {
-      console.log("Value provided for \"startDate\" was not a Date object");
-      return
-    }
-    // Get the day of the week as a number (0 = Sunday, 1 = Monday, .... 6 = Saturday)
-    var dow = startDate.getDay();
-    var daysToAdd = parseInt(days);
-    // If the current day is Sunday add one day
-    if (dow == 0)
-      daysToAdd++;
-    // If the start date plus the additional days falls on or after the closest Saturday calculate weekends
-    if (dow + daysToAdd >= 6) {
-      //Subtract days in current working week from work days
-      var remainingWorkDays = daysToAdd - (5 - dow);
-      //Add current working week's weekend
-      daysToAdd += 2;
-      if (remainingWorkDays > 5) {
-        //Add two days for each working week by calculating how many weeks are included
-        daysToAdd += 2 * Math.floor(remainingWorkDays / 5);
-        //Exclude final weekend if remainingWorkDays resolves to an exact number of weeks
-        if (remainingWorkDays % 5 == 0)
-          daysToAdd -= 2;
-      }
-    }
-    let d = new Date()
-    d.setDate(startDate.getDate() + daysToAdd);
-    if (roundToDay != null) {
-      while (d.getDay() != roundToDay) {
-        d.setDate(d.getDate() + 1);
-      }
-    }
-    return d;
-  }
 }
 

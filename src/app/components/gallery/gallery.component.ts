@@ -84,7 +84,6 @@ export class GalleryComponent implements OnInit {
 
   open(index: number, offs): void {
     let offsIndx = index + offs
-    console.log(this.allImages[offsIndx])
     this.subscription = this.lightboxEvent.lightboxEvent$.subscribe((event: IEvent) => this._onReceivedEvent(event));
     this.lightbox.open(this.allImages, offsIndx, { wrapAround: true, showImageNumberLabel: true });
   }
