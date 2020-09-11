@@ -29,7 +29,6 @@ export class OrderComponent implements OnInit {
       this.orderTime.pop()
     }
     this.orderTime = this.orderTime.join(" ")
-    console.log(this.orderTime)
     let orderObj = Object.values(order[1])
     this.total = orderObj.pop()
     this.subtotal = orderObj.pop()
