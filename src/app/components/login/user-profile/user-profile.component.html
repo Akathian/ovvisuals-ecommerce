@@ -13,7 +13,7 @@
                     <a class="list-group-item active" id='overview' (click)='changePage("overview")'
                         style="color: white;"> Account Overview
                     </a>
-                    <a class="list-group-item" id='orders' (click)='changePage("orders")'> Your Orders </a>
+                    <a class="list-group-item" id='open-orders' (click)='changePage("open-orders")'> Open Orders </a>
                     <a class="list-group-item" id='wishlist' (click)='changePage("wishlist")'> Your Wishlist </a>
                     <a class="list-group-item" id='settings' (click)='changePage("settings")'>Settings </a>
                     <a class="list-group-item" (click)='signOut()'>Sign
@@ -22,7 +22,7 @@
             </aside>
             <main class="col-md-9">
                 <app-overview *ngIf='activePage==="overview"' [user]='user'></app-overview>
-                <app-orders *ngIf='activePage==="orders"' [user]='user'></app-orders>
+                <app-open-orders *ngIf='activePage==="open-orders"' [user]='user'></app-open-orders>
                 <app-wishlist *ngIf='activePage==="wishlist"' [user]='user'></app-wishlist>
                 <app-settings *ngIf='activePage==="settings"' [user]='user'></app-settings>
             </main>

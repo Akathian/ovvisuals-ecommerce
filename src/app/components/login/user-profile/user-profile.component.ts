@@ -34,8 +34,8 @@ export class UserProfileComponent implements OnInit {
     document.getElementById('overview').classList.remove('active')
     document.getElementById('overview').style.color = 'black'
 
-    document.getElementById('orders').classList.remove('active')
-    document.getElementById('orders').style.color = 'black'
+    document.getElementById('open-orders').classList.remove('active')
+    document.getElementById('open-orders').style.color = 'black'
 
     document.getElementById('wishlist').classList.remove('active')
     document.getElementById('wishlist').style.color = 'black'

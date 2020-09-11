@@ -1,0 +1,40 @@
+<div class='card'>
+    <div class='card-body'>
+        <h5 class="card-title mb-4">Your Order On: {{ orderTime }} </h5>
+        <span *ngFor='let cartItem of userCart'>
+            <span *ngFor='let item of cartItem | keyvalue'>
+                <div class="row mb-4">
+                    <div class="col-md-5 col-lg-3 col-xl-3">
+                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                            <img class="img-fluid w-100" [src]="item.value.img" alt="Sample">
+                            <a [routerLink]="['/products', item.value.type, item.value.sku]">
+                                <div class="mask">
+                                    <img class="img-fluid w-100" [src]="item.value.img">
+                                    <div class="mask rgba-black-slight"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-9 col-xl-9">
+                        <div>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <a [routerLink]="['/products', item.value.type, item.value.sku]">
+                                        <h5>{{item.value.name}}</h5>
+                                        <p class="mb-3 text-muted text-uppercase small">Size:
+                                            {{item.value.size}}
+                                        </p>
+                                        <p class="mb-3 text-muted text-uppercase small">Unit Price:
+                                            {{item.value.price | currency: 'CAD'}}
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </span>
+    </div>
+</div>
+<hr />

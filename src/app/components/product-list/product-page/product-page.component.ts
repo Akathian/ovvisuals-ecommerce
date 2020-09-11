@@ -106,6 +106,7 @@ export class ProductPageComponent implements AfterViewInit {
           })
           let updates = {}
           updates['Users/' + user.uid + '/Cart/' + "totalWithSH"] = 0
+          updates['Users/' + user.uid + '/Cart/' + "shipMethod"] = 0
           firebase.database().ref().update(updates);
           self.confirmModal.show();
           document.getElementById('qtyNum').innerText = "1";

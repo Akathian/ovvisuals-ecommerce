@@ -33,6 +33,8 @@ import { LegalComponent } from './components/legal/legal.component';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { FormsModule } from '@angular/forms';
 import { ShippingComponent } from './components/checkout/shipping/shipping.component';
+import { OpenOrdersComponent } from './components/login/user-profile/open-orders/open-orders.component';
+import { OrderComponent } from './components/login/user-profile/open-orders/order/order.component';
 
 
 
@@ -60,6 +62,8 @@ import { ShippingComponent } from './components/checkout/shipping/shipping.compo
     LegalComponent,
     PrivacyComponent,
     ShippingComponent,
+    OpenOrdersComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

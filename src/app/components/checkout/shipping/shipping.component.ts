@@ -15,8 +15,7 @@ export class ShippingComponent implements AfterViewChecked {
   }
   calculateShip() {
     let d1 = this.addWorkDays(this.d, 12, 5)
-    let d2 = new Date()
-    d2.setDate(this.addWorkDays(this.d, 12, 5).getDate() + 1)
+    let d2 = this.addWorkDays(this.d, 12, 6)
     document.getElementById('pickup').innerText = d2.toDateString() + " before 9:00p.m.";
     document.getElementById('hand-delivery').innerText = d1.toDateString() + " before 9:00p.m.";
 

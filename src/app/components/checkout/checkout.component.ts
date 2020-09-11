@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as firebase from 'firebase'
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from 'src/app/services/product.service'
-import { isEmptyExpression } from '@angular/compiler';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 declare const paypal;
 
@@ -20,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   total = 0;
   totalWithSH = 0;
   purchase_units;
+  shipSelect = false;
   constructor(private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,24 +27,58 @@ export class CheckoutComponent implements OnInit {
     });
 
   }
-
   payPalCalc() {
     let self = this
-    paypal
-      .Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: self.purchase_units
-          })
-        },
-      })
-      .render(this.paypalElement.nativeElement)
+    paypal.Buttons({
+      onInit: (data, actions) => {
+        actions.disable();
+        document.querySelector('#shippingSelect').addEventListener('change', function (event) {
+          let e = +(<HTMLInputElement>event.target).value
+          if ([1, 2, 3, 4].includes(e) && self.numItems > 0) {
+            actions.enable();
+          }
+        })
+      },
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: self.purchase_units
+        })
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          self.moveToOpenOrders();
+          console.log('Transaction completed by ' + details.payer.name.given_name + '!');
+        });
+      }
+    }).render(this.paypalElement.nativeElement)
+  }
+
+  moveToOpenOrders() {
+    let date = new Date()
+    let self = this
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        firebase.database().ref('/Users/' + user.uid + '/Cart').once('value', function (cartData) {
+          let updates = {}
+          updates["Admin/Open-orders/" + user.uid + "/" + date.getTime()] = cartData.val()
+          updates["Users/" + user.uid + "/Open-orders/" + date.getTime()] = cartData.val()
+          return firebase.database().ref().update(updates);
+        })
+        firebase.database().ref('Users/' + user.uid + '/Cart/').remove()
+        self.numItems = 0
+        self.userCart = [{}]
+        self.totalWithSH = 0;
+        self.total = 0;
+
+      }
+    })
   }
 
   toPaypalFormat(self, cart) {
-    let total = cart.pop()
-    let subtotal = cart.pop()
-    let shipMethod = cart.pop()
+    let total = Number.parseFloat(cart.pop()).toFixed(2)
+    let subtotal = Number.parseFloat(cart.pop()).toFixed(2)
+    let shipMethod = Number.parseFloat(cart.pop()).toFixed(2)
+    let shipPrice = Number.parseFloat(`${+(total) - +(subtotal)}`).toFixed(2)
     switch (shipMethod) {
       case "1": {
         shipMethod = 'Pickup'
@@ -69,15 +101,15 @@ export class CheckoutComponent implements OnInit {
     let purchase_units = [{
       amount: {
         currency_code: 'CAD',
-        value: `${total}`,
+        value: total,
         breakdown: {
           item_total: {
             currency_code: 'CAD',
-            value: `${subtotal}`
+            value: subtotal
           },
           shipping: {
             currency_code: 'CAD',
-            value: `${total - subtotal}`
+            value: shipPrice
           }
         }
       },
@@ -102,7 +134,6 @@ export class CheckoutComponent implements OnInit {
     let prod = cartItem.lg || cartItem.md || cartItem.rg || cartItem.sm || cartItem.xl
     return prod
   }
-
 
   getCart() {
     let self = this
@@ -248,6 +279,7 @@ export class CheckoutComponent implements OnInit {
           })
 
         })
+        self.shipSelect = true
       }
     })
   }
