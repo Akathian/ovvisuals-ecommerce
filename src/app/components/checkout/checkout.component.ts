@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as firebase from 'firebase'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare const paypal;
 
@@ -18,10 +18,10 @@ export class CheckoutComponent implements OnInit {
   totalWithSH = 0;
   purchase_units;
   shipSelect = false;
-  constructor(private _Activatedroute: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this._Activatedroute.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       this.userCart = this.getCart();
       this.payPalCalc()
     });
@@ -69,7 +69,7 @@ export class CheckoutComponent implements OnInit {
         self.userCart = [{}]
         self.totalWithSH = 0;
         self.total = 0;
-
+        self.router.navigate(['../login'], { relativeTo: self.route });
       }
     })
   }
@@ -85,7 +85,7 @@ export class CheckoutComponent implements OnInit {
         break;
       }
       case "2": {
-        shipMethod = 'Hand-Delivery Withing the GTA'
+        shipMethod = 'Hand-Delivery Within the GTA'
         break;
       }
       case "3": {

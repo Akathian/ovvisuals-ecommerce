@@ -13,6 +13,7 @@ export class OrderComponent implements OnInit {
   shipMethod;
   shipPrice;
   userCart;
+  numItems;
 
   constructor() { }
 
@@ -33,8 +34,26 @@ export class OrderComponent implements OnInit {
     this.total = orderObj.pop()
     this.subtotal = orderObj.pop()
     this.shipMethod = orderObj.pop()
-    this.shipPrice = orderObj.pop()
+    switch (this.shipMethod) {
+      case "1": {
+        this.shipMethod = 'Pickup in Store'
+        break;
+      }
+      case "2": {
+        this.shipMethod = 'Hand-Delivery Within the GTA'
+        break;
+      }
+      case "3": {
+        this.shipMethod = 'Standard Worldwide Shipping'
+        break;
+      }
+      case "4": {
+        this.shipMethod = 'Express Worldwide Shipping'
+        break;
+      }
+    }
+    this.numItems = orderObj.pop()
+    this.shipPrice = +(this.total) - +(this.subtotal)
     this.userCart = Object.values(orderObj)
   }
-
 }

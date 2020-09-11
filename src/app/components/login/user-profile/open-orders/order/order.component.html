@@ -1,6 +1,9 @@
 <div class='card'>
     <div class='card-body'>
-        <h5 class="card-title mb-4">Your Order On: {{ orderTime }} </h5>
+        <div class="d-flex flex-row justify-content-between">
+            <h5 class="card-title mb-4">Your Order on: {{ orderTime }} </h5>
+            <span class="text-warning">In progress</span>
+        </div>
         <span *ngFor='let cartItem of userCart'>
             <span *ngFor='let item of cartItem | keyvalue'>
                 <div class="row mb-4">
@@ -16,25 +19,54 @@
                         </div>
                     </div>
                     <div class="col-md-7 col-lg-9 col-xl-9">
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <a [routerLink]="['/products', item.value.type, item.value.sku]">
-                                        <h5>{{item.value.name}}</h5>
-                                        <p class="mb-3 text-muted text-uppercase small">Size:
-                                            {{item.value.size}}
-                                        </p>
-                                        <p class="mb-3 text-muted text-uppercase small">Unit Price:
-                                            {{item.value.price | currency: 'CAD'}}
-                                        </p>
-                                    </a>
-                                </div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="flex-shrink-0">
+                                <a [routerLink]="['/products', item.value.type, item.value.sku]">
+                                    <h5>{{item.value.name}} {{item.value.size}}</h5>
+                                    <p class="mb-1 text-muted text-uppercase small">Unit Price:
+                                        {{item.value.price | currency: 'CAD'}}
+                                    </p>
+                                    <p class="mb-1 text-muted text-uppercase small">Quantity:
+                                        {{item.value.qty }}
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <p class="mb-1 medium">Price:
+                                    {{item.value.price * item.value.qty | currency: 'CAD'}}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </span>
         </span>
+        <hr />
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Subtotal:</p>
+            </div>
+            <div>
+                <p>{{this.subtotal | currency: 'CAD'}}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>{{ this.shipMethod }}:</p>
+            </div>
+            <div>
+                <p>{{this.shipPrice | currency: 'CAD'}}</p>
+                <hr />
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class='font-weight-bold'>Total:</p>
+            </div>
+            <div>
+                <p class='font-weight-bold'>{{this.total | currency: 'CAD'}}</p>
+            </div>
+        </div>
     </div>
 </div>
 <hr />
