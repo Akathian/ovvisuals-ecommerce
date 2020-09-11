@@ -1,0 +1,5 @@
+<span *ngIf="!this.times">{{ this.getOrdersByUid(this.uid) }}</span>
+<h5>{{ this.uid }}'s orders</h5>
+<span *ngFor='let order of this.orders'>
+    <app-user-order [order]='order' [uid]='this.uid'></app-user-order>
+</span>

@@ -16,6 +16,8 @@ import { environment } from 'src/environments/environment';
 import { ShippingComponent } from './components/checkout/shipping/shipping.component';
 import * as firebase from 'firebase';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { OpenOrdersAdminComponent } from './components/admin/open-orders-admin/open-orders-admin.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -26,11 +28,16 @@ const routes: Routes = [
   { path: 'products/:type/:id', component: ProductPageComponent },
   { path: 'custom', component: CustomComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login/:cat', component: LoginComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'gallery/:content', component: GalleryComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'privacy', component: PrivacyComponent },
-  { path: 'shipping', component: ShippingComponent }
+  { path: 'shipping', component: ShippingComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'admin/:cat', component: AdminComponent },
+  { path: 'admin/:cat/:uid', component: AdminComponent },
+
 
 ];
 

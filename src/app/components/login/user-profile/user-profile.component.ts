@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import * as firebase from 'firebase'
 import { ModalDirective } from 'angular-bootstrap-md'
 import * as $ from 'jquery'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,11 +14,17 @@ export class UserProfileComponent implements OnInit {
   activePage = 'overview';
   @ViewChild('loginModal', { static: false }) loginModal: ModalDirective
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
-
-  constructor() { }
+  cat;
+  constructor(private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this._Activatedroute.paramMap.subscribe(params => {
+      this.cat = params.get('cat');
+      if (!this.cat) {
+        this.cat = 'overview'
+      }
+      this.changePage(this.cat)
+    });
   }
 
   signOut() {

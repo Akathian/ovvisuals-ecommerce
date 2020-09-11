@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase'
 import { ModalDirective } from 'angular-bootstrap-md'
+import { AdminCheckService } from '../../../services/admin-check.service'
 
 @Component({
   selector: 'app-nav',
@@ -8,13 +9,34 @@ import { ModalDirective } from 'angular-bootstrap-md'
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  constructor() { }
-
+  constructor(private admin: AdminCheckService) { }
+  private isAdmin = false;
   ngOnInit() {
     this.onLogin();
   }
+  verifyAdmin() {
+    let self = this
+    firebase.auth().onAuthStateChanged(function (user) {
+      try {
+        firebase.database().ref('Admin/' + user.uid).once('value', (data) => {
+          if (data.val()) {
+            self.isAdmin = true
+            return self.isAdmin
+          } else {
+            self.isAdmin = false
+            return self.isAdmin
+          }
+        })
+      } catch (e) {
+        self.isAdmin = false;
+        return self.isAdmin
 
+      }
+    })
+    return this.isAdmin
+  }
   onLogin() {
+    let self = this
     firebase.auth().onAuthStateChanged(function (user) {
       const loginIMG = `<svg id='logoutImg' width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-circle"
       fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +63,9 @@ export class NavComponent implements OnInit {
         document.getElementById('login').innerHTML = loginIMG
         document.getElementById('lblCartCount').innerText = '';
       }
+      self.isAdmin = self.verifyAdmin();
     });
   }
+
 
 }

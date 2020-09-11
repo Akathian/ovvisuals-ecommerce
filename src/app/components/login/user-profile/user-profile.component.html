@@ -10,21 +10,21 @@
         <div class="row">
             <aside class="col-md-3">
                 <ul class="list-group">
-                    <a class="list-group-item active" id='overview' (click)='changePage("overview")'
+                    <a class="list-group-item active" id='overview' [routerLink]="['/login', 'overview']"
                         style="color: white;"> Account Overview
                     </a>
-                    <a class="list-group-item" id='open-orders' (click)='changePage("open-orders")'> Open Orders </a>
-                    <a class="list-group-item" id='wishlist' (click)='changePage("wishlist")'> Your Wishlist </a>
-                    <a class="list-group-item" id='settings' (click)='changePage("settings")'>Settings </a>
+                    <a class="list-group-item" id='open-orders' [routerLink]="['/login', 'open-orders']"> Open Orders
+                    </a>
+                    <a class="list-group-item" id='wishlist' [routerLink]="['/login', 'wishlist']"> Your Wishlist </a>
+                    <a class="list-group-item" id='settings' [routerLink]="['/login', 'settings']">Settings </a>
                     <a class="list-group-item" (click)='signOut()'>Sign
                         Out</a>
                 </ul>
             </aside>
             <main class="col-md-9">
-                <app-overview *ngIf='activePage==="overview"' [user]='user'></app-overview>
-                <app-open-orders *ngIf='activePage==="open-orders"' [user]='user'></app-open-orders>
-                <app-wishlist *ngIf='activePage==="wishlist"' [user]='user'></app-wishlist>
-                <app-settings *ngIf='activePage==="settings"' [user]='user'></app-settings>
+                <app-overview *ngIf='this.cat==="overview"' [user]='user'></app-overview>
+                <app-open-orders *ngIf='this.cat==="open-orders"' [user]='user'></app-open-orders>
+                <app-wishlist *ngIf='this.cat==="wishlist"' [user]='user'></app-wishlist>
             </main>
 
         </div>

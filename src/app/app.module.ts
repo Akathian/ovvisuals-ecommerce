@@ -24,7 +24,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { LightboxModule } from 'ngx-lightbox';
 import { UserProfileComponent } from './components/login/user-profile/user-profile.component';
 import { OverviewComponent } from './components/login/user-profile/overview/overview.component';
-import { OrdersComponent } from './components/login/user-profile/orders/orders.component';
+
 import { WishlistComponent } from './components/login/user-profile/wishlist/wishlist.component';
 import { SettingsComponent } from './components/login/user-profile/settings/settings.component';
 
@@ -35,6 +35,12 @@ import { FormsModule } from '@angular/forms';
 import { ShippingComponent } from './components/checkout/shipping/shipping.component';
 import { OpenOrdersComponent } from './components/login/user-profile/open-orders/open-orders.component';
 import { OrderComponent } from './components/login/user-profile/open-orders/order/order.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { OpenOrdersAdminComponent } from './components/admin/open-orders-admin/open-orders-admin.component';
+import { OrderAdminComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/order-admin.component';
+import { UsersOpenOrderComponent } from './components/admin/open-orders-admin/users-open-order/users-open-order.component';
+import { UserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/user-order/user-order.component';
 
 
 
@@ -55,7 +61,6 @@ import { OrderComponent } from './components/login/user-profile/open-orders/orde
     GalleryComponent,
     UserProfileComponent,
     OverviewComponent,
-    OrdersComponent,
     WishlistComponent,
     SettingsComponent,
     TermsComponent,
@@ -64,6 +69,12 @@ import { OrderComponent } from './components/login/user-profile/open-orders/orde
     ShippingComponent,
     OpenOrdersComponent,
     OrderComponent,
+    AdminComponent,
+    DashboardComponent,
+    OpenOrdersAdminComponent,
+    OrderAdminComponent,
+    UsersOpenOrderComponent,
+    UserOrderComponent,
   ],
   imports: [
     BrowserModule,
