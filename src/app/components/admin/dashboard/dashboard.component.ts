@@ -11,11 +11,11 @@ export class DashboardComponent implements OnInit {
   constructor(private admin: AdminCheckService) { }
 
   ngOnInit() {
-    document.getElementById('open-orders').classList.remove('active')
-    document.getElementById('open-orders').style.color = 'black'
+    document.getElementById('open_orders').classList.remove('active')
+    document.getElementById('open_orders').style.color = 'black'
 
-    document.getElementById('wishlist').classList.remove('active')
-    document.getElementById('wishlist').style.color = 'black'
+    document.getElementById('intermediate_orders').classList.remove('active')
+    document.getElementById('intermediate_orders').style.color = 'black'
 
     document.getElementById('settings').classList.remove('active')
     document.getElementById('settings').style.color = 'black'

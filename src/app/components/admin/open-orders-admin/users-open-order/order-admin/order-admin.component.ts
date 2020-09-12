@@ -20,7 +20,7 @@ export class OrderAdminComponent implements OnInit {
       if (uid != "all") {
         this.orders = Object.entries(this.admin.fullOpenOrderObj[uid])
       } else {
-        this.orders = Object.entries(this.admin.allOrders).sort(
+        this.orders = Object.entries(this.admin.allOpenOrders).sort(
           function (a, b) {
             let c: number
             c = +(b[0]) - +(a[0])
@@ -86,7 +86,7 @@ export class OrderAdminComponent implements OnInit {
     if (this.uid != "all") {
       this.orders = Object.entries(this.admin.fullOpenOrderObj[this.uid]).sort(sortFn)
     } else {
-      this.orders = Object.entries(this.admin.allOrders).sort(sortFn)
+      this.orders = Object.entries(this.admin.allOpenOrders).sort(sortFn)
     }
 
   }

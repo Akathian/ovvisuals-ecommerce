@@ -52,6 +52,57 @@
                 <p class='font-weight-bold'>{{this.total | currency: 'CAD'}}</p>
             </div>
         </div>
+        <button class='btn btn-primary float-right' (click)='showAreYouSure()'>Mark as {{this.moveTo}}</button>
+
     </div>
 </div>
 <hr />
+
+
+<div mdbModal #areYouSure="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="areYouSure.hide()">
+                    <span (click)="areYouSure.hide()" aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Are You Sure?</h4>
+            </div>
+            <div class="modal-body">
+                <p>You will be marking:</p>
+                <p>
+                    <span *ngIf='this.orderOwner'>{{this.orderOwner}}</span><span
+                        *ngIf='this.uid!="all"'>{{this.uid}}</span>'s order on {{ orderTime }} as delivered
+                </p>
+                <hr />
+                <span *ngFor='let cartItem of userCart'>
+                    <span *ngFor='let item of cartItem | keyvalue'>
+                        <div class="d-flex justify-content-between row mb-4 mx-1">
+                            <div class="flex-shrink-0">
+                                <a [routerLink]="['/products', item.value.type, item.value.sku]">
+                                    <h5>{{item.value.name}} {{item.value.size}}</h5>
+                                    <p class="mb-1 text-muted text-uppercase small">Unit Price:
+                                        {{item.value.price | currency: 'CAD'}}
+                                    </p>
+                                    <p class="mb-1 text-muted text-uppercase small">Quantity:
+                                        {{item.value.qty }}
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <p class="mb-1 medium">Price:
+                                    {{item.value.price * item.value.qty | currency: 'CAD'}}
+                                </p>
+                            </div>
+                        </div>
+                    </span>
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-primary" (click)="move()">Yes</button>
+                <button type="button" class="btn btn-md btn-dark" (click)="areYouSure.hide()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

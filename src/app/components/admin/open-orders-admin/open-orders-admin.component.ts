@@ -10,22 +10,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class OpenOrdersAdminComponent implements OnInit {
   constructor(private admin: AdminCheckService, private route: ActivatedRoute) { }
   uid;
+  cat;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.uid = params.get('uid')
+      this.cat = params.get('cat')
+      document.getElementById('dashboard').classList.remove('active')
+      document.getElementById('dashboard').style.color = 'black'
+
+      document.getElementById('settings').classList.remove('active')
+      document.getElementById('settings').style.color = 'black'
+
+      document.getElementById('open_orders').classList.remove('active')
+      document.getElementById('open_orders').style.color = 'black'
+
+      document.getElementById('intermediate_orders').classList.remove('active')
+      document.getElementById('intermediate_orders').style.color = 'black'
+
+      document.getElementById(this.cat).classList.add('active');
+      document.getElementById(this.cat).style.color = 'white'
+      console.log(this.cat)
     });
 
-    document.getElementById('dashboard').classList.remove('active')
-    document.getElementById('dashboard').style.color = 'black'
 
-    document.getElementById('wishlist').classList.remove('active')
-    document.getElementById('wishlist').style.color = 'black'
-
-    document.getElementById('settings').classList.remove('active')
-    document.getElementById('settings').style.color = 'black'
-
-    document.getElementById("open-orders").classList.add('active');
-    document.getElementById("open-orders").style.color = 'white'
   }
 }

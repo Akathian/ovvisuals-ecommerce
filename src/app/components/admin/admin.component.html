@@ -12,12 +12,15 @@
                 <aside class="col-md-3">
                     <ul class="list-group">
                         <a class="list-group-item active" id='dashboard' [routerLink]="['/admin', 'dashboard']"
-                            style="color: white;"> OVVisuals dashboard
+                            style="color: white;"> OVVisuals Dashboard
                         </a>
-                        <a class="list-group-item" id='open-orders' [routerLink]="['/admin', 'open-orders']"> Open
+                        <a class="list-group-item" id='open_orders' [routerLink]="['/admin', 'open_orders']"> Open
                             Orders
                         </a>
-                        <a class="list-group-item" id='wishlist' [routerLink]="['/admin', 'wishlist']"> Your Wishlist
+                        <a class="list-group-item" id='intermediate_orders'
+                            [routerLink]="['/admin', 'intermediate_orders']">
+                            Intermediate
+                            Orders
                         </a>
                         <a class="list-group-item" id='settings' [routerLink]="['/admin', 'settings']">Settings </a>
                         <a class="list-group-item" (click)='signOut()'>Sign
@@ -27,7 +30,7 @@
                 <main class="col-md-9">
                     <p *ngIf='this.cat==="dashboard"'>Admin / </p>
                     <app-dashboard *ngIf='this.cat==="dashboard"'></app-dashboard>
-                    <app-open-orders-admin *ngIf='this.cat==="open-orders"'>
+                    <app-open-orders-admin *ngIf='this.cat==="open_orders" || this.cat==="intermediate_orders"'>
                     </app-open-orders-admin>
                 </main>
             </div>

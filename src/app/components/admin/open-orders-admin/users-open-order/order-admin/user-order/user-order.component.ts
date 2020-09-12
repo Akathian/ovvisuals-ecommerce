@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'angular-bootstrap-md'
 
 @Component({
   selector: 'app-user-order',
@@ -8,6 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class UserOrderComponent implements OnInit {
   @Input() order;
   @Input() uid;
+  @ViewChild('areYouSure', { static: false }) areYouSure: ModalDirective
+
   orderTime;
   total;
   subtotal;
@@ -18,6 +21,7 @@ export class UserOrderComponent implements OnInit {
   orderOwner;
   promiseDate;
   daysLeft;
+  moveTo;
   constructor() { }
 
   ngOnInit() {
@@ -43,18 +47,22 @@ export class UserOrderComponent implements OnInit {
     switch (this.shipMethod) {
       case "1": {
         this.shipMethod = 'Pickup in Store'
+        this.moveTo = "Ready for Pickup"
         break;
       }
       case "2": {
         this.shipMethod = 'Hand-Delivery Within the GTA'
+        this.moveTo = "Out for Delivery"
         break;
       }
       case "3": {
         this.shipMethod = 'Standard Worldwide Shipping'
+        this.moveTo = "Delivered"
         break;
       }
       case "4": {
         this.shipMethod = 'Express Worldwide Shipping'
+        this.moveTo = "Delivered"
         break;
       }
     }
@@ -88,7 +96,6 @@ export class UserOrderComponent implements OnInit {
       }
     }
   }
-
 
   addWorkDays(startDate, days, roundToDay) {
     if (isNaN(days)) {
@@ -127,4 +134,16 @@ export class UserOrderComponent implements OnInit {
     return d;
   }
 
+  showAreYouSure() {
+    this.areYouSure.show();
+  }
+
+  move() {
+    this.areYouSure.hide()
+    let user = this.uid;
+    if (this.orderOwner) {
+      user = this.orderOwner
+    }
+    console.log(this.userCart, user)
+  }
 }
