@@ -69,7 +69,7 @@ export class CheckoutComponent implements OnInit {
         self.userCart = [{}]
         self.totalWithSH = 0;
         self.total = 0;
-        self.router.navigate(['../login/open_orders'], { relativeTo: self.route });
+        self.router.navigate(['../login/open-orders'], { relativeTo: self.route });
       }
     })
   }

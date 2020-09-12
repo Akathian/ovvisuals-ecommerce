@@ -7,6 +7,8 @@ import { AdminCheckService } from '../../../../../services/admin-check.service'
 })
 export class OrderAdminComponent implements OnInit {
   @Input() uid;
+  @Input() cat;
+
   orders;
   times = 0;
   constructor(private admin: AdminCheckService) { }
@@ -18,9 +20,9 @@ export class OrderAdminComponent implements OnInit {
   getOrdersByUid(uid) {
     if (!this.times) {
       if (uid != "all") {
-        this.orders = Object.entries(this.admin.fullOpenOrderObj[uid])
+        this.orders = Object.entries(this.admin[this.cat].fullObj[uid])
       } else {
-        this.orders = Object.entries(this.admin.allOpenOrders).sort(
+        this.orders = Object.entries(this.admin[this.cat].allOrders).sort(
           function (a, b) {
             let c: number
             c = +(b[0]) - +(a[0])
@@ -84,9 +86,9 @@ export class OrderAdminComponent implements OnInit {
     }
 
     if (this.uid != "all") {
-      this.orders = Object.entries(this.admin.fullOpenOrderObj[this.uid]).sort(sortFn)
+      this.orders = Object.entries(this.admin[this.cat].fullObj[this.uid]).sort(sortFn)
     } else {
-      this.orders = Object.entries(this.admin.allOpenOrders).sort(sortFn)
+      this.orders = Object.entries(this.admin[this.cat].allOrders).sort(sortFn)
     }
 
   }

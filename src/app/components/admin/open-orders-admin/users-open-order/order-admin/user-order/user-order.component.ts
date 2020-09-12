@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'angular-bootstrap-md'
-
+import * as firebase from 'firebase'
 @Component({
   selector: 'app-user-order',
   templateUrl: './user-order.component.html',
@@ -22,14 +23,20 @@ export class UserOrderComponent implements OnInit {
   promiseDate;
   daysLeft;
   moveTo;
-  constructor() { }
+  orderTimeMS;
+  cat;
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(async params => {
+      this.cat = params.get('cat');
+    });
     this.parseOrder(this.order)
   }
 
   parseOrder(order) {
     let time = +(order[0])
+    this.orderTimeMS = time
     let date = new Date(time)
     this.orderTime = date.toString().split(" ")
     for (let i = 0; i < 4; i++) {
@@ -139,11 +146,21 @@ export class UserOrderComponent implements OnInit {
   }
 
   move() {
+    let self = this
     this.areYouSure.hide()
     let user = this.uid;
     if (this.orderOwner) {
       user = this.orderOwner
     }
-    console.log(this.userCart, user)
+    firebase.database().ref('Admin/Open-orders/' + user + '/' + self.orderTimeMS).once('value', function (orderData) {
+      let updates = {}
+      let interOrder = {}
+      updates['Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS] = orderData.val()
+      updates['Users/' + user + '/Intermediate-orders/'+ self.orderTimeMS] = orderData.val()
+      return firebase.database().ref().update(updates);
+    })
+    firebase.database().ref('Admin/Open-orders/' + user + '/' + self.orderTimeMS).remove()
+    firebase.database().ref('Users/' + user + '/Open-orders/' + self.orderTimeMS).remove()
+    self.router.navigate(['/admin/' + self.cat], { relativeTo: this.route });
   }
 }
