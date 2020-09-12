@@ -22,10 +22,20 @@ export class AdminCheckService {
     allOrders: {},
   }
 
+  complete_orders = {
+    orders: {},
+    numOrders: 0,
+    numUsers: 0,
+    fullObj: {},
+    allOrders: {},
+    completedAt: 0
+  }
+
   constructor() { }
   getInfo() {
     this.getOpenOrders()
     this.getIntermediateOrders()
+    this.getCompleteOrders()
   }
 
   getOpenOrders() {
@@ -65,6 +75,26 @@ export class AdminCheckService {
       self.intermediate_orders.allOrders = all
       self.intermediate_orders.orders = Object.entries(self.intermediate_orders.orders)
       self.intermediate_orders.fullObj = interOrderData.val()
+    })
+  }
+
+  getCompleteOrders() {
+    let self = this
+    firebase.database().ref('Admin/Complete-orders').on('value', function (completeOrderData) {
+      self.complete_orders.orders = completeOrderData.val()
+      self.complete_orders.numUsers = Object.keys(self.complete_orders.orders).length
+      self.complete_orders.numOrders = 0
+      let all = {}
+      for (let user of Object.entries(self.complete_orders.orders)) {
+        self.complete_orders.numOrders += Object.keys(user[1]).length
+        for (let order of Object.entries(user[1])) {
+          order[1].user = user[0]
+          all[order[0]] = order[1]
+        }
+      }
+      self.complete_orders.allOrders = all
+      self.complete_orders.orders = Object.entries(self.complete_orders.orders)
+      self.complete_orders.fullObj = completeOrderData.val()
     })
   }
 

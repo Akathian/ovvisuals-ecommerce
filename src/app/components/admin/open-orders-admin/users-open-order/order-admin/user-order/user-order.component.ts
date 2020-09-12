@@ -25,6 +25,7 @@ export class UserOrderComponent implements OnInit {
   moveTo;
   orderTimeMS;
   cat;
+  completedAt;
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -54,12 +55,20 @@ export class UserOrderComponent implements OnInit {
     switch (this.shipMethod) {
       case "1": {
         this.shipMethod = 'Pickup in Store'
-        this.moveTo = "Ready for Pickup"
+        if (this.cat == "intermediate_orders") {
+          this.moveTo = "Delivered"
+        } else {
+          this.moveTo = "Ready for Pickup"
+        }
         break;
       }
       case "2": {
         this.shipMethod = 'Hand-Delivery Within the GTA'
-        this.moveTo = "Out for Delivery"
+        if (this.cat == "intermediate_orders") {
+          this.moveTo = "Delivered"
+        } else {
+          this.moveTo = "Out for Delivery"
+        }
         break;
       }
       case "3": {
@@ -74,6 +83,12 @@ export class UserOrderComponent implements OnInit {
       }
     }
     this.numItems = orderObj.pop()
+    if (this.cat === "complete_orders") {
+      this.completedAt = orderObj.pop()
+      let d = new Date(+(this.completedAt))
+      this.completedAt = d.toDateString()
+
+    }
     this.shipPrice = +(this.total) - +(this.subtotal)
     this.userCart = Object.values(orderObj)
   }
@@ -145,7 +160,7 @@ export class UserOrderComponent implements OnInit {
     this.areYouSure.show();
   }
 
-  move() {
+  moveToIntermediate() {
     let self = this
     this.areYouSure.hide()
     let user = this.uid;
@@ -154,9 +169,28 @@ export class UserOrderComponent implements OnInit {
     }
     firebase.database().ref('Admin/Open-orders/' + user + '/' + self.orderTimeMS).once('value', function (orderData) {
       let updates = {}
-      let interOrder = {}
-      updates['Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS] = orderData.val()
-      updates['Users/' + user + '/Intermediate-orders/'+ self.orderTimeMS] = orderData.val()
+      if (self.moveTo != "Delivered") {
+        updates['Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS] = orderData.val()
+        updates['Users/' + user + '/Intermediate-orders/' + self.orderTimeMS] = orderData.val()
+      } else {
+        let date = new Date()
+        if (!orderData.val()) {
+          firebase.database().ref('Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS).once('value', function (interData) {
+            let newData = interData.val()
+            newData.completedAt = date.getTime()
+            updates['Admin/Complete-orders/' + user + '/' + self.orderTimeMS] = newData
+            updates['Users/' + user + '/Complete-orders/' + self.orderTimeMS] = newData
+          })
+          firebase.database().ref('Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS).remove()
+          firebase.database().ref('Users/' + user + '/Intermediate-orders/' + self.orderTimeMS).remove()
+        } else {
+          let newData = orderData.val()
+          newData.completedAt = date.getTime()
+          updates['Admin/Complete-orders/' + user + '/' + self.orderTimeMS] = newData
+          updates['Users/' + user + '/Complete-orders/' + self.orderTimeMS] = newData
+          firebase.database().ref().update(updates)
+        }
+      }
       return firebase.database().ref().update(updates);
     })
     firebase.database().ref('Admin/Open-orders/' + user + '/' + self.orderTimeMS).remove()

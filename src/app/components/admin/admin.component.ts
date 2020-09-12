@@ -15,7 +15,9 @@ export class AdminComponent implements OnInit {
   constructor(private admin: AdminCheckService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
     this.verifyAdmin();
+
   }
 
   verifyAdmin() {
@@ -28,6 +30,9 @@ export class AdminComponent implements OnInit {
             self.route.paramMap.subscribe(params => {
               self.cat = params.get('cat');
               self.uid = params.get('uid')
+              if (!self.cat) {
+                self.cat = 'dashboard'
+              }
               self.admin.getInfo()
             });
           } else {

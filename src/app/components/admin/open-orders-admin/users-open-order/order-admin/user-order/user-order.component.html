@@ -2,7 +2,8 @@
     <div class='card-body'>
         <div class="d-flex flex-row justify-content-between">
             <h5 class="card-title mb-4"><span *ngIf='this.orderOwner'>{{this.orderOwner}} </span>{{ orderTime }} </h5>
-            <span class="text-warning">{{ promiseDate }}</span>
+            <span class="text-warning" *ngIf='!this.completedAt'>Due: {{ promiseDate }}</span>
+            <span class="text-success" *ngIf='this.completedAt'>Completed: {{ this.completedAt }}</span>
         </div>
         <span *ngFor='let cartItem of userCart'>
             <span *ngFor='let item of cartItem | keyvalue'>
@@ -52,7 +53,8 @@
                 <p class='font-weight-bold'>{{this.total | currency: 'CAD'}}</p>
             </div>
         </div>
-        <button class='btn btn-primary float-right' (click)='showAreYouSure()'>Mark as {{this.moveTo}}</button>
+        <button *ngIf='this.cat != "complete_orders"' class='btn btn-primary float-right'
+            (click)='showAreYouSure()'>Mark as {{this.moveTo}}</button>
 
     </div>
 </div>
@@ -73,7 +75,7 @@
                 <p>You will be marking:</p>
                 <p>
                     <span *ngIf='this.orderOwner'>{{this.orderOwner}}</span><span
-                        *ngIf='this.uid!="all"'>{{this.uid}}</span>'s order on {{ orderTime }} as delivered
+                        *ngIf='this.uid!="all"'>{{this.uid}}</span>'s order on {{ orderTime }} as {{this.moveTo}}
                 </p>
                 <hr />
                 <span *ngFor='let cartItem of userCart'>
@@ -100,7 +102,7 @@
                 </span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-md btn-primary" (click)="move()">Yes</button>
+                <button type="button" class="btn btn-md btn-primary" (click)="moveToIntermediate()">Yes</button>
                 <button type="button" class="btn btn-md btn-dark" (click)="areYouSure.hide()">No</button>
             </div>
         </div>

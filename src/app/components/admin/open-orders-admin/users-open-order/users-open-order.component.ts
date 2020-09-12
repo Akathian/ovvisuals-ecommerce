@@ -22,7 +22,6 @@ export class UsersOpenOrderComponent implements OnInit {
   }
 
   parseOrder() {
-    console.log(this.order)
     this.user = this.order[0]
     this.numOrders = Object.keys(this.order[1]).length
   }

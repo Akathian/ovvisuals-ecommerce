@@ -19,8 +19,8 @@ export class OpenOrdersAdminComponent implements OnInit {
       document.getElementById('dashboard').classList.remove('active')
       document.getElementById('dashboard').style.color = 'black'
 
-      document.getElementById('settings').classList.remove('active')
-      document.getElementById('settings').style.color = 'black'
+      document.getElementById('complete_orders').classList.remove('active')
+      document.getElementById('complete_orders').style.color = 'black'
 
       document.getElementById('open_orders').classList.remove('active')
       document.getElementById('open_orders').style.color = 'black'
@@ -30,7 +30,7 @@ export class OpenOrdersAdminComponent implements OnInit {
 
       document.getElementById(this.cat).classList.add('active');
       document.getElementById(this.cat).style.color = 'white'
-      console.log(this.cat)
+
     });
 
 

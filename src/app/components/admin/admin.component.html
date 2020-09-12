@@ -22,7 +22,8 @@
                             Intermediate
                             Orders
                         </a>
-                        <a class="list-group-item" id='settings' [routerLink]="['/admin', 'settings']">Settings </a>
+                        <a class="list-group-item" id='complete_orders'
+                            [routerLink]="['/admin', 'complete_orders']">Complete Orders </a>
                         <a class="list-group-item" (click)='signOut()'>Sign
                             Out</a>
                     </ul>
@@ -30,7 +31,8 @@
                 <main class="col-md-9">
                     <p *ngIf='this.cat==="dashboard"'>Admin / </p>
                     <app-dashboard *ngIf='this.cat==="dashboard"'></app-dashboard>
-                    <app-open-orders-admin *ngIf='this.cat==="open_orders" || this.cat==="intermediate_orders"'>
+                    <app-open-orders-admin
+                        *ngIf='this.cat==="open_orders" || this.cat==="intermediate_orders" || this.cat==="complete_orders"'>
                     </app-open-orders-admin>
                 </main>
             </div>

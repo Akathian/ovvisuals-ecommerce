@@ -22,14 +22,12 @@
             </figure>
             <figure class="card bg">
                 <div class="p-3">
-                    <h5 class="card-title">12</h5>
-                    <span>Awaiting delivery</span>
-                </div>
-            </figure>
-            <figure class="card bg">
-                <div class="p-3">
-                    <h5 class="card-title">50</h5>
-                    <span>Delivered items</span>
+                    <h5 class="card-title">{{ this.admin.complete_orders.numOrders }}</h5>
+                    <span>Complete Order<span
+                            *ngIf="this.admin.complete_orders.numOrders > 1 || this.admin.complete_orders.numOrders === 0">s</span>
+                        <span *ngIf="this.admin.complete_orders.numUsers >= 1"> from
+                            {{ this.admin.complete_orders.numUsers }}
+                            User<span *ngIf="this.admin.complete_orders.numUsers > 1">s</span></span></span>
                 </div>
             </figure>
         </article>
