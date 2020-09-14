@@ -46,23 +46,22 @@ export class CheckoutComponent implements OnInit {
       },
       onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
-          self.moveToOpenOrders();
+          self.moveToOpenOrders(details.purchase_units[0].payments.captures[0].id);
           self.disableAll = false;
-          console.log('Transaction completed by ' + details.payer.name.given_name + '!');
         });
       }
     }).render(this.paypalElement.nativeElement)
   }
 
-  moveToOpenOrders() {
+  moveToOpenOrders(transactionId) {
     let date = new Date()
     let self = this
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         firebase.database().ref('/Users/' + user.uid + '/Cart').once('value', function (cartData) {
           let updates = {}
-          updates["Admin/Open-orders/" + user.uid + "/" + date.getTime()] = cartData.val()
-          updates["Users/" + user.uid + "/Open-orders/" + date.getTime()] = cartData.val()
+          updates["Admin/Open-orders/" + user.uid + "/" + `${transactionId}-${date.getTime()}`] = cartData.val()
+          updates["Users/" + user.uid + "/Open-orders/" + `${transactionId}-${date.getTime()}`] = cartData.val()
           return firebase.database().ref().update(updates);
         })
         firebase.database().ref('Users/' + user.uid + '/Cart/').remove()

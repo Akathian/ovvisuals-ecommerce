@@ -12,6 +12,10 @@ export const environment = {
     storageBucket: "ovvisuals-ecommerce.appspot.com",
     messagingSenderId: "391233476360",
     appId: "1:391233476360:web:74071ce2d003e88f82febd"
+  },
+  paypal: {
+    client: "AUzHPk1_nr1WKmm9NE6srTNO1TWEfggxW04RZELfVYpxw5qCBV0Y2rXawKfNwZa434URXOcwy6XFbms5",
+    secret: "ELYUuMU1e5MugtOxhwmVLNwbc-_ZyP6KwEQ0dMzyMi45qjColyVBDz9h94S3WRbRzBA1Y9CYc_tKIKU_"
   }
 };
 

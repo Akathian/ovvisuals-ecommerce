@@ -2,6 +2,9 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'angular-bootstrap-md'
 import * as firebase from 'firebase'
+import { HttpClient } from '@angular/common/http';
+import { PaypalService } from '../../../../../../services/paypal.service'
+
 @Component({
   selector: 'app-user-order',
   templateUrl: './user-order.component.html',
@@ -11,7 +14,6 @@ export class UserOrderComponent implements OnInit {
   @Input() order;
   @Input() uid;
   @ViewChild('areYouSure', { static: false }) areYouSure: ModalDirective
-
   orderTime;
   total;
   subtotal;
@@ -26,17 +28,27 @@ export class UserOrderComponent implements OnInit {
   orderTimeMS;
   cat;
   completedAt;
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  trackingNumber;
+  noTrackErr = false;
+  carrierName;
+  carrierNameOther;
+  transactionId;
+  paypalAuthToken
+  trackingInfo;
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private paypalReq: PaypalService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       this.cat = params.get('cat');
+      try {
+        this.parseOrder(this.order)
+      } catch (e) { }
     });
-    this.parseOrder(this.order)
   }
 
   parseOrder(order) {
-    let time = +(order[0])
+    let time = +(order[0].split("-")[1])
+    this.transactionId = order[0].split("-")[0]
     this.orderTimeMS = time
     let date = new Date(time)
     this.orderTime = date.toString().split(" ")
@@ -47,6 +59,9 @@ export class UserOrderComponent implements OnInit {
     let orderObj = Object.values(order[1])
     if (this.uid === "all") {
       this.orderOwner = orderObj.pop()
+    }
+    if (this.cat != "open_orders") {
+      this.trackingInfo = orderObj.pop()
     }
     this.total = orderObj.pop()
     this.subtotal = orderObj.pop()
@@ -73,12 +88,22 @@ export class UserOrderComponent implements OnInit {
       }
       case "3": {
         this.shipMethod = 'Standard Worldwide Shipping'
-        this.moveTo = "Delivered"
+        if (this.cat == "intermediate_orders") {
+          this.moveTo = "Delivered"
+        } else {
+          this.noTrackErr = true;
+          this.moveTo = "Shipped"
+        }
         break;
       }
       case "4": {
         this.shipMethod = 'Express Worldwide Shipping'
-        this.moveTo = "Delivered"
+        if (this.cat == "intermediate_orders") {
+          this.moveTo = "Delivered"
+        } else {
+          this.noTrackErr = true;
+          this.moveTo = "Shipped"
+        }
         break;
       }
     }
@@ -156,8 +181,12 @@ export class UserOrderComponent implements OnInit {
     return d;
   }
 
-  showAreYouSure() {
-    this.areYouSure.show();
+  showAreYouSure(tracking) {
+    if ((tracking && this.carrierName) || !this.noTrackErr) {
+      this.trackingNumber = tracking;
+      this.areYouSure.show();
+    } else {
+    }
   }
 
   moveToIntermediate() {
@@ -167,34 +196,66 @@ export class UserOrderComponent implements OnInit {
     if (this.orderOwner) {
       user = this.orderOwner
     }
-    firebase.database().ref('Admin/Open-orders/' + user + '/' + self.orderTimeMS).once('value', function (orderData) {
+    firebase.database().ref('Admin/Open-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS).once('value', function (orderData) {
       let updates = {}
       if (self.moveTo != "Delivered") {
-        updates['Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS] = orderData.val()
-        updates['Users/' + user + '/Intermediate-orders/' + self.orderTimeMS] = orderData.val()
+        updates['Admin/Intermediate-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS] = orderData.val()
+        updates['Users/' + user + '/Intermediate-orders/' + self.transactionId + '-' + self.orderTimeMS] = orderData.val()
+        firebase.database().ref().update(updates);
+
+        if (self.trackingNumber) {
+          let trackObj
+          if (self.carrierNameOther) {
+            trackObj = {
+              tracking_number: self.trackingNumber,
+              carrier: self.carrierName,
+              carrier_name_other: self.carrierNameOther
+            }
+          } else {
+            trackObj = {
+              tracking_number: self.trackingNumber,
+              carrier: self.carrierName,
+              carrier_name_other: ""
+            }
+          }
+          updates = {}
+          updates['Admin/Intermediate-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS + '/tracking'] = trackObj
+          updates['Users/' + user + '/Intermediate-orders/' + self.transactionId + '-' + self.orderTimeMS + '/tracking'] = trackObj
+          firebase.database().ref().update(updates);
+          self.paypalReq.giveTracking(self.transactionId, self.trackingNumber, self.carrierName, self.carrierNameOther, "SHIPPED")
+        }
       } else {
         let date = new Date()
+        // self.paypalReq.giveTracking(self.transactionId, self.trackingInfo.tracking_number, self.trackingInfo.carrier, self.trackingInfo.carrier_name_other, "DELIVERED")
+
         if (!orderData.val()) {
-          firebase.database().ref('Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS).once('value', function (interData) {
+          firebase.database().ref('Admin/Intermediate-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS).once('value', function (interData) {
             let newData = interData.val()
             newData.completedAt = date.getTime()
-            updates['Admin/Complete-orders/' + user + '/' + self.orderTimeMS] = newData
-            updates['Users/' + user + '/Complete-orders/' + self.orderTimeMS] = newData
+            updates['Admin/Complete-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS] = newData
+            updates['Users/' + user + '/Complete-orders/' + self.transactionId + '-' + self.orderTimeMS] = newData
           })
-          firebase.database().ref('Admin/Intermediate-orders/' + user + '/' + self.orderTimeMS).remove()
-          firebase.database().ref('Users/' + user + '/Intermediate-orders/' + self.orderTimeMS).remove()
+          firebase.database().ref('Admin/Intermediate-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS).remove()
+          firebase.database().ref('Users/' + user + '/Intermediate-orders/' + self.transactionId + '-' + self.orderTimeMS).remove()
         } else {
           let newData = orderData.val()
           newData.completedAt = date.getTime()
-          updates['Admin/Complete-orders/' + user + '/' + self.orderTimeMS] = newData
-          updates['Users/' + user + '/Complete-orders/' + self.orderTimeMS] = newData
+          updates['Admin/Complete-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS] = newData
+          updates['Users/' + user + '/Complete-orders/' + self.transactionId + '-' + self.orderTimeMS] = newData
           firebase.database().ref().update(updates)
         }
       }
       return firebase.database().ref().update(updates);
     })
-    firebase.database().ref('Admin/Open-orders/' + user + '/' + self.orderTimeMS).remove()
-    firebase.database().ref('Users/' + user + '/Open-orders/' + self.orderTimeMS).remove()
+    firebase.database().ref('Admin/Open-orders/' + user + '/' + self.transactionId + '-' + self.orderTimeMS).remove()
+    firebase.database().ref('Users/' + user + '/Open-orders/' + self.transactionId + '-' + self.orderTimeMS).remove()
     self.router.navigate(['/admin/' + self.cat], { relativeTo: this.route });
+  }
+
+  carrier(event) {
+    this.carrierName = event
+    if (this.carrierName === "OTHER") {
+      this.carrierNameOther = "Latvijas Pasts"
+    }
   }
 }

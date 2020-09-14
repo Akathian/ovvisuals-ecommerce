@@ -18,20 +18,22 @@ export class OrderAdminComponent implements OnInit {
   }
 
   getOrdersByUid(uid) {
-    if (!this.times) {
-      if (uid != "all") {
-        this.orders = Object.entries(this.admin[this.cat].fullObj[uid])
-      } else {
-        this.orders = Object.entries(this.admin[this.cat].allOrders).sort(
-          function (a, b) {
-            let c: number
-            c = +(b[0]) - +(a[0])
-            return c
-          }
-        )
+    try {
+      if (!this.times) {
+        if (uid != "all") {
+          this.orders = Object.entries(this.admin[this.cat].fullObj[uid])
+        } else {
+          this.orders = Object.entries(this.admin[this.cat].allOrders).sort(
+            function (a, b) {
+              let c: number
+              c = +(b[0]) - +(a[0])
+              return c
+            }
+          )
+        }
+        this.times++;
       }
-      this.times++;
-    }
+    } catch (e) { }
   }
 
   sortAll(event) {

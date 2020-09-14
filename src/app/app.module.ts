@@ -42,6 +42,7 @@ import { OrderAdminComponent } from './components/admin/open-orders-admin/users-
 import { UsersOpenOrderComponent } from './components/admin/open-orders-admin/users-open-order/users-open-order.component';
 import { UserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/user-order/user-order.component';
 
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -84,7 +85,8 @@ import { UserOrderComponent } from './components/admin/open-orders-admin/users-o
     AngularFireAuthModule,
     MDBBootstrapModule.forRoot(),
     LightboxModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

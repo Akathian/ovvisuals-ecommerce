@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit {
   shipPrice;
   userCart;
   numItems;
-
+  transactionId;
   constructor() { }
 
   ngOnInit() {
@@ -22,7 +22,8 @@ export class OrderComponent implements OnInit {
   }
 
   parseOrder(order) {
-    let time = +(order[0])
+    let time = +(order[0].split("-")[1])
+    this.transactionId = order[0].split("-")[0]
     let date = new Date(time)
     this.orderTime = date.toString().split(" ")
     for (let i = 0; i < 4; i++) {
