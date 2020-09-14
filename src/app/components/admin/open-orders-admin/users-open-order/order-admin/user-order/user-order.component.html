@@ -5,6 +5,7 @@
             <span class="text-warning" *ngIf='!this.completedAt'>Due: {{ promiseDate }}</span>
             <span class="text-success" *ngIf='this.completedAt'>Completed: {{ this.completedAt }}</span>
         </div>
+        <p>Transaction ID: {{ this.transactionId }}</p>
         <span *ngFor='let cartItem of userCart'>
             <span *ngFor='let item of cartItem | keyvalue'>
                 <div class="d-flex justify-content-between row mb-4 mx-1">
@@ -26,7 +27,6 @@
                     </div>
                 </div>
             </span>
-            Transaction ID: {{ this.transactionId }}
         </span>
         <hr />
         <div class="d-flex justify-content-between">
@@ -82,7 +82,7 @@
             <span *ngIf='this.cat != "open_orders"'><button class='btn btn-primary float-right'
                     (click)='showAreYouSure()' id='moveBtn'>Mark as
                     {{this.moveTo}}</button>
-                </span>
+            </span>
         </span>
     </div>
 </div>
