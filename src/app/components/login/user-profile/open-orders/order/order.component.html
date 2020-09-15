@@ -2,11 +2,14 @@
     <div class='card-body'>
         <div class="d-flex flex-row justify-content-between">
             <h5 class="card-title mb-4">Your Order on: {{ orderTime }} </h5>
-            <span class="text-warning">In progress</span>
+            <span class="text-warning" *ngIf="this.cat==='open-orders'">In progress</span>
+            <span class="text-success" *ngIf="this.cat==='intermediate-orders'">{{ this.statusText }}</span>
+            <span class="text-success" *ngIf="this.cat==='complete-orders'">Delivered</span>
+
         </div>
         <span *ngFor='let cartItem of userCart'>
             <span *ngFor='let item of cartItem | keyvalue'>
-                <div class="row mb-4">
+                <div class=" row mb-4">
                     <div class="col-md-5 col-lg-3 col-xl-3">
                         <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                             <img class="img-fluid w-100" [src]="item.value.img" alt="Sample">
@@ -67,6 +70,12 @@
                 <p class='font-weight-bold'>{{this.total | currency: 'CAD'}}</p>
             </div>
         </div>
+        <span *ngIf="this.trackingInfo">
+            <p *ngIf='!this.trackingInfo.carrier_name_other'>Carrier: {{ this.trackingInfo.carrier }}</p>
+            <p *ngIf='this.trackingInfo.carrier_name_other'>Carrier: {{ this.trackingInfo.carrier_name_other }}</p>
+            <p>Tracking Number: {{ this.trackingInfo.tracking_number }}</p>
+        </span>
+
     </div>
 </div>
 <hr />

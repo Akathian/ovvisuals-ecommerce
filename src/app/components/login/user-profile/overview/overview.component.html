@@ -12,28 +12,28 @@
         </figure>
         <hr>
         <article class="card-group">
-            <figure class="card bg">
+            <figure class="overNav card bg" [routerLink]="['/login', 'open-orders']">
                 <div class="p-3">
-                    <h5 class="card-title">38</h5>
-                    <span>Orders</span>
+                    <h5 class="card-title">{{ this.openCount }}</h5>
+                    <span>Open Order<span *ngIf='openCount > 1 || openCount == 0'>s</span></span>
                 </div>
             </figure>
-            <figure class="card bg">
+            <figure class="overNav card bg" [routerLink]="['/login', 'intermediate-orders']">
+                <div class=" p-3">
+                    <h5 class="card-title">{{ this.interCount }}</h5>
+                    <span>Intermediate Order<span *ngIf='interCount > 1 || interCount == 0'>s</span></span>
+                </div>
+            </figure>
+            <figure class="overNav card bg" [routerLink]="['/login', 'complete-orders']">
+                <div class="p-3">
+                    <h5 class="card-title">{{ this.completeCount }}</h5>
+                    <span>Complete Order<span *ngIf='completeCount > 1 || completeCount == 0'>s</span></span>
+                </div>
+            </figure>
+            <figure class="overNav card bg" [routerLink]="['/login', 'wishlist']">
                 <div class="p-3">
                     <h5 class="card-title">{{ this.wishListNum }}</h5>
-                    <span>Wishlist Item<span *ngIf='wishListNum > 1'>s</span></span>
-                </div>
-            </figure>
-            <figure class="card bg">
-                <div class="p-3">
-                    <h5 class="card-title">12</h5>
-                    <span>Awaiting delivery</span>
-                </div>
-            </figure>
-            <figure class="card bg">
-                <div class="p-3">
-                    <h5 class="card-title">50</h5>
-                    <span>Delivered items</span>
+                    <span>Wishlist Item<span *ngIf='wishListNum > 1 || wishListNum == 0'>s</span></span>
                 </div>
             </figure>
         </article>
@@ -44,41 +44,7 @@
 
 <article class="card  mb-3">
     <div class="card-body">
-        <h5 class="card-title mb-4">Recent orders </h5>
-
-        <div class="row">
-            <div class="col-md-6">
-                <figure class="itemside  mb-3">
-                    <div class="aside"><img src="images/items/1.jpg" class="border img-sm"></div>
-                    <figcaption class="info">
-                        <time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-                        <p>Great item name goes here </p>
-                        <span class="text-warning">Pending</span>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-6">
-                <figure class="itemside  mb-3">
-                    <div class="aside"><img src="images/items/2.jpg" class="border img-sm"></div>
-                    <figcaption class="info">
-                        <time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-                        <p>Machine for kitchen to blend </p>
-                        <span class="text-success">Departured</span>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-6">
-                <figure class="itemside mb-3">
-                    <div class="aside"><img src="images/items/3.jpg" class="border img-sm"></div>
-                    <figcaption class="info">
-                        <time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-                        <p>Ladies bag original leather </p>
-                        <span class="text-success">Shipped </span>
-                    </figcaption>
-                </figure>
-            </div>
-        </div> <!-- row.// -->
-
-        <a href="#" class="btn btn-outline-primary"> See all orders </a>
+        <app-wishlist [user]='user' [limit]=2>
+        </app-wishlist>
     </div> <!-- card-body .// -->
 </article> <!-- card.// -->

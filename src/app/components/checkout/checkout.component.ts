@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import { ActivatedRoute, Router } from '@angular/router';
 import * as $ from 'jquery'
 declare const paypal;
+import { ModalDirective } from 'angular-bootstrap-md'
 
 @Component({
   selector: 'app-checkout',
@@ -11,6 +12,8 @@ declare const paypal;
 })
 export class CheckoutComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
+  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
+
   paidFor = false;
   userCart = [];
   numItems = 0;
@@ -19,6 +22,8 @@ export class CheckoutComponent implements OnInit {
   paypalObj;
   shipSelect = false;
   disableAll = false;
+  supportedCities = ["markham", "scarborough"]
+  shipCode;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -44,11 +49,22 @@ export class CheckoutComponent implements OnInit {
         self.disableAll = true;
         return actions.order.create(self.paypalObj)
       },
+      onShippingChange: (data, actions) => {
+        if (self.supportedCities.indexOf(data.shipping_address.city.toLowerCase()) != 0 && self.shipCode == "2") {
+          actions.reject()
+        }
+      },
       onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
           self.moveToOpenOrders(details.purchase_units[0].payments.captures[0].id);
           self.disableAll = false;
-        });
+        },
+        );
+      },
+      onError: function (err) {
+      },
+      onCancel: function (data, actions) {
+        self.disableAll = false;
       }
     }).render(this.paypalElement.nativeElement)
   }
@@ -271,7 +287,11 @@ export class CheckoutComponent implements OnInit {
 
   shippingMethod(type) {
     if (!this.disableAll) {
+      this.shipCode = type
       let self = this
+      if (type == "2") {
+        this.confirmModal.show();
+      }
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           let updates = {}

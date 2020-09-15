@@ -8,6 +8,8 @@ import * as firebase from 'firebase'
 })
 export class WishlistComponent implements OnInit {
   @Input() user;
+  @Input() limit;
+
   userWList = []
 
   constructor() { }

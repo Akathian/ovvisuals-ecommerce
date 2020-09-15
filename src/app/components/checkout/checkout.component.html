@@ -186,3 +186,26 @@
     <!-- Grid row -->
 </section>
 <!--Section: Block Content-->
+
+<div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="confirmModal.hide()">
+                    <span (click)="confirmModal.hide()" aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Please confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p>We only support Markham, ON and Scarborough, ON Hand-Deliveries.</p>
+                Make sure you enter a Markham or Scarborough
+                address in the paypal checkout window for us to accept your order.
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-md btn-primary" (click)="confirmModal.hide()">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>

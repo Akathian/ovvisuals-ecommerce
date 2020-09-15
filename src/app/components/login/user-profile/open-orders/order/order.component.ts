@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
   @Input() order;
+  cat;
   orderTime;
   total;
   subtotal;
@@ -15,10 +17,15 @@ export class OrderComponent implements OnInit {
   userCart;
   numItems;
   transactionId;
-  constructor() { }
+  trackingInfo;
+  statusText;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.parseOrder(this.order)
+    this.route.paramMap.subscribe(async params => {
+      this.cat = params.get('cat');
+      this.parseOrder(this.order)
+    });
   }
 
   parseOrder(order) {
@@ -31,24 +38,31 @@ export class OrderComponent implements OnInit {
     }
     this.orderTime = this.orderTime.join(" ")
     let orderObj = Object.values(order[1])
+    if (this.cat != "open-orders") {
+      this.trackingInfo = orderObj.pop()
+    }
     this.total = orderObj.pop()
     this.subtotal = orderObj.pop()
     this.shipMethod = orderObj.pop()
     switch (this.shipMethod) {
       case "1": {
         this.shipMethod = 'Pickup in Store'
+        this.statusText = 'Ready for Pickup'
         break;
       }
       case "2": {
         this.shipMethod = 'Hand-Delivery Within the GTA'
+        this.statusText = 'Out For Delivery'
         break;
       }
       case "3": {
         this.shipMethod = 'Standard Worldwide Shipping'
+        this.statusText = 'Shipped'
         break;
       }
       case "4": {
         this.shipMethod = 'Express Worldwide Shipping'
+        this.statusText = 'Shipped'
         break;
       }
     }

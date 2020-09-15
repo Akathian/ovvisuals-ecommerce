@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as firebase from 'firebase'
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-open-orders',
@@ -9,16 +11,22 @@ import * as firebase from 'firebase'
 export class OpenOrdersComponent implements OnInit {
   @Input() user;
   openOrders;
-  constructor() { }
+  cat;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getOpenOrders()
+    this.route.paramMap.subscribe(async params => {
+      this.cat = params.get('cat');
+      this.cat = this.cat.charAt(0).toUpperCase() + this.cat.slice(1);
+      this.getOpenOrders()
+    });
 
   }
 
   getOpenOrders() {
     let self = this
-    firebase.database().ref("Users/" + self.user.uid + "/Open-orders").on('value', function (orderData) {
+    self.openOrders = null
+    firebase.database().ref("Users/" + self.user.uid + "/" + self.cat).on('value', function (orderData) {
       self.openOrders = Object.entries(orderData.val())
       self.openOrders = self.openOrders.reverse()
     })
