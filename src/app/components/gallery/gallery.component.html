@@ -7,15 +7,17 @@
     </div> -->
 
   <div class="card-columns">
-    <div class="card" *ngFor='let image of images1; let i=index'>
-      <img class="card-img-top" (click)="open(i, 0)" [src]="image.src" alt="Card image cap">
-    </div>
-    <div class="card" *ngFor='let image of images2; let i=index'>
-      <img class="card-img-top" (click)="open(i, images1.length)" [src]="image.src" alt="Card image cap">
-    </div>
-    <div class="card" *ngFor='let image of images3; let i=index'>
-      <img class="card-img-top" (click)="open(i, images1.length + images2.length)" [src]="image.src"
+    <div class="card" style="border-style: none;">
+      <img class="card-img-top mb-3" *ngFor='let image of images1; let i=index' (click)="open(i, 0)" [src]="image.src"
         alt="Card image cap">
+    </div>
+    <div class="card" style="border-style: none;">
+      <img class="card-img-top mb-3" *ngFor='let image of images2; let j=index' (click)="open(j, images1.length)"
+        [src]="image.src" alt="Card image cap">
+    </div>
+    <div class="card" style="border-style: none;">
+      <img class="card-img-top mb-3" *ngFor='let image of images3; let k=index'
+        (click)="open(k, images1.length + images2.length)" [src]="image.src" alt="Card image cap">
     </div>
   </div>
 </div>

@@ -42,7 +42,6 @@ export class GalleryComponent implements OnInit {
       self.images1 = self.chunks[0]
       self.images2 = self.chunks[1]
       self.images3 = self.chunks[2]
-
     })
   }
 
@@ -79,6 +78,7 @@ export class GalleryComponent implements OnInit {
     if ((result[1].length - result[2].length) > 1) {
       result[2].push(result[1].pop())
     }
+
     return result;
   }
 
