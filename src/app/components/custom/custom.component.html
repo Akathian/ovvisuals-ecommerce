@@ -1,6 +1,69 @@
-<button class="btn btn-primary mb-3" (click)="sendEmail()">Test email</button>
+<button class="btn btn-primary mb-3" id="sendEmailBtn"(click)="sendEmail()">Test email</button>
 
 <div class="form-group">
     <label for="file">Choose File</label>
     <input type="file" id="file" (change)="handleFileInput(this, $event.target.files)" multiple />
+</div>
+
+<div mdbModal #loginModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="loginModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Please Sign-in To Add To Cart</h4>
+            </div>
+            <div class="modal-body">
+                <div id="firebaseui-auth-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary 
+            product-btn" aria-label="Close" (click)="loginModal.hide()" mdbWavesEffect>Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="confirmModal.hide()">
+                    <span (click)="confirmModal.hide()" aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Item Added To Cart</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-md btn-primary" routerLink="/checkout"
+                    (click)="confirmModal.hide()">To Checkout</button>
+                <button type="button" class="btn btn-md btn-info" (click)="confirmModal.hide()"
+                    [routerLink]="['/products', this.type]">To
+                    {{ this.type }}</button>
+                <button type="button" class="btn btn-md btn-dark" aria-label="Close"
+                    (click)="confirmModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div mdbModal #loadingModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true" id="loadModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Sending Email</h4>
+            </div>
+            <div class="modal-body">
+                Please Wait... <img src="../../../assets/images/nyan.gif" width="50px"/>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>

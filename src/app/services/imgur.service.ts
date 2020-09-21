@@ -58,7 +58,7 @@ export class ImgurService {
     let resizeFile: File;
     ImageTools.resize(file, {
       width: 320, // maximum width
-      height: 240 // maximum height
+      height: 1000 // maximum height
     }, async function (blob, didItResize) {
       // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
       var b: any = blob
@@ -79,30 +79,25 @@ export class ImgurService {
         redirect: 'follow'
       };
       const imageURL = JSON.parse(await (await fetch("https://api.imgur.com/3/image", <RequestInit>requestOptions)).text()).data.link
-      const imgTag = `<img alt="" src="${imageURL}" width="320px" class="mcnImage">`
-      const img = `                                
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock">
-  <tbody class="mcnImageCardBlockOuter">
-    <tr>
-        <td class="mcnImageCardBlockInner" valign="top"
-            style="padding-top:9px; padding-right:18px; padding-bottom:9px; padding-left:18px;">
-  
-            <table align="right" border="0" cellpadding="0" cellspacing="0"
-                class="mcnImageCardBottomContent" width="100%"
-                style="background-color: #404040;">
-                <tbody>
-                    <tr>
-                        <td class="mcnImageCardBottomImageContent" align="center" valign="top" style="padding-top:0px; padding-right:0px; padding-bottom:0; padding-left:0px;">
-                            ${imgTag}
-                        </td>
-                    </tr>
-                   
-                </tbody>
-            </table>
-        </td>
-    </tr>
-  </tbody>
-  </table>`
+
+      const img = `                                    
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+        <tbody class="mcnImageCardBlockOuter">
+          <tr>
+              <td class="mcnImageCardBlockInner" valign="top" style="padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnImageCardBottomContent" width="100%" style="background-color:#404040;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                    <tbody>
+                      <tr>
+                          <td class="mcnImageCardBottomImageContent" align="left" valign="top" style="padding-top:0px;padding-right:0px;padding-bottom:0;padding-left:0px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                            <img alt="" src="${imageURL}" width="564"  class="mcnImage" style="max-width:1200px;border-width:0;height:auto;outline-style:none;text-decoration:none;-ms-interpolation-mode:bicubic;vertical-align:bottom;" >
+                          </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </td>
+          </tr>
+        </tbody>
+      </table>`
 
       self.uploadedImgs.push(imageURL)
       self.imgsHTML += img
