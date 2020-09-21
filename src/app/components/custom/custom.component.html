@@ -1,1 +1,6 @@
-<p>custom works!</p>
+<button class="btn btn-primary mb-3" (click)="sendEmail()">Test email</button>
+
+<div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file" id="file" (change)="handleFileInput(this, $event.target.files)" multiple />
+</div>
