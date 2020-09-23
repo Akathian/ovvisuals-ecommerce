@@ -218,11 +218,11 @@ export class ProductPageComponent implements AfterViewInit {
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+
       ],
-      tosUrl: '<your-tos-url>',
+      tosUrl: '/terms',
       privacyPolicyUrl: function () {
-        window.location.assign('<your-privacy-policy-url>');
+        window.location.assign('/privacy');
       }
     };
     try {

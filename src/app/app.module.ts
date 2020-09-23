@@ -31,7 +31,7 @@ import { SettingsComponent } from './components/login/user-profile/settings/sett
 import { TermsComponent } from './components/legal/terms/terms.component';
 import { LegalComponent } from './components/legal/legal.component';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShippingComponent } from './components/checkout/shipping/shipping.component';
 import { OpenOrdersComponent } from './components/login/user-profile/open-orders/open-orders.component';
 import { OrderComponent } from './components/login/user-profile/open-orders/order/order.component';
@@ -86,6 +86,7 @@ import { HttpClientModule } from '@angular/common/http';
     MDBBootstrapModule.forRoot(),
     LightboxModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

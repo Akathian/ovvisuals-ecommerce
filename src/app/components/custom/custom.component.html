@@ -1,26 +1,133 @@
-<button class="btn btn-primary mb-3" id="sendEmailBtn"(click)="sendEmail()">Test email</button>
+<!-- Default form contact -->
+<p class="h4 mb-4 text-center">Order Form</p>
 
-<div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file" id="file" (change)="handleFileInput(this, $event.target.files)" multiple />
-</div>
+<form [formGroup]="customForm" (ngSubmit)="onSubmit(customForm.value)" class="border border-light p-5"
+    id="customFormId">
+
+    <p class="h5 mb-4 text-center">Contact Details</p>
+
+    <!-- Name -->
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"
+        (change)="nameChange($event)" formControlName="name">
+
+    <!-- Email -->
+    <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail"
+        formControlName="email">
+
+    <input type="tel" id="defaultContactFormNum" class="form-control mb-4" placeholder="Phone Number"
+        formControlName="phone">
+    <hr>
+    <p class="h5 my-3 text-center">Order Details</p>
+
+    <!-- Subject -->
+    <label>Desired Service</label>
+    <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
+        formControlName="service">
+        <option value="" disabled>Choose option</option>
+        <option value="Portrait">Portrait</option>
+        <option value="Lamp">Lamp</option>
+        <option value="Poster">Poster</option>
+        <option value="Logo">Logo</option>
+        <option value="Sticker">Sticker</option>
+        <option value="Other">Other</option>
+    </select>
+    <span *ngIf="selectedService === 'Other'">
+        <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherService">
+    </span>
+    <span *ngIf="selectedService === 'Portrait' ||  selectedService === 'Poster' || selectedService === 'Other'">
+        <label>Print Options</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="print1"
+                (change)="printChange('No Print')" (ngSubmit)="nameChange($event)" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                No Print
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="print2"
+                (change)="printChange('Print, no frame')">
+            <label class="form-check-label" for="exampleRadios2">
+                Print, no frame
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="print3"
+                (change)="printChange('Print and frame')">
+            <label class="form-check-label" for="exampleRadios3">
+                Print and frame
+            </label>
+        </div>
+        <span *ngIf="printOption!='No Print'">
+            <label>Print Size</label>
+            <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
+                formControlName="size">
+                <option value="" disabled>Choose option</option>
+                <option value="4x6in">4x6in (Popular)</option>
+                <option value="5x7in">5x7in (Popular)</option>
+                <option value="6x6in">6x6in</option>
+                <option value="6x8in">6x8in</option>
+                <option value="8x8in">8x8in</option>
+                <option value="8x10in">8x10in (Popular)</option>
+                <option value="8x12in">8x12in (Popular)</option>
+                <option value="11x14in">11x14in</option>
+                <option value="12x18in">12x18in (Popular)</option>
+                <option value="16x20in">16x20in</option>
+                <option value="18x24in">18x24in</option>
+                <option value="20x24in">20x24in</option>
+                <option value="20x30in">20x30in</option>
+                <option value="24x30in">24x30in</option>
+                <option value="24x36in">24x36in (Popular)</option>
+                <option value="Other">Other</option>
+            </select>
+        </span>
+    </span>
+    <span *ngIf="selectedSize === 'Other'">
+        <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherSize">
+    </span>
+
+    <!-- Message -->
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+            placeholder="Give me a description of what you want... " formControlName="desc"></textarea>
+    </div>
+
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+                (change)="handleFileInput($event.target.files)" multiple />
+            <label class="custom-file-label" for="inputGroupFile01">Choose Files</label>
+        </div>
+    </div>
+    <!-- Copy -->
+    <div class="custom-control custom-checkbox my-2">
+        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+        <label class="custom-control-label" for="defaultContactFormCopy">I want to receive OVVisuals newsletter
+            emails</label>
+    </div>
+
+    <!-- Send button -->
+    <button class="btn btn-primary btn-block" type="submit" id="sendEmailBtn">Send</button>
+
+</form>
+<!-- Default form contact -->
 
 <div mdbModal #loginModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+    aria-hidden="true" id="authModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close pull-right" aria-label="Close" (click)="loginModal.hide()">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="loginModal.hide()"
+                    routerLink="/">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title w-100" id="myModalLabel">Please Sign-in To Add To Cart</h4>
+                <h4 class="modal-title w-100" id="myModalLabel">Please Sign-in To Make a Request</h4>
             </div>
             <div class="modal-body">
                 <div id="firebaseui-auth-container"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-lg btn-primary 
-            product-btn" aria-label="Close" (click)="loginModal.hide()" mdbWavesEffect>Close</button>
+            product-btn" aria-label="Close" (click)="loginModal.hide()" routerLink="/" mdbWavesEffect>Close</button>
             </div>
         </div>
     </div>
@@ -60,9 +167,30 @@
                 <h4 class="modal-title w-100" id="myModalLabel">Sending Email</h4>
             </div>
             <div class="modal-body">
-                Please Wait... <img src="../../../assets/images/nyan.gif" width="50px"/>
+                Please Wait... <img src="../../../assets/images/nyan.gif" width="50px" />
             </div>
             <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div mdbModal #errorModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="errorModal.hide()">
+                    <span (click)="errorModal.hide()" aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Something went wrong</h4>
+            </div>
+            <div class="modal-body">
+                Please try again
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-dark" aria-label="Close"
+                    (click)="errorModal.hide()">Close</button>
             </div>
         </div>
     </div>

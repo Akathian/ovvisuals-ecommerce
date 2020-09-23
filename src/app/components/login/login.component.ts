@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+
           ],
           tosUrl: '/terms',
           privacyPolicyUrl: function () {

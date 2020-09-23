@@ -1,8 +1,8 @@
 ﻿/* SmtpJS.com - v3.0.0 */
 const Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function (e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function () { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function (e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
 
-const emailBody = (imgsHTML, subject, name) => {
-    return `<!doctype html>
+const emailBody = (imgsHTML, subject, data) => {
+   return `<!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
        <head>
           <!-- NAME: 1 COLUMN -->
@@ -99,7 +99,7 @@ const emailBody = (imgsHTML, subject, name) => {
                                                                 <tbody>
                                                                    <tr>
                                                                       <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-break:break-word;color:#202020;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;" >
-                                                                         <h1 style="display:block;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;color:#202020;font-family:Helvetica;font-size:26px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:normal;text-align:left;" >Thank You, ${name}</h1>
+                                                                         <h1 style="display:block;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;color:#202020;font-family:Helvetica;font-size:26px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:normal;text-align:left;" >Thank You, ${data.name}</h1>
                                                                          <p style="margin-top:10px;margin-bottom:10px;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#202020;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;" ><span style="font-size:16px;" >I've received your request, and I will reply to you soon! Here's a summary of what I got from your request:</span></p>
                                                                       </td>
                                                                    </tr>
@@ -133,41 +133,29 @@ const emailBody = (imgsHTML, subject, name) => {
                                                                 <th>Fulfill Date</th>
                                                                 <th>Print</th>
                                                                 <th>Print Size</th>
-                                                                <th>Framed</th>
                                                                 <th>Base Price</th>
                                                              </tr>
                                                              <tr>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >1</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Portrait</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.service}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Sept 25</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Yes</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >24x36in</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >No</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.printOpt}</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.size}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$50</td>
                                                              </tr>
                                                              <tr>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >2</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Portrait</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Sept 25</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Yes</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >12x18in</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >No</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$45</td>
-                                                             </tr>
-                                                             <tr>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Total:</td>
-                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$95</td>
+                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$50</td>
                                                              </tr>
                                                           </tbody>
                                                        </table>
                                                        <div style="padding-top:1em;padding-bottom:1em;padding-right:1em;padding-left:1em;" >
                                                           <h4 style="display:block;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;color:#202020;font-family:Helvetica;font-size:18px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:normal;text-align:left;" >Your Message:</h4>
-                                                          <p style="text-align:left;font-size:14px;margin-top:10px;margin-bottom:10px;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#656565;font-family:Helvetica;line-height:150%;" >Hey, can I get a drawing of the attached picture but like do this this this and then put a purple blellow background for the picture and also can i please have it printed and framed thanks</p>
+                                                          <p style="text-align:left;font-size:14px;margin-top:10px;margin-bottom:10px;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#656565;font-family:Helvetica;line-height:150%;" >${data.desc}</p>
                                                        </div>
                                                     </div>
                                                  </td>
@@ -186,7 +174,6 @@ const emailBody = (imgsHTML, subject, name) => {
                                            </tbody>
                                         </table>
                                         ${imgsHTML}
-    
                                         <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowBlock" style="min-width:100%;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
                                            <tbody class="mcnFollowBlockOuter">
                                               <tr>

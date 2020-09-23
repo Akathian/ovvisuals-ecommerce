@@ -21,6 +21,10 @@ export const environment = {
     refresh: "47e328a6eb81a9247976c9d93b01f2a449199491",
     client: "40a4c07be6fae27",
     secret: "5d1e167cd36ad2ac1fde7820253e51fc80be00b9"
+  },
+  smtp: {
+    secure: "b7aea72c-63e1-40fc-986c-e4623320d929",
+    from: "support@ovvisuals.com"
   }
 };
 

@@ -13,6 +13,7 @@ export class ImgurService {
   constructor() { }
 
   async auth(files) {
+    document.getElementById("sendEmailBtn").classList.add("disabled")
     let formdata = new FormData();
     formdata.append("refresh_token", environment.imgur.refresh);
     formdata.append("client_id", environment.imgur.client);
@@ -51,6 +52,7 @@ export class ImgurService {
     for (let i = 0; i < files.length; i++) {
       await this.createImg(access, albumId, files[i])
     }
+    document.getElementById("sendEmailBtn").classList.remove("disabled")
   }
 
   async createImg(access, albumid, file) {
