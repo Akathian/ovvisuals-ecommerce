@@ -43,9 +43,10 @@ import { UsersOpenOrderComponent } from './components/admin/open-orders-admin/us
 import { UserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/user-order/user-order.component';
 
 import { HttpClientModule } from '@angular/common/http';
-
-
-
+import { MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { DemoMaterialModule } from './material-module'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -87,10 +88,15 @@ import { HttpClientModule } from '@angular/common/http';
     LightboxModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatNativeDateModule,
+    DemoMaterialModule,
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 
 })
+
 export class AppModule { }

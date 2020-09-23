@@ -18,7 +18,19 @@
         formControlName="phone">
     <hr>
     <p class="h5 my-3 text-center">Order Details</p>
-
+    <div class="form-group">
+        <label>I want this product before: </label>
+        <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                #d="ngbDatepicker" [minDate]="earliestDate" [maxDate]="maxDate" [markDisabled]="isDisabled"
+                formControlName="date">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                        class="fa fa-calendar" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- Subject -->
     <label>Desired Service</label>
     <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
@@ -195,3 +207,12 @@
         </div>
     </div>
 </div>
+
+<form class="form-inline">
+
+</form>
+
+<!-- 
+<ngb-datepicker [minDate]="{year: 2020, month: 1, day: 1}" [maxDate]="{year: 2021, month: 12, day: 31}"
+    [markDisabled]="isDisabled">
+</ngb-datepicker> -->

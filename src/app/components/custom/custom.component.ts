@@ -30,6 +30,16 @@ export class CustomComponent implements OnInit, AfterViewInit {
     phone = ''
     selectedSize = ""
     customForm;
+    earliestDate = {
+        year: 0,
+        month: 0,
+        day: 0
+    }
+    maxDate = {
+        year: 0,
+        month: 0,
+        day: 0
+    }
     constructor(private imgur: ImgurService, private formBuilder: FormBuilder,) {
         this.customForm = this.formBuilder.group({
             name: "",
@@ -41,11 +51,21 @@ export class CustomComponent implements OnInit, AfterViewInit {
             size: "",
             otherService: "",
             otherSize: "",
-            imgs: ""
+            imgs: "",
+            date: ""
         })
     }
 
     ngOnInit() {
+        let now = new Date()
+        let earliest = new Date()
+        earliest.setDate(now.getDate() + 7)
+        this.earliestDate.year = earliest.getFullYear()
+        this.earliestDate.month = earliest.getMonth() + 1
+        this.earliestDate.day = earliest.getDate()
+        this.maxDate.year = this.earliestDate.year + 1
+        this.maxDate.month = this.earliestDate.month
+        this.maxDate.day = this.earliestDate.day
     }
 
     ngAfterViewInit() {
@@ -125,6 +145,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
                                 self.uploadedNum = 0
                                 self.numToUpload = 0
                                 self.attachments = []
+                                self.addCustomToDB(data);
                             } else {
                                 self.errorModal.show()
                             }
@@ -209,12 +230,24 @@ export class CustomComponent implements OnInit, AfterViewInit {
         if (event.otherSize != "") {
             event.size = event.otherSize
         }
-        this.sendEmail(event)
+        // this.sendEmail(event)
         console.log(event)
     }
 
     getDesiredSize(event) {
         this.selectedSize = (<HTMLInputElement>document.getElementById("sizeSelect")).value
+    }
+
+    addCustomToDB(data) {
+        let date = new Date()
+        let self = this
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                let updates = {}
+                updates["Users/" + user.uid + "/Custom-requests/" + date.getTime()] = data
+                firebase.database().ref().update(updates)
+            }
+        })
     }
 
 }
