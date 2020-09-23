@@ -7,8 +7,10 @@
     <p class="h5 mb-4 text-center">Contact Details</p>
 
     <!-- Name -->
+    <span class="text-danger small" *ngIf="nameErr">*Required</span>
     <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"
         (change)="nameChange($event)" formControlName="name">
+    <span class="text-danger small" *ngIf="nameErr">*Required</span>
 
     <!-- Email -->
     <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail"
@@ -19,7 +21,7 @@
     <hr>
     <p class="h5 my-3 text-center">Order Details</p>
     <div class="form-group">
-        <label>I want this product before: </label>
+        <label>I want this product before: <span class="text-danger small" *ngIf="dateErr">*Required</span> </label>
         <div class="input-group">
             <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
                 #d="ngbDatepicker" [minDate]="earliestDate" [maxDate]="maxDate" [markDisabled]="isDisabled"
@@ -32,7 +34,7 @@
         </div>
     </div>
     <!-- Subject -->
-    <label>Desired Service</label>
+    <label>Desired Service <span class="text-danger small" *ngIf="serviceErr">*Required</span></label>
     <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
         formControlName="service">
         <option value="" disabled>Choose option</option>
@@ -70,35 +72,37 @@
             </label>
         </div>
         <span *ngIf="printOption!='No Print'">
-            <label>Print Size</label>
+            <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
             <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
                 formControlName="size">
                 <option value="" disabled>Choose option</option>
-                <option value="4x6in">4x6in (Popular)</option>
-                <option value="5x7in">5x7in (Popular)</option>
+                <option value="4x6in">4x6in (Popular for portraits</option>
+                <option value="5x7in">5x7in (Popular for portraits</option>
                 <option value="6x6in">6x6in</option>
                 <option value="6x8in">6x8in</option>
                 <option value="8x8in">8x8in</option>
-                <option value="8x10in">8x10in (Popular)</option>
-                <option value="8x12in">8x12in (Popular)</option>
+                <option value="8x10in">8x10in (Popular for portraits</option>
+                <option value="8x12in">8x12in (Popular for portraits)</option>
                 <option value="11x14in">11x14in</option>
-                <option value="12x18in">12x18in (Popular)</option>
+                <option value="12x18in">12x18in (Popular for posters & portraits)</option>
                 <option value="16x20in">16x20in</option>
                 <option value="18x24in">18x24in</option>
                 <option value="20x24in">20x24in</option>
                 <option value="20x30in">20x30in</option>
                 <option value="24x30in">24x30in</option>
-                <option value="24x36in">24x36in (Popular)</option>
+                <option value="24x36in">24x36in (Popular for posters & portraits)</option>
                 <option value="Other">Other</option>
             </select>
+            <span *ngIf="selectedSize === 'Other'">
+                <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
+            </span>
         </span>
     </span>
-    <span *ngIf="selectedSize === 'Other'">
-        <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherSize">
-    </span>
+
 
     <!-- Message -->
     <div class="form-group">
+        <span class="text-danger small" *ngIf="descErr">*Required</span>
         <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
             placeholder="Give me a description of what you want... " formControlName="desc"></textarea>
     </div>

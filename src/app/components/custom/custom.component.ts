@@ -40,13 +40,19 @@ export class CustomComponent implements OnInit, AfterViewInit {
         month: 0,
         day: 0
     }
+    nameErr = false;
+    emailErr = false;
+    serviceErr = false;
+    dateErr = false;
+    descErr = false;
+    sizeErr = false;
     constructor(private imgur: ImgurService, private formBuilder: FormBuilder,) {
         this.customForm = this.formBuilder.group({
             name: "",
             email: "",
             phone: "",
             service: "",
-            printOpt: "",
+            printOpt: "No Print",
             desc: "",
             size: "",
             otherService: "",
@@ -128,7 +134,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
             if (user) {
                 if ((self.attachments.length === self.numToUpload) && (self.numToUpload === self.imgur.uploadedImgs.length)) {
                     self.loadingModal.show()
-                    let subject = "OVVisuals Request #435"
+                    let subject = "Your OVVisuals Request"
 
                     const body = emailBody(self.imgur.imgsHTML, subject, data)
                     Email.send({
@@ -213,14 +219,44 @@ export class CustomComponent implements OnInit, AfterViewInit {
     }
 
     onSubmit(event) {
-        if (event.name === "") {
-            event.name = this.name
+        if (!event.name) {
+            if (this.name) {
+                event.name = this.name
+                this.nameErr = false
+            } else {
+                this.nameErr = true;
+            }
         }
-        if (event.email === "") {
-            event.email = this.email
+        if (!event.email) {
+            if (this.email) {
+                event.email = this.email
+                this.emailErr = false
+            } else {
+                this.emailErr = true;
+            }
         }
-        if (event.phone === "") {
+        if (!event.phone) {
             event.phone = this.phone
+        }
+        if (!event.date) {
+            this.dateErr = true;
+        } else {
+            this.dateErr = false;
+        }
+        if (event.printOpt != "No Print" && (!event.size || (event.size === "Other" && !event.otherSize))) {
+            this.sizeErr = true
+        } else {
+            this.sizeErr = false;
+        }
+        if (!event.service || (event.service === "Other" && !event.otherService)) {
+            this.serviceErr = true
+        } else {
+            this.serviceErr = false;
+        }
+        if (!event.desc) {
+            this.descErr = true
+        } else {
+            this.descErr = false;
         }
         event.printOpt = this.printOption
         event.imgs = this.imgur.uploadedImgs
@@ -230,8 +266,12 @@ export class CustomComponent implements OnInit, AfterViewInit {
         if (event.otherSize != "") {
             event.size = event.otherSize
         }
-        // this.sendEmail(event)
-        console.log(event)
+
+        console.log(event.date)
+        console.log(this.nameErr, this.emailErr, this.dateErr, this.descErr, this.serviceErr, this.sizeErr)
+        if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
+            this.sendEmail(event)
+        }
     }
 
     getDesiredSize(event) {

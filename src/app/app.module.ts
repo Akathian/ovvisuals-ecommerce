@@ -47,6 +47,8 @@ import { MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputM
 import { DemoMaterialModule } from './material-module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomOrdersComponent } from './components/login/user-profile/custom-orders/custom-orders.component';
+import { CustomOrderComponent } from './components/login/user-profile/custom-orders/custom-order/custom-order.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OrderAdminComponent,
     UsersOpenOrderComponent,
     UserOrderComponent,
+    CustomOrdersComponent,
+    CustomOrderComponent,
   ],
   imports: [
     BrowserModule,

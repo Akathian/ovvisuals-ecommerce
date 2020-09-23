@@ -17,7 +17,7 @@ import { ShippingComponent } from './components/checkout/shipping/shipping.compo
 import * as firebase from 'firebase';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { OpenOrdersAdminComponent } from './components/admin/open-orders-admin/open-orders-admin.component';
+
 
 firebase.initializeApp(environment.firebaseConfig);
 

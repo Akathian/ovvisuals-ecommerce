@@ -1,0 +1,135 @@
+<div class='card'>
+    <div class='card-body'>
+        <div class="d-flex flex-row justify-content-between">
+            <h5 class="card-title mb-4">Your Order on: {{ orderTime }} </h5>
+            <span class="text-warning" *ngIf="this.cat==='open-orders'">In progress</span>
+            <span class="text-success" *ngIf="this.cat==='intermediate-orders'"> </span>
+            <span class="text-success" *ngIf="this.cat==='complete-orders'">Delivered</span>
+
+        </div>
+        <div class=" row mb-4">
+            <div class="col-md-5 col-lg-3 col-xl-3">
+                <span *ngIf='orderData.imgs'>
+                    <label>Attached images</label>
+                    <div class="view  overlay z-depth-1 rounded mb-3 mb-md-0">
+                        <img class="w-100 " [src]="currImg" alt="Sample">
+                        <div class="d-flex justify-content-between medium bg-dark text-white">
+                            <div class="attachCtrls p-2" (click)='nextImg(-1)'>
+                                &#60;
+                            </div>
+                            <div class="p-2">
+                                {{ currImgIndex + 1 }} of {{ orderData.imgs.length }}
+                            </div>
+                            <div class="attachCtrls p-2" (click)='nextImg(-1)'>
+                                &#62;
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <span *ngIf='!orderData.imgs'>
+                    <div class="view zoom overlay rounded mb-3 mb-md-0 ">
+                        <img class="img-fluid mb-1 mx-auto" [src]="dummyImg" alt="Sample">
+                        <div class="mask">
+                            <img class="img-fluid mx-auto" [src]="dummyImg">
+                            <div class="mask rgba-black-slight"></div>
+                        </div>
+                    </div>
+                </span>
+            </div>
+
+            <div class="col-md-7 col-lg-9 col-xl-9">
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="flex-shrink-0">
+
+                        <h5>Custom {{orderData.service}} by {{ dueDate }} </h5>
+
+                        <!-- <div class="input-group">
+                            <input class="form-control" placeholder="{{dueDate.year}}/{{dueDate.month}}/{{dueDate.day}}"
+                                name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" [minDate]="dueDate"
+                                [maxDate]="dueDate" [markDisabled]="isDisabled" formControlName="date">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                                        class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div> -->
+                        <p class="mb-1 text-muted text-uppercase small">Print Option: {{ orderData.printOpt }}
+
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small" *ngIf="orderData.printOpt != 'No Print'">Print
+                            Size: {{ orderData.size }}
+                        </p>
+                        <p class="mb-1 "><u>Provided description: </u></p>
+                        <p>{{orderData.desc}}</p>
+                        <!-- <ngb-datepicker [minDate]="dueDate" [maxDate]="dueDate" [markDisabled]="isDisabled">
+                        </ngb-datepicker> -->
+                    </div>
+                    <div class="flex-shrink-0">
+                        <p class="mb-1 medium">Base Price: <span>{{45 | currency: "CAD"}}</span>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <hr />
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Base Price:</p>
+            </div>
+            <div>
+                <p>{{45 | currency: "CAD"}}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Additional Complexity Charge:</p>
+            </div>
+            <div>
+                <p>{{0 | currency: "CAD"}}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Printing Price</p>
+            </div>
+            <div>
+                <p>{{30 | currency: "CAD"}}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Framing Price</p>
+            </div>
+            <div>
+                <p>{{30 | currency: "CAD"}}</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Subtotal</p>
+            </div>
+            <div>
+                <p>{{105| currency: "CAD"}}</p>
+                <hr>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class='font-weight-bold'>Total:</p>
+            </div>
+            <div>
+                <p class='font-weight-bold'></p>
+            </div>
+        </div>
+        <span *ngIf="this.trackingInfo">
+            <p *ngIf='!this.trackingInfo.carrier_name_other'>Carrier: </p>
+            <p *ngIf='this.trackingInfo.carrier_name_other'>Carrier: </p>
+            <p>Tracking Number: </p>
+        </span>
+
+    </div>
+</div>
+<hr />

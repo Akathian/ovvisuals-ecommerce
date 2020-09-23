@@ -130,7 +130,7 @@ const emailBody = (imgsHTML, subject, data) => {
                                                              <tr>
                                                                 <th>Item</th>
                                                                 <th>Type</th>
-                                                                <th>Fulfill Date</th>
+                                                                <th>Fulfill Date (YYYY-MM-DD)</th>
                                                                 <th>Print</th>
                                                                 <th>Print Size</th>
                                                                 <th>Base Price</th>
@@ -138,7 +138,7 @@ const emailBody = (imgsHTML, subject, data) => {
                                                              <tr>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >1</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.service}</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Sept 25</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.date.year}/${data.date.month}/${data.date.day}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.printOpt}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.size}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$50</td>
