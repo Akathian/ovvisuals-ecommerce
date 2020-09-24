@@ -1,7 +1,7 @@
 <div class='card'>
     <div class='card-body'>
         <div class="d-flex flex-row justify-content-between">
-            <h5 class="card-title mb-4">Your Order on: {{ orderTime }} </h5>
+            <h5 class="card-title mb-4">{{uid}}'s Order on: {{ orderTime }} </h5>
             <span class="text-warning" *ngIf="this.cat==='open-orders'">In progress</span>
             <span class="text-success" *ngIf="this.cat==='intermediate-orders'"> </span>
             <span class="text-success" *ngIf="this.cat==='complete-orders'">Delivered</span>
@@ -75,7 +75,8 @@
             </div>
             <div>
                 <p *ngIf="orderData.servicePrice >= 0">{{ orderData.servicePrice | currency: "CAD"}}</p>
-                <p *ngIf="orderData.servicePrice === 'Quote Pending'" class='text-warning'>{{ orderData.servicePrice }}
+                <p *ngIf="orderData.servicePrice === 'Quote Pending'" class='text-warning'>
+                    <input class="form-control" placeholder="Base Price" (keyup)="quoteChange($event, 'servicePrice')">
                 </p>
             </div>
         </div>
@@ -86,7 +87,8 @@
             <div>
                 <p *ngIf="orderData.complexity >= 0">{{ orderData.complexity | currency: "CAD"}}</p>
                 <p *ngIf="orderData.complexity === 'Quote Pending'" class='text-warning'>
-                    {{ orderData.complexity }}
+                    <input class="form-control" placeholder="Complexity Charge"
+                        (keyup)="quoteChange($event, 'complexity')">
                 </p>
             </div>
         </div>
@@ -97,7 +99,7 @@
             <div>
                 <p *ngIf="orderData.printPrice >= 0">{{ orderData.printPrice | currency: "CAD"}}</p>
                 <p *ngIf="orderData.printPrice === 'Quote Pending'" class='text-warning'>
-                    {{ orderData.printPrice }}
+                    <input class="form-control" placeholder="Print Price" (keyup)="quoteChange($event, 'printPrice')">
                 </p>
             </div>
         </div>
@@ -108,7 +110,7 @@
             <div>
                 <p *ngIf="orderData.framePrice >= 0">{{ orderData.framePrice | currency: "CAD"}}</p>
                 <p *ngIf="orderData.framePrice === 'Quote Pending'" class='text-warning'>
-                    {{ orderData.framePrice }}
+                    <input class="form-control" placeholder="Frame Price" (keyup)="quoteChange($event, 'framePrice')">
                 </p>
                 <hr>
             </div>
@@ -120,12 +122,15 @@
             <div>
                 <p class='font-weight-bold'
                     *ngIf="orderData.servicePrice >= 0 && orderData.printPrice >= 0 && orderData.framePrice >= 0 && orderData.complexity >= 0">
-                    {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice | currency: "CAD" }}</p>
+                    {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice + orderData.complexity | currency: "CAD" }}
+                </p>
                 <p class='font-weight-bold text-warning'
                     *ngIf="orderData.servicePrice === 'Quote Pending' || orderData.printPrice === 'Quote Pending' || orderData.framePrice === 'Quote Pending' || orderData.complexity === 'Quote Pending'">
                     Quote Pending</p>
             </div>
         </div>
+        <button class="btn btn-primary float-right" (click)="move()">Move To Intermediate</button>
+
         <span *ngIf="this.trackingInfo">
             <p *ngIf='!this.trackingInfo.carrier_name_other'>Carrier: </p>
             <p *ngIf='this.trackingInfo.carrier_name_other'>Carrier: </p>

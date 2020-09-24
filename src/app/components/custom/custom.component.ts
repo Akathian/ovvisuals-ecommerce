@@ -7,6 +7,7 @@ import { ModalDirective } from 'angular-bootstrap-md'
 import { environment } from "../../../environments/environment"
 import * as $ from "jquery"
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-custom',
@@ -28,6 +29,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     name = ''
     email = ''
     phone = ''
+    prices;
     selectedSize = ""
     customForm;
     earliestDate = {
@@ -46,7 +48,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     dateErr = false;
     descErr = false;
     sizeErr = false;
-    constructor(private imgur: ImgurService, private formBuilder: FormBuilder,) {
+    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
         this.customForm = this.formBuilder.group({
             name: "",
             email: "",
@@ -58,11 +60,14 @@ export class CustomComponent implements OnInit, AfterViewInit {
             otherService: "",
             otherSize: "",
             imgs: "",
-            date: ""
+            date: "",
+            servicePrice: "",
+            printAndPosterPrice: "",
         })
     }
 
     ngOnInit() {
+        this.getPrices()
         let now = new Date()
         let earliest = new Date()
         earliest.setDate(now.getDate() + 7)
@@ -152,6 +157,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
                                 self.numToUpload = 0
                                 self.attachments = []
                                 self.addCustomToDB(data);
+                                self.loadingModal.hide()
+                                self.router.navigate(['/login/open-orders'], { relativeTo: self.route });
                             } else {
                                 self.errorModal.show()
                             }
@@ -166,7 +173,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
             }
         })
     }
-
 
     async handleFileInput(event) {
         document.getElementById("sendEmailBtn").classList.add("disabled")
@@ -214,6 +220,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     printChange(event) {
         this.printOption = event
     }
+
     nameChange(event) {
         console.log(document.getElementById("defaultContactFormName").innerHTML)
     }
@@ -260,16 +267,39 @@ export class CustomComponent implements OnInit, AfterViewInit {
         }
         event.printOpt = this.printOption
         event.imgs = this.imgur.uploadedImgs
-        if (event.otherService != "") {
-            event.service = event.otherService
-        }
-        if (event.otherSize != "") {
-            event.size = event.otherSize
-        }
 
-        console.log(event.date)
         console.log(this.nameErr, this.emailErr, this.dateErr, this.descErr, this.serviceErr, this.sizeErr)
         if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
+            event.servicePrice = this.prices.Services[event.service]
+            console.log(event)
+            if (event.printOpt === "No Print") {
+                event.printAndPosterPrice = 0
+                event.printPrice = 0
+                event.framePrice = 0
+            } else if (event.printOpt === "Print, no frame") {
+                event.printPrice = this.prices.Size[event.size].print
+                event.framePrice = 0
+                event.printAndPosterPrice = this.prices.Size[event.size].print
+            } else if (event.printOpt === "Print and frame") {
+                event.printAndPosterPrice = this.prices.Size[event.size].print + this.prices.Size[event.size].frame
+                event.printPrice = this.prices.Size[event.size].print
+                event.framePrice = this.prices.Size[event.size].frame
+            }
+            if (event.otherService != "") {
+                event.service = event.otherService
+                event.servicePrice = "Quote Pending"
+
+            }
+            if (event.otherSize != "") {
+                event.size = event.otherSize
+                event.printAndPosterPrice = "Quote Pending"
+                event.printPrice = "Quote Pending"
+                event.framePrice = "Quote Pending"
+            }
+            if (event.printAndPosterPrice === "Quote Pending" && event.servicePrice === "Quote Pending") {
+                event.printAndPosterPrice = ""
+            }
+            event.complexity = "Quote Pending"
             this.sendEmail(event)
         }
     }
@@ -284,12 +314,19 @@ export class CustomComponent implements OnInit, AfterViewInit {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 let updates = {}
-                updates["Users/" + user.uid + "/Custom-requests/" + date.getTime()] = data
+                updates["Users/" + user.uid + "/Open-orders-custom/" + date.getTime()] = data
+                updates["Admin/" + "Open-orders-custom/" + user.uid + "/" + date.getTime()] = data
                 firebase.database().ref().update(updates)
             }
         })
     }
 
+    getPrices() {
+        let self = this
+        firebase.database().ref("Products/Custom/").on('value', function (customPrices) {
+            self.prices = customPrices.val()
+        })
+    }
 }
 
 

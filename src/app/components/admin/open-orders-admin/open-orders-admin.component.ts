@@ -11,7 +11,10 @@ export class OpenOrdersAdminComponent implements OnInit {
   constructor(private admin: AdminCheckService, private route: ActivatedRoute) { }
   uid;
   cat;
-
+  user;
+  numOrders = 0
+  userOrders = [];
+  countTimes = 0;
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.uid = params.get('uid')
@@ -32,7 +35,7 @@ export class OpenOrdersAdminComponent implements OnInit {
       document.getElementById(this.cat).style.color = 'white'
 
     });
-
-
   }
+
+
 }

@@ -12,6 +12,8 @@ export class OpenOrdersComponent implements OnInit {
   @Input() user;
   openOrders;
   cat;
+  requests;
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,6 +31,12 @@ export class OpenOrdersComponent implements OnInit {
     firebase.database().ref("Users/" + self.user.uid + "/" + self.cat).on('value', function (orderData) {
       self.openOrders = Object.entries(orderData.val())
       self.openOrders = self.openOrders.reverse()
+    })
+    self.requests = null
+    firebase.database().ref("Users/" + self.user.uid + "/" + self.cat + "-custom").on('value', function (customData) {
+      console.log(self.cat + "-custom")
+      self.requests = Object.entries(customData.val())
+      self.requests = self.requests.reverse()
     })
   }
 

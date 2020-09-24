@@ -38,12 +38,12 @@
     <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
         formControlName="service">
         <option value="" disabled>Choose option</option>
-        <option value="Portrait">Portrait</option>
-        <option value="Lamp">Lamp</option>
-        <option value="Poster">Poster</option>
-        <option value="Logo">Logo</option>
-        <option value="Sticker">Sticker</option>
-        <option value="Other">Other</option>
+        <option value="Portrait">Portrait | {{prices.Services.Portrait | currency: "CAD" }} </option>
+        <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} </option>
+        <option value="Poster">Poster | {{prices.Services.Poster | currency: "CAD" }} </option>
+        <option value="Logo">Logo | {{prices.Services.Logo | currency: "CAD" }} </option>
+        <option value="Sticker">Sticker | {{prices.Services.Sticker | currency: "CAD" }} </option>
+        <option value="Other">Other | CA$??? </option>
     </select>
     <span *ngIf="selectedService === 'Other'">
         <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherService">
@@ -71,27 +71,68 @@
                 Print and frame
             </label>
         </div>
-        <span *ngIf="printOption!='No Print'">
+        <span *ngIf="printOption==='Print, no frame'">
             <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
             <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
                 formControlName="size">
                 <option value="" disabled>Choose option</option>
-                <option value="4x6in">4x6in (Popular for portraits</option>
-                <option value="5x7in">5x7in (Popular for portraits</option>
-                <option value="6x6in">6x6in</option>
-                <option value="6x8in">6x8in</option>
-                <option value="8x8in">8x8in</option>
-                <option value="8x10in">8x10in (Popular for portraits</option>
-                <option value="8x12in">8x12in (Popular for portraits)</option>
-                <option value="11x14in">11x14in</option>
-                <option value="12x18in">12x18in (Popular for posters & portraits)</option>
-                <option value="16x20in">16x20in</option>
-                <option value="18x24in">18x24in</option>
-                <option value="20x24in">20x24in</option>
-                <option value="20x30in">20x30in</option>
-                <option value="24x30in">24x30in</option>
-                <option value="24x36in">24x36in (Popular for posters & portraits)</option>
-                <option value="Other">Other</option>
+                <option value="4x6in">4x6in (Popular for portraits) |
+                    +{{ prices.Size["4x6in"].print | currency: "CAD" }}
+                </option>
+                <option value="5x7in">5x7in (Popular for portraits) |
+                    +{{ prices.Size["5x7in"].print | currency: "CAD" }}
+                </option>
+                <option value="6x8in">6x8in | +{{ prices.Size["6x8in"].print | currency: "CAD" }}</option>
+                <option value="8x10in">8x10in (Popular for portraits) |
+                    +{{ prices.Size["8x10in"].print | currency: "CAD" }}
+                </option>
+                <option value="11x14in">11x14in | +{{ prices.Size["11x14in"].print | currency: "CAD" }}</option>
+                <option value="12x18in">12x18in (Popular for posters & portraits) |
+                    +{{ prices.Size["12x18in"].print | currency: "CAD" }}
+                </option>
+                <option value="16x20in">16x20in | +{{ prices.Size["16x20in"].print | currency: "CAD" }}</option>
+                <option value="18x24in">18x24in | +{{ prices.Size["18x24in"].print | currency: "CAD" }}</option>
+                <option value="20x30in">20x30in | +{{ prices.Size["20x30in"].print | currency: "CAD" }}</option>
+                <option value="24x36in">24x36in (Popular for posters & portraits) |
+                    +{{ prices.Size["24x36in"].print | currency: "CAD" }}
+                </option>
+                <option value="Other">Other | CA$???</option>
+            </select>
+            <span *ngIf="selectedSize === 'Other'">
+                <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
+            </span>
+        </span>
+        <span *ngIf="printOption==='Print and frame'">
+            <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
+            <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
+                formControlName="size">
+                <option value="" disabled>Choose option</option>
+                <option value="4x6in">4x6in (Popular for portraits) |
+                    +{{ prices.Size["4x6in"].print + prices.Size["4x6in"].frame  | currency: "CAD" }}
+                </option>
+                <option value="5x7in">5x7in (Popular for portraits) |
+                    +{{ prices.Size["5x7in"].print + prices.Size["5x7in"].frame  | currency: "CAD" }}
+                </option>
+                <option value="6x8in">6x8in |
+                    +{{ prices.Size["6x8in"].print + prices.Size["6x8in"].frame  | currency: "CAD" }}</option>
+                <option value="8x10in">8x10in (Popular for portraits) |
+                    +{{ prices.Size["8x10in"].print + prices.Size["8x10in"].frame  | currency: "CAD" }}
+                </option>
+                <option value="11x14in">11x14in |
+                    +{{ prices.Size["11x14in"].print + prices.Size["11x14in"].frame  | currency: "CAD" }}</option>
+                <option value="12x18in">12x18in (Popular for posters & portraits) |
+                    +{{ prices.Size["12x18in"].print + prices.Size["12x18in"].frame  | currency: "CAD" }}
+                </option>
+                <option value="16x20in">16x20in |
+                    +{{ prices.Size["16x20in"].print + prices.Size["16x20in"].frame  | currency: "CAD" }}</option>
+                <option value="18x24in">18x24in |
+                    +{{ prices.Size["18x24in"].print + prices.Size["18x24in"].frame  | currency: "CAD" }}</option>
+                <option value="20x30in">20x30in |
+                    +{{ prices.Size["20x30in"].print + prices.Size["20x30in"].frame  | currency: "CAD" }}</option>
+                <option value="24x36in">24x36in (Popular for posters & portraits) |
+                    +{{ prices.Size["24x36in"].print + prices.Size["24x36in"].frame  | currency: "CAD" }}
+                </option>
+                <option value="Other">Other | CA$???</option>
             </select>
             <span *ngIf="selectedSize === 'Other'">
                 <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">

@@ -11,13 +11,7 @@ export class CustomOrdersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.getCustoms();
+
   }
-  getCustoms() {
-    let self = this
-    firebase.database().ref("Users/" + self.user.uid + "/Custom-requests/").on('value', function (customData) {
-      self.requests = Object.entries(customData.val()).reverse()
-      console.log(self.requests)
-    })
-  }
+
 }

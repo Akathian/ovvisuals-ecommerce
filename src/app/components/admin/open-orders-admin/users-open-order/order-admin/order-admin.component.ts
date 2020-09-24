@@ -10,6 +10,7 @@ export class OrderAdminComponent implements OnInit {
   @Input() cat;
 
   orders;
+  customOrders;
   times = 0;
   constructor(private admin: AdminCheckService) { }
 
@@ -18,22 +19,34 @@ export class OrderAdminComponent implements OnInit {
   }
 
   getOrdersByUid(uid) {
+    console.log('hello')
     try {
       if (!this.times) {
         if (uid != "all") {
-          this.orders = Object.entries(this.admin[this.cat].fullObj[uid])
+          if (this.admin[this.cat].fullObj[uid]) {
+            this.orders = Object.entries(this.admin[this.cat].fullObj[uid])
+          }
+          if (this.admin[this.cat + "_custom"].fullObj[uid]) {
+            this.customOrders = Object.entries(this.admin[this.cat + "_custom"].fullObj[uid])
+          }
         } else {
-          this.orders = Object.entries(this.admin[this.cat].allOrders).sort(
-            function (a, b) {
-              let c: number
-              c = +(b[0]) - +(a[0])
-              return c
-            }
-          )
+          if (this.admin[this.cat].allOrders) {
+            this.orders = Object.entries(this.admin[this.cat].allOrders).sort(
+              function (a, b) {
+                let c: number
+                c = +(b[0]) - +(a[0])
+                return c
+              }
+            )
+          }
+          if (this.admin[this.cat + "_custom"].allOrder) {
+            this.customOrders = Object.entries(this.admin[this.cat + "_custom"].allOrders)
+          }
         }
         this.times++;
       }
-    } catch (e) { }
+    } catch (e) { console.log(e) }
+
   }
 
   sortAll(event) {

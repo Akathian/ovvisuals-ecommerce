@@ -15,9 +15,7 @@ export class AdminComponent implements OnInit {
   constructor(private admin: AdminCheckService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-
     this.verifyAdmin();
-
   }
 
   verifyAdmin() {

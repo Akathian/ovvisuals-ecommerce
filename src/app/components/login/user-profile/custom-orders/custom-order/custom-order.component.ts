@@ -19,9 +19,13 @@ export class CustomOrderComponent implements OnInit {
     this.parseOrder()
   }
   parseOrder() {
-    let date = new Date()
-    date.setTime(this.order[0])
-    this.orderTime = date.toDateString()
+    let time = +(this.order[0])
+    let date = new Date(time)
+    this.orderTime = date.toString().split(" ")
+    for (let i = 0; i < 4; i++) {
+      this.orderTime.pop()
+    }
+    this.orderTime = this.orderTime.join(" ")
     this.orderData = this.order[1]
     let dueDate = new Date()
     dueDate.setFullYear(this.orderData.date.year, this.orderData.date.month - 1, this.orderData.date.day)

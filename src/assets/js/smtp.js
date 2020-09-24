@@ -141,7 +141,7 @@ const emailBody = (imgsHTML, subject, data) => {
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.date.year}/${data.date.month}/${data.date.day}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.printOpt}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.size}</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$50</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.servicePrice + data.printAndPosterPrice}</td>
                                                              </tr>
                                                              <tr>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
@@ -149,7 +149,7 @@ const emailBody = (imgsHTML, subject, data) => {
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Total:</td>
-                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CAD$50</td>
+                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.servicePrice + data.printAndPosterPrice}</td>
                                                              </tr>
                                                           </tbody>
                                                        </table>

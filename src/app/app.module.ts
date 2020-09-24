@@ -49,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomOrdersComponent } from './components/login/user-profile/custom-orders/custom-orders.component';
 import { CustomOrderComponent } from './components/login/user-profile/custom-orders/custom-order/custom-order.component';
+import { CustomUserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/custom-user-order/custom-user-order.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { CustomOrderComponent } from './components/login/user-profile/custom-ord
     UserOrderComponent,
     CustomOrdersComponent,
     CustomOrderComponent,
+    CustomUserOrderComponent,
   ],
   imports: [
     BrowserModule,
