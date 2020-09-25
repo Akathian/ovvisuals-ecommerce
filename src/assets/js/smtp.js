@@ -1,7 +1,28 @@
 ﻿/* SmtpJS.com - v3.0.0 */
 const Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function (e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function () { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function (e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
 
-const emailBody = (imgsHTML, subject, data) => {
+const emailBody = (imgsHTML, subject, title, subHead, data) => {
+   let sp = data.servicePrice
+   let pp = data.printPrice
+   let fp = data.framePrice
+   let c = data.complexity
+
+   if (data.servicePrice === "Quote Pending") {
+      sp = ""
+   }
+   if (data.printPrice === "Quote Pending") {
+      pp = ""
+   }
+   if (data.framePrice === "Quote Pending") {
+      fp = ""
+   }
+   if (data.complexity === "Quote Pending") {
+      c = ""
+   }
+   if (!data.imgs) {
+      data.imgs = "Nothing here!"
+   }
+   const total = sp + pp + fp + c
    return `<!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
        <head>
@@ -99,8 +120,8 @@ const emailBody = (imgsHTML, subject, data) => {
                                                                 <tbody>
                                                                    <tr>
                                                                       <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-break:break-word;color:#202020;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;" >
-                                                                         <h1 style="display:block;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;color:#202020;font-family:Helvetica;font-size:26px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:normal;text-align:left;" >Thank You, ${data.name}</h1>
-                                                                         <p style="margin-top:10px;margin-bottom:10px;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#202020;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;" ><span style="font-size:16px;" >I've received your request, and I will get back to you soon! Feel free to reply to this email if you want to add anything. Here's a summary of what I got from your request:</span></p>
+                                                                         <h1 style="display:block;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;color:#202020;font-family:Helvetica;font-size:26px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:normal;text-align:left;" >${title}</h1>
+                                                                         <p style="margin-top:10px;margin-bottom:10px;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#202020;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;" ><span style="font-size:16px;" >${subHead}</span></p>
                                                                       </td>
                                                                    </tr>
                                                                 </tbody>
@@ -128,28 +149,46 @@ const emailBody = (imgsHTML, subject, data) => {
                                                        <table style="width:100%;font-size:14px;padding-top:1em;padding-bottom:1em;padding-right:1em;padding-left:1em;border-spacing:0 0.7em;border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
                                                           <tbody>
                                                              <tr>
-                                                                <th>Item</th>
                                                                 <th>Type</th>
                                                                 <th>Fulfill Date (YYYY-MM-DD)</th>
                                                                 <th>Print</th>
                                                                 <th>Print Size</th>
-                                                                <th>Base Price</th>
                                                              </tr>
                                                              <tr>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >1</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.service}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.date.year}/${data.date.month}/${data.date.day}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.printOpt}</td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >${data.size}</td>
-                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.servicePrice + data.printAndPosterPrice}</td>
                                                              </tr>
                                                              <tr>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Base Price</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.servicePrice}</td>
+                                                             </tr>
+                                                             <tr>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
                                                                 <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
-                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Total:</td>
-                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.servicePrice + data.printAndPosterPrice}</td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Complexity Charge: </td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.complexity}</td>
+                                                             </tr>
+                                                             <tr>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Print Price: </td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.printPrice}</td>
+                                                             </tr>
+                                                             <tr>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Frame Price: </td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${data.framePrice}</td>
+                                                             </tr>
+                                                              <tr>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ></td>
+                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Total: </td>
+                                                                <td style="border-top-width:1px;border-top-style:solid;border-top-color:grey;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CA$${total}</td>
                                                              </tr>
                                                           </tbody>
                                                        </table>

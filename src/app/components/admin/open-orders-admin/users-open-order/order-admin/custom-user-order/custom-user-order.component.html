@@ -67,7 +67,6 @@
             </div>
         </div>
 
-
         <hr />
         <div class="d-flex justify-content-between">
             <div>
@@ -129,7 +128,8 @@
                     Quote Pending</p>
             </div>
         </div>
-        <button class="btn btn-primary float-right" (click)="move()">Move To Intermediate</button>
+        <button class="btn btn-primary float-right mr-1 " (click)="move()">Mark as
+            {{ this.moveTo }}</button>
 
         <span *ngIf="this.trackingInfo">
             <p *ngIf='!this.trackingInfo.carrier_name_other'>Carrier: </p>
@@ -140,3 +140,62 @@
     </div>
 </div>
 <hr />
+
+<div mdbModal #areYouSureCustom="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true" id="confirmModalCust">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideAndReset()">
+                    <span (click)="hideAndReset()" aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Are You Sure?</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>You will be marking:</p>
+                <p>
+                    <span *ngIf='this.orderOwner'>{{this.orderOwner}}</span><span
+                        *ngIf='this.uid!="all"'>{{this.uid}}</span>'s order on {{ orderTime }} as {{ this.moveTo }}
+                </p>
+                <hr />
+                <div class="d-flex justify-content-between row mb-4 mx-1">
+                    <div class="">
+                        <h5>Custom {{orderData.service}} {{ orderData.printOpt }} {{orderData.size}}</h5>
+                        <p></p>
+                        <p class="mb-1 text-muted text-uppercase small">Description:
+                            {{orderData.desc}} hwehogrwoihgrwoigrwongrwno oiroreoegrno inrgingernpiergni
+                            pniegrnpiegrpnie gnpergpinegnpieg ipn epineinp etnipe ipnenpiegr pnegnpi ipnegpineg npier
+                            gnpirg pinergnpier pniergn piier gieorhjg etgtegnlnl egnerjl jgrenjjlnerlg njl elrgnler
+                            gnneg iperngierngwe npi ipwnfpwi nwpewp inwepign pif wefjwpeje wf ws
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Base Price:
+                            {{orderData.servicePrice | currency: "CAD"}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Complexity Charge:
+                            {{ orderData.complexity | currency: "CAD"}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Print Price:
+                            {{ orderData.printPrice | currency: "CAD"}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Frame Price:
+                            {{ orderData.framePrice | currency: "CAD"}}
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <p class="mb-1 medium">Price:
+                            {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice + orderData.complexity | currency: "CAD" }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p *ngIf='this.trackingNumber' class='float-left'>Tracking Number: {{ this.trackingNumber }} Carrier:
+                    <span *ngIf="this.carrierName != 'OTHER'">{{ this.carrierName }}</span><span
+                        *ngIf="this.carrierName === 'OTHER'">{{ this.carrierNameOther }}</span></p>
+                <button type="button" class="btn btn-md btn-primary" (click)="moveToIntermediate()">Yes</button>
+                <button type="button" class="btn btn-md btn-dark" (click)="hideAndReset()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

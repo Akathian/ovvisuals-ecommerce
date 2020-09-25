@@ -8,7 +8,7 @@ import { environment } from "../../../environments/environment"
 import * as $ from "jquery"
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { IgApiClient } from "instagram-private-api"
 @Component({
     selector: 'app-custom',
     templateUrl: './custom.component.html',
@@ -19,7 +19,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
     @ViewChild('errorModal', { static: false }) errorModal: ModalDirective
     @ViewChild('loadingModal', { static: false }) loadingModal: ModalDirective
-
+    ig = new IgApiClient();
     attachments = [];
     imgsHTML = '';
     uploadedNum = 0;
@@ -62,7 +62,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
             imgs: "",
             date: "",
             servicePrice: "",
-            printAndPosterPrice: "",
         })
     }
 
@@ -77,6 +76,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
         this.maxDate.year = this.earliestDate.year + 1
         this.maxDate.month = this.earliestDate.month
         this.maxDate.day = this.earliestDate.day
+        this.igLogin()
     }
 
     ngAfterViewInit() {
@@ -139,9 +139,11 @@ export class CustomComponent implements OnInit, AfterViewInit {
             if (user) {
                 if ((self.attachments.length === self.numToUpload) && (self.numToUpload === self.imgur.uploadedImgs.length)) {
                     self.loadingModal.show()
-                    let subject = "Your OVVisuals Request"
+                    let subject = "OVVisuals Request Received"
+                    let title = `Thank You, ${data.name}`
+                    let subHead = `I've received your request, and I will get back to you soon! Feel free to reply to this email if you want to add anything. Here's a summary of what I got from your request:`
 
-                    const body = emailBody(self.imgur.imgsHTML, subject, data)
+                    const body = emailBody(self.imgur.imgsHTML, subject, title, subHead, data)
                     Email.send({
                         SecureToken: environment.smtp.secure, // move to envir
                         To: `${data.email}`,
@@ -273,15 +275,12 @@ export class CustomComponent implements OnInit, AfterViewInit {
             event.servicePrice = this.prices.Services[event.service]
             console.log(event)
             if (event.printOpt === "No Print") {
-                event.printAndPosterPrice = 0
                 event.printPrice = 0
                 event.framePrice = 0
             } else if (event.printOpt === "Print, no frame") {
                 event.printPrice = this.prices.Size[event.size].print
                 event.framePrice = 0
-                event.printAndPosterPrice = this.prices.Size[event.size].print
             } else if (event.printOpt === "Print and frame") {
-                event.printAndPosterPrice = this.prices.Size[event.size].print + this.prices.Size[event.size].frame
                 event.printPrice = this.prices.Size[event.size].print
                 event.framePrice = this.prices.Size[event.size].frame
             }
@@ -292,12 +291,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
             }
             if (event.otherSize != "") {
                 event.size = event.otherSize
-                event.printAndPosterPrice = "Quote Pending"
                 event.printPrice = "Quote Pending"
                 event.framePrice = "Quote Pending"
-            }
-            if (event.printAndPosterPrice === "Quote Pending" && event.servicePrice === "Quote Pending") {
-                event.printAndPosterPrice = ""
             }
             event.complexity = "Quote Pending"
             this.sendEmail(event)
@@ -326,6 +321,10 @@ export class CustomComponent implements OnInit, AfterViewInit {
         firebase.database().ref("Products/Custom/").on('value', function (customPrices) {
             self.prices = customPrices.val()
         })
+    }
+
+    igLogin() {
+
     }
 }
 

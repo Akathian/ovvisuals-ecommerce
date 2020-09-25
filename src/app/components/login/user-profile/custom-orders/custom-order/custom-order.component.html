@@ -120,7 +120,8 @@
             <div>
                 <p class='font-weight-bold'
                     *ngIf="orderData.servicePrice >= 0 && orderData.printPrice >= 0 && orderData.framePrice >= 0 && orderData.complexity >= 0">
-                    {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice | currency: "CAD" }}</p>
+                    {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice + orderData.complexity | currency: "CAD" }}
+                </p>
                 <p class='font-weight-bold text-warning'
                     *ngIf="orderData.servicePrice === 'Quote Pending' || orderData.printPrice === 'Quote Pending' || orderData.framePrice === 'Quote Pending' || orderData.complexity === 'Quote Pending'">
                     Quote Pending</p>

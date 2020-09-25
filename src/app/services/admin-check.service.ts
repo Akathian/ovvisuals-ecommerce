@@ -180,19 +180,22 @@ export class AdminCheckService {
     let self = this
     firebase.database().ref('Admin/Complete-orders-custom').on('value', function (completeOrderData) {
       self.complete_orders_custom.orders = completeOrderData.val()
-      self.complete_orders_custom.numUsers = Object.keys(self.complete_orders_custom.orders).length
-      self.complete_orders_custom.numOrders = 0
-      let all = {}
-      for (let user of Object.entries(self.complete_orders_custom.orders)) {
-        self.complete_orders_custom.numOrders += Object.keys(user[1]).length
-        for (let order of Object.entries(user[1])) {
-          order[1].user = user[0]
-          all[order[0]] = order[1]
+      if (self.complete_orders_custom.orders) {
+        self.complete_orders_custom.numUsers = Object.keys(self.complete_orders_custom.orders).length
+        self.complete_orders_custom.numOrders = 0
+        let all = {}
+        for (let user of Object.entries(self.complete_orders_custom.orders)) {
+          self.complete_orders_custom.numOrders += Object.keys(user[1]).length
+          for (let order of Object.entries(user[1])) {
+            order[1].user = user[0]
+            all[order[0]] = order[1]
+          }
         }
+        self.complete_orders_custom.allOrders = all
+        self.complete_orders_custom.orders = Object.entries(self.complete_orders_custom.orders)
+        self.complete_orders_custom.fullObj = completeOrderData.val()
       }
-      self.complete_orders_custom.allOrders = all
-      self.complete_orders_custom.orders = Object.entries(self.complete_orders_custom.orders)
-      self.complete_orders_custom.fullObj = completeOrderData.val()
+
     })
   }
 
