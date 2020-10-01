@@ -11,10 +11,11 @@
     <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"
         (change)="nameChange($event)" formControlName="name">
     <span class="text-danger small" *ngIf="nameErr">*Required</span>
-
     <!-- Email -->
     <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail"
         formControlName="email">
+    <input type="text" id="defaultContactFormig" class="form-control mb-4" placeholder="Instagram @"
+        formControlName="ig">
 
     <input type="tel" id="defaultContactFormNum" class="form-control mb-4" placeholder="Phone Number"
         formControlName="phone">
@@ -256,8 +257,3 @@
 <form class="form-inline">
 
 </form>
-
-<!-- 
-<ngb-datepicker [minDate]="{year: 2020, month: 1, day: 1}" [maxDate]="{year: 2021, month: 12, day: 31}"
-    [markDisabled]="isDisabled">
-</ngb-datepicker> -->

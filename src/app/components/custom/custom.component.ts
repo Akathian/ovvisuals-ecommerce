@@ -8,7 +8,9 @@ import { environment } from "../../../environments/environment"
 import * as $ from "jquery"
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IgApiClient } from "instagram-private-api"
+
+import { HttpClient } from '@angular/common/http';
+
 @Component({
     selector: 'app-custom',
     templateUrl: './custom.component.html',
@@ -19,7 +21,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
     @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
     @ViewChild('errorModal', { static: false }) errorModal: ModalDirective
     @ViewChild('loadingModal', { static: false }) loadingModal: ModalDirective
-    ig = new IgApiClient();
     attachments = [];
     imgsHTML = '';
     uploadedNum = 0;
@@ -48,7 +49,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     dateErr = false;
     descErr = false;
     sizeErr = false;
-    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
+    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient) {
         this.customForm = this.formBuilder.group({
             name: "",
             email: "",
@@ -62,6 +63,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
             imgs: "",
             date: "",
             servicePrice: "",
+            ig: ""
         })
     }
 
@@ -76,7 +78,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
         this.maxDate.year = this.earliestDate.year + 1
         this.maxDate.month = this.earliestDate.month
         this.maxDate.day = this.earliestDate.day
-        this.igLogin()
     }
 
     ngAfterViewInit() {
@@ -100,7 +101,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
                     phoneForm.value = user.phoneNumber
                     self.phone = user.phoneNumber
                 }
-
             }
         })
     }
@@ -269,21 +269,22 @@ export class CustomComponent implements OnInit, AfterViewInit {
         }
         event.printOpt = this.printOption
         event.imgs = this.imgur.uploadedImgs
-
         console.log(this.nameErr, this.emailErr, this.dateErr, this.descErr, this.serviceErr, this.sizeErr)
         if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
             event.servicePrice = this.prices.Services[event.service]
             console.log(event)
-            if (event.printOpt === "No Print") {
-                event.printPrice = 0
-                event.framePrice = 0
-            } else if (event.printOpt === "Print, no frame") {
-                event.printPrice = this.prices.Size[event.size].print
-                event.framePrice = 0
-            } else if (event.printOpt === "Print and frame") {
-                event.printPrice = this.prices.Size[event.size].print
-                event.framePrice = this.prices.Size[event.size].frame
-            }
+            try {
+                if (event.printOpt === "No Print") {
+                    event.printPrice = 0
+                    event.framePrice = 0
+                } else if (event.printOpt === "Print, no frame") {
+                    event.printPrice = this.prices.Size[event.size].print
+                    event.framePrice = 0
+                } else if (event.printOpt === "Print and frame") {
+                    event.printPrice = this.prices.Size[event.size].print
+                    event.framePrice = this.prices.Size[event.size].frame
+                }
+            } catch (e) { }
             if (event.otherService != "") {
                 event.service = event.otherService
                 event.servicePrice = "Quote Pending"
@@ -295,6 +296,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
                 event.framePrice = "Quote Pending"
             }
             event.complexity = "Quote Pending"
+            this.ig(event)
             this.sendEmail(event)
         }
     }
@@ -323,9 +325,29 @@ export class CustomComponent implements OnInit, AfterViewInit {
         })
     }
 
-    igLogin() {
-
+    ig(event) {
+        console.log(this.imgur.uploadedImgs)
+        let totalPrint = event.printPrice + event.framePrice
+        if (totalPrint === "Quote PendingQuote Pending") {
+            totalPrint = "Quote Pending"
+        }
+        let msg =
+            `Hey! Just got your order from my website! Please reply to this message so that I can get to your order in a timely manner! Here's a quick summary: You requested a ${event.service} which starts at CAD$${event.servicePrice} and can go up depending on the complexity of the piece (it usually doesn't). You asked for ${event.printOpt} which will be CAD$${totalPrint} for ${event.size}. You've provided me with the following description: "${event.desc}". Finally, you've provided me with following images: `
+        for (let img of this.imgur.uploadedImgs) {
+            msg += `${img} `
+        }
+        console.log(msg)
+        const helloWorld = firebase.functions().httpsCallable('helloWorld');
+        let data = {
+            user: event.ig,
+            pw: environment.ig.pass,
+            msg
+        }
+        helloWorld(data).then(res => {
+            console.log(res.data)
+        })
     }
+
 }
 
 
