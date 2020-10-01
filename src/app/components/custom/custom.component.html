@@ -1,3 +1,19 @@
+<html>
+
+<head>
+    <title>reCAPTCHA demo: Simple page</title>
+</head>
+
+<body>
+    <form action="?" method="POST">
+        <div class="g-recaptcha" data-sitekey="6LdHqtIZAAAAAE0hLJesMRINyDmkpj_46euSVt1o
+        "></div>
+        <br />
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
 <!-- Default form contact -->
 <p class="h4 mb-4 text-center">Order Form</p>
 
@@ -39,8 +55,8 @@
     <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
         formControlName="service">
         <option value="" disabled>Choose option</option>
-        <option value="Portrait">Portrait | {{prices.Services.Portrait | currency: "CAD" }} </option>
-        <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} </option>
+        <option value="Portrait">Portrait | {{prices.Services.Portrait | currency: "CAD" }}</option>
+        <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} 1 week </option>
         <option value="Poster">Poster | {{prices.Services.Poster | currency: "CAD" }} </option>
         <option value="Logo">Logo | {{prices.Services.Logo | currency: "CAD" }} </option>
         <option value="Sticker">Sticker | {{prices.Services.Sticker | currency: "CAD" }} </option>
@@ -152,7 +168,7 @@
     <div class="input-group">
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
-                (change)="handleFileInput($event.target.files)" multiple />
+                (change)="handleFileInput($event.target.files)" accept="image/*" multiple />
             <label class="custom-file-label" for="inputGroupFile01">Choose Files</label>
         </div>
     </div>

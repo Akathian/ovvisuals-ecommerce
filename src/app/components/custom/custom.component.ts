@@ -30,6 +30,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     name = ''
     email = ''
     phone = ''
+    igHandle = ''
     prices;
     selectedSize = ""
     customForm;
@@ -101,6 +102,20 @@ export class CustomComponent implements OnInit, AfterViewInit {
                     phoneForm.value = user.phoneNumber
                     self.phone = user.phoneNumber
                 }
+                firebase.database().ref("Users/" + user.uid + '/phone').on('value', function (phoneData) {
+                    if (phoneData.val() || user.phoneNumber) {
+                        let phoneForm = <HTMLInputElement>document.getElementById("defaultContactFormNum")
+                        phoneForm.value = phoneData.val() || user.phoneNumber
+                        self.phone = phoneData.val() || user.phoneNumber
+                    }
+                })
+                firebase.database().ref("Users/" + user.uid + '/ig').on('value', function (igData) {
+                    if (igData.val()) {
+                        let igForm = <HTMLInputElement>document.getElementById("defaultContactFormig")
+                        igForm.value = igData.val()
+                        self.igHandle = igData.val()
+                    }
+                })
             }
         })
     }
@@ -296,6 +311,15 @@ export class CustomComponent implements OnInit, AfterViewInit {
                 event.framePrice = "Quote Pending"
             }
             event.complexity = "Quote Pending"
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    let updates = {}
+                    updates['Users/' + user.uid + '/ig'] = event.ig
+                    updates['Users/' + user.uid + '/phone'] = event.phone
+
+                    firebase.database().ref().update(updates)
+                }
+            })
             this.ig(event)
             this.sendEmail(event)
         }
@@ -346,6 +370,13 @@ export class CustomComponent implements OnInit, AfterViewInit {
         helloWorld(data).then(res => {
             console.log(res.data)
         })
+    }
+    a() {
+        if (grecaptcha.getResponse() == "") {
+            alert("You can't proceed!");
+        } else {
+            alert("Thank you");
+        }
     }
 
 }
