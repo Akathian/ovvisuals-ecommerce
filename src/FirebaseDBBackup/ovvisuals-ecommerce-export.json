@@ -7,7 +7,7 @@
             "rg": {
               "img": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
               "name": "Eelam Poster",
-              "price": 29.99,
+              "price": 35,
               "qty": 1,
               "size": "24x36in",
               "sizeCode": "rg",
@@ -43,7 +43,7 @@
             "rg": {
               "img": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
               "name": "Pop Smoke Poster",
-              "price": 34.99,
+              "price": 35,
               "qty": 1,
               "size": "24x36in",
               "sizeCode": "rg",
@@ -54,13 +54,154 @@
           "completedAt": 1600127685723,
           "itemQty": 1,
           "shipMethod": "4",
-          "total": 34.99,
+          "total": 35,
           "totalWithSH": 54.99,
           "tracking": {
             "carrier": "DPD",
             "carrier_name_other": "",
             "tracking_number": "sdtrfytgbhjkn"
           }
+        }
+      }
+    },
+    "Intermediate-orders-custom": {
+      "qpZwxdOxt8YMVjso84oIxL9VxtD2": {
+        "1600910224931": {
+          "complexity": 0,
+          "date": {
+            "day": 30,
+            "month": 9,
+            "year": 2020
+          },
+          "desc": "ehehethrthrthrthrth",
+          "email": "akathian05@gmail.com",
+          "framePrice": 0,
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": "",
+          "printAndPosterPrice": 0,
+          "printOpt": "No Print",
+          "printPrice": 0,
+          "service": "Sticker",
+          "servicePrice": 20,
+          "size": ""
+        },
+        "1600928955672": {
+          "complexity": 5,
+          "date": {
+            "day": 24,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "Ahhh",
+          "email": "akathian05@gmail.com",
+          "framePrice": 5,
+          "name": "Akathian Santhakumar",
+          "otherService": "Build",
+          "otherSize": "70x90",
+          "phone": "",
+          "printAndPosterPrice": "",
+          "printOpt": "Print and frame",
+          "printPrice": 5,
+          "service": "Build",
+          "servicePrice": 50,
+          "size": "70x90"
+        },
+        "1600963755833": {
+          "complexity": 90,
+          "date": {
+            "day": 28,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "rwfgwrgwr",
+          "email": "akathian05@gmail.com",
+          "framePrice": 0,
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": "",
+          "printAndPosterPrice": 0,
+          "printOpt": "No Print",
+          "printPrice": 0,
+          "service": "Sticker",
+          "servicePrice": 20,
+          "size": ""
+        },
+        "1600985951081": {
+          "complexity": 22,
+          "date": {
+            "day": 9,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "rfreferferfreferf",
+          "email": "akathian05@gmail.com",
+          "framePrice": 0,
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": "",
+          "printOpt": "No Print",
+          "printPrice": 0,
+          "service": "Logo",
+          "servicePrice": 30,
+          "size": ""
+        }
+      }
+    },
+    "Open-orders-custom": {
+      "qpZwxdOxt8YMVjso84oIxL9VxtD2": {
+        "1601576243046": {
+          "complexity": "Quote Pending",
+          "date": {
+            "day": 31,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "Spoooooooookyyyyyyyyyy",
+          "email": "akathian05@gmail.com",
+          "framePrice": 40,
+          "ig": "athis.guitar",
+          "imgs": [
+            "https://i.imgur.com/aWu4b6O.jpg",
+            "https://i.imgur.com/Lln3yIy.jpg",
+            "https://i.imgur.com/rEo2cay.jpg"
+          ],
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": "6478827285",
+          "printOpt": "Print and frame",
+          "printPrice": 15,
+          "service": "Portrait",
+          "servicePrice": 45,
+          "size": "24x36in"
+        },
+        "1601578063013": {
+          "complexity": "Quote Pending",
+          "date": {
+            "day": 8,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "Print please",
+          "email": "akathian05@gmail.com",
+          "framePrice": 9,
+          "ig": "athis.guitar",
+          "imgs": [
+            "https://i.imgur.com/nEtwq5M.jpg"
+          ],
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": 6478827285,
+          "printOpt": "Print and frame",
+          "printPrice": 0,
+          "service": "Portrait",
+          "servicePrice": 45,
+          "size": "8x10in"
         }
       }
     },
@@ -764,83 +905,62 @@
   },
   "Products": {
     "Custom": {
-      "Size": {
-        "11x14in": {
-          "print": 0,
-          "frame": 0
-        },
-        "12x18in": {
-          "print": 5,
-          "frame": 0
-        },
-        "16x20in": {
-          "print": 0,
-          "frame": 0
-        },
-        "18x24in": {
-          "print": 15,
-          "frame": 0
-        },
-        "20x24in": {
-          "print": 15,
-          "frame": 0
-        },
-        "20x30in": {
-          "print": 15,
-          "frame": 0
-        },
-        "24x30in": {
-          "print": 15,
-          "frame": 0
-        },
-        "24x36in": {
-          "print": 15,
-          "frame": 0
-        },
-        "4x6in": {
-          "print": 0,
-          "frame": 0
-        },
-        "5x7in": {
-          "print": 0,
-          "frame": 0
-        },
-        "6x6in": {
-          "print": 0,
-          "frame": 0
-        },
-        "6x8in": {
-          "print": 0,
-          "frame": 0
-        },
-        "8x10in": {
-          "print": 0,
-          "frame": 0
-        },
-        "8x12in": {
-          "print": 0,
-          "frame": 0
-        },
-        "8x8in": {
-          "print": 0,
-          "frame": 0
-        },
-        "Other": {
-          "print": -1,
-          "frame": -1
-        }
-      },
       "Services": {
         "Lamp": 25,
-        "Logo": 20,
+        "Logo": 30,
         "Other": -1,
-        "Portrait": 40,
-        "Poster": 40,
+        "Portrait": 45,
+        "Poster": 45,
         "Sticker": 20
+      },
+      "Size": {
+        "11x14in": {
+          "frame": 12,
+          "print": 0
+        },
+        "12x18in": {
+          "frame": 14,
+          "print": 5
+        },
+        "16x20in": {
+          "frame": 15,
+          "print": 0
+        },
+        "18x24in": {
+          "frame": 27,
+          "print": 15
+        },
+        "20x30in": {
+          "frame": 35,
+          "print": 15
+        },
+        "24x36in": {
+          "frame": 40,
+          "print": 15
+        },
+        "4x6in": {
+          "frame": 6,
+          "print": 0
+        },
+        "5x7in": {
+          "frame": 7,
+          "print": 0
+        },
+        "6x8in": {
+          "frame": 7,
+          "print": 0
+        },
+        "8x10in": {
+          "frame": 9,
+          "print": 0
+        },
+        "Other": {
+          "frame": 0,
+          "print": 0
+        }
       }
     },
     "Posters": [
-      null,
       {
         "description": "Poster of Kobe",
         "img": {
@@ -848,8 +968,8 @@
         },
         "name": "Kobe Poster",
         "price": {
-          "rg": 29.99,
-          "sm": 19.99
+          "rg": 35,
+          "sm": 20
         },
         "size": {
           "rg": "24x36in",
@@ -864,8 +984,8 @@
         },
         "name": "Eelam Poster",
         "price": {
-          "rg": 29.99,
-          "sm": 19.99
+          "rg": 35,
+          "sm": 20
         },
         "size": {
           "rg": "24x36in",
@@ -880,8 +1000,8 @@
         },
         "name": "Iron Man Poster",
         "price": {
-          "rg": 29.99,
-          "sm": 19.99
+          "rg": 35,
+          "sm": 20
         },
         "size": {
           "rg": "24x36in",
@@ -896,8 +1016,8 @@
         },
         "name": "Pop Smoke Poster",
         "price": {
-          "rg": 34.99,
-          "sm": 19.99
+          "rg": 35,
+          "sm": 20
         },
         "size": {
           "rg": "24x36in",
@@ -912,11 +1032,11 @@
         },
         "name": "Majin Buu Poster",
         "price": {
-          "lg": 21.99,
-          "md": 19.99,
-          "rg": 17.99,
-          "sm": 15.99,
-          "xl": 23.99
+          "lg": 22,
+          "md": 20,
+          "rg": 18,
+          "sm": 16,
+          "xl": 24
         },
         "size": {
           "lg": "16x16in",
@@ -934,11 +1054,11 @@
         },
         "name": "Tiger Poster",
         "price": {
-          "lg": 21.99,
-          "md": 19.99,
-          "rg": 17.99,
-          "sm": 15.99,
-          "xl": 23.99
+          "lg": 22,
+          "md": 20,
+          "rg": 18,
+          "sm": 16,
+          "xl": 24
         },
         "size": {
           "lg": "16x16in",
@@ -956,8 +1076,8 @@
         },
         "name": "Joker Poster",
         "price": {
-          "rg": 34.99,
-          "sm": 19.99
+          "rg": 35,
+          "sm": 20
         },
         "size": {
           "rg": "24x36in",
@@ -968,7 +1088,6 @@
     ]
   },
   "Shipping": [
-    null,
     {
       "add": false,
       "name": "Pickup",
@@ -991,204 +1110,149 @@
     }
   ],
   "Users": {
-    "DacETnyjIfhYWI4jEWZeiTCqUn12": {
-      "Cart": {
-        "2": {
-          "rg": {
-            "img": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-            "name": "Eelam Poster",
-            "price": 29.99,
-            "qty": 1,
-            "size": "24x36in",
-            "sizeCode": "rg",
-            "sku": 2,
-            "type": "posters"
-          }
-        },
-        "itemQty": 1,
-        "shipMethod": "1",
-        "total": 29.99,
-        "totalWithSH": 29.99
-      }
-    },
     "qpZwxdOxt8YMVjso84oIxL9VxtD2": {
       "Cart": {
-        "itemQty": 0,
-        "shipMethod": "2",
-        "total": 0,
-        "totalWithSH": 21.99
+        "totalWithSH": 0
       },
-      "Complete-orders": {
-        "0F413519WK166060M-1600127432978": {
-          "2": {
-            "rg": {
-              "img": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-              "name": "Eelam Poster",
-              "price": 29.99,
-              "qty": 1,
-              "size": "24x36in",
-              "sizeCode": "rg",
-              "sku": 2,
-              "type": "posters"
-            }
-          },
-          "5": {
-            "xl": {
-              "img": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-              "name": "Majin Buu Poster",
-              "price": 23.99,
-              "qty": 1,
-              "size": "18x18in",
-              "sizeCode": "xl",
-              "sku": 5,
-              "type": "posters"
-            }
-          },
-          "completedAt": 1600127502793,
-          "itemQty": 2,
-          "shipMethod": "4",
-          "total": 53.98,
-          "totalWithSH": 73.97999999999999,
-          "tracking": {
-            "carrier": "FEDEX",
-            "carrier_name_other": "",
-            "tracking_number": "77582999032"
-          }
-        },
-        "4J1800112L473513S-1600127629756": {
-          "4": {
-            "rg": {
-              "img": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-              "name": "Pop Smoke Poster",
-              "price": 34.99,
-              "qty": 1,
-              "size": "24x36in",
-              "sizeCode": "rg",
-              "sku": 4,
-              "type": "posters"
-            }
-          },
-          "completedAt": 1600127685723,
-          "itemQty": 1,
-          "shipMethod": "4",
-          "total": 34.99,
-          "totalWithSH": 54.99,
-          "tracking": {
-            "carrier": "DPD",
-            "carrier_name_other": "",
-            "tracking_number": "sdtrfytgbhjkn"
-          }
-        }
-      },
-      "Custom-requests": {
-        "1600885770345": {
-          "date": {
-            "day": 12,
-            "month": 10,
-            "year": 2020
-          },
-          "desc": "Please draw this for me thanks",
-          "email": "akathian05@gmail.com",
-          "imgs": [
-            "https://i.imgur.com/2alaYU0.jpg",
-            "https://i.imgur.com/44qmy4i.jpg"
-          ],
-          "name": "Akathian Santhakumar",
-          "otherService": "",
-          "otherSize": "",
-          "phone": "6478827285",
-          "printOpt": "No Print",
-          "service": "Portrait",
-          "size": ""
-        },
-        "1600889147237": {
+      "Intermediate-orders-custom": {
+        "1600910224931": {
+          "complexity": 0,
           "date": {
             "day": 30,
             "month": 9,
             "year": 2020
           },
-          "desc": "cfgvjhb",
+          "desc": "ehehethrthrthrthrth",
           "email": "akathian05@gmail.com",
+          "framePrice": 0,
           "name": "Akathian Santhakumar",
           "otherService": "",
           "otherSize": "",
           "phone": "",
+          "printAndPosterPrice": 0,
           "printOpt": "No Print",
-          "service": "Logo",
+          "printPrice": 0,
+          "service": "Sticker",
+          "servicePrice": 20,
           "size": ""
         },
-        "1600898352810": {
+        "1600928955672": {
+          "complexity": 5,
           "date": {
-            "day": 2,
-            "month": 1,
-            "year": 2021
+            "day": 24,
+            "month": 10,
+            "year": 2020
           },
-          "desc": "uhm just my face plaseefwjefnhergifjewrgehiufjnwfhgirufwnjen orngurenf bi beripbf pieu bfpierbfirabf gib gpirqebf wreipb gqrui3h qfewqewf uqehfvuqerbf weuh [woeihuwe feirfowei juewiofNWSJZFQ0 WEJFIWEQ HFOseaf awouebgsjah fq[uewfawkjefnouwb4ge rovsbgqehrtjbgw[uo at349tuhwa[sd0fhgqer;f",
+          "desc": "Ahhh",
           "email": "akathian05@gmail.com",
+          "framePrice": 5,
+          "name": "Akathian Santhakumar",
+          "otherService": "Build",
+          "otherSize": "70x90",
+          "phone": "",
+          "printAndPosterPrice": "",
+          "printOpt": "Print and frame",
+          "printPrice": 5,
+          "service": "Build",
+          "servicePrice": 50,
+          "size": "70x90"
+        },
+        "1600963755833": {
+          "complexity": 90,
+          "date": {
+            "day": 28,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "rwfgwrgwr",
+          "email": "akathian05@gmail.com",
+          "framePrice": 0,
           "name": "Akathian Santhakumar",
           "otherService": "",
           "otherSize": "",
           "phone": "",
-          "printOpt": "Print, no frame",
-          "service": "Portrait",
-          "size": "5x7in"
+          "printAndPosterPrice": 0,
+          "printOpt": "No Print",
+          "printPrice": 0,
+          "service": "Sticker",
+          "servicePrice": 20,
+          "size": ""
         },
-        "1600898528131": {
+        "1600985951081": {
+          "complexity": 22,
           "date": {
             "day": 9,
             "month": 10,
             "year": 2020
           },
-          "desc": "efewfeferferfrefrefer erferergregrgregerg  regergergergergregregerger",
+          "desc": "rfreferferfreferf",
           "email": "akathian05@gmail.com",
+          "framePrice": 0,
           "name": "Akathian Santhakumar",
           "otherService": "",
           "otherSize": "",
           "phone": "",
           "printOpt": "No Print",
-          "service": "Lamp",
+          "printPrice": 0,
+          "service": "Logo",
+          "servicePrice": 30,
           "size": ""
         }
       },
-      "Wishlist": {
-        "1": {
-          "sm": {
-            "img": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-            "name": "Kobe Poster",
-            "price": 19.99,
-            "qty": 1,
-            "size": "12x18in",
-            "sizeCode": "sm",
-            "sku": 1,
-            "type": "posters"
-          }
+      "Open-orders-custom": {
+        "1601576243046": {
+          "complexity": "Quote Pending",
+          "date": {
+            "day": 31,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "Spoooooooookyyyyyyyyyy",
+          "email": "akathian05@gmail.com",
+          "framePrice": 40,
+          "ig": "athis.guitar",
+          "imgs": [
+            "https://i.imgur.com/aWu4b6O.jpg",
+            "https://i.imgur.com/Lln3yIy.jpg",
+            "https://i.imgur.com/rEo2cay.jpg"
+          ],
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": "6478827285",
+          "printOpt": "Print and frame",
+          "printPrice": 15,
+          "service": "Portrait",
+          "servicePrice": 45,
+          "size": "24x36in"
         },
-        "2": {
-          "rg": {
-            "img": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-            "name": "Eelam Poster",
-            "price": 29.99,
-            "qty": 1,
-            "size": "24x36in",
-            "sizeCode": "rg",
-            "sku": 2,
-            "type": "posters"
-          }
-        },
-        "5": {
-          "sm": {
-            "img": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-            "name": "Majin Buu Poster",
-            "price": 15.99,
-            "qty": 1,
-            "size": "10x10in",
-            "sizeCode": "sm",
-            "sku": 5,
-            "type": "posters"
-          }
-        },
-        "itemQty": 3
-      }
+        "1601578063013": {
+          "complexity": "Quote Pending",
+          "date": {
+            "day": 8,
+            "month": 10,
+            "year": 2020
+          },
+          "desc": "Print please",
+          "email": "akathian05@gmail.com",
+          "framePrice": 9,
+          "ig": "athis.guitar",
+          "imgs": [
+            "https://i.imgur.com/nEtwq5M.jpg"
+          ],
+          "name": "Akathian Santhakumar",
+          "otherService": "",
+          "otherSize": "",
+          "phone": 6478827285,
+          "printOpt": "Print and frame",
+          "printPrice": 0,
+          "service": "Portrait",
+          "servicePrice": 45,
+          "size": "8x10in"
+        }
+      },
+      "ig": "athis.guitar",
+      "phone": 6478827285
     }
   }
 }

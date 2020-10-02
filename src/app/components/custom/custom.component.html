@@ -1,23 +1,7 @@
-<html>
-
-<head>
-    <title>reCAPTCHA demo: Simple page</title>
-</head>
-
-<body>
-    <form action="?" method="POST">
-        <div class="g-recaptcha" data-sitekey="6LdHqtIZAAAAAE0hLJesMRINyDmkpj_46euSVt1o
-        "></div>
-        <br />
-        <input type="submit" value="Submit">
-    </form>
-</body>
-
-</html>
 <!-- Default form contact -->
 <p class="h4 mb-4 text-center">Order Form</p>
 
-<form [formGroup]="customForm" (ngSubmit)="onSubmit(customForm.value)" class="border border-light p-5"
+<form [formGroup]="customForm" (ngSubmit)="onSubmit(customForm.value)" class="border border-light p-5 mb-3"
     id="customFormId">
 
     <p class="h5 mb-4 text-center">Contact Details</p>

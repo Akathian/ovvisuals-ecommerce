@@ -173,6 +173,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
                                 self.uploadedNum = 0
                                 self.numToUpload = 0
                                 self.attachments = []
+                                self.ig(data)
                                 self.addCustomToDB(data);
                                 self.loadingModal.hide()
                                 self.router.navigate(['/login/open-orders'], { relativeTo: self.route });
@@ -320,7 +321,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
                     firebase.database().ref().update(updates)
                 }
             })
-            this.ig(event)
             this.sendEmail(event)
         }
     }
@@ -360,6 +360,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
         for (let img of this.imgur.uploadedImgs) {
             msg += `${img} `
         }
+        msg += "Thank you!"
         console.log(msg)
         const helloWorld = firebase.functions().httpsCallable('helloWorld');
         let data = {
@@ -370,13 +371,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
         helloWorld(data).then(res => {
             console.log(res.data)
         })
-    }
-    a() {
-        if (grecaptcha.getResponse() == "") {
-            alert("You can't proceed!");
-        } else {
-            alert("Thank you");
-        }
     }
 
 }
