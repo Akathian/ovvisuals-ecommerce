@@ -1,14 +1,18 @@
-import { Component, AfterViewChecked } from '@angular/core';
-
+import { Component, AfterViewChecked, OnInit } from '@angular/core';
+import * as firebase from "firebase"
 @Component({
   selector: 'app-shipping',
   templateUrl: './shipping.component.html',
   styleUrls: ['./shipping.component.scss']
 })
-export class ShippingComponent implements AfterViewChecked {
+export class ShippingComponent implements AfterViewChecked, OnInit {
   d: Date = new Date();
-
+  ship;
   constructor() { }
+
+  ngOnInit() {
+    this.getShip()
+  }
 
   ngAfterViewChecked() {
     this.calculateShip()
@@ -62,5 +66,13 @@ export class ShippingComponent implements AfterViewChecked {
       }
     }
     return d;
+  }
+
+  getShip() {
+    let self = this
+    firebase.database().ref("Shipping/").on('value', function (shipData) {
+      self.ship = shipData.val()
+
+    })
   }
 }

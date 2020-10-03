@@ -11,11 +11,12 @@
                     </span>
                 </div>
                 <div class="p-2">
-                    <h4>{{ product.price.sm | currency: 'CAD' }}</h4>
+                    <h4>{{ product.price.sm | currency: 'CAD' }}+
+                    </h4>
                 </div>
                 <form>
-                    <div class="p-2 form-group">
-                        <label class="mb-3 text-muted text-uppercase small" for="sizeSelect">Size:</label>
+                    <div class="pl-2 form-group">
+                        <label class="mb-2 text-muted text-uppercase small" for="sizeSelect">Size:</label>
                         <select class="form-control" id="sizeSelect" name='sizeSelect' [ngModel]="chosenSize"
                             (ngModelChange)="sizeSelect($event)">
                             <option label="-- Select something --"></option>
@@ -40,15 +41,16 @@
                             select a size
                         </p>
                     </div>
-                    <div>
-                        <div class="def-number-input number-input safari_only mb-0 w-100">
-                            <i (click)='qtyChange(-1)' class="p-2 fa-minus-circle fa qtyCh"></i>
-                            <span id='qtyNum'>1</span>
-                            <i (click)='qtyChange(1)' class="p-2 fa-plus-circle fa qtyCh"></i>
-                        </div>
+
+                    <div
+                        class="def-number-input number-input safari_only w-100 d-flex flex-row justify-content-center mb-3">
+                        <i (click)='qtyChange(-1)' class="px-2 fa-minus-circle fa qtyCh align-self-center"></i>
+                        <span id='qtyNum' class="px-2 align-self-center">1</span>
+                        <i (click)='qtyChange(1)' class="px-2 fa-plus-circle fa qtyCh align-self-center"></i>
                     </div>
-                    <div class="pl-2 pt-2 pr-2 form-group">
-                        <button type="button" class="btn btn-lg btn-primary 
+
+                    <div class="pl-2 form-group">
+                        <button type="button" class="btn btn-lg btn-primary btn-block
                     product-btn" (click)='addToCart()'>Add To Cart</button>
                     </div>
                     <div class="pl-2 form-group">

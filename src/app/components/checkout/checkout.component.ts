@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit {
   userCart = [];
   numItems = 0;
   total = 0;
-  totalWithSH = 0;
+  totalWithSH;
   paypalObj;
   shipSelect = false;
   disableAll = false;
@@ -299,7 +299,8 @@ export class CheckoutComponent implements OnInit {
           let add;
           updates['Users/' + user.uid + '/Cart/' + "shipMethod"] = type
           firebase.database().ref().update(updates);
-          firebase.database().ref('Shipping/' + type).once('value', function (shipData) {
+          firebase.database().ref('Shipping/' + (+(type) - 1)).once('value', function (shipData) {
+            console.log(type)
             add = shipData.val().add
             shipPrice = shipData.val().price
             updates = {}

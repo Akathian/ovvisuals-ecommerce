@@ -19,19 +19,19 @@
         </tr>
         <tr>
             <td scope="row">Hand-Delivery</td>
-            <td>+{{ 2 | currency: 'CAD'}}</td>
+            <td>+{{ ship[1].price | currency: 'CAD'}}</td>
             <td id='hand-delivery'>Otto</td>
             <td>Markham, ON or Scarborough, ON Addresses</td>
         </tr>
         <tr>
             <td scope="row">Standard Delivery</td>
-            <td>+{{ 10 | currency: 'CAD'}}</td>
+            <td>+{{ ship[2].price | currency: 'CAD'}}</td>
             <td id='standard'>Otto</td>
             <td>Worldwide</td>
         </tr>
         <tr>
             <td scope="row">Express Delivery</td>
-            <td>+{{ 20 | currency: 'CAD'}}</td>
+            <td>+{{ ship[3].price | currency: 'CAD'}}</td>
             <td id='express'>Otto</td>
             <td>Worldwide</td>
         </tr>

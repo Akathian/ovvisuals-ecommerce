@@ -151,8 +151,9 @@
                                     <p class="mb-0">(including taxes)</p>
                                 </strong>
                             </div>
-                            <span *ngIf='totalWithSH'><strong>{{ this.totalWithSH | currency: 'CAD'  }}</strong></span>
-                            <span *ngIf='!totalWithSH'><strong>Select a shipping
+                            <span
+                                *ngIf='totalWithSH >= 0'><strong>{{ this.totalWithSH | currency: 'CAD'  }}</strong></span>
+                            <span *ngIf='totalWithSH === undefined'><strong>Select a shipping
                                     method</strong></span>
                         </li>
                     </ul>
