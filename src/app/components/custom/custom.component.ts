@@ -365,6 +365,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
         const helloWorld = firebase.functions().httpsCallable('helloWorld');
         let data = {
             user: event.ig,
+            sender: environment.ig.user,
+            code: "",
             pw: environment.ig.pass,
             msg
         }

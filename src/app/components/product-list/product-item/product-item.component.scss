@@ -1,7 +1,24 @@
 .card {
-    border: 0;
+    border: none !important;
+
+}
+
+
+#prodCard {
+    cursor: pointer;
+    border: none !important;
+
+}
+
+#prodImg {
+    margin-bottom: 0;
 }
 
 .card-body {
-    border: 1px solid rgb(228, 228, 228);
+    padding-top: 1em;
+    transition: color 0.5s linear;
+}
+
+.card-body:hover {
+    color: grey;
 }
