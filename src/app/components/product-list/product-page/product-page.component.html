@@ -6,21 +6,20 @@
             <hr class="mt-0" />
         </small>
         <div class="row justify-content-center mb-4 ">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-5 col-12">
                 <div class="col">
                     <div class="row mb-3">
-
-                        <img class="mx-auto" height="100%" style="max-height: 540px;" [src]="product.img.cover"
+                        <img class="mx-auto" style="max-height: 540px; max-width: 100%;" [src]="product.img.cover"
                             id="coverPic" />
                     </div>
                     <div class="row px-2">
-                        <div *ngFor="let cov of imgs" class="col-3 view zoom overlay">
-                            <img width="100%" class="prodImg" [src]="cov" (click)="changeCover(cov)" />
+                        <div *ngFor="let img of imgs" class="col-3 view zoom overlay">
+                            <img width="100%" class="prodImg" [src]="img" (click)="changeCover(img)" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-12 d-flex flex-column justify-content-start p-3 px-md-4 mb-3">
+            <div class="col-xl-6 col-lg-6 col-md-5 col-12 d-flex flex-column justify-content-start p-3 px-md-4 mb-3">
                 <div class="p-2">
                     <span>
                         <h2>{{ product.name }}</h2>

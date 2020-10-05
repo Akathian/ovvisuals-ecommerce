@@ -27,15 +27,16 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
-
-  }
-  ngAfterViewInit() {
     this._Activatedroute.paramMap.subscribe(params => {
       this.content = params.get('content');
       this.cap = this.content.charAt(0).toUpperCase() + this.content.slice(1);
       this.cap = this.cap.replaceAll('-', ' ',)
       this.getGallery(this.content)
+      this.titleService.setTitle("Gallery - " + this.cap + " | OVVisuals")
+    });
+  }
+  ngAfterViewInit() {
+    this._Activatedroute.paramMap.subscribe(params => {
       this.titleService.setTitle("Gallery - " + this.cap + " | OVVisuals")
     });
   }
