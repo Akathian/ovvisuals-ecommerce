@@ -1,16 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as firebase from 'firebase'
 import { ActivatedRoute, Router } from '@angular/router';
 import * as $ from 'jquery'
 declare const paypal;
 import { ModalDirective } from 'angular-bootstrap-md'
+import { Title } from "@angular/platform-browser"
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, AfterViewInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
 
@@ -24,15 +25,18 @@ export class CheckoutComponent implements OnInit {
   disableAll = false;
   supportedCities = ["markham", "scarborough"]
   shipCode;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private titleService: Title) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.userCart = this.getCart();
-      this.payPalCalc()
-    });
-
+    this.userCart = this.getCart();
+    this.payPalCalc()
   }
+
+
+  ngAfterViewInit() {
+    this.titleService.setTitle("Checkout | OVVisuals")
+  }
+
   payPalCalc() {
     let self = this
     paypal.Buttons({

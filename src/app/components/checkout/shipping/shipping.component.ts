@@ -1,5 +1,7 @@
-import { Component, AfterViewChecked, OnInit } from '@angular/core';
+import { Component, AfterViewChecked, OnInit, Input } from '@angular/core';
 import * as firebase from "firebase"
+import { Title } from "@angular/platform-browser"
+
 @Component({
   selector: 'app-shipping',
   templateUrl: './shipping.component.html',
@@ -8,7 +10,9 @@ import * as firebase from "firebase"
 export class ShippingComponent implements AfterViewChecked, OnInit {
   d: Date = new Date();
   ship;
-  constructor() { }
+  @Input() lone = true;
+  constructor(private titleService: Title) { }
+
 
   ngOnInit() {
     this.getShip()
@@ -16,6 +20,10 @@ export class ShippingComponent implements AfterViewChecked, OnInit {
 
   ngAfterViewChecked() {
     this.calculateShip()
+    if (this.lone) {
+      this.titleService.setTitle("Shipping | OVVisuals")
+    }
+
   }
   calculateShip() {
     let d1 = this.addWorkDays(this.d, 12, 5)

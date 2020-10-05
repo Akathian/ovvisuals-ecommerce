@@ -1,14 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AdminCheckService } from '../../../services/admin-check.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from "@angular/platform-browser"
 
 @Component({
   selector: 'app-open-orders-admin',
   templateUrl: './open-orders-admin.component.html',
   styleUrls: ['./open-orders-admin.component.scss']
 })
-export class OpenOrdersAdminComponent implements OnInit {
-  constructor(private admin: AdminCheckService, private route: ActivatedRoute) { }
+export class OpenOrdersAdminComponent implements OnInit, AfterViewInit {
+  constructor(private admin: AdminCheckService, private route: ActivatedRoute, private titleService: Title) { }
   uid;
   cat;
   user;
@@ -33,9 +34,11 @@ export class OpenOrdersAdminComponent implements OnInit {
 
       document.getElementById(this.cat).classList.add('active');
       document.getElementById(this.cat).style.color = 'white'
-
     });
   }
 
+  ngAfterViewInit() {
+    this.titleService.setTitle("Admin | OVVisuals")
+  }
 
 }

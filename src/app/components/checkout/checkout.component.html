@@ -1,6 +1,11 @@
 <!--Section: Block Content-->
+<small *ngIf='this.cat==="dashboard"'>
+    <a routerLink="/">OVVisuals</a> / <a routerLink="/admin">Admin</a> / <a
+        [routerLink]="['/login', this.cat]">{{ this.cap }}</a>
+    <hr class="mt-0" />
+</small>
 <section>
-    <p class="mb-3 text-muted text-uppercase small your-cart p-2">Your Cart
+    <p class="mb-1 text-muted text-uppercase small your-cart p-2">Your Cart
     </p>
     <!--Grid row-->
     <div class="row">
@@ -82,7 +87,7 @@
             <!-- Card -->
             <div class="mb-3">
                 <div class="pt-4">
-                    <app-shipping></app-shipping>
+                    <app-shipping [lone]=false></app-shipping>
                 </div>
             </div>
             <!-- Card -->

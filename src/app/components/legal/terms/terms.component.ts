@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, AfterViewInit } from '@angular/core';
+import { Title } from "@angular/platform-browser"
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html',
   styleUrls: ['./terms.component.scss']
 })
-export class TermsComponent implements OnInit {
+export class TermsComponent implements AfterViewInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.titleService.setTitle("Terms & Conditions | OVVisuals")
   }
 
 }

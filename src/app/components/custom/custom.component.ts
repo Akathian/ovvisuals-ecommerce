@@ -8,6 +8,7 @@ import { environment } from "../../../environments/environment"
 import * as $ from "jquery"
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from "@angular/platform-browser"
 
 import { HttpClient } from '@angular/common/http';
 
@@ -50,7 +51,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     dateErr = false;
     descErr = false;
     sizeErr = false;
-    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient) {
+    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient, private titleService: Title) {
         this.customForm = this.formBuilder.group({
             name: "",
             email: "",
@@ -82,6 +83,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.titleService.setTitle("Custom Request | OVVisuals")
+
         let self = this
         firebase.auth().onAuthStateChanged(function (user) {
             if (!user) {

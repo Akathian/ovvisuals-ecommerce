@@ -1,8 +1,10 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service'
 import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
-import * as $ from 'jquery';
+import { Title } from "@angular/platform-browser"
+declare var $: any;
+
 import * as firebase from 'firebase'
 import * as firebaseui from 'firebaseui'
 import { ModalDirective } from 'angular-bootstrap-md'
@@ -12,7 +14,7 @@ import { ModalDirective } from 'angular-bootstrap-md'
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss']
 })
-export class ProductPageComponent implements AfterViewInit {
+export class ProductPageComponent implements AfterViewInit, OnInit {
   @ViewChild('loginModal', { static: false }) loginModal: ModalDirective
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
 
@@ -22,8 +24,11 @@ export class ProductPageComponent implements AfterViewInit {
   product: Product;
   itemProd: {}[] = [{}];
   cartItem: {} = {};
+  imgs;
+  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private titleService: Title) { }
 
-  constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute) { }
+  ngOnInit() {
+  }
 
   ngAfterViewInit() {
     this._Activatedroute.paramMap.subscribe(async params => {
@@ -31,10 +36,20 @@ export class ProductPageComponent implements AfterViewInit {
       this.type = params.get('type');
       this.type = this.type.charAt(0).toUpperCase() + this.type.slice(1);
       this.itemProd = this.productService.getItemFromDB(this.type);
+      this.getImgs()
       this.doModal();
     });
   }
-
+  getImgs() {
+    let self = this
+    console.log(this.id)
+    firebase.database().ref("Products/" + this.type + '/' + (+(this.id) - 1)).on('value', function (prod) {
+      self.imgs = Object.values(prod.val().img)
+      let a = self.imgs.pop()
+      self.imgs = [a].concat(self.imgs)
+      self.titleService.setTitle(prod.val().name + " | OVVisuals")
+    })
+  }
   qtyChange(amt: number) {
     let curr = +(document.getElementById('qtyNum').innerText)
     if (amt < 0 && curr <= 1) {
@@ -230,6 +245,10 @@ export class ProductPageComponent implements AfterViewInit {
       ui.start('#firebaseui-auth-container', uiConfig);
     } catch (e) {
     }
+  }
+
+  changeCover(src) {
+    (<HTMLImageElement>document.getElementById("coverPic")).src = src
   }
 
 }

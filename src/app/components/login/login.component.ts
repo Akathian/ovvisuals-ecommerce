@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as firebaseui from 'firebaseui'
 import * as firebase from 'firebase'
+import { Title } from "@angular/platform-browser"
+
 
 
 @Component({
@@ -8,14 +10,17 @@ import * as firebase from 'firebase'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   userLoggedIn = false;
   user;
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
     this.renderAccInfo();
+  }
+  ngAfterViewInit() {
+    this.titleService.setTitle("Login | OVVisuals")
   }
 
   renderAccInfo() {

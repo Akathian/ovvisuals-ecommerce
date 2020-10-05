@@ -1,21 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase'
 import { AdminCheckService } from '../../services/admin-check.service'
+import { Title } from "@angular/platform-browser"
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, AfterViewInit {
   isAdmin = false;
   cat;
   activePage;
   uid;
-  constructor(private admin: AdminCheckService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private admin: AdminCheckService, private route: ActivatedRoute, private router: Router, private titleService: Title) { }
 
   ngOnInit() {
     this.verifyAdmin();
+  }
+
+  ngAfterViewInit() {
+    this.titleService.setTitle("Home | OVVisuals")
   }
 
   verifyAdmin() {

@@ -1,4 +1,9 @@
 <span *ngIf="this.isAdmin">
+    <small *ngIf='this.cat==="dashboard"'>
+        <a routerLink="/">OVVisuals</a> / <a routerLink="/admin">Admin</a> / <a
+            [routerLink]="['/login', this.cat]">{{ this.cap }}</a>
+        <hr class="mt-0" />
+    </small>
     <section class="section-pagetop bg">
         <div class="container">
             <h2 class="title-page">Admin Dashboard</h2>
@@ -7,9 +12,8 @@
 
     <section class="section-content ">
         <div class="container">
-
             <div class="row">
-                <aside class="col-md-3">
+                <aside class="col-md-3 mb-3">
                     <ul class="list-group">
                         <a class="list-group-item active" id='dashboard' [routerLink]="['/admin', 'dashboard']"
                             style="color: white;"> OVVisuals Dashboard
@@ -29,7 +33,6 @@
                     </ul>
                 </aside>
                 <main class="col-md-9">
-                    <p *ngIf='this.cat==="dashboard"'>Admin / </p>
                     <app-dashboard *ngIf='this.cat==="dashboard"'></app-dashboard>
                     <app-open-orders-admin
                         *ngIf='this.cat==="open_orders" || this.cat==="intermediate_orders" || this.cat==="complete_orders"'>

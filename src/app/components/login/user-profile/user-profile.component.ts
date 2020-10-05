@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import * as firebase from 'firebase'
 import { ModalDirective } from 'angular-bootstrap-md'
 import * as $ from 'jquery'
 import { ActivatedRoute } from '@angular/router';
+import { Title } from "@angular/platform-browser"
 
 @Component({
   selector: 'app-user-profile',
@@ -15,15 +16,24 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('loginModal', { static: false }) loginModal: ModalDirective
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
   cat;
-  constructor(private _Activatedroute: ActivatedRoute) { }
+  cap;
+  constructor(private _Activatedroute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
     this._Activatedroute.paramMap.subscribe(params => {
       this.cat = params.get('cat');
       if (!this.cat) {
         this.cat = 'overview'
       }
+      this.cap = this.cat.charAt(0).toUpperCase() + this.cat.slice(1);
+      this.cap = this.cap.replaceAll('-', ' ',)
       this.changePage(this.cat)
+      this.titleService.setTitle("Account - " + this.cap + " | OVVisuals")
+
     });
   }
 

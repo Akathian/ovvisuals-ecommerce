@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { Title } from "@angular/platform-browser"
 
 @Component({
   selector: 'app-privacy',
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss']
 })
-export class PrivacyComponent implements OnInit {
+export class PrivacyComponent implements AfterViewInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.titleService.setTitle("Privacy Policy | OVVisuals")
   }
-
 }
