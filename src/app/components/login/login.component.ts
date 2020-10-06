@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as firebaseui from 'firebaseui'
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { Title } from "@angular/platform-browser"
 
 

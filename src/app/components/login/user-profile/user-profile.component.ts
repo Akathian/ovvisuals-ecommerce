@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { ModalDirective } from 'angular-bootstrap-md'
 import * as $ from 'jquery'
 import { ActivatedRoute } from '@angular/router';

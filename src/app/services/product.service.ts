@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product'
 import { AngularFireDatabase } from '@angular/fire/database';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 
 
 

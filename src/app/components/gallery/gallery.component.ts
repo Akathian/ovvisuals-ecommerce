@@ -3,7 +3,9 @@ import { IAlbum, IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent
   from 'ngx-lightbox';
 import { Title } from "@angular/platform-browser"
 import { Subscription } from 'rxjs';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -12,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent implements OnInit, AfterViewInit {
+export class GalleryComponent implements OnInit {
   allImages;
   chunks;
   images1;
@@ -30,9 +32,10 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     this._Activatedroute.paramMap.subscribe(params => {
       this.content = params.get('content');
       this.cap = this.content.charAt(0).toUpperCase() + this.content.slice(1);
-      this.cap = this.cap.replaceAll('-', ' ',)
+      this.cap = this.cap.replace('-', ' ')
+      this.cap = this.cap.replace('-', ' ')
       this.getGallery(this.content)
-      this.titleService.setTitle("Gallery - " + this.cap + " | OVVisuals")
+      this.titleService.setTitle("Gallery | OVVisuals")
     });
   }
   ngAfterViewInit() {

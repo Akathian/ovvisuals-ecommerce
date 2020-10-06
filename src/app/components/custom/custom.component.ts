@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Email, emailBody } from '../../../assets/js/smtp.js'
 import { ImgurService } from "../../services/imgur.service"
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import * as firebaseui from 'firebaseui'
 import { ModalDirective } from 'angular-bootstrap-md'
 import { environment } from "../../../environments/environment"

@@ -14,7 +14,9 @@ import { TermsComponent } from './components/legal/terms/terms.component';
 
 import { environment } from 'src/environments/environment';
 import { ShippingComponent } from './components/checkout/shipping/shipping.component';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';;
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { AdminComponent } from './components/admin/admin.component';
 

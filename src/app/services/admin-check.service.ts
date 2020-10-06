@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import * as fbAdmin from 'firebase-admin'
 @Injectable({
   providedIn: 'root'

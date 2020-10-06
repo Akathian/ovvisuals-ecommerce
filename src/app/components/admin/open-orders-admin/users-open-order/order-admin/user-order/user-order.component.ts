@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'angular-bootstrap-md'
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { HttpClient } from '@angular/common/http';
 import { PaypalService } from '../../../../../../services/paypal.service'
 

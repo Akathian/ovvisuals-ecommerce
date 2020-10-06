@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { ModalDirective } from 'angular-bootstrap-md'
 import { AdminCheckService } from '../../../services/admin-check.service'
 

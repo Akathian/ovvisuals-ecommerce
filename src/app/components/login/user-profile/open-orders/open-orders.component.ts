@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import { ActivatedRoute } from '@angular/router';
 
 
