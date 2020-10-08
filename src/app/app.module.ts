@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
@@ -50,6 +50,8 @@ import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomOrdersComponent } from './components/login/user-profile/custom-orders/custom-orders.component';
 import { CustomOrderComponent } from './components/login/user-profile/custom-orders/custom-order/custom-order.component';
 import { CustomUserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/custom-user-order/custom-user-order.component';
+import { AccountingComponent } from './components/admin/accounting/accounting.component';
+
 
 @NgModule({
   declarations: [
@@ -83,6 +85,7 @@ import { CustomUserOrderComponent } from './components/admin/open-orders-admin/u
     CustomOrdersComponent,
     CustomOrderComponent,
     CustomUserOrderComponent,
+    AccountingComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,5 +107,6 @@ import { CustomUserOrderComponent } from './components/admin/open-orders-admin/u
   bootstrap: [AppComponent],
 
 })
+
 
 export class AppModule { }

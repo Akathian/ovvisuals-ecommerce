@@ -3,31 +3,43 @@
         <article class="card-group">
             <figure class="card bg">
                 <div class="p-3">
-                    <h5 class="card-title">{{ this.admin.open_orders.numOrders }}</h5>
+                    <h5 class="card-title">
+                        {{ this.admin.open_orders.numOrders +  this.admin.open_orders_custom.numOrders }}</h5>
                     <span>Open Order<span
                             *ngIf="this.admin.open_orders.numOrders > 1 || this.admin.open_orders.numOrders === 0">s</span>
-                        <span *ngIf="this.admin.open_orders.numUsers >= 1"> from {{ this.admin.open_orders.numUsers }}
-                            User<span *ngIf="this.admin.open_orders.numUsers > 1">s</span></span></span>
+                        <span *ngIf="this.admin.open_orders.numUsers + this.admin.open_orders_custom.numUsers>= 1"> from
+                            {{ this.admin.open_orders.numUsers +  this.admin.open_orders_custom.numUsers}}
+                            User<span
+                                *ngIf="this.admin.open_orders.numUsers + this.admin.open_orders_custom.numUsers > 1">s</span></span></span>
                 </div>
             </figure>
             <figure class="card bg">
                 <div class="p-3">
-                    <h5 class="card-title">{{ this.admin.intermediate_orders.numOrders }}</h5>
+                    <h5 class="card-title">
+                        {{ this.admin.intermediate_orders.numOrders + this.admin.intermediate_orders_custom.numOrders }}
+                    </h5>
                     <span>Intermediate Order<span
-                            *ngIf="this.admin.intermediate_orders.numOrders > 1 || this.admin.intermediate_orders.numOrders === 0">s</span>
-                        <span *ngIf="this.admin.intermediate_orders.numUsers >= 1"> from
-                            {{ this.admin.intermediate_orders.numUsers }} User<span
-                                *ngIf="this.admin.intermediate_orders.numUsers > 1">s</span></span></span>
+                            *ngIf="this.admin.intermediate_orders.numOrders + this.admin.intermediate_orders_custom.numOrders > 1 || this.admin.intermediate_orders.numOrders + this.admin.intermediate_orders_custom.numOrders === 0">s</span>
+                        <span
+                            *ngIf="this.admin.intermediate_orders.numUsers + this.admin.intermediate_orders_custom.numUsers >= 1">
+                            from
+                            {{ this.admin.intermediate_orders.numUsers +  this.admin.intermediate_orders_custom.numUsers }}
+                            User<span
+                                *ngIf="this.admin.intermediate_orders.numUsers + this.admin.intermediate_orders_custom.numUsers > 1">s</span></span></span>
                 </div>
             </figure>
             <figure class="card bg">
                 <div class="p-3">
-                    <h5 class="card-title">{{ this.admin.complete_orders.numOrders }}</h5>
+                    <h5 class="card-title">
+                        {{ this.admin.complete_orders.numOrders + this.admin.complete_orders_custom.numOrders }}</h5>
                     <span>Complete Order<span
-                            *ngIf="this.admin.complete_orders.numOrders > 1 || this.admin.complete_orders.numOrders === 0">s</span>
-                        <span *ngIf="this.admin.complete_orders.numUsers >= 1"> from
-                            {{ this.admin.complete_orders.numUsers }}
-                            User<span *ngIf="this.admin.complete_orders.numUsers > 1">s</span></span></span>
+                            *ngIf="this.admin.complete_orders.numOrders + this.admin.complete_orders_custom.numOrders > 1 || this.admin.complete_orders.numOrders + this.admin.complete_orders_custom.numOrders === 0">s</span>
+                        <span
+                            *ngIf="this.admin.complete_orders.numUsers + this.admin.complete_orders_custom.numUsers >= 1">
+                            from
+                            {{ this.admin.complete_orders.numUsers + this.admin.complete_orders_custom.numUsers }}
+                            User<span
+                                *ngIf="this.admin.complete_orders.numUsers + this.admin.complete_orders_custom.numUsers > 1">s</span></span></span>
                 </div>
             </figure>
         </article>

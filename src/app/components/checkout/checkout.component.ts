@@ -82,8 +82,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       if (user) {
         firebase.database().ref('/Users/' + user.uid + '/Cart').once('value', function (cartData) {
           let updates = {}
-          updates["Admin/Open-orders/" + user.uid + "/" + `${transactionId}-${date.getTime()}`] = cartData.val()
-          updates["Users/" + user.uid + "/Open-orders/" + `${transactionId}-${date.getTime()}`] = cartData.val()
+          let time = date.getTime()
+          updates["Admin/Open-orders/" + user.uid + "/" + `${transactionId}-${time}`] = cartData.val()
+          updates["Users/" + user.uid + "/Open-orders/" + `${transactionId}-${time}`] = cartData.val()
+          self.moveToAccounting(user, time, cartData.val())
           return firebase.database().ref().update(updates);
         })
         firebase.database().ref('Users/' + user.uid + '/Cart/').remove()
@@ -94,6 +96,33 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
         self.router.navigate(['../login/open-orders'], { relativeTo: self.route });
       }
     })
+  }
+
+  moveToAccounting(user, time, cart) {
+    let a = Object.entries(cart)
+    let totalWithSH = a.pop()[1]
+    let total = a.pop()
+    let ship = a.pop()
+    let itemQty = a.pop()
+    let names = ''
+    for (let item of a) {
+      let b = Object.entries(item)
+      let c = b.pop()
+      let d = c.pop()
+      let e = Object.entries(d)
+      for (let ind of e) {
+        let name = ind[1].name + " " + ind[1].size
+        names += name + ", "
+      }
+    }
+    let updates = {}
+    let acc = {
+      name: user.displayName,
+      order: names,
+      total: totalWithSH
+    }
+    updates['Admin/Accounting/' + user.uid + `/${time}`] = acc
+    firebase.database().ref().update(updates)
   }
 
   toPaypalFormat(self, cart) {

@@ -33,7 +33,10 @@
                     </ul>
                 </aside>
                 <main class="col-md-9">
-                    <app-dashboard *ngIf='this.cat==="dashboard"'></app-dashboard>
+                    <span *ngIf='this.cat==="dashboard"'>
+                        <app-dashboard></app-dashboard>
+                        <app-accounting></app-accounting>
+                    </span>
                     <app-open-orders-admin
                         *ngIf='this.cat==="open_orders" || this.cat==="intermediate_orders" || this.cat==="complete_orders"'>
                     </app-open-orders-admin>

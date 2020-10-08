@@ -179,7 +179,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
                                 self.numToUpload = 0
                                 self.attachments = []
                                 self.ig(data)
-                                self.addCustomToDB(data);
+                                self.addCustomToDB(user, data);
                                 self.loadingModal.hide()
                                 self.router.navigate(['/login/open-orders'], { relativeTo: self.route });
                             } else {
@@ -334,17 +334,39 @@ export class CustomComponent implements OnInit, AfterViewInit {
         this.selectedSize = (<HTMLInputElement>document.getElementById("sizeSelect")).value
     }
 
-    addCustomToDB(data) {
+    addCustomToDB(user, data) {
         let date = new Date()
         let self = this
+        let time = date.getTime()
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 let updates = {}
-                updates["Users/" + user.uid + "/Open-orders-custom/" + date.getTime()] = data
-                updates["Admin/" + "Open-orders-custom/" + user.uid + "/" + date.getTime()] = data
+                updates["Users/" + user.uid + "/Open-orders-custom/" + `${time}`] = data
+                updates["Admin/" + "Open-orders-custom/" + user.uid + "/" + `${time}`] = data
                 firebase.database().ref().update(updates)
             }
         })
+        let updates = {}
+        let total = 0
+        if (data.framePrice != "Quote Pending") {
+            total += +(data.framePrice)
+        }
+        if (data.printPrice != "Quote Pending") {
+            total += +(data.printPrice)
+        }
+        if (data.servicePrice != "Quote Pending") {
+            total += +(data.servicePrice)
+        }
+        if (data.complexity != "Quote Pending") {
+            total += +(data.complexity)
+        }
+        let acc = {
+            name: user.displayName,
+            order: data.service + " " + data.size + " " + data.printOpt,
+            total
+        }
+        updates['Admin/Accounting/' + user.uid + `/${time}`] = acc
+        firebase.database().ref().update(updates)
     }
 
     getPrices() {
@@ -367,17 +389,19 @@ export class CustomComponent implements OnInit, AfterViewInit {
         }
         msg += "Thank you!"
         console.log(msg)
-        const helloWorld = firebase.functions().httpsCallable('helloWorld');
-        let data = {
-            user: event.ig,
-            sender: environment.ig.user,
-            code: "",
-            pw: environment.ig.pass,
-            msg
+        if (event.ig != "") {
+            const helloWorld = firebase.functions().httpsCallable('helloWorld');
+            let data = {
+                user: event.ig,
+                sender: environment.ig.user,
+                code: "",
+                pw: environment.ig.pass,
+                msg
+            }
+            helloWorld(data).then(res => {
+                console.log(res.data)
+            })
         }
-        helloWorld(data).then(res => {
-            console.log(res.data)
-        })
     }
 
 }

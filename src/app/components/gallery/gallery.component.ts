@@ -8,11 +8,12 @@ import 'firebase/database';
 import 'firebase/auth';
 import { ActivatedRoute } from '@angular/router';
 
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss']
+  styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
   allImages;
@@ -35,7 +36,7 @@ export class GalleryComponent implements OnInit {
       this.cap = this.cap.replace('-', ' ')
       this.cap = this.cap.replace('-', ' ')
       this.getGallery(this.content)
-      this.titleService.setTitle("Gallery | OVVisuals")
+      this.titleService.setTitle("Gallery - " + this.cap + " | OVVisuals")
     });
   }
   ngAfterViewInit() {

@@ -112,20 +112,20 @@
             <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
                 formControlName="size">
                 <option value="" disabled>Choose option</option>
-                <option value="4x6in">4x6in (Popular for portraits) |
+                <option value="4x6in">4x6in* |
                     +{{ prices.Size["4x6in"].print + prices.Size["4x6in"].frame  | currency: "CAD" }}
                 </option>
-                <option value="5x7in">5x7in (Popular for portraits) |
+                <option value="5x7in">5x7in* |
                     +{{ prices.Size["5x7in"].print + prices.Size["5x7in"].frame  | currency: "CAD" }}
                 </option>
                 <option value="6x8in">6x8in |
                     +{{ prices.Size["6x8in"].print + prices.Size["6x8in"].frame  | currency: "CAD" }}</option>
-                <option value="8x10in">8x10in (Popular for portraits) |
+                <option value="8x10in">8x10in* |
                     +{{ prices.Size["8x10in"].print + prices.Size["8x10in"].frame  | currency: "CAD" }}
                 </option>
                 <option value="11x14in">11x14in |
                     +{{ prices.Size["11x14in"].print + prices.Size["11x14in"].frame  | currency: "CAD" }}</option>
-                <option value="12x18in">12x18in (Popular for posters & portraits) |
+                <option value="12x18in">12x18in* |
                     +{{ prices.Size["12x18in"].print + prices.Size["12x18in"].frame  | currency: "CAD" }}
                 </option>
                 <option value="16x20in">16x20in |
@@ -134,7 +134,7 @@
                     +{{ prices.Size["18x24in"].print + prices.Size["18x24in"].frame  | currency: "CAD" }}</option>
                 <option value="20x30in">20x30in |
                     +{{ prices.Size["20x30in"].print + prices.Size["20x30in"].frame  | currency: "CAD" }}</option>
-                <option value="24x36in">24x36in (Popular for posters & portraits) |
+                <option value="24x36in">24x36in* |
                     +{{ prices.Size["24x36in"].print + prices.Size["24x36in"].frame  | currency: "CAD" }}
                 </option>
                 <option value="Other">Other | CA$???</option>
@@ -168,7 +168,7 @@
     </div>
 
     <!-- Send button -->
-    <button class="btn btn-primary btn-block" type="submit" id="sendEmailBtn">Send</button>
+    <button class="btn btn-primary btn-block" type="submit" id="sendEmailBtn">Send (You won't be charged yet)</button>
 
 </form>
 <!-- Default form contact -->
