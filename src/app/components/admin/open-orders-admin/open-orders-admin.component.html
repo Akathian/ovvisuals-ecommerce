@@ -5,6 +5,9 @@
     <span *ngFor="let order of this.admin[this.cat].orders">
         <app-users-open-order [order]='order'></app-users-open-order>
     </span>
+    <span *ngFor="let order of this.admin[this.cat + '_custom'].orders">
+        <app-users-open-order [order]='order'></app-users-open-order>
+    </span>
 </span>
 
 

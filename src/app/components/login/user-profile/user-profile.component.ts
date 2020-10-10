@@ -53,25 +53,25 @@ export class UserProfileComponent implements OnInit {
   }
 
   changePage(page) {
-    document.getElementById('overview').classList.remove('active')
+    document.getElementById('overview').classList.remove('bg-dark')
     document.getElementById('overview').style.color = 'black'
 
-    document.getElementById('open-orders').classList.remove('active')
+    document.getElementById('open-orders').classList.remove('bg-dark')
     document.getElementById('open-orders').style.color = 'black'
 
-    document.getElementById('intermediate-orders').classList.remove('active')
+    document.getElementById('intermediate-orders').classList.remove('bg-dark')
     document.getElementById('intermediate-orders').style.color = 'black'
 
-    document.getElementById('complete-orders').classList.remove('active')
+    document.getElementById('complete-orders').classList.remove('bg-dark')
     document.getElementById('complete-orders').style.color = 'black'
 
-    document.getElementById('wishlist').classList.remove('active')
+    document.getElementById('wishlist').classList.remove('bg-dark')
     document.getElementById('wishlist').style.color = 'black'
 
-    document.getElementById('settings').classList.remove('active')
+    document.getElementById('settings').classList.remove('bg-dark')
     document.getElementById('settings').style.color = 'black'
 
-    document.getElementById(page).classList.add('active');
+    document.getElementById(page).classList.add('bg-dark');
     document.getElementById(page).style.color = 'white'
 
     this.activePage = page

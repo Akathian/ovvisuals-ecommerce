@@ -1,0 +1,32 @@
+
+
+<form [formGroup]="customForm" (ngSubmit)="onSubmit(customForm.value)" class="border border-light mb-3"
+id="customFormId">
+
+<p class="h5 mb-4 text-center">Upload to Gallery</p>
+
+<!-- Name -->
+<label>Caption: <span class="text-danger small" *ngIf="nameErr">*Required</span></label>
+<input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Caption"
+   formControlName="caption">
+<label>Link: <span class="text-danger small" *ngIf="emailErr">*Required</span></label>
+<input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Link"
+    formControlName="link">
+
+<label>Category: <span class="text-danger small" *ngIf="serviceErr">*Required</span></label>
+<br class="m-0">
+<div class="custom-control custom-checkbox my-2" *ngFor="let cat of categories">
+    <input type="checkbox" class="custom-control-input" [id]="cat" (change)='selectBox(cat, $event)' >
+    <label class="custom-control-label" [for]="cat">{{ cat }}</label>
+</div>
+<div>
+    <label>New Category: <span class="text-danger small" *ngIf="nameErr">*Required</span></label>
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="New Category"
+       formControlName="new-category">
+</div>
+
+
+<!-- Send button -->
+<button class="btn btn-dark btn-block" type="submit" id="sendEmailBtn">Upload</button>
+
+</form>

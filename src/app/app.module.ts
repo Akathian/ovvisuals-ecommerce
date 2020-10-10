@@ -52,6 +52,7 @@ import { CustomOrderComponent } from './components/login/user-profile/custom-ord
 import { CustomUserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/custom-user-order/custom-user-order.component';
 import { AccountingComponent } from './components/admin/accounting/accounting.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { GallUploadComponent } from './components/admin/gall-upload/gall-upload.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { NewsletterComponent } from './components/newsletter/newsletter.componen
     CustomUserOrderComponent,
     AccountingComponent,
     NewsletterComponent,
+    GallUploadComponent,
   ],
   imports: [
     BrowserModule,

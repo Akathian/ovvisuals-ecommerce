@@ -22,19 +22,22 @@ export class OpenOrdersAdminComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.uid = params.get('uid')
       this.cat = params.get('cat')
-      document.getElementById('dashboard').classList.remove('active')
+      document.getElementById('dashboard').classList.remove('bg-dark')
       document.getElementById('dashboard').style.color = 'black'
 
-      document.getElementById('complete_orders').classList.remove('active')
+      document.getElementById('complete_orders').classList.remove('bg-dark')
       document.getElementById('complete_orders').style.color = 'black'
 
-      document.getElementById('open_orders').classList.remove('active')
+      document.getElementById('open_orders').classList.remove('bg-dark')
       document.getElementById('open_orders').style.color = 'black'
 
-      document.getElementById('intermediate_orders').classList.remove('active')
+      document.getElementById('intermediate_orders').classList.remove('bg-dark')
       document.getElementById('intermediate_orders').style.color = 'black'
 
-      document.getElementById(this.cat).classList.add('active');
+      document.getElementById('gall-upload').classList.remove('bg-dark')
+      document.getElementById('gall-upload').style.color = 'black'
+
+      document.getElementById(this.cat).classList.add('bg-dark');
       document.getElementById(this.cat).style.color = 'white'
     });
   }
