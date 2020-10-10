@@ -8,13 +8,14 @@ import { Title } from "@angular/platform-browser"
 })
 export class AboutComponent implements OnInit, AfterViewInit {
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Home | OVVisuals")
+  }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    this.titleService.setTitle("Home | OVVisuals")
   }
 
 }

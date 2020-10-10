@@ -54,6 +54,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     descErr = false;
     sizeErr = false;
     constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient, private titleService: Title) {
+        this.titleService.setTitle("Custom Request | OVVisuals")
         this.customForm = this.formBuilder.group({
             name: "",
             email: "",
@@ -85,8 +86,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.titleService.setTitle("Custom Request | OVVisuals")
-
         let self = this
         firebase.auth().onAuthStateChanged(function (user) {
             if (!user) {
@@ -290,7 +289,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
         }
         event.printOpt = this.printOption
         event.imgs = this.imgur.uploadedImgs
-        console.log(this.nameErr, this.emailErr, this.dateErr, this.descErr, this.serviceErr, this.sizeErr)
         if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
             event.servicePrice = this.prices.Services[event.service]
             console.log(event)
@@ -317,16 +315,16 @@ export class CustomComponent implements OnInit, AfterViewInit {
                 event.framePrice = "Quote Pending"
             }
             event.complexity = "Quote Pending"
+            let self = this
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     let updates = {}
                     updates['Users/' + user.uid + '/ig'] = event.ig
                     updates['Users/' + user.uid + '/phone'] = event.phone
-
                     firebase.database().ref().update(updates)
+                    self.sendEmail(event)
                 }
             })
-            this.sendEmail(event)
         }
     }
 
@@ -377,7 +375,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
     }
 
     ig(event) {
-        console.log(this.imgur.uploadedImgs)
         let totalPrint = event.printPrice + event.framePrice
         if (totalPrint === "Quote PendingQuote Pending") {
             totalPrint = "Quote Pending"
@@ -388,7 +385,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
             msg += `${img} `
         }
         msg += "Thank you!"
-        console.log(msg)
         if (event.ig != "") {
             const helloWorld = firebase.functions().httpsCallable('helloWorld');
             let data = {

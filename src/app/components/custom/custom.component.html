@@ -11,16 +11,16 @@
     <p class="h5 mb-4 text-center">Contact Details</p>
 
     <!-- Name -->
-    <span class="text-danger small" *ngIf="nameErr">*Required</span>
+    <label>Name: <span class="text-danger small" *ngIf="nameErr">*Required</span></label>
     <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"
         (change)="nameChange($event)" formControlName="name">
-    <span class="text-danger small" *ngIf="nameErr">*Required</span>
-    <!-- Email -->
+    <label>Email: <span class="text-danger small" *ngIf="emailErr">*Required</span></label>
     <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail"
         formControlName="email">
+    <label>Instagram: </label>
     <input type="text" id="defaultContactFormig" class="form-control mb-4" placeholder="Instagram @"
         formControlName="ig">
-
+    <label>Phone: </label>
     <input type="tel" id="defaultContactFormNum" class="form-control mb-4" placeholder="Phone Number"
         formControlName="phone">
     <hr>
@@ -39,12 +39,12 @@
         </div>
     </div>
     <!-- Subject -->
-    <label>Desired Service <span class="text-danger small" *ngIf="serviceErr">*Required</span></label>
+    <label>Desired Service: <span class="text-danger small" *ngIf="serviceErr">*Required</span></label>
     <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
         formControlName="service">
         <option value="" disabled>Choose option</option>
         <option value="Portrait">Portrait | {{prices.Services.Portrait | currency: "CAD" }}</option>
-        <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} 1 week </option>
+        <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} </option>
         <option value="Poster">Poster | {{prices.Services.Poster | currency: "CAD" }} </option>
         <option value="Logo">Logo | {{prices.Services.Logo | currency: "CAD" }} </option>
         <option value="Sticker">Sticker | {{prices.Services.Sticker | currency: "CAD" }} </option>
@@ -54,7 +54,7 @@
         <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherService">
     </span>
     <span *ngIf="selectedService === 'Portrait' ||  selectedService === 'Poster' || selectedService === 'Other'">
-        <label>Print Options</label>
+        <label>Print Options: </label>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="print1"
                 (change)="printChange('No Print')" (ngSubmit)="nameChange($event)" checked>
@@ -69,15 +69,15 @@
                 Print, no frame
             </label>
         </div>
-        <div class="form-check">
+        <!-- <div class="form-check">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="print3"
                 (change)="printChange('Print and frame')">
             <label class="form-check-label" for="exampleRadios3">
                 Print and frame
             </label>
-        </div>
+        </div> -->
         <span *ngIf="printOption==='Print, no frame'">
-            <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
+            <label>Print Size: <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
             <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
                 formControlName="size">
                 <option value="" disabled>Choose option</option>
@@ -107,7 +107,7 @@
                 <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
             </span>
         </span>
-        <span *ngIf="printOption==='Print and frame'">
+        <!-- <span *ngIf="printOption==='Print and frame'">
             <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
             <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
                 formControlName="size">
@@ -142,17 +142,18 @@
             <span *ngIf="selectedSize === 'Other'">
                 <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
             </span>
-        </span>
+        </span> -->
     </span>
 
 
     <!-- Message -->
     <div class="form-group">
         <span class="text-danger small" *ngIf="descErr">*Required</span>
+        <label>Description: </label>
         <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
             placeholder="Give me a description of what you want... " formControlName="desc"></textarea>
     </div>
-
+    <label>Attach Files: </label>
     <div class="input-group">
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"

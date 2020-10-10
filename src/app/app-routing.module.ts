@@ -19,7 +19,7 @@ import 'firebase/database';
 import 'firebase/auth';;
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { AdminComponent } from './components/admin/admin.component';
-
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -39,6 +39,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'admin/:cat', component: AdminComponent },
   { path: 'admin/:cat/:uid', component: AdminComponent },
+  { path: 'subscribe', component: NewsletterComponent },
 
 
 ];

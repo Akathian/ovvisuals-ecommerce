@@ -11,19 +11,17 @@ import { Title } from "@angular/platform-browser"
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit, AfterViewInit {
+export class AdminComponent implements OnInit {
   isAdmin = false;
   cat;
   activePage;
   uid;
-  constructor(private admin: AdminCheckService, private route: ActivatedRoute, private router: Router, private titleService: Title) { }
+  constructor(private admin: AdminCheckService, private route: ActivatedRoute, private router: Router, private titleService: Title) {
+    this.titleService.setTitle("Home | OVVisuals")
+  }
 
   ngOnInit() {
     this.verifyAdmin();
-  }
-
-  ngAfterViewInit() {
-    this.titleService.setTitle("Home | OVVisuals")
   }
 
   verifyAdmin() {

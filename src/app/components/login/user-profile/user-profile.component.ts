@@ -19,10 +19,13 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
   cat;
   cap;
-  constructor(private _Activatedroute: ActivatedRoute, private titleService: Title) { }
+  constructor(private _Activatedroute: ActivatedRoute, private titleService: Title) {
+    this._Activatedroute.paramMap.subscribe(params => {
+      this.titleService.setTitle("Account - " + this.cap + " | OVVisuals")
+    });
+  }
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit() {

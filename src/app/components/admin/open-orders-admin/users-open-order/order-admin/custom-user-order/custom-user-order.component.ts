@@ -158,12 +158,8 @@ export class CustomUserOrderComponent implements OnInit {
     }).then(
       message => {
         if (message === "OK") {
-          // self.loadingModal.hide()
           self.router.navigate(['/admin/' + self.cat], { relativeTo: this.route });
-        } else {
-          // self.errorModal.show() 
-        }
-        // self.loadingModal.hide()
+        } 
       }
     );
   }

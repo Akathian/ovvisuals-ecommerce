@@ -8,9 +8,10 @@ import { Title } from "@angular/platform-browser"
 })
 export class PrivacyComponent implements AfterViewInit {
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Privacy Policy | OVVisuals")
+  }
 
   ngAfterViewInit() {
-    this.titleService.setTitle("Privacy Policy | OVVisuals")
   }
 }

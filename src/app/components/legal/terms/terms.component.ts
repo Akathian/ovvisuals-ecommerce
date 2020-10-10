@@ -7,10 +7,11 @@ import { Title } from "@angular/platform-browser"
 })
 export class TermsComponent implements AfterViewInit {
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Terms & Conditions | OVVisuals")
+  }
 
   ngAfterViewInit() {
-    this.titleService.setTitle("Terms & Conditions | OVVisuals")
   }
 
 }

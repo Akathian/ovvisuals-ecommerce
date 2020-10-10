@@ -11,7 +11,11 @@ export class ShippingComponent implements AfterViewChecked, OnInit {
   d: Date = new Date();
   ship;
   @Input() lone = true;
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+    if (this.lone) {
+      this.titleService.setTitle("Shipping | OVVisuals")
+    }
+  }
 
 
   ngOnInit() {
@@ -20,10 +24,6 @@ export class ShippingComponent implements AfterViewChecked, OnInit {
 
   ngAfterViewChecked() {
     this.calculateShip()
-    if (this.lone) {
-      this.titleService.setTitle("Shipping | OVVisuals")
-    }
-
   }
   calculateShip() {
     let d1 = this.addWorkDays(this.d, 12, 5)

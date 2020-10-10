@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -13,7 +13,7 @@ import { Title } from "@angular/platform-browser"
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, AfterViewInit {
+export class CheckoutComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
 
@@ -27,16 +27,13 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   disableAll = false;
   supportedCities = ["markham", "scarborough"]
   shipCode;
-  constructor(private route: ActivatedRoute, private router: Router, private titleService: Title) { }
+  constructor(private route: ActivatedRoute, private router: Router, private titleService: Title) {
+    this.titleService.setTitle("Checkout | OVVisuals")
+  }
 
   ngOnInit() {
     this.userCart = this.getCart();
     this.payPalCalc()
-  }
-
-
-  ngAfterViewInit() {
-    this.titleService.setTitle("Checkout | OVVisuals")
   }
 
   payPalCalc() {

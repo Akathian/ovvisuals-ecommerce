@@ -51,6 +51,7 @@ import { CustomOrdersComponent } from './components/login/user-profile/custom-or
 import { CustomOrderComponent } from './components/login/user-profile/custom-orders/custom-order/custom-order.component';
 import { CustomUserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/custom-user-order/custom-user-order.component';
 import { AccountingComponent } from './components/admin/accounting/accounting.component';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { AccountingComponent } from './components/admin/accounting/accounting.co
     CustomOrderComponent,
     CustomUserOrderComponent,
     AccountingComponent,
+    NewsletterComponent,
   ],
   imports: [
     BrowserModule,

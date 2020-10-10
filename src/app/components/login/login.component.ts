@@ -12,17 +12,16 @@ import { Title } from "@angular/platform-browser"
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
 
   userLoggedIn = false;
   user;
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Login | OVVisuals")
+  }
 
   ngOnInit() {
     this.renderAccInfo();
-  }
-  ngAfterViewInit() {
-    this.titleService.setTitle("Login | OVVisuals")
   }
 
   renderAccInfo() {
