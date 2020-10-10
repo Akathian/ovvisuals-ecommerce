@@ -13,11 +13,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from "@angular/platform-browser"
 
 import { HttpClient } from '@angular/common/http';
+import { trigger, transition, style, animate, query, stagger, keyframes } from '@angular/animations';
 
 @Component({
     selector: 'app-custom',
     templateUrl: './custom.component.html',
-    styleUrls: ['./custom.component.scss']
+    styleUrls: ['./custom.component.scss'],
+    animations: [
+        trigger('explainerAnim', [
+            transition('* => *', [
+                query('.anim', style({ opacity: 0, transform: 'translateX(-40px)' })),
+                query('.anim', stagger('500ms', [
+                    animate('800ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+                ]))
+            ])
+        ])
+    ]
 })
 export class CustomComponent implements OnInit, AfterViewInit {
     @ViewChild('loginModal', { static: false }) loginModal: ModalDirective

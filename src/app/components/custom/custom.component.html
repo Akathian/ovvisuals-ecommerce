@@ -3,175 +3,178 @@
     / {{ this.id }}
     <hr class="mt-0" />
 </small>
-<p class="h4 mb-4 text-center">Order Form</p>
+<div @explainerAnim>
+    <p class="h4 mb-4 text-center anim">Order Form</p>
 
-<form [formGroup]="customForm" (ngSubmit)="onSubmit(customForm.value)" class="border border-light p-5 mb-3"
-    id="customFormId">
-
-    <p class="h5 mb-4 text-center">Contact Details</p>
-
-    <!-- Name -->
-    <label>Name: <span class="text-danger small" *ngIf="nameErr">*Required</span></label>
-    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"
-        (change)="nameChange($event)" formControlName="name">
-    <label>Email: <span class="text-danger small" *ngIf="emailErr">*Required</span></label>
-    <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail"
-        formControlName="email">
-    <label>Instagram: </label>
-    <input type="text" id="defaultContactFormig" class="form-control mb-4" placeholder="Instagram @"
-        formControlName="ig">
-    <label>Phone: </label>
-    <input type="tel" id="defaultContactFormNum" class="form-control mb-4" placeholder="Phone Number"
-        formControlName="phone">
-    <hr>
-    <p class="h5 my-3 text-center">Order Details</p>
-    <div class="form-group">
-        <label>I want this product before: <span class="text-danger small" *ngIf="dateErr">*Required</span> </label>
-        <div class="input-group">
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-                #d="ngbDatepicker" [minDate]="earliestDate" [maxDate]="maxDate" [markDisabled]="isDisabled"
-                formControlName="date">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
-                        class="fa fa-calendar" aria-hidden="true"></i>
-                </button>
+    <form [formGroup]="customForm" (ngSubmit)="onSubmit(customForm.value)" class="border border-light p-5 mb-3 anim"
+        id="customFormId">
+    
+        <p class="h5 mb-4 text-center">Contact Details</p>
+    
+        <!-- Name -->
+        <label>Name: <span class="text-danger small" *ngIf="nameErr">*Required</span></label>
+        <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name"
+            (change)="nameChange($event)" formControlName="name">
+        <label>Email: <span class="text-danger small" *ngIf="emailErr">*Required</span></label>
+        <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail"
+            formControlName="email">
+        <label>Instagram: </label>
+        <input type="text" id="defaultContactFormig" class="form-control mb-4" placeholder="Instagram @"
+            formControlName="ig">
+        <label>Phone: </label>
+        <input type="tel" id="defaultContactFormNum" class="form-control mb-4" placeholder="Phone Number"
+            formControlName="phone">
+        <hr>
+        <p class="h5 my-3 text-center">Order Details</p>
+        <div class="form-group">
+            <label>I want this product before: <span class="text-danger small" *ngIf="dateErr">*Required</span> </label>
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker" [minDate]="earliestDate" [maxDate]="maxDate" [markDisabled]="isDisabled"
+                    formControlName="date">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                            class="fa fa-calendar" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Subject -->
-    <label>Desired Service: <span class="text-danger small" *ngIf="serviceErr">*Required</span></label>
-    <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
-        formControlName="service">
-        <option value="" disabled>Choose option</option>
-        <option value="Portrait">Portrait | {{prices.Services.Portrait | currency: "CAD" }}</option>
-        <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} </option>
-        <option value="Poster">Poster | {{prices.Services.Poster | currency: "CAD" }} </option>
-        <option value="Logo">Logo | {{prices.Services.Logo | currency: "CAD" }} </option>
-        <option value="Sticker">Sticker | {{prices.Services.Sticker | currency: "CAD" }} </option>
-        <option value="Other">Other | CA$??? </option>
-    </select>
-    <span *ngIf="selectedService === 'Other'">
-        <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherService">
-    </span>
-    <span *ngIf="selectedService === 'Portrait' ||  selectedService === 'Poster' || selectedService === 'Other'">
-        <label>Print Options: </label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="print1"
-                (change)="printChange('No Print')" (ngSubmit)="nameChange($event)" checked>
-            <label class="form-check-label" for="exampleRadios1">
-                No Print
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="print2"
-                (change)="printChange('Print, no frame')">
-            <label class="form-check-label" for="exampleRadios2">
-                Print, no frame
-            </label>
-        </div>
-        <!-- <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="print3"
-                (change)="printChange('Print and frame')">
-            <label class="form-check-label" for="exampleRadios3">
-                Print and frame
-            </label>
-        </div> -->
-        <span *ngIf="printOption==='Print, no frame'">
-            <label>Print Size: <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
-            <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
-                formControlName="size">
-                <option value="" disabled>Choose option</option>
-                <option value="4x6in">4x6in (Popular for portraits) |
-                    +{{ prices.Size["4x6in"].print | currency: "CAD" }}
-                </option>
-                <option value="5x7in">5x7in (Popular for portraits) |
-                    +{{ prices.Size["5x7in"].print | currency: "CAD" }}
-                </option>
-                <option value="6x8in">6x8in | +{{ prices.Size["6x8in"].print | currency: "CAD" }}</option>
-                <option value="8x10in">8x10in (Popular for portraits) |
-                    +{{ prices.Size["8x10in"].print | currency: "CAD" }}
-                </option>
-                <option value="11x14in">11x14in | +{{ prices.Size["11x14in"].print | currency: "CAD" }}</option>
-                <option value="12x18in">12x18in (Popular for posters & portraits) |
-                    +{{ prices.Size["12x18in"].print | currency: "CAD" }}
-                </option>
-                <option value="16x20in">16x20in | +{{ prices.Size["16x20in"].print | currency: "CAD" }}</option>
-                <option value="18x24in">18x24in | +{{ prices.Size["18x24in"].print | currency: "CAD" }}</option>
-                <option value="20x30in">20x30in | +{{ prices.Size["20x30in"].print | currency: "CAD" }}</option>
-                <option value="24x36in">24x36in (Popular for posters & portraits) |
-                    +{{ prices.Size["24x36in"].print | currency: "CAD" }}
-                </option>
-                <option value="Other">Other | CA$???</option>
-            </select>
-            <span *ngIf="selectedSize === 'Other'">
-                <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
-            </span>
+        <!-- Subject -->
+        <label>Desired Service: <span class="text-danger small" *ngIf="serviceErr">*Required</span></label>
+        <select id="serviceSelect" (change)="getDesiredService($event)" class=" custom-select mb-3"
+            formControlName="service">
+            <option value="" disabled>Choose option</option>
+            <option value="Portrait">Portrait | {{prices.Services.Portrait | currency: "CAD" }}</option>
+            <option value="Lamp">Lamp | {{prices.Services.Lamp | currency: "CAD" }} </option>
+            <option value="Poster">Poster | {{prices.Services.Poster | currency: "CAD" }} </option>
+            <option value="Logo">Logo | {{prices.Services.Logo | currency: "CAD" }} </option>
+            <option value="Sticker">Sticker | {{prices.Services.Sticker | currency: "CAD" }} </option>
+            <option value="Other">Other | CA$??? </option>
+        </select>
+        <span *ngIf="selectedService === 'Other'">
+            <input type="text" class="form-control mb-4" placeholder="Other type of service" formControlName="otherService">
         </span>
-        <!-- <span *ngIf="printOption==='Print and frame'">
-            <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
-            <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
-                formControlName="size">
-                <option value="" disabled>Choose option</option>
-                <option value="4x6in">4x6in* |
-                    +{{ prices.Size["4x6in"].print + prices.Size["4x6in"].frame  | currency: "CAD" }}
-                </option>
-                <option value="5x7in">5x7in* |
-                    +{{ prices.Size["5x7in"].print + prices.Size["5x7in"].frame  | currency: "CAD" }}
-                </option>
-                <option value="6x8in">6x8in |
-                    +{{ prices.Size["6x8in"].print + prices.Size["6x8in"].frame  | currency: "CAD" }}</option>
-                <option value="8x10in">8x10in* |
-                    +{{ prices.Size["8x10in"].print + prices.Size["8x10in"].frame  | currency: "CAD" }}
-                </option>
-                <option value="11x14in">11x14in |
-                    +{{ prices.Size["11x14in"].print + prices.Size["11x14in"].frame  | currency: "CAD" }}</option>
-                <option value="12x18in">12x18in* |
-                    +{{ prices.Size["12x18in"].print + prices.Size["12x18in"].frame  | currency: "CAD" }}
-                </option>
-                <option value="16x20in">16x20in |
-                    +{{ prices.Size["16x20in"].print + prices.Size["16x20in"].frame  | currency: "CAD" }}</option>
-                <option value="18x24in">18x24in |
-                    +{{ prices.Size["18x24in"].print + prices.Size["18x24in"].frame  | currency: "CAD" }}</option>
-                <option value="20x30in">20x30in |
-                    +{{ prices.Size["20x30in"].print + prices.Size["20x30in"].frame  | currency: "CAD" }}</option>
-                <option value="24x36in">24x36in* |
-                    +{{ prices.Size["24x36in"].print + prices.Size["24x36in"].frame  | currency: "CAD" }}
-                </option>
-                <option value="Other">Other | CA$???</option>
-            </select>
-            <span *ngIf="selectedSize === 'Other'">
-                <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
+        <span *ngIf="selectedService === 'Portrait' ||  selectedService === 'Poster' || selectedService === 'Other'">
+            <label>Print Options: </label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="print1"
+                    (change)="printChange('No Print')" (ngSubmit)="nameChange($event)" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                    No Print
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="print2"
+                    (change)="printChange('Print, no frame')">
+                <label class="form-check-label" for="exampleRadios2">
+                    Print, no frame
+                </label>
+            </div>
+            <!-- <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="print3"
+                    (change)="printChange('Print and frame')">
+                <label class="form-check-label" for="exampleRadios3">
+                    Print and frame
+                </label>
+            </div> -->
+            <span *ngIf="printOption==='Print, no frame'">
+                <label>Print Size: <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
+                <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
+                    formControlName="size">
+                    <option value="" disabled>Choose option</option>
+                    <option value="4x6in">4x6in (Popular for portraits) |
+                        +{{ prices.Size["4x6in"].print | currency: "CAD" }}
+                    </option>
+                    <option value="5x7in">5x7in (Popular for portraits) |
+                        +{{ prices.Size["5x7in"].print | currency: "CAD" }}
+                    </option>
+                    <option value="6x8in">6x8in | +{{ prices.Size["6x8in"].print | currency: "CAD" }}</option>
+                    <option value="8x10in">8x10in (Popular for portraits) |
+                        +{{ prices.Size["8x10in"].print | currency: "CAD" }}
+                    </option>
+                    <option value="11x14in">11x14in | +{{ prices.Size["11x14in"].print | currency: "CAD" }}</option>
+                    <option value="12x18in">12x18in (Popular for posters & portraits) |
+                        +{{ prices.Size["12x18in"].print | currency: "CAD" }}
+                    </option>
+                    <option value="16x20in">16x20in | +{{ prices.Size["16x20in"].print | currency: "CAD" }}</option>
+                    <option value="18x24in">18x24in | +{{ prices.Size["18x24in"].print | currency: "CAD" }}</option>
+                    <option value="20x30in">20x30in | +{{ prices.Size["20x30in"].print | currency: "CAD" }}</option>
+                    <option value="24x36in">24x36in (Popular for posters & portraits) |
+                        +{{ prices.Size["24x36in"].print | currency: "CAD" }}
+                    </option>
+                    <option value="Other">Other | CA$???</option>
+                </select>
+                <span *ngIf="selectedSize === 'Other'">
+                    <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
+                </span>
             </span>
-        </span> -->
-    </span>
-
-
-    <!-- Message -->
-    <div class="form-group">
-        <span class="text-danger small" *ngIf="descErr">*Required</span>
-        <label>Description: </label>
-        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-            placeholder="Give me a description of what you want... " formControlName="desc"></textarea>
-    </div>
-    <label>Attach Files: </label>
-    <div class="input-group">
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
-                (change)="handleFileInput($event.target.files)" accept="image/*" multiple />
-            <label class="custom-file-label" for="inputGroupFile01">Choose Files</label>
+            <!-- <span *ngIf="printOption==='Print and frame'">
+                <label>Print Size <span class="text-danger small" *ngIf="sizeErr">*Required</span> </label>
+                <select id="sizeSelect" (change)="getDesiredSize($event)" class=" custom-select mb-3"
+                    formControlName="size">
+                    <option value="" disabled>Choose option</option>
+                    <option value="4x6in">4x6in* |
+                        +{{ prices.Size["4x6in"].print + prices.Size["4x6in"].frame  | currency: "CAD" }}
+                    </option>
+                    <option value="5x7in">5x7in* |
+                        +{{ prices.Size["5x7in"].print + prices.Size["5x7in"].frame  | currency: "CAD" }}
+                    </option>
+                    <option value="6x8in">6x8in |
+                        +{{ prices.Size["6x8in"].print + prices.Size["6x8in"].frame  | currency: "CAD" }}</option>
+                    <option value="8x10in">8x10in* |
+                        +{{ prices.Size["8x10in"].print + prices.Size["8x10in"].frame  | currency: "CAD" }}
+                    </option>
+                    <option value="11x14in">11x14in |
+                        +{{ prices.Size["11x14in"].print + prices.Size["11x14in"].frame  | currency: "CAD" }}</option>
+                    <option value="12x18in">12x18in* |
+                        +{{ prices.Size["12x18in"].print + prices.Size["12x18in"].frame  | currency: "CAD" }}
+                    </option>
+                    <option value="16x20in">16x20in |
+                        +{{ prices.Size["16x20in"].print + prices.Size["16x20in"].frame  | currency: "CAD" }}</option>
+                    <option value="18x24in">18x24in |
+                        +{{ prices.Size["18x24in"].print + prices.Size["18x24in"].frame  | currency: "CAD" }}</option>
+                    <option value="20x30in">20x30in |
+                        +{{ prices.Size["20x30in"].print + prices.Size["20x30in"].frame  | currency: "CAD" }}</option>
+                    <option value="24x36in">24x36in* |
+                        +{{ prices.Size["24x36in"].print + prices.Size["24x36in"].frame  | currency: "CAD" }}
+                    </option>
+                    <option value="Other">Other | CA$???</option>
+                </select>
+                <span *ngIf="selectedSize === 'Other'">
+                    <input type="text" class="form-control mb-4" placeholder="Other size" formControlName="otherSize">
+                </span>
+            </span> -->
+        </span>
+    
+    
+        <!-- Message -->
+        <div class="form-group">
+            <span class="text-danger small" *ngIf="descErr">*Required</span>
+            <label>Description: </label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+                placeholder="Give me a description of what you want... " formControlName="desc"></textarea>
         </div>
-    </div>
-    <!-- Copy -->
-    <div class="custom-control custom-checkbox my-2">
-        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-        <label class="custom-control-label" for="defaultContactFormCopy">I want to receive OVVisuals newsletter
-            emails</label>
-    </div>
+        <label>Attach Files: </label>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+                    (change)="handleFileInput($event.target.files)" accept="image/*" multiple />
+                <label class="custom-file-label" for="inputGroupFile01">Choose Files</label>
+            </div>
+        </div>
+        <!-- Copy -->
+        <div class="custom-control custom-checkbox my-2">
+            <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+            <label class="custom-control-label" for="defaultContactFormCopy">I want to receive OVVisuals newsletter
+                emails</label>
+        </div>
+    
+        <!-- Send button -->
+        <button class="btn btn-dark btn-block" type="submit" id="sendEmailBtn">Send (You won't be charged yet)</button>
+    
+    </form>
+</div>
 
-    <!-- Send button -->
-    <button class="btn btn-dark btn-block" type="submit" id="sendEmailBtn">Send (You won't be charged yet)</button>
-
-</form>
 <!-- Default form contact -->
 
 <div mdbModal #loginModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"

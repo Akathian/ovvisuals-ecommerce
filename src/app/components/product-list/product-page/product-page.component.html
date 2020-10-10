@@ -1,11 +1,11 @@
 <span *ngFor='let product of itemProd[0]'>
-    <span *ngIf='product.sku === this.id'>
+    <span *ngIf='product.sku === this.id' @explainerAnim>
         <small>
-            <a routerLink="/">OVVisuals</a> / Products / <a [routerLink]="['/products', this.type]">{{ this.type }}</a>
+            <a routerLink="/">OVVisuals</a> / Products / <a [href]="href">{{ this.type }}</a>
             / {{ this.id }}
             <hr class="mt-0" />
         </small>
-        <div class="row justify-content-center mb-4 ">
+        <div class="row justify-content-center mb-4 anim">
             <div class="col-xl-6 col-lg-6 col-md-5 col-12">
                 <div class="col">
                     <div class="row mb-3">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-5 col-12 d-flex flex-column justify-content-start p-3 px-md-4 mb-3">
+            <div class="col-xl-6 col-lg-6 col-md-5 col-12 d-flex flex-column justify-content-start p-3 px-md-4 mb-3 anim">
                 <div class="p-2">
                     <span>
                         <h2>{{ product.name }}</h2>

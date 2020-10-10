@@ -11,7 +11,7 @@ import { trigger, transition, style, animate, query, stagger, keyframes } from '
   animations: [
     trigger('listAnimation', [
       transition('* => *', [
-        query(':enter', style({ opacity: 0 }), { optional: true }),
+        query(':enter', style({ opacity: 0 })),
         query(':enter', stagger('300ms', [
           animate('1s ease-in', keyframes([
             style({ opacity: 0, transform: 'translateY(-10px)', offset: 0 }),
