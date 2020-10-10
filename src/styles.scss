@@ -10,3 +10,11 @@
 .product-btn {
     font-size: small;
 }
+
+#window {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/cover.jpg') no-repeat top center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}

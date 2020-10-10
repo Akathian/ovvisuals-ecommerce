@@ -76,11 +76,11 @@
                 <p>Tracking Number <span *ngIf="this.moveTo==='Shipped'">(Required)</span><span
                         *ngIf="this.moveTo!='Shipped'">(Optional)</span>:</p>
                 <input #box>
-                <button class='btn btn-primary float-right' (click)='showAreYouSure(box.value)' id='moveBtn'>Mark as
+                <button class='btn btn-dark float-right' (click)='showAreYouSure(box.value)' id='moveBtn'>Mark as
                     {{this.moveTo}}</button>
             </span>
-            <span *ngIf='this.cat != "open_orders"'><button class='btn btn-primary float-right'
-                    (click)='showAreYouSure()' id='moveBtn'>Mark as
+            <span *ngIf='this.cat != "open_orders"'><button class='btn btn-dark float-right' (click)='showAreYouSure()'
+                    id='moveBtn'>Mark as
                     {{this.moveTo}}</button>
             </span>
         </span>
@@ -133,7 +133,7 @@
                 <p *ngIf='this.trackingNumber' class='float-left'>Tracking Number: {{ this.trackingNumber }} Carrier:
                     <span *ngIf="this.carrierName != 'OTHER'">{{ this.carrierName }}</span><span
                         *ngIf="this.carrierName === 'OTHER'">{{ this.carrierNameOther }}</span></p>
-                <button type="button" class="btn btn-md btn-primary" (click)="moveToIntermediate()">Yes</button>
+                <button type="button" class="btn btn-md btn-dark" (click)="moveToIntermediate()">Yes</button>
                 <button type="button" class="btn btn-md btn-dark" (click)="areYouSure.hide()">No</button>
             </div>
         </div>

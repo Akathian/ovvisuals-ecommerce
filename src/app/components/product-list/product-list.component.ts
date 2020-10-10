@@ -1,13 +1,27 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service'
-import { Product } from 'src/app/models/product'
 import { ActivatedRoute } from '@angular/router';
 import { Title } from "@angular/platform-browser"
+import { trigger, transition, style, animate, query, stagger, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':enter', style({ opacity: 0 }), { optional: true }),
+        query(':enter', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({ opacity: 0, transform: 'translateY(-10px)', offset: 0 }),
+            // style({ opacity: 0.5, transform: 'translateY(-25px)', offset: 0.3 }),
+            style({ opacity: 1, transform: 'translateY(0)', offset: 1 }),
+          ]))
+        ]))
+      ])
+    ])
+  ]
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
   type: string;

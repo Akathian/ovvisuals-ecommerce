@@ -128,7 +128,7 @@
                     Quote Pending</p>
             </div>
         </div>
-        <button class="btn btn-primary float-right mr-1 " (click)="move()">Mark as
+        <button class="btn btn-dark float-right mr-1 " (click)="move()">Mark as
             {{ this.moveTo }}</button>
 
         <span *ngIf="this.trackingInfo">
@@ -193,7 +193,7 @@
                 <p *ngIf='this.trackingNumber' class='float-left'>Tracking Number: {{ this.trackingNumber }} Carrier:
                     <span *ngIf="this.carrierName != 'OTHER'">{{ this.carrierName }}</span><span
                         *ngIf="this.carrierName === 'OTHER'">{{ this.carrierNameOther }}</span></p>
-                <button type="button" class="btn btn-md btn-primary" (click)="moveToIntermediate()">Yes</button>
+                <button type="button" class="btn btn-md btn-dark" (click)="moveToIntermediate()">Yes</button>
                 <button type="button" class="btn btn-md btn-dark" (click)="hideAndReset()">No</button>
             </div>
         </div>
