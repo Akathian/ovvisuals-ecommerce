@@ -20,6 +20,7 @@ import 'firebase/auth';;
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { BugReportComponent } from './components/bug-report/bug-report.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -40,8 +41,7 @@ const routes: Routes = [
   { path: 'admin/:cat', component: AdminComponent },
   { path: 'admin/:cat/:uid', component: AdminComponent },
   { path: 'subscribe', component: NewsletterComponent },
-
-
+  { path: 'bugs', component: BugReportComponent },
 ];
 
 @NgModule({
