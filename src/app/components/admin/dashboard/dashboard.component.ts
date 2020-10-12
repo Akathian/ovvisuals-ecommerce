@@ -8,7 +8,7 @@ import { AdminCheckService } from '../../../services/admin-check.service'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private admin: AdminCheckService) { }
+  constructor(public admin: AdminCheckService) { }
 
   ngOnInit() {
     document.getElementById('open_orders').classList.remove('active')

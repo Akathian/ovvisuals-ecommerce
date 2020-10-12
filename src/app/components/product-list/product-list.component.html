@@ -1,7 +1,6 @@
 
 <small>
     <a routerLink="/">OVVisuals</a> / Products / <a [routerLink]="['/products', this.type]">{{ this.cap }}</a>
-    / {{ this.id }}
     <hr class="mt-0" />
 </small>
 <div class="row" [@listAnimation]="productList[0].length">

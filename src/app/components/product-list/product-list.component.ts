@@ -27,6 +27,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   type: string;
   productList: {}[] = []
   cap;
+  len
   constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {

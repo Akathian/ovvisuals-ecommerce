@@ -12,7 +12,7 @@ import { AdminCheckService } from '../../../services/admin-check.service'
 })
 export class NavComponent implements OnInit {
   constructor(private admin: AdminCheckService) { }
-  private isAdmin = false;
+  isAdmin = false;
   ngOnInit() {
     this.onLogin();
   }

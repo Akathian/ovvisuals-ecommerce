@@ -1,7 +1,7 @@
 <span *ngIf="this.isAdmin">
     <small *ngIf='this.cat==="dashboard"'>
         <a routerLink="/">OVVisuals</a> / <a routerLink="/admin">Admin</a> / <a
-            [routerLink]="['/login', this.cat]">{{ this.cap }}</a>
+            [routerLink]="['/login', this.cat]">{{ this.cat }}</a>
         <hr class="mt-0" />
     </small>
     <section class="section-pagetop bg mt-3">

@@ -9,7 +9,7 @@ import { Title } from "@angular/platform-browser"
   styleUrls: ['./open-orders-admin.component.scss']
 })
 export class OpenOrdersAdminComponent implements OnInit {
-  constructor(private admin: AdminCheckService, private route: ActivatedRoute, private titleService: Title) {
+  constructor(public admin: AdminCheckService, private route: ActivatedRoute, private titleService: Title) {
     this.titleService.setTitle("Admin | OVVisuals")
   }
   uid;

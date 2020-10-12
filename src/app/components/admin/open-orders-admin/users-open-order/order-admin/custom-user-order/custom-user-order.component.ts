@@ -28,6 +28,7 @@ export class CustomUserOrderComponent implements OnInit {
   servicePrice;
   needQuote = []
   moveTo;
+  orderOwner;
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,) {
 
   }
@@ -159,7 +160,7 @@ export class CustomUserOrderComponent implements OnInit {
       message => {
         if (message === "OK") {
           self.router.navigate(['/admin/' + self.cat], { relativeTo: this.route });
-        } 
+        }
       }
     );
   }

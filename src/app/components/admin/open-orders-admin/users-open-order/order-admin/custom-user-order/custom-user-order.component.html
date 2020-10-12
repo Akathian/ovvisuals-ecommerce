@@ -130,13 +130,6 @@
         </div>
         <button class="btn btn-dark float-right mr-1 " (click)="move()">Mark as
             {{ this.moveTo }}</button>
-
-        <span *ngIf="this.trackingInfo">
-            <p *ngIf='!this.trackingInfo.carrier_name_other'>Carrier: </p>
-            <p *ngIf='this.trackingInfo.carrier_name_other'>Carrier: </p>
-            <p>Tracking Number: </p>
-        </span>
-
     </div>
 </div>
 <hr />
@@ -164,10 +157,7 @@
                         <h5>Custom {{orderData.service}} {{ orderData.printOpt }} {{orderData.size}}</h5>
                         <p></p>
                         <p class="mb-1 text-muted text-uppercase small">Description:
-                            {{orderData.desc}} hwehogrwoihgrwoigrwongrwno oiroreoegrno inrgingernpiergni
-                            pniegrnpiegrpnie gnpergpinegnpieg ipn epineinp etnipe ipnenpiegr pnegnpi ipnegpineg npier
-                            gnpirg pinergnpier pniergn piier gieorhjg etgtegnlnl egnerjl jgrenjjlnerlg njl elrgnler
-                            gnneg iperngierngwe npi ipwnfpwi nwpewp inwepign pif wefjwpeje wf ws
+                            {{orderData.desc}}
                         </p>
                         <p class="mb-1 text-muted text-uppercase small">Base Price:
                             {{orderData.servicePrice | currency: "CAD"}}
@@ -190,9 +180,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <p *ngIf='this.trackingNumber' class='float-left'>Tracking Number: {{ this.trackingNumber }} Carrier:
-                    <span *ngIf="this.carrierName != 'OTHER'">{{ this.carrierName }}</span><span
-                        *ngIf="this.carrierName === 'OTHER'">{{ this.carrierNameOther }}</span></p>
                 <button type="button" class="btn btn-md btn-dark" (click)="moveToIntermediate()">Yes</button>
                 <button type="button" class="btn btn-md btn-dark" (click)="hideAndReset()">No</button>
             </div>
