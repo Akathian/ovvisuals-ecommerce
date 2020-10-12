@@ -64,7 +64,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
     dateErr = false;
     descErr = false;
     sizeErr = false;
-    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient, private titleService: Title) {
+    constructor(private imgur: ImgurService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private titleService: Title) {
         this.titleService.setTitle("Custom Request | OVVisuals")
         this.customForm = this.formBuilder.group({
             name: "",
@@ -298,6 +298,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
         } else {
             this.descErr = false;
         }
+        event.ig = this.igHandle
         event.printOpt = this.printOption
         event.imgs = this.imgur.uploadedImgs
         if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
@@ -396,23 +397,21 @@ export class CustomComponent implements OnInit, AfterViewInit {
             msg += `${img} `
         }
         msg += "Thank you!"
+        console.log(event.ig)
         if (event.ig != "") {
             const helloWorld = firebase.functions().httpsCallable('helloWorld');
             let data = {
                 user: event.ig,
                 sender: environment.ig.user,
-                code: "",
+                code: "245783",
+                // code: "",
                 pw: environment.ig.pass,
-                msg
+                msg,
+                valid_code: true
             }
             helloWorld(data).then(res => {
                 console.log(res.data)
             })
         }
     }
-
 }
-
-
-
-
