@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - 'app/**'
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
