@@ -1,5 +1,5 @@
-import { writeFile } from 'fs'
-const targetPath = './src/environments/environment.prod.ts'
+import { writeFile } from 'fs';
+const targetPath = './src/environments/environment.prod.ts';
 const envConfigFile = `export const environment = {
     production: true,
     firebaseConfig: {
@@ -30,9 +30,9 @@ const envConfigFile = `export const environment = {
         from: '${process.env.SMTP_FROM}',
     }
 };
-`
+`;
 writeFile(targetPath, envConfigFile, 'utf8', (err) => {
-    if (err) {
-        return console.log(err);
-    }
+  if (err) {
+    return console.log(err);
+  }
 });

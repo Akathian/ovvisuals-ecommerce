@@ -67,7 +67,9 @@ export class CustomUserOrderComponent implements OnInit {
     this.printPrice = this.orderData.printPrice;
     this.framePrice = this.orderData.framePrice;
     this.servicePrice = this.orderData.servicePrice;
-
+    if(this.uid === 'all') {
+      this.uid = this.orderData.uid
+    }
     if (this.complexity === 'Quote Pending') {
       this.needQuote.push('complexity');
     }

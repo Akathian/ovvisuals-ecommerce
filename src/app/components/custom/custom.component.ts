@@ -347,6 +347,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const updates = {};
+                data.uid = user.uid
                 updates['Users/' + user.uid + '/Open-orders-custom/' + `${time}`] = data;
                 updates['Admin/' + 'Open-orders-custom/' + user.uid + '/' + `${time}`] = data;
                 firebase.database().ref().update(updates);
