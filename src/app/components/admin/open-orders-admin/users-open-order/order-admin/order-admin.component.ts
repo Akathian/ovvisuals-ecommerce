@@ -20,7 +20,6 @@ export class OrderAdminComponent implements OnInit {
   }
 
   getOrdersByUid(uid) {
-    console.log('hello');
     try {
       if (!this.times) {
         if (uid != 'all') {
@@ -39,13 +38,14 @@ export class OrderAdminComponent implements OnInit {
               }
             );
           }
-          if (this.admin[this.cat + '_custom'].allOrder) {
+          if (this.admin[this.cat + '_custom'].allOrders) {
             this.customOrders = Object.entries(this.admin[this.cat + '_custom'].allOrders);
           }
         }
         this.times++;
       }
-    } catch (e) { console.log(e); }
+    } catch (e) { //
+     }
 
   }
 

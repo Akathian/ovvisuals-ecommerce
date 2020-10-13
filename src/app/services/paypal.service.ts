@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaypalService {
-
-  constructor() { }
+  constructor() {
+    //
+  }
 
   giveTracking(tid, tracking, carrier, carrier_other, status) {
-    const self = this;
     const PAYPAL_CLIENT = environment.paypal.client;
     const PAYPAL_SECRET = environment.paypal.secret;
     const PAYPAL_OAUTH_API = 'https://api.sandbox.paypal.com/v1/oauth2/token/';
@@ -26,10 +26,10 @@ export class PaypalService {
       method: 'POST',
       headers: myHeaders,
       body: urlencoded,
-      redirect: 'follow'
+      redirect: 'follow',
     })
-      .then(response => response.text())
-      .then(result => {
+      .then((response) => response.text())
+      .then((result) => {
         const token = JSON.parse(result).access_token;
         const trackHeaders = new Headers();
         let req;
@@ -41,9 +41,9 @@ export class PaypalService {
                 tracking_number: `${tracking}`,
                 status: `${status}`,
                 carrier: `${carrier}`,
-                carrier_name_other: `${carrier_other}`
+                carrier_name_other: `${carrier_other}`,
               },
-            ]
+            ],
           };
         } else if (!carrier_other && carrier) {
           req = {
@@ -54,7 +54,7 @@ export class PaypalService {
                 status: `${status}`,
                 carrier: `${carrier}`,
               },
-            ]
+            ],
           };
         }
 
@@ -65,11 +65,18 @@ export class PaypalService {
           method: 'POST',
           body: raw,
           headers: trackHeaders,
-          redirect: 'follow'
-        }).then(response2 => response2.text())
-          .then(result2 => { })
-          .catch(error2 => console.log('error', error2));
+          redirect: 'follow',
+        })
+          .then((response2) => response2.text())
+          .then(() => {
+            //
+          })
+          .catch(() => {
+            //
+          });
       })
-      .catch(error => console.log('error', error));
+      .catch(() => {
+        //
+      });
   }
 }

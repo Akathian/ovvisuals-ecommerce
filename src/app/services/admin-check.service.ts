@@ -292,10 +292,8 @@ export class AdminCheckService {
       const d = new Date();
       d.setTime(+order[0]);
       order[0] = d.toUTCString();
-      console.log();
       order[1].num = this.allOrders.length + 1;
       this.allOrders.push(order);
-      console.log(this.allOrders);
     }
   }
 }

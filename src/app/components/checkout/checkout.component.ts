@@ -337,7 +337,6 @@ export class CheckoutComponent implements OnInit {
           updates['Users/' + user.uid + '/Cart/' + 'shipMethod'] = type;
           firebase.database().ref().update(updates);
           firebase.database().ref('Shipping/' + (+(type) - 1)).once('value', function(shipData) {
-            console.log(type);
             add = shipData.val().add;
             shipPrice = shipData.val().price;
             updates = {};

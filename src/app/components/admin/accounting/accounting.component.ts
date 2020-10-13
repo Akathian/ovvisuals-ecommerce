@@ -49,7 +49,6 @@ export class AccountingComponent implements OnInit {
         self.orders[i].time = d.toDateString();
         self.total += self.orders[i].total;
       }
-      console.log(self.orders);
     });
   }
 }

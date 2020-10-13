@@ -201,7 +201,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
                         }
                     );
                 } else {
-                    console.log('Wait fam');
+                    alert('Try again in a few seconds as the files upload. If this still does not work, refresh the page')
                 }
             } else {
                 self.askLogin();
@@ -220,7 +220,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
                 $('#inputGroupFile01').next('.custom-file-label').html(`${events[0].name}`);
             }
         }
-        console.log(events);
         await this.imgur.auth(Object.values(event));
         this.numToUpload = events.length;
         this.recurseEvents(this, events);
@@ -254,10 +253,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
 
     printChange(event) {
         this.printOption = event;
-    }
-
-    nameChange(event) {
-        console.log(document.getElementById('defaultContactFormName').innerHTML);
     }
 
     onSubmit(event) {
@@ -305,7 +300,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
         event.imgs = this.imgur.uploadedImgs;
         if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
             event.servicePrice = this.prices.Services[event.service];
-            console.log(event);
             try {
                 if (event.printOpt === 'No Print') {
                     event.printPrice = 0;
@@ -399,7 +393,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
             msg += `${img} `;
         }
         msg += 'Thank you!';
-        console.log(event.ig);
         if (event.ig != '') {
             const helloWorld = firebase.functions().httpsCallable('helloWorld');
             const data = {

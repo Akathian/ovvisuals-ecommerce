@@ -37,7 +37,6 @@ export class OpenOrdersComponent implements OnInit {
     });
     self.requests = null;
     firebase.database().ref('Users/' + self.user.uid + '/' + self.cat + '-custom').on('value', function(customData) {
-      console.log(self.cat + '-custom');
       self.requests = Object.entries(customData.val());
       self.requests = self.requests.reverse();
     });

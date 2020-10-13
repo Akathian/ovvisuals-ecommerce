@@ -67,7 +67,6 @@ export class CustomUserOrderComponent implements OnInit {
     this.printPrice = this.orderData.printPrice;
     this.framePrice = this.orderData.framePrice;
     this.servicePrice = this.orderData.servicePrice;
-    console.log(this.complexity, this.printPrice, this.framePrice, this.servicePrice);
 
     if (this.complexity === 'Quote Pending') {
       this.needQuote.push('complexity');
@@ -81,7 +80,6 @@ export class CustomUserOrderComponent implements OnInit {
     if (this.servicePrice === 'Quote Pending') {
       this.needQuote.push('servicePrice');
     }
-    console.log(this.needQuote);
   }
 
   nextImg(inc) {
@@ -108,7 +106,6 @@ export class CustomUserOrderComponent implements OnInit {
     if (!Number.isNaN(+(this.servicePrice))) {
       this.orderData.servicePrice = +(this.servicePrice);
     }
-    console.log(this.orderData);
     if (Object.values(this.orderData).indexOf('Quote Pending') < 0) {
       this.areYouSureCustom.show();
     }
@@ -140,7 +137,6 @@ export class CustomUserOrderComponent implements OnInit {
     for (let i = 0; i < this.needQuote.length; i++) {
       this[this.needQuote[i]] = 'Quote Pending';
       this.orderData[this.needQuote[i]] = 'Quote Pending';
-      console.log(this.orderData);
     }
   }
 

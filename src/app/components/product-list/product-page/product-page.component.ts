@@ -58,7 +58,6 @@ export class ProductPageComponent implements AfterViewInit, OnInit {
   }
   getImgs() {
     const self = this;
-    console.log(this.id);
     firebase.database().ref('Products/' + this.type + '/' + (+(this.id) - 1)).on('value', function(prod) {
       self.imgs = Object.values(prod.val().img);
       const a = self.imgs.pop();
