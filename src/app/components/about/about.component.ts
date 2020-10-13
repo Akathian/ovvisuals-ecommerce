@@ -1,6 +1,6 @@
-import { trigger, transition, style, animate, query, stagger, keyframes } from '@angular/animations';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Title } from "@angular/platform-browser"
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -17,16 +17,15 @@ import { Title } from "@angular/platform-browser"
     ])
   ]
 })
-export class AboutComponent implements OnInit, AfterViewInit {
+export class AboutComponent implements OnInit {
 
+  // eslint-disable-next-line prettier/prettier
   constructor(private titleService: Title) {
-    this.titleService.setTitle("Home | OVVisuals")
+    this.titleService.setTitle('Home | OVVisuals');
   }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit() {
+    //
   }
 
 }

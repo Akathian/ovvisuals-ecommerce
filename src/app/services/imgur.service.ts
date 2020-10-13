@@ -1,88 +1,100 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable max-len */
+/* eslint-disable no-await-in-loop */
 import { Injectable } from '@angular/core';
-import { environment } from "../../environments/environment"
-import { ImageTools } from "../../assets/js/imgTools"
+import { environment } from '../../environments/environment';
+import { ImageTools } from '../../assets/js/imgTools';
 @Injectable({
   providedIn: 'root'
 })
 export class ImgurService {
-  access = "aa";
+  access = 'aa';
+
   albumName;
+
   files;
+
   uploadedImgs = [];
-  imgsHTML = ''
-  constructor() { }
+
+  imgsHTML = '';
+
+  constructor() {
+    //
+   }
 
   async auth(files) {
-    document.getElementById("sendEmailBtn").classList.add("disabled")
-    let formdata = new FormData();
-    formdata.append("refresh_token", environment.imgur.refresh);
-    formdata.append("client_id", environment.imgur.client);
-    formdata.append("client_secret", environment.imgur.secret);
-    formdata.append("grant_type", "refresh_token");
+    document.getElementById('sendEmailBtn').classList.add('disabled');
+    const formdata = new FormData();
+    formdata.append('refresh_token', environment.imgur.refresh);
+    formdata.append('client_id', environment.imgur.client);
+    formdata.append('client_secret', environment.imgur.secret);
+    formdata.append('grant_type', 'refresh_token');
 
-    let requestOptions = {
+    const requestOptions = {
       method: 'POST',
       body: formdata,
       redirect: 'follow'
     };
-    const access = JSON.parse(await (await fetch("https://api.imgur.com/oauth2/token", <RequestInit>requestOptions)).text()).access_token
-    await this.createAlbum(access, files)
+    // eslint-disable-next-line prettier/prettier
+    const access = JSON.parse(await (await fetch('https://api.imgur.com/oauth2/token', requestOptions as RequestInit)).text()).access_token;
+    await this.createAlbum(access, files);
   }
 
   async createAlbum(access, files) {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${access}`);
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${access}`);
     // myHeaders.append("Authorization", `Client-ID ${environment.imgur.client}`);
-    let name = "testAlbum"
-    var formdata = new FormData();
+    const name = 'testAlbum';
+    const formdata = new FormData();
     // formdata.append("ids[]", files);
-    formdata.append("title", name);
-    formdata.append("description", `Album ${name}`);
-    formdata.append("privacy", "hidden");
+    formdata.append('title', name);
+    formdata.append('description', `Album ${name}`);
+    formdata.append('privacy', 'hidden');
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: formdata,
-      redirect: 'follow'
-    };
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: formdata,
+    //   redirect: 'follow'
+    // };
 
     // const albumId = JSON.parse(await (await fetch("https://api.imgur.com/3/album", <RequestInit>requestOptions)).text()).data.id
-    const albumId = "d40tRSN"
-    for (let i = 0; i < files.length; i++) {
-      await this.createImg(access, albumId, files[i])
+    const albumId = 'd40tRSN';
+    for (let i = 0; i < files.length; i += 1) {
+      await this.createImg(access, albumId, files[i]);
     }
-    document.getElementById("sendEmailBtn").classList.remove("disabled")
+    document.getElementById('sendEmailBtn').classList.remove('disabled');
   }
 
   async createImg(access, albumid, file) {
-    let self = this
+    const self = this;
     let resizeFile: File;
     ImageTools.resize(file, {
       width: 320, // maximum width
       height: 1000 // maximum height
-    }, async function (blob, didItResize) {
+    }, async function(blob) {
       // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
-      var b: any = blob
+      const b: any = blob;
       b.lastModifiedDate = new Date();
-      resizeFile = new File([blob], file.name, { type: "image/jpeg", lastModified: Date.now() });
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", `Bearer ${access}`);
+      resizeFile = new File([blob], file.name, { type: 'image/jpeg', lastModified: Date.now() });
+      const myHeaders = new Headers();
+      myHeaders.append('Authorization', `Bearer ${access}`);
 
-      var formdata = new FormData();
-      formdata.append("image", resizeFile);
-      formdata.append("album", albumid);
+      const formdata = new FormData();
+      formdata.append('image', resizeFile);
+      formdata.append('album', albumid);
 
 
-      var requestOptions = {
+      const requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: formdata,
         redirect: 'follow'
       };
-      const imageURL = JSON.parse(await (await fetch("https://api.imgur.com/3/image", <RequestInit>requestOptions)).text()).data.link
+      const imageURL = JSON.parse(await (await fetch('https://api.imgur.com/3/image', requestOptions as RequestInit)).text()).data.link;
 
-      const img = `                                    
+      const img = `
       <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
         <tbody class="mcnImageCardBlockOuter">
           <tr>
@@ -99,10 +111,10 @@ export class ImgurService {
               </td>
           </tr>
         </tbody>
-      </table>`
+      </table>`;
 
-      self.uploadedImgs.push(imageURL)
-      self.imgsHTML += img
+      self.uploadedImgs.push(imageURL);
+      self.imgsHTML += img;
     });
 
   }

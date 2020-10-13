@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { Title } from "@angular/platform-browser"
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-privacy',
@@ -8,10 +8,12 @@ import { Title } from "@angular/platform-browser"
 })
 export class PrivacyComponent implements AfterViewInit {
 
+  // eslint-disable-next-line prettier/prettier
   constructor(private titleService: Title) {
-    this.titleService.setTitle("Privacy Policy | OVVisuals")
+    this.titleService.setTitle('Privacy Policy | OVVisuals');
   }
 
   ngAfterViewInit() {
+    //
   }
 }

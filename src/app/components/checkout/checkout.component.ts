@@ -3,10 +3,10 @@ import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as $ from 'jquery'
+// eslint-disable-next-line prettier/prettier
 declare const paypal;
-import { ModalDirective } from 'angular-bootstrap-md'
-import { Title } from "@angular/platform-browser"
+import { ModalDirective } from 'angular-bootstrap-md';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-checkout',
@@ -15,7 +15,7 @@ import { Title } from "@angular/platform-browser"
 })
 export class CheckoutComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
-  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective
+  @ViewChild('confirmModal', { static: false }) confirmModal: ModalDirective;
 
   paidFor = false;
   userCart = [];
@@ -25,133 +25,138 @@ export class CheckoutComponent implements OnInit {
   paypalObj;
   shipSelect = false;
   disableAll = false;
-  supportedCities = ["markham", "scarborough"]
+  supportedCities = ['markham', 'scarborough'];
   shipCode;
   constructor(private route: ActivatedRoute, private router: Router, private titleService: Title) {
-    this.titleService.setTitle("Checkout | OVVisuals")
+    this.titleService.setTitle('Checkout | OVVisuals');
   }
 
   ngOnInit() {
     this.userCart = this.getCart();
-    this.payPalCalc()
+    this.payPalCalc();
   }
 
   payPalCalc() {
-    let self = this
+    const self = this;
     paypal.Buttons({
       onInit: (data, actions) => {
         actions.disable();
-        document.querySelector('#shippingSelect').addEventListener('change', function (event) {
-          let e = +(<HTMLInputElement>event.target).value
+        document.querySelector('#shippingSelect').addEventListener('change', function(event) {
+          const e = +(event.target as HTMLInputElement).value;
           if ([1, 2, 3, 4].includes(e) && self.numItems > 0) {
             actions.enable();
           }
-        })
+        });
       },
       createOrder: (data, actions) => {
         self.disableAll = true;
-        return actions.order.create(self.paypalObj)
+        return actions.order.create(self.paypalObj);
       },
       onShippingChange: (data, actions) => {
-        if (self.supportedCities.indexOf(data.shipping_address.city.toLowerCase()) != 0 && self.shipCode == "2") {
-          actions.reject()
+        if (self.supportedCities.indexOf(data.shipping_address.city.toLowerCase()) != 0 && self.shipCode == '2') {
+          actions.reject();
         }
       },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
+      onApprove(data, actions) {
+        return actions.order.capture().then(function(details) {
           self.moveToOpenOrders(details.purchase_units[0].payments.captures[0].id);
           self.disableAll = false;
         },
         );
       },
-      onError: function (err) {
+      onError(err) {
+        //
       },
-      onCancel: function (data, actions) {
+      onCancel(data, actions) {
         self.disableAll = false;
       }
-    }).render(this.paypalElement.nativeElement)
+    }).render(this.paypalElement.nativeElement);
   }
 
   moveToOpenOrders(transactionId) {
-    let date = new Date()
-    let self = this
-    firebase.auth().onAuthStateChanged(function (user) {
+    const date = new Date();
+    const self = this;
+    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        firebase.database().ref('/Users/' + user.uid + '/Cart').once('value', function (cartData) {
-          let updates = {}
-          let time = date.getTime()
-          updates["Admin/Open-orders/" + user.uid + "/" + `${transactionId}-${time}`] = cartData.val()
-          updates["Users/" + user.uid + "/Open-orders/" + `${transactionId}-${time}`] = cartData.val()
-          self.moveToAccounting(user, time, cartData.val())
+        firebase.database().ref('/Users/' + user.uid + '/Cart').once('value', function(cartData) {
+          const updates = {};
+          const time = date.getTime();
+          updates['Admin/Open-orders/' + user.uid + '/' + `${transactionId}-${time}`] = cartData.val();
+          updates['Users/' + user.uid + '/Open-orders/' + `${transactionId}-${time}`] = cartData.val();
+          self.moveToAccounting(user, time, cartData.val());
           return firebase.database().ref().update(updates);
-        })
-        firebase.database().ref('Users/' + user.uid + '/Cart/').remove()
-        self.numItems = 0
-        self.userCart = [{}]
+        });
+        firebase.database().ref('Users/' + user.uid + '/Cart/').remove();
+        self.numItems = 0;
+        self.userCart = [{}];
         self.totalWithSH = 0;
         self.total = 0;
         self.router.navigate(['../login/open-orders'], { relativeTo: self.route });
       }
-    })
+    });
   }
 
   moveToAccounting(user, time, cart) {
-    let a = Object.entries(cart)
-    let totalWithSH = a.pop()[1]
-    let total = a.pop()
-    let ship = a.pop()
-    let itemQty = a.pop()
-    let names = ''
-    for (let item of a) {
-      let b = Object.entries(item)
-      let c = b.pop()
-      let d = c.pop()
-      let e = Object.entries(d)
-      for (let ind of e) {
-        let name = ind[1].name + " " + ind[1].size
-        names += name + ", "
+    const a = Object.entries(cart);
+    const totalWithSH = a.pop()[1];
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const total = a.pop();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const ship = a.pop();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const itemQty = a.pop();
+    let names = '';
+    for (const item of a) {
+      const b = Object.entries(item);
+      const c = b.pop();
+      const d = c.pop();
+      const e = Object.entries(d);
+      for (const ind of e) {
+        const name = ind[1].name + ' ' + ind[1].size;
+        names += name + ', ';
       }
     }
-    let updates = {}
-    let acc = {
+    const updates = {};
+    const acc = {
       name: user.displayName,
       order: names,
       total: totalWithSH
-    }
-    updates['Admin/Accounting/' + user.uid + `/${time}`] = acc
-    firebase.database().ref().update(updates)
+    };
+    updates['Admin/Accounting/' + user.uid + `/${time}`] = acc;
+    firebase.database().ref().update(updates);
   }
 
   toPaypalFormat(self, cart) {
-    let total = Number.parseFloat(cart.pop()).toFixed(2)
-    let subtotal = Number.parseFloat(cart.pop()).toFixed(2)
-    let shipMethod = Number.parseFloat(cart.pop()).toFixed(2)
-    let shipPrice = Number.parseFloat(`${+(total) - +(subtotal)}`).toFixed(2)
+    const total = Number.parseFloat(cart.pop()).toFixed(2);
+    const subtotal = Number.parseFloat(cart.pop()).toFixed(2);
+    let shipMethod = Number.parseFloat(cart.pop()).toFixed(2);
+    const shipPrice = Number.parseFloat(`${+(total) - +(subtotal)}`).toFixed(2);
     let shipCode;
     switch (shipMethod) {
-      case "1": {
-        shipMethod = 'Pickup'
-        shipCode = "PICKUP"
+      case '1': {
+        shipMethod = 'Pickup';
+        shipCode = 'PICKUP';
         break;
       }
-      case "2": {
-        shipMethod = 'Hand-Delivery Within the GTA'
-        shipCode = "SHIPPING"
+      case '2': {
+        shipMethod = 'Hand-Delivery Within the GTA';
+        shipCode = 'SHIPPING';
         break;
       }
-      case "3": {
-        shipMethod = 'Standard Worldwide Shipping'
-        shipCode = "SHIPPING"
+      case '3': {
+        shipMethod = 'Standard Worldwide Shipping';
+        shipCode = 'SHIPPING';
         break;
       }
-      case "4": {
-        shipMethod = 'Express Worldwide Shipping'
-        shipCode = "SHIPPING"
+      case '4': {
+        shipMethod = 'Express Worldwide Shipping';
+        shipCode = 'SHIPPING';
         break;
       }
     }
-    let itemNum = cart.pop()
-    let paypalObj = {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const itemNum = cart.pop();
+    const paypalObj = {
       purchase_units: [{
         amount: {
           currency_code: 'CAD',
@@ -170,192 +175,192 @@ export class CheckoutComponent implements OnInit {
         items: []
       }],
       shipping_type: shipCode
-    }
-    for (let cartItem of cart) {
-      let prod = self.getProdData(cartItem);
-      let item = {
+    };
+    for (const cartItem of cart) {
+      const prod = self.getProdData(cartItem);
+      const item = {
         name: `${prod.name} ${prod.size}`,
         quantity: `${prod.qty}`,
         unit_amount: {
           currency_code: 'CAD',
           value: `${prod.price}`
         },
-        category: "PHYSICAL_GOODS"
-      }
-      paypalObj.purchase_units[0].items.push(item)
+        category: 'PHYSICAL_GOODS'
+      };
+      paypalObj.purchase_units[0].items.push(item);
     }
-    self.paypalObj = paypalObj
+    self.paypalObj = paypalObj;
   }
 
   getProdData(cartItem) {
-    let prod = cartItem.lg || cartItem.md || cartItem.rg || cartItem.sm || cartItem.xl
-    return prod
+    const prod = cartItem.lg || cartItem.md || cartItem.rg || cartItem.sm || cartItem.xl;
+    return prod;
   }
 
   getCart() {
-    let self = this
-    firebase.auth().onAuthStateChanged(function (user) {
+    const self = this;
+    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        firebase.database().ref('/Users/' + user.uid + '/Cart').on('value', function (cartData) {
-          self.userCart = Object.values(cartData.val())
-          self.numItems = self.userCart[self.userCart.length - 4]
-          self.total = self.userCart[self.userCart.length - 2]
-          self.toPaypalFormat(self, self.userCart)
-        })
+        firebase.database().ref('/Users/' + user.uid + '/Cart').on('value', function(cartData) {
+          self.userCart = Object.values(cartData.val());
+          self.numItems = self.userCart[self.userCart.length - 4];
+          self.total = self.userCart[self.userCart.length - 2];
+          self.toPaypalFormat(self, self.userCart);
+        });
       } else {
-        self.userCart = []
+        self.userCart = [];
       }
     });
-    return this.userCart
+    return this.userCart;
   }
 
   addToWishList(item) {
     if (!this.disableAll) {
       item.qty = 1;
-      let self = this
-      firebase.auth().onAuthStateChanged(function (user) {
+      const self = this;
+      firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          firebase.database().ref('Users/' + user.uid + '/Wishlist/' + item.sku + '/' + item.sizeCode).once('value', function (wListData) {
+          firebase.database().ref('Users/' + user.uid + '/Wishlist/' + item.sku + '/' + item.sizeCode).once('value', function(wListData) {
             if (!wListData.val()) {
-              firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function (itemQtyData) {
-                let currQty = itemQtyData.val() || 0
-                let updates = {};
+              firebase.database().ref('Users/' + user.uid + '/Wishlist/' + 'itemQty').once('value', function(itemQtyData) {
+                const currQty = itemQtyData.val() || 0;
+                const updates = {};
                 updates['/Users/' + user.uid + '/Wishlist/' + 'itemQty'] = item.qty + currQty;
                 return firebase.database().ref().update(updates);
-              })
-              let updates = {}
-              updates['Users/' + user.uid + '/Wishlist/' + item.sku + '/' + item.sizeCode] = item
+              });
+              const updates = {};
+              updates['Users/' + user.uid + '/Wishlist/' + item.sku + '/' + item.sizeCode] = item;
               return firebase.database().ref().update(updates);
             }
-          })
+          });
           self.removeItem(item);
         }
-      })
+      });
     }
   }
 
   removeItem(item) {
     if (!this.disableAll) {
-      firebase.auth().onAuthStateChanged(function (user) {
+      firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           let rmQty;
           let rmTotal;
-          firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku).once('value', function (skuData) {
+          firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku).once('value', function(skuData) {
             if (skuData.val()[item.sizeCode]) {
-              rmQty = skuData.val()[item.sizeCode].qty
-              rmTotal = skuData.val()[item.sizeCode].price * rmQty
-              firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku + "/" + item.sizeCode).remove()
-              firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').once('value', function (itemQtyData) {
-                let currQty = itemQtyData.val() || 0
-                let updates = {};
+              rmQty = skuData.val()[item.sizeCode].qty;
+              rmTotal = skuData.val()[item.sizeCode].price * rmQty;
+              firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku + '/' + item.sizeCode).remove();
+              firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').once('value', function(itemQtyData) {
+                let currQty = itemQtyData.val() || 0;
+                const updates = {};
                 if (currQty - rmQty < 0) {
-                  currQty = 0
-                  rmQty = 0
+                  currQty = 0;
+                  rmQty = 0;
                 }
                 updates['/Users/' + user.uid + '/Cart/' + 'itemQty'] = currQty - rmQty;
                 return firebase.database().ref().update(updates);
-              })
-              firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').once('value', function (totalData) {
-                let currTotal = totalData.val() || 0
-                let updates = {};
+              });
+              firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').once('value', function(totalData) {
+                let currTotal = totalData.val() || 0;
+                const updates = {};
                 if (currTotal - rmTotal < 0) {
-                  currTotal = 0
-                  rmTotal = 0
+                  currTotal = 0;
+                  rmTotal = 0;
                 }
-                updates['/Users/' + user.uid + '/Cart/' + 'total'] = +(currTotal - rmTotal).toFixed(2)
+                updates['/Users/' + user.uid + '/Cart/' + 'total'] = +(currTotal - rmTotal).toFixed(2);
                 return firebase.database().ref().update(updates);
-              })
+              });
             }
-          })
+          });
         }
-      })
+      });
     }
   }
 
   qtyChange(item, incr: number) {
     if (!this.disableAll) {
-      let self = this
-      firebase.auth().onAuthStateChanged(function (user) {
+      const self = this;
+      firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku + '/' + item.sizeCode).once('value', function (skuData) {
+          firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku + '/' + item.sizeCode).once('value', function(skuData) {
             if (skuData.val()) {
 
-              firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku + "/" + item.sizeCode + '/qty').once('value', function (qtyData) {
-                let currQty = qtyData.val() || 0
-                let newVal = (currQty + incr > 0) ? (currQty + incr) : 0;
+              firebase.database().ref('Users/' + user.uid + '/Cart/' + item.sku + '/' + item.sizeCode + '/qty').once('value', function(qtyData) {
+                const currQty = qtyData.val() || 0;
+                const newVal = (currQty + incr > 0) ? (currQty + incr) : 0;
                 if (newVal > 0) {
-                  let updates = {};
-                  updates['/Users/' + user.uid + '/Cart/' + item.sku + "/" + item.sizeCode + '/qty'] = newVal
-                  firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').once('value', function (itemQtyData) {
-                    let currQty = itemQtyData.val() || 0
-                    let newVal = (currQty + incr > 0) ? (currQty + incr) : 0;
+                  const updates = {};
+                  updates['/Users/' + user.uid + '/Cart/' + item.sku + '/' + item.sizeCode + '/qty'] = newVal;
+                  firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').once('value', function(itemQtyData) {
+                    const currQty = itemQtyData.val() || 0;
+                    const newVal = (currQty + incr > 0) ? (currQty + incr) : 0;
                     if (newVal > 0) {
-                      let updates = {};
+                      const updates = {};
                       updates['/Users/' + user.uid + '/Cart/' + 'itemQty'] = newVal;
                       return firebase.database().ref().update(updates);
                     }
-                  })
-                  firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').once('value', function (totalData) {
-                    let currTotal = totalData.val() || 0
-                    let newVal = (currTotal + incr * (item.price) > 1) ? (currTotal + incr * (item.price)) : 0;
-                    let updates = {};
-                    updates['/Users/' + user.uid + '/Cart/' + 'total'] = newVal
+                  });
+                  firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').once('value', function(totalData) {
+                    const currTotal = totalData.val() || 0;
+                    const newVal = (currTotal + incr * (item.price) > 1) ? (currTotal + incr * (item.price)) : 0;
+                    const updates = {};
+                    updates['/Users/' + user.uid + '/Cart/' + 'total'] = newVal;
                     return firebase.database().ref().update(updates);
-                  })
+                  });
                   return firebase.database().ref().update(updates);
                 } else {
-                  self.removeItem(item)
+                  self.removeItem(item);
                 }
-              })
+              });
 
 
             }
 
-          })
+          });
         }
-      })
+      });
     }
   }
 
   shippingMethod(type) {
     if (!this.disableAll) {
-      this.shipCode = type
-      let self = this
-      if (type == "2") {
+      this.shipCode = type;
+      const self = this;
+      if (type == '2') {
         this.confirmModal.show();
       }
-      firebase.auth().onAuthStateChanged(function (user) {
+      firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          let updates = {}
+          let updates = {};
           let shipPrice = 0;
           let add;
-          updates['Users/' + user.uid + '/Cart/' + "shipMethod"] = type
+          updates['Users/' + user.uid + '/Cart/' + 'shipMethod'] = type;
           firebase.database().ref().update(updates);
-          firebase.database().ref('Shipping/' + (+(type) - 1)).once('value', function (shipData) {
-            console.log(type)
-            add = shipData.val().add
-            shipPrice = shipData.val().price
-            updates = {}
-            firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').on('value', function (totalData) {
-              firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').on('value', function (qtyData) {
-                let total = totalData.val()
-                let numItems = qtyData.val()
+          firebase.database().ref('Shipping/' + (+(type) - 1)).once('value', function(shipData) {
+            console.log(type);
+            add = shipData.val().add;
+            shipPrice = shipData.val().price;
+            updates = {};
+            firebase.database().ref('Users/' + user.uid + '/Cart/' + 'total').on('value', function(totalData) {
+              firebase.database().ref('Users/' + user.uid + '/Cart/' + 'itemQty').on('value', function(qtyData) {
+                const total = totalData.val();
+                const numItems = qtyData.val();
                 if (add) {
-                  updates['Users/' + user.uid + '/Cart/' + "totalWithSH"] = total + shipPrice;
+                  updates['Users/' + user.uid + '/Cart/' + 'totalWithSH'] = total + shipPrice;
                   self.totalWithSH = total + shipPrice;
                   return firebase.database().ref().update(updates);
                 } else {
-                  updates['Users/' + user.uid + '/Cart/' + "totalWithSH"] = total - (shipPrice * numItems);
+                  updates['Users/' + user.uid + '/Cart/' + 'totalWithSH'] = total - (shipPrice * numItems);
                   self.totalWithSH = total - (shipPrice * numItems);
                   return firebase.database().ref().update(updates);
                 }
-              })
-            })
+              });
+            });
 
-          })
-          self.shipSelect = true
+          });
+          self.shipSelect = true;
         }
-      })
+      });
     }
   }
 }

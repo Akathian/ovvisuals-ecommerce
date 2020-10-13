@@ -16,30 +16,31 @@ export class OpenOrdersComponent implements OnInit {
   cat;
   requests;
 
+  // eslint-disable-next-line prettier/prettier
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       this.cat = params.get('cat');
       this.cat = this.cat.charAt(0).toUpperCase() + this.cat.slice(1);
-      this.getOpenOrders()
+      this.getOpenOrders();
     });
 
   }
 
   getOpenOrders() {
-    let self = this
-    self.openOrders = null
-    firebase.database().ref("Users/" + self.user.uid + "/" + self.cat).on('value', function (orderData) {
-      self.openOrders = Object.entries(orderData.val())
-      self.openOrders = self.openOrders.reverse()
-    })
-    self.requests = null
-    firebase.database().ref("Users/" + self.user.uid + "/" + self.cat + "-custom").on('value', function (customData) {
-      console.log(self.cat + "-custom")
-      self.requests = Object.entries(customData.val())
-      self.requests = self.requests.reverse()
-    })
+    const self = this;
+    self.openOrders = null;
+    firebase.database().ref('Users/' + self.user.uid + '/' + self.cat).on('value', function(orderData) {
+      self.openOrders = Object.entries(orderData.val());
+      self.openOrders = self.openOrders.reverse();
+    });
+    self.requests = null;
+    firebase.database().ref('Users/' + self.user.uid + '/' + self.cat + '-custom').on('value', function(customData) {
+      console.log(self.cat + '-custom');
+      self.requests = Object.entries(customData.val());
+      self.requests = self.requests.reverse();
+    });
   }
 
 }

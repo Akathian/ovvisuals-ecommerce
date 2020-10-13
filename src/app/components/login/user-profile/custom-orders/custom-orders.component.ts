@@ -1,17 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as firebase from "firebase"
+
 @Component({
   selector: 'app-custom-orders',
   templateUrl: './custom-orders.component.html',
-  styleUrls: ['./custom-orders.component.scss']
+  styleUrls: ['./custom-orders.component.scss'],
 })
 export class CustomOrdersComponent implements OnInit {
+  // eslint-disable-next-line prettier/prettier
   @Input() user;
-  requests = []
-  constructor() { }
-
-  ngOnInit() {
-
+  requests = [];
+  constructor() {
+    //
   }
 
+  ngOnInit() {
+    //
+  }
 }

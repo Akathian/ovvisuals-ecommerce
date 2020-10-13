@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BrowserModule } from '@angular/platform-browser';
-
+import { environment } from 'src/environments/environment';
+import * as firebase from 'firebase/app';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CustomComponent } from './components/custom/custom.component';
 import { AboutComponent } from './components/about/about.component';
@@ -12,11 +12,9 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { TermsComponent } from './components/legal/terms/terms.component';
 
-import { environment } from 'src/environments/environment';
 import { ShippingComponent } from './components/checkout/shipping/shipping.component';
-import * as firebase from 'firebase/app';
 import 'firebase/database';
-import 'firebase/auth';;
+import 'firebase/auth';
 import { PrivacyComponent } from './components/legal/privacy/privacy.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
@@ -45,9 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}

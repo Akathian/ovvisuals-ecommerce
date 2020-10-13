@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { IAlbum, IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent }
+/* eslint-disable max-len */
+import { Component, OnInit } from '@angular/core';
+import { IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent }
   from 'ngx-lightbox';
-import { Title } from "@angular/platform-browser"
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
@@ -37,7 +38,8 @@ export class GalleryComponent implements OnInit {
   images3;
   content;
   cap;
-  private subscription: Subscription;
+  subscription: Subscription;
+  // eslint-disable-next-line prettier/prettier 
   constructor(private lightbox: Lightbox, private lightboxEvent: LightboxEvent, private lighboxConfig: LightboxConfig, private _Activatedroute: ActivatedRoute, private titleService: Title) {
     this.allImages = this.allImages ? this.allImages : [];
     this.lighboxConfig.fadeDuration = 1;
@@ -47,34 +49,34 @@ export class GalleryComponent implements OnInit {
     this._Activatedroute.paramMap.subscribe(params => {
       this.content = params.get('content');
       this.cap = this.content.charAt(0).toUpperCase() + this.content.slice(1);
-      this.cap = this.cap.replace('-', ' ')
-      this.cap = this.cap.replace('-', ' ')
-      this.getGallery(this.content)
-      this.titleService.setTitle("Gallery - " + this.cap + " | OVVisuals")
+      this.cap = this.cap.replace('-', ' ');
+      this.cap = this.cap.replace('-', ' ');
+      this.getGallery(this.content);
+      this.titleService.setTitle('Gallery - ' + this.cap + ' | OVVisuals');
     });
   }
   ngAfterViewInit() {
-    this._Activatedroute.paramMap.subscribe(params => {
-      this.titleService.setTitle("Gallery - " + this.cap + " | OVVisuals")
+    this._Activatedroute.paramMap.subscribe(() => {
+      this.titleService.setTitle('Gallery - ' + this.cap + ' | OVVisuals');
     });
   }
 
   getGallery(content) {
-    let self = this
+    const self = this;
     if (!content) {
-      content = 'all'
+      content = 'all';
     }
-    firebase.database().ref('/Gallery/' + content).on('value', function (galData) {
-      self.allImages = self.shuffle(galData.val())
-      self.chunks = self.chunk(self.allImages, 3)
-      self.images1 = self.chunks[0]
-      self.images2 = self.chunks[1]
-      self.images3 = self.chunks[2]
-    })
+    firebase.database().ref('/Gallery/' + content).on('value', function(galData) {
+      self.allImages = self.shuffle(galData.val());
+      self.chunks = self.chunk(self.allImages, 3);
+      self.images1 = self.chunks[0];
+      self.images2 = self.chunks[1];
+      self.images3 = self.chunks[2];
+    });
   }
 
   shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -93,25 +95,25 @@ export class GalleryComponent implements OnInit {
   }
 
   chunk(items, n) {
-    const result = [[], [], []] //we create it, then we'll fill it
-    const wordsPerLine = Math.ceil(items.length / 3)
+    const result = [[], [], []]; // we create it, then we'll fill it
+    const wordsPerLine = Math.ceil(items.length / 3);
 
     for (let line = 0; line < n; line++) {
       for (let i = 0; i < wordsPerLine; i++) {
-        const value = items[i + line * wordsPerLine]
-        if (!value) continue //avoid adding "undefined" values
-        result[line].push(value)
+        const value = items[i + line * wordsPerLine];
+        if (!value) { continue; } // avoid adding "undefined" values
+        result[line].push(value);
       }
     }
     if ((result[1].length - result[2].length) > 1) {
-      result[2].push(result[1].pop())
+      result[2].push(result[1].pop());
     }
 
     return result;
   }
 
   open(index: number, offs): void {
-    let offsIndx = index + offs
+    const offsIndx = index + offs;
     this.subscription = this.lightboxEvent.lightboxEvent$.subscribe((event: IEvent) => this._onReceivedEvent(event));
     this.lightbox.open(this.allImages, offsIndx, { wrapAround: true, showImageNumberLabel: true });
   }

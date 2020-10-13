@@ -3,21 +3,30 @@ module.exports = {
     node: true,
     commonjs: true,
     es6: true,
-    mocha: true
+    mocha: true,
   },
-  extends: ['airbnb-base', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
   globals: {
     use: false,
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018
+    ecmaVersion: 2018,
   },
+  parser: '@typescript-eslint/parser',
   rules: {
     'prettier/prettier': ['error', { singleQuote: true, parser: 'flow' }],
-    // "eslint quotes": ["error", "single"],
+    '@typescript-eslint/no-this-alias': 'off',
+    'func-names': 'off',
+    'consistent-return': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-console': 'off',
+    'no-undef': 'off',
+    'no-explicit-any': 'off',
     'arrow-parens': 'off',
     'max-len': [
       'error',
@@ -26,17 +35,18 @@ module.exports = {
         ignoreComments: true,
         ignoreUrls: true,
         ignorePattern: '^\\s*const\\s.+=\\s*require\\s*\\(',
-        ignoreStrings: true
-      }
-    ]
+        ignoreStrings: true,
+      },
+    ],
   },
-  plugins: ['mocha', 'prettier'],
+  plugins: ['mocha', 'prettier', '@typescript-eslint'],
   overrides: [
     {
       files: 'test/test_*.js',
       rules: {
-        'no-unused-expressions': 'off'
-      }
-    }
-  ]
+        'import/prefer-default-export': 'off',
+        'func-names': 'off',
+      },
+    },
+  ],
 };

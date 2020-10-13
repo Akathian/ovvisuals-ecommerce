@@ -1,6 +1,6 @@
+
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/models/product'
-import { MessengerService } from 'src/app/services/messenger.service'
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,14 +9,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
-  @Input() productItem
+  @Input() productItem;
+
   type: string;
 
-  constructor(private _Activatedroute: ActivatedRoute) {
+  // eslint-disable-next-line prettier/prettier
+  constructor(private route: ActivatedRoute) {
+    //
   }
 
   ngOnInit() {
-    this._Activatedroute.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       this.type = params.get('type');
     });
   }

@@ -1,4 +1,4 @@
-const hasBlobConstructor = typeof (Blob) !== 'undefined' && (function () {
+const hasBlobConstructor = typeof (Blob) !== 'undefined' && (function() {
     try {
         return Boolean(new Blob());
     } catch (e) {
@@ -6,7 +6,7 @@ const hasBlobConstructor = typeof (Blob) !== 'undefined' && (function () {
     }
 }());
 
-const hasArrayBufferViewSupport = hasBlobConstructor && typeof (Uint8Array) !== 'undefined' && (function () {
+const hasArrayBufferViewSupport = hasBlobConstructor && typeof (Uint8Array) !== 'undefined' && (function() {
     try {
         return new Blob([new Uint8Array(100)]).size === 100;
     } catch (e) {
@@ -130,7 +130,7 @@ export class ImageTools {
     static _loadImage(image, file, callback?: any) {
         if (typeof (URL) === 'undefined') {
             const reader = new FileReader();
-            reader.onload = function (evt) {
+            reader.onload = function(evt) {
                 image.src = (evt.target as any).result;
                 if (callback) { callback(); }
             };
@@ -141,13 +141,13 @@ export class ImageTools {
                 callback();
             }
         }
-    };
+    }
 
     static _toFile = (theBlob: Blob, fileName: string): File => {
         const b: any = theBlob;
         b.lastModifiedDate = new Date();
         b.name = fileName;
-        return <File>theBlob;
+        return theBlob as File;
     }
 
     static isSupported() {
