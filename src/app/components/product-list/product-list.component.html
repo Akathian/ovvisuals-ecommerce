@@ -1,0 +1,12 @@
+
+<small>
+    <a routerLink="/">OVVisuals</a> / Products / <a [routerLink]="['/products', this.type]">{{ this.cap }}</a>
+    <hr class="mt-0" />
+</small>
+<div class="row" [@listAnimation]="productList[0].length">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-6" *ngFor='let product of productList[0]'>
+        <a [routerLink]="['/products', this.type, product.sku]">
+            <app-product-item [productItem]="product" class="prod"></app-product-item>
+        </a>
+    </div>
+</div>

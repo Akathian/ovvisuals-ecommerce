@@ -1,0 +1,50 @@
+<small>
+    <a routerLink="/">OVVisuals</a> / <a routerLink="/login">Your Account</a> / <a
+        [routerLink]="['/login', this.cat]">{{ this.cap }}</a>
+    <hr class="mt-0" />
+</small>
+<section class="section-pagetop bg">
+    <div class="container">
+        <h2 class="title-page">Your Account</h2>
+    </div> <!-- container //  -->
+</section>
+
+<section class="section-content">
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3 mb-3">
+                <ul class="list-group">
+                    <a class="list-group-item bg-dark" id='overview' [routerLink]="['/login', 'overview']"
+                        style="color: white;"> Account Overview
+                    </a>
+                    <a class="list-group-item" id='open-orders' [routerLink]="['/login', 'open-orders']"> Open Orders
+                    </a>
+                    <a class="list-group-item" id='intermediate-orders'
+                        [routerLink]="['/login', 'intermediate-orders']">
+                        Intermediate Orders
+                    </a>
+                    <a class="list-group-item" id='complete-orders' [routerLink]="['/login', 'complete-orders']">
+                        Complete
+                        Orders
+                    </a>
+                    <a class="list-group-item" id='wishlist' [routerLink]="['/login', 'wishlist']"> Wishlist </a>
+                    <a class="list-group-item" id='settings' [routerLink]="['/login', 'settings']">Settings </a>
+                    <a class="list-group-item" (click)='signOut()'>Sign
+                        Out</a>
+                </ul>
+            </aside>
+            <main class="col-md-9">
+                <app-overview *ngIf='this.cat==="overview"' [user]='user'></app-overview>
+                <app-open-orders
+                    *ngIf='this.cat==="open-orders" || this.cat==="intermediate-orders" || this.cat==="complete-orders"'
+                    [user]='user'></app-open-orders>
+                <app-wishlist *ngIf='this.cat==="wishlist"' [user]='user' [limit]='-1'></app-wishlist>
+                <app-settings *ngIf='this.cat==="settings"' [user]='user'></app-settings>
+                <app-custom-orders *ngIf='this.cat==="custom-orders"' [user]='user'></app-custom-orders>
+
+            </main>
+
+        </div>
+
+    </div> <!-- container .//  -->
+</section>

@@ -1,0 +1,42 @@
+<small *ngIf='lone'>
+    <a routerLink="/">OVVisuals</a> / <a routerLink="/shipping">Shipping</a> /
+    <hr class="mt-0" /> </small>
+<h5 class="mb-4">Expected Delivery Times</h5>
+
+<table class="table table-striped" style="font-size: 0.83em;">
+    <thead class='thead-dark'>
+        <tr>
+            <th scope="col">Method</th>
+            <th scope="col">Price</th>
+            <th scope="col">Estimated Date</th>
+            <th scope="col">Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row">Pickup</td>
+            <td style="color: green;">Free</td>
+            <td id="pickup"></td>
+            <td>2900 Markham Rd, Scarborough, ON M1X 1E6 Unit #B5</td>
+
+        </tr>
+        <tr>
+            <td scope="row">Hand-Delivery</td>
+            <td>+{{ ship[1].price | currency: 'CAD'}}</td>
+            <td id='hand-delivery'>Otto</td>
+            <td>Markham, ON or Scarborough, ON Addresses</td>
+        </tr>
+        <tr>
+            <td scope="row">Standard Delivery</td>
+            <td>+{{ ship[2].price | currency: 'CAD'}}</td>
+            <td id='standard'>Otto</td>
+            <td>Worldwide</td>
+        </tr>
+        <tr>
+            <td scope="row">Express Delivery</td>
+            <td>+{{ ship[3].price | currency: 'CAD'}}</td>
+            <td id='express'>Otto</td>
+            <td>Worldwide</td>
+        </tr>
+    </tbody>
+</table>

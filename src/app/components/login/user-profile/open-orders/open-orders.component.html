@@ -1,0 +1,22 @@
+<a href="/login/open-orders#prod">Jump to pre-made orders</a>
+<h5 id="custom">Custom Orders</h5>
+<span *ngIf='requests'>
+    <span *ngFor="let order of requests">
+        <app-custom-order [order]='order'></app-custom-order>
+    </span>
+</span>
+<div class="p-2" style="margin: auto; text-align: center;" *ngIf='!requests'>
+    <p class="mb-3 text-muted text-uppercase small"><i>There's nothing here yet!</i></p>
+</div>
+
+<a href="/login/open-orders#custom">Jump to custom orders</a>
+<h5 id="prod">Pre-Made Orders</h5>
+<span *ngIf='openOrders'>
+    <span *ngFor="let order of openOrders">
+        <app-order [order]='order'></app-order>
+    </span>
+</span>
+
+<div class="p-2" style="margin: auto; text-align: center;" *ngIf='!openOrders'>
+    <p class="mb-3 text-muted text-uppercase small"><i>There's nothing here yet!</i></p>
+</div>

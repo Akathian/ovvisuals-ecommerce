@@ -1,0 +1,50 @@
+<article class="card mb-3">
+    <div class="card-body">
+
+        <figure class="icontext">
+            <div class="icon">
+                <img *ngIf='user.photoURL' class="rounded-circle img-sm border" [src]="user.photoURL" width="50px">
+            </div>
+            <div class="text">
+                <strong>{{ this.user.displayName || "Guest" }}</strong> <br>
+                {{ this.user.email || "No email for guest" }}<br>
+            </div>
+        </figure>
+        <hr>
+        <article class="card-group">
+            <figure class="overNav card bg" [routerLink]="['/login', 'open-orders']">
+                <div class="p-3">
+                    <h5 class="card-title">{{ this.openCount }}</h5>
+                    <span>Open Order<span *ngIf='openCount > 1 || openCount == 0'>s</span></span>
+                </div>
+            </figure>
+            <figure class="overNav card bg" [routerLink]="['/login', 'intermediate-orders']">
+                <div class=" p-3">
+                    <h5 class="card-title">{{ this.interCount }}</h5>
+                    <span>Intermediate Order<span *ngIf='interCount > 1 || interCount == 0'>s</span></span>
+                </div>
+            </figure>
+            <figure class="overNav card bg" [routerLink]="['/login', 'complete-orders']">
+                <div class="p-3">
+                    <h5 class="card-title">{{ this.completeCount }}</h5>
+                    <span>Complete Order<span *ngIf='completeCount > 1 || completeCount == 0'>s</span></span>
+                </div>
+            </figure>
+            <figure class="overNav card bg" [routerLink]="['/login', 'wishlist']">
+                <div class="p-3">
+                    <h5 class="card-title">{{ this.wishListNum }}</h5>
+                    <span>Wishlist Item<span *ngIf='wishListNum > 1 || wishListNum == 0'>s</span></span>
+                </div>
+            </figure>
+        </article>
+
+
+    </div> <!-- card-body .// -->
+</article> <!-- card.// -->
+
+<article class="card  mb-3">
+    <div class="card-body">
+        <app-wishlist [user]='user' [limit]=2>
+        </app-wishlist>
+    </div> <!-- card-body .// -->
+</article> <!-- card.// -->

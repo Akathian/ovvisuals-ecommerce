@@ -1,0 +1,10 @@
+<span *ngIf='!userLoggedIn'>
+    <small>
+        <a routerLink="/">OVVisuals</a> / <a routerLink="/login">Login</a> /
+        <hr class="mt-0" />
+    </small>
+</span>
+<div id="firebaseui-auth-container"></div>
+<span *ngIf='userLoggedIn'>
+    <app-user-profile [user]='user'></app-user-profile>
+</span>

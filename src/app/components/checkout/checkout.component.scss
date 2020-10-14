@@ -1,0 +1,27 @@
+.your-cart {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.your-cart:before,
+.your-cart:after {
+    content: '';
+    border-top: 1px solid;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+}
+
+.your-cart:after {
+    margin: 0 0 0 20px;
+}
+
+a {
+    color: inherit;
+}
+
+.qtyCh:hover {
+    cursor: pointer;
+}

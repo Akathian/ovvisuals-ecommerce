@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist/ovvisuals-ecommerce",
+    "site": "ovvisuals-dev",
     "ignore": [
       "firebase.json",
       "**/.*",

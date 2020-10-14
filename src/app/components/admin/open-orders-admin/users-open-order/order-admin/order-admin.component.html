@@ -1,0 +1,38 @@
+<span *ngIf="!this.times">{{ this.getOrdersByUid(this.uid) }}</span>
+<h5>{{ this.uid }}'s orders</h5>
+<span>
+    Sort By
+    <form>
+        <div class="form-group">
+            <select class="form-control-sm" id="sortSelect" name='sortSelect' [ngModel]="chosenShip"
+                (ngModelChange)="sortAll($event)">
+                <option value="1">Order Time (most recent first) </option>
+                <option value="2">Order Time (oldest first) </option>
+                <option value="3">Due Date (nearest first) </option>
+                <option value="4">Due Date (furthest first) </option>
+            </select>
+        </div>
+    </form>
+</span>
+<span *ngFor='let order of this.orders'>
+    <app-user-order [order]='order' [uid]='this.uid'></app-user-order>
+</span>
+
+<span>
+    Sort By
+    <form>
+        <div class="form-group">
+            <select class="form-control-sm" id="sortSelect2" name='sortSelect2' [ngModel]="chosenShip"
+                (ngModelChange)="sortAll($event)">
+                <option value="1">Order Time (most recent first) </option>
+                <option value="2">Order Time (oldest first) </option>
+                <option value="3">Due Date (nearest first) </option>
+                <option value="4">Due Date (furthest first) </option>
+            </select>
+        </div>
+    </form>
+</span>
+<span *ngFor='let order of this.customOrders'>
+    <app-custom-user-order [order]='order' [uid]='this.uid'>
+    </app-custom-user-order>
+</span>

@@ -1,0 +1,188 @@
+<div class='card'>
+    <div class='card-body'>
+        <div class="d-flex flex-row justify-content-between">
+            <h5 class="card-title mb-4">{{uid}}'s Order on: {{ orderTime }} </h5>
+            <span class="text-warning" *ngIf="this.cat==='open-orders'">In progress</span>
+            <span class="text-success" *ngIf="this.cat==='intermediate-orders'"> </span>
+            <span class="text-success" *ngIf="this.cat==='complete-orders'">Delivered</span>
+
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-5 col-lg-3 col-xl-3">
+                <span *ngIf='orderData.imgs'>
+                    <label>Attached images</label>
+                    <div class="view  overlay z-depth-1 rounded mb-3 mb-md-0">
+                        <img class="w-100" [src]="currImg" alt="Sample">
+                        <div class="d-flex justify-content-between medium bg-dark text-white">
+                            <div class="attachCtrls p-2" (click)='nextImg(-1)'>
+                                &#60;
+                            </div>
+                            <div class="p-2">
+                                {{ currImgIndex + 1 }} of {{ orderData.imgs.length }}
+                            </div>
+                            <div class="attachCtrls p-2" (click)='nextImg(-1)'>
+                                &#62;
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <span *ngIf='!orderData.imgs'>
+                    <!-- "let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60]" -->
+                    <div class="d-flex flex-row flex-wrap view overlay rounded mb-3 mb-md-0">
+                        <div *ngFor="let i of [1,2,3,4]">
+                            <img *ngFor="let i of [1,2,3,4,5,6]" class="img-fluid mb-1 " [src]="dummyImg"
+                                onerror="this.onerror=null; this.src='../../../../../../assets/icons/color-palette.png'">
+                        </div>
+                    </div>
+                </span>
+            </div>
+
+            <div class="d-flex flex-column col-md-7 col-lg-9 col-xl-9">
+                <div class="d-flex flex-row justify-content-between">
+                    <div>
+                        <p class="h5">Custom {{orderData.service}}</p>
+                        <p class="h6">By {{ dueDate }}</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <p class="mb-1 medium">Base Price: <span
+                                *ngIf="orderData.servicePrice >= 0">{{ orderData.servicePrice | currency: "CAD"}}</span><span
+                                *ngIf="orderData.servicePrice === 'Quote Pending'" class='text-warning'>
+                                {{ orderData.servicePrice }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <p class="mb-1 text-muted text-uppercase small">Print Option: {{ orderData.printOpt }}
+
+                    </p>
+                    <p class="mb-1 text-muted text-uppercase small" *ngIf="orderData.printOpt != 'No Print'">Print
+                        Size: {{ orderData.size }}
+                    </p>
+                    <p class="mb-1 "><u>Provided description: </u></p>
+                    <div>
+                        <p>{{orderData.desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Base Price:</p>
+            </div>
+            <div>
+                <p *ngIf="orderData.servicePrice >= 0">{{ orderData.servicePrice | currency: "CAD"}}</p>
+                <p *ngIf="orderData.servicePrice === 'Quote Pending'" class='text-warning'>
+                    <input class="form-control" placeholder="Base Price" (keyup)="quoteChange($event, 'servicePrice')">
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Additional Complexity Charge:</p>
+            </div>
+            <div>
+                <p *ngIf="orderData.complexity >= 0">{{ orderData.complexity | currency: "CAD"}}</p>
+                <p *ngIf="orderData.complexity === 'Quote Pending'" class='text-warning'>
+                    <input class="form-control" placeholder="Complexity Charge"
+                        (keyup)="quoteChange($event, 'complexity')">
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Printing Price</p>
+            </div>
+            <div>
+                <p *ngIf="orderData.printPrice >= 0">{{ orderData.printPrice | currency: "CAD"}}</p>
+                <p *ngIf="orderData.printPrice === 'Quote Pending'" class='text-warning'>
+                    <input class="form-control" placeholder="Print Price" (keyup)="quoteChange($event, 'printPrice')">
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Framing Price</p>
+            </div>
+            <div>
+                <p *ngIf="orderData.framePrice >= 0">{{ orderData.framePrice | currency: "CAD"}}</p>
+                <p *ngIf="orderData.framePrice === 'Quote Pending'" class='text-warning'>
+                    <input class="form-control" placeholder="Frame Price" (keyup)="quoteChange($event, 'framePrice')">
+                </p>
+                <hr>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class='font-weight-bold'>Total:</p>
+            </div>
+            <div>
+                <p class='font-weight-bold'
+                    *ngIf="orderData.servicePrice >= 0 && orderData.printPrice >= 0 && orderData.framePrice >= 0 && orderData.complexity >= 0">
+                    {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice + orderData.complexity | currency: "CAD" }}
+                </p>
+                <p class='font-weight-bold text-warning'
+                    *ngIf="orderData.servicePrice === 'Quote Pending' || orderData.printPrice === 'Quote Pending' || orderData.framePrice === 'Quote Pending' || orderData.complexity === 'Quote Pending'">
+                    Quote Pending</p>
+            </div>
+        </div>
+        <button class="btn btn-dark float-right mr-1 " (click)="move()">Mark as
+            {{ this.moveTo }}</button>
+    </div>
+</div>
+<hr />
+
+<div mdbModal #areYouSureCustom="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true" id="confirmModalCust">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideAndReset()">
+                    <span (click)="hideAndReset()" aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Are You Sure?</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>You will be marking:</p>
+                <p>
+                    <span *ngIf='this.orderOwner'>{{this.orderOwner}}</span><span
+                        *ngIf='this.uid!="all"'>{{this.uid}}</span>'s order on {{ orderTime }} as {{ this.moveTo }}
+                </p>
+                <hr />
+                <div class="d-flex justify-content-between row mb-4 mx-1">
+                    <div class="">
+                        <h5>Custom {{orderData.service}} {{ orderData.printOpt }} {{orderData.size}}</h5>
+                        <p></p>
+                        <p class="mb-1 text-muted text-uppercase small">Description:
+                            {{orderData.desc}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Base Price:
+                            {{orderData.servicePrice | currency: "CAD"}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Complexity Charge:
+                            {{ orderData.complexity | currency: "CAD"}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Print Price:
+                            {{ orderData.printPrice | currency: "CAD"}}
+                        </p>
+                        <p class="mb-1 text-muted text-uppercase small">Frame Price:
+                            {{ orderData.framePrice | currency: "CAD"}}
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <p class="mb-1 medium">Price:
+                            {{ orderData.servicePrice + orderData.printPrice + orderData.framePrice + orderData.complexity | currency: "CAD" }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-dark" (click)="moveToIntermediate()">Yes</button>
+                <button type="button" class="btn btn-md btn-dark" (click)="hideAndReset()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

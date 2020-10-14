@@ -1,0 +1,158 @@
+<span *ngFor='let product of itemProd[0]'>
+    <span *ngIf='product.sku === this.id' @explainerAnim>
+        <small>
+            <a routerLink="/">OVVisuals</a> / Products / <a [href]="href">{{ this.type }}</a>
+            / {{ this.id }}
+            <hr class="mt-0" />
+        </small>
+        <div class="row justify-content-center mb-4 anim">
+            <div class="col-xl-6 col-lg-6 col-md-5 col-12">
+                <div class="col">
+                    <div class="row mb-3">
+                        <img class="mx-auto" style="max-height: 540px; max-width: 100%;" [src]="product.img.cover"
+                            id="coverPic" />
+                    </div>
+                    <div class="row px-2">
+                        <div *ngFor="let img of imgs" class="col-3 view zoom overlay">
+                            <img width="100%" class="prodImg" [src]="img" (click)="changeCover(img)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-5 col-12 d-flex flex-column justify-content-start p-3 px-md-4 mb-3 anim">
+                <div class="p-2">
+                    <span>
+                        <h2>{{ product.name }}</h2>
+                    </span>
+                </div>
+                <div class="p-2">
+                    <h4>{{ product.price.sm | currency: 'CAD' }}+
+                    </h4>
+                </div>
+                <form>
+                    <div class="pl-2 form-group">
+                        <label class="mb-2 text-muted text-uppercase small" for="sizeSelect">Size:</label>
+                        <select class="form-control" id="sizeSelect" name='sizeSelect' [ngModel]="chosenSize"
+                            (ngModelChange)="sizeSelect($event)">
+                            <option label="-- Select something --"></option>
+                            <option value='sm'>{{product.size.sm}} <p>|
+                                    {{ product.price.sm | currency: 'CAD'}}</p>
+                            </option>
+                            <option value='rg' *ngIf='product.size.rg'>{{product.size.rg}} <p>|
+                                    {{ product.price.rg | currency: 'CAD'}}
+                                </p>
+                            <option value='md' *ngIf='product.size.md'>{{product.size.md}} <p>|
+                                    {{ product.price.md | currency: 'CAD'}}
+                                </p>
+                            <option value='lg' *ngIf='product.size.lg'>{{product.size.lg}} <p>|
+                                    {{ product.price.lg | currency: 'CAD'}}
+                                </p>
+                            <option value='xl' *ngIf='product.size.xl'>{{product.size.xl}} <p>|
+                                    {{ product.price.xl | currency: 'CAD'}}
+                                </p>
+                            </option>
+                        </select>
+                        <p style="color: red; display: none;" class="text-uppercase small" id="no-size-err">*Please
+                            select a size
+                        </p>
+                    </div>
+
+                    <div
+                        class="def-number-input number-input safari_only w-100 d-flex flex-row justify-content-center mb-3">
+                        <i (click)='qtyChange(-1)' class="px-2 fa-minus-circle fa qtyCh align-self-center"></i>
+                        <span id='qtyNum' class="px-2 align-self-center">1</span>
+                        <i (click)='qtyChange(1)' class="px-2 fa-plus-circle fa qtyCh align-self-center"></i>
+                    </div>
+
+                    <div class="pl-2 form-group">
+                        <button type="button" class="btn btn-lg btn-dark btn-block
+                    product-btn" (click)='addToCart()'>Add To Cart</button>
+                    </div>
+                    <div class="pl-2 form-group">
+                        <a id='wishButton' (click)='addToWishList()' type="button"
+                            class="card-link-secondary small text-uppercase">
+                            <i id='wishHeart' class="fa fa-heart-o"></i> Add to wishlist
+                        </a>
+                    </div>
+                </form>
+                <div class="p-2">
+                    <p>{{ product.description }}</p>
+                    <p *ngIf='this.type==="Posters"'>Museum-quality posters made on thick and durable matte paper. Each
+                        poster is giclée-printed on
+                        archival, acid-free paper that yields brilliant prints to brighten up any room.</p>
+                    <ul *ngIf='this.type==="Posters"'>
+                        <li>Paper thickness: 10.3 mil</li>
+                        <li>Paper weight: 5.6 oz/y² (192 g/m²)</li>
+                        <li>Giclée printing quality</li>
+                        <li>Opacity: 94%</li>
+                        <li>ISO brightness: 104%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div mdbModal #loginModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="loginModal.hide()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">Please Sign-in To Add To Cart</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="firebaseui-auth-container"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-lg btn-dark 
+                        product-btn" aria-label="Close" (click)="loginModal.hide()" mdbWavesEffect>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="confirmModal.hide()">
+                            <span (click)="confirmModal.hide()" aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">Item Added To Cart</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th><img [src]='cartItem.img' width='50px' /></th>
+                                <td>{{ cartItem.name }}</td>
+                                <td>{{ cartItem.size }}</td>
+                                <td>{{ cartItem.price | currency: 'CAD' }}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-md btn-dark" routerLink="/checkout"
+                            (click)="confirmModal.hide()">To Checkout</button>
+                        <button type="button" class="btn btn-md btn-info" (click)="confirmModal.hide()"
+                            [routerLink]="['/products', this.type]">To
+                            {{ this.type }}</button>
+                        <button type="button" class="btn btn-md btn-dark" aria-label="Close"
+                            (click)="confirmModal.hide()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+</span>

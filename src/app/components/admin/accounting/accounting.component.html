@@ -1,0 +1,25 @@
+<small>
+    <div class='p-2 mb-3'>
+        <div class='row mb-3'>
+            <div class="col-1"></div>
+            <div class="col-2"></div>
+            <div class="col-4"></div>
+            <div class="col-2"></div>
+            <div class="col-3">Total: {{ total | currency: 'CAD' }} </div>
+        </div>
+        <div class='row font-weight-bold border-bottom'>
+            <div class="col-1 border-right">#</div>
+            <div class="col-2">User</div>
+            <div class="col-4">Order</div>
+            <div class="col-2">Charged</div>
+            <div class="col-3">Date</div>
+        </div>
+        <div class='row border-bottom' *ngFor='let order of this.orders'>
+            <div class="col-1 border-right">{{ order.num }}</div>
+            <div class="col-2">{{ order.name }}</div>
+            <div class="col-4">{{ order.order }}</div>
+            <div class="col-2">{{ order.total | currency: 'CAD' }}</div>
+            <div class="col-3">{{ order.time }}</div>
+        </div>
+    </div>
+</small>

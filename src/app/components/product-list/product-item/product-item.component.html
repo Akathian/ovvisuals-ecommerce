@@ -1,0 +1,16 @@
+<div class="card mb-3 view zoom overlay " id="prodCard">
+    <div class="view zoom overlay z-depth-1" id="prodImg">
+        <img class="img-fluid w-100" [src]="productItem.img.cover" alt="Sample">
+        <div class="mask">
+            <img class="img-fluid w-100" [src]="productItem.img.cover">
+            <div class="mask rgba-grey-light"></div>
+        </div>
+    </div>
+    <div class="card-body">
+        <h4 class="text-center mb-0">{{ productItem.name }}</h4>
+        <p class="card-text text-center font-weight-bold ">
+            <small class="text-muted">{{ productItem.price.sm | currency: 'CAD'}}+</small>
+            <!-- <button type="button" class="btn btn-dark btn-block btn-sm mt-1" '>View</button> -->
+        </p>
+    </div>
+</div>

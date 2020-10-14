@@ -1,0 +1,12 @@
+a {
+    color: inherit
+}
+
+.prodImg:hover {
+    cursor: pointer;
+}
+
+#coverPic,
+.prodImg {
+    transition: 0.5s ease-out;
+}

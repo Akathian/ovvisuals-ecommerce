@@ -1,0 +1,21 @@
+<span *ngIf="!this.uid">
+    <p><a routerLink="/admin/dashboard">Admin</a> / <a [routerLink]="['/admin', this.cat]">{{ this.cat }}</a>
+    </p>
+    <p><a [routerLink]="['/admin', this.cat, 'all']">View All {{ this.cat }}</a></p>
+        <span *ngFor="let order of this.admin[this.cat].orders">
+            <app-users-open-order [order]='order'></app-users-open-order>
+        </span>
+    <span *ngIf="!this.admin[this.cat].orders">
+        <span *ngFor="let order of this.admin[this.cat + '_custom'].orders">
+            <app-users-open-order [order]='order' [type]='custom'></app-users-open-order>
+        </span>
+    </span>
+</span>
+
+
+<span *ngIf="this.uid">
+    <p><a routerLink="/admin/dashboard">Admin</a> / <a [routerLink]="['/admin', this.cat]">{{ this.cat }}</a> /
+        {{ this.uid }}
+    </p>
+    <app-order-admin [cat]="this.cat" [uid]="this.uid"></app-order-admin>
+</span>
