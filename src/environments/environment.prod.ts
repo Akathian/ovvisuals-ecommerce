@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: 'AIzaSyD5QigH20Esd4EhaS4X8tv-FcL0jFMvA1E',
+    apiKey: 'AIzaSyB-pnKrD0TtjRdHFNWERchPLOrZTst7Id0',
     authDomain: 'ovvisuals-ecommerce.firebaseapp.com',
     databaseURL: 'https://ovvisuals-ecommerce.firebaseio.com',
     projectId: 'ovvisuals-ecommerce',
