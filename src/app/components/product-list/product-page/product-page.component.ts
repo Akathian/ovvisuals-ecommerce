@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -33,8 +32,8 @@ export class ProductPageComponent implements AfterViewInit, OnInit {
   href;
   id: number;
   type: string;
-  productList: Product[] = [];
-  product: Product;
+  productList = [];
+  product ;
   itemProd: {}[] = [{}];
   cartItem: {} = {};
   imgs;

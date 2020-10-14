@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "eslint .",
+    "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -43,6 +43,7 @@
     "jszip": "^3.5.0",
     "ngx-bootstrap": "^6.1.0",
     "ngx-lightbox": "^2.0.0",
+    "nodemailer": "^6.4.13",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "puppeteer": "^1.7.0",

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModalDirective } from 'angular-bootstrap-md';
@@ -126,12 +127,20 @@ export class CustomUserOrderComponent implements OnInit {
       updates['Admin/Intermediate-orders-custom/' + this.uid + '/' + this.order[0]] = this.orderData;
       updates['Users/' + this.uid + '/Intermediate-orders-custom/' + this.order[0]] = this.orderData;
       firebase.database().ref().update(updates);
+      const subject = 'OVVisuals Request Update';
+      // eslint-disable-next-line max-len
+      const subHead = `Regarding your recent order with me, I've provided a quote with how much your request will cost. Have a look and reply to this email if you want to change anything!`;
+      this.sendEmail(subject, subHead, this.orderData);
     } else if (this.cat === 'intermediate_orders') {
       updates['Admin/Complete-orders-custom/' + this.uid + '/' + this.order[0]] = this.orderData;
       updates['Users/' + this.uid + '/Complete-orders-custom/' + this.order[0]] = this.orderData;
       firebase.database().ref().update(updates);
+      const subject = 'OVVisuals Request Complete!';
+      // eslint-disable-next-line max-len
+      const subHead = `It was great working with you! Your order is complete and ready for pickup, or currently on its way to you.`;
+      this.sendEmail(subject, subHead, this.orderData);
+
     }
-    this.sendEmail(this.orderData);
   }
 
   hideAndReset() {
@@ -142,25 +151,46 @@ export class CustomUserOrderComponent implements OnInit {
     }
   }
 
-  sendEmail(data) {
-    const subject = 'OVVisuals Request Update';
+  sendEmail(subject, subHead, data) {
+    let imgsHTML = ''
+    for(const img of data.imgs) {
+      imgsHTML += `
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageCardBlock" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+        <tbody class="mcnImageCardBlockOuter">
+          <tr>
+              <td class="mcnImageCardBlockInner" valign="top" style="padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnImageCardBottomContent" width="100%" style="background-color:#404040;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                    <tbody>
+                      <tr>
+                          <td class="mcnImageCardBottomImageContent" align="left" valign="top" style="padding-top:0px;padding-right:0px;padding-bottom:0;padding-left:0px;mso-line-height-rule:exactly;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                            <img alt="" src="${img}" width="564"  class="mcnImage" style="max-width:1200px;border-width:0;height:auto;outline-style:none;text-decoration:none;-ms-interpolation-mode:bicubic;vertical-align:bottom;" >
+                          </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </td>
+          </tr>
+        </tbody>
+      </table>`;
+    }
     const title = `Hello ${data.name}`;
-    // eslint-disable-next-line max-len
-    const subHead = `Regarding your recent order with me, I've provided a quote with how much your request will cost. Have a look and reply to this email if you want to change anything!`;
     const self = this;
-    const body = emailBody(data.imgs, subject, title, subHead, data);
-    Email.send({
-      SecureToken: environment.smtp.secure, // move to envir
-      To: `${data.email}`,
-      From: `${environment.smtp.from}`,
-      Subject: subject,
-      Body: body,
-    }).then(
-      message => {
-        if (message === 'OK') {
-          self.router.navigate(['/admin/' + self.cat], { relativeTo: this.route });
+    const body = emailBody(imgsHTML, subject, title, subHead, data);
+    const sendEmail = firebase.functions().httpsCallable('sendEmail')
+    sendEmail().then((res) => {
+      Email.send({
+        SecureToken: res.data, // move to envir
+        To: `${data.email}`,
+        From: 'oviya@ovvisuals.com',
+        Subject: subject,
+        Body: body,
+      }).then(
+        message => {
+          if (message === 'OK') {
+            self.router.navigate(['/admin/' + self.cat], { relativeTo: this.route });
+          }
         }
-      }
-    );
+      );
+    })
   }
 }

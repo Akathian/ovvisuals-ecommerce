@@ -8,6 +8,7 @@ import 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { environment } from '../../../environments/environment';
+import { ImageTools } from '../../../assets/js/imgTools';
 
 import * as $ from 'jquery';
 import { FormBuilder } from '@angular/forms';
@@ -37,6 +38,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
     @ViewChild('errorModal', { static: false }) errorModal: ModalDirective;
     @ViewChild('loadingModal', { static: false }) loadingModal: ModalDirective;
     attachments = [];
+    smallAttach = [];
+
     imgsHTML = '';
     uploadedNum = 0;
     numToUpload = 0;
@@ -167,39 +170,47 @@ export class CustomComponent implements OnInit, AfterViewInit {
     sendEmail(data) {
         const self = this;
 
-        firebase.auth().onAuthStateChanged(function (user) {
+        firebase.auth().onAuthStateChanged(async function (user) {
             if (user) {
+                console.log(self.attachments.length)
+                console.log(self.numToUpload)
+                console.log(self.imgur.uploadedImgs)
+                console.log(self.imgur.uploadedImgs.length)
                 if ((self.attachments.length === self.numToUpload) && (self.numToUpload === self.imgur.uploadedImgs.length)) {
                     self.loadingModal.show();
                     const subject = 'OVVisuals Request Received';
                     const title = `Thank You, ${data.name}`;
                     const subHead = `I've received your request, and I will get back to you soon! Feel free to reply to this email if you want to add anything. Here's a summary of what I got from your request:`;
-
+                    
                     const body = emailBody(self.imgur.imgsHTML, subject, title, subHead, data);
-                    Email.send({
-                        SecureToken: environment.smtp.secure, // move to envir
-                        To: `${data.email}`,
-                        From: `${environment.smtp.from}`,
-                        Subject: subject,
-                        Body: body,
-                        Attachments: self.attachments
-                    }).then(
-                        message => {
-                            if (message === 'OK') {
-                                self.imgsHTML = '';
-                                self.uploadedNum = 0;
-                                self.numToUpload = 0;
-                                self.attachments = [];
-                                self.ig(data);
-                                self.addCustomToDB(user, data);
+                    const sendEmail = firebase.functions().httpsCallable('sendEmail')
+                    sendEmail().then((res) => {
+                        Email.send({
+                            SecureToken: res.data, 
+                            To: `${data.email}`,
+                            From: 'oviya@ovvisuals.com',
+                            Subject: subject,
+                            Body: body,
+                            Attachments: self.attachments
+                        }).then(
+                            message => {
+                                if (message === 'OK') {
+                                    self.imgsHTML = '';
+                                    self.uploadedNum = 0;
+                                    self.numToUpload = 0;
+                                    self.attachments = [];
+                                    self.ig(data);
+                                    self.addCustomToDB(user, data);
+                                    self.loadingModal.hide();
+                                    self.router.navigate(['/login/open-orders'], { relativeTo: self.route });
+                                } else {
+                                    self.errorModal.show();
+                                }
                                 self.loadingModal.hide();
-                                self.router.navigate(['/login/open-orders'], { relativeTo: self.route });
-                            } else {
-                                self.errorModal.show();
                             }
-                            self.loadingModal.hide();
-                        }
-                    );
+                        );
+                    })
+
                 } else {
                     alert('Try again in a few seconds as the files upload. If this still does not work, refresh the page')
                 }
@@ -210,24 +221,39 @@ export class CustomComponent implements OnInit, AfterViewInit {
     }
 
     async handleFileInput(event) {
-        document.getElementById('sendEmailBtn').classList.add('disabled');
+        // document.getElementById('sendEmailBtn').classList.add('disabled');
         let events = [];
         events = Object.values(event);
-        if (events) {
-            if (events.length > 1) {
-                $('#inputGroupFile01').next('.custom-file-label').html(`${events.length} files`);
-            } else {
-                $('#inputGroupFile01').next('.custom-file-label').html(`${events[0].name}`);
+        console.log(events)
+        let totalSize = 0;
+        let typesCorrect = true;
+        for(const file of events) {
+            totalSize += file.size
+            if(file.type.indexOf('image') !== 0){
+                typesCorrect = false
             }
         }
-        await this.imgur.auth(Object.values(event));
-        this.numToUpload = events.length;
-        this.recurseEvents(this, events);
+        if(typesCorrect && totalSize < (5 * 1024 * 1024)) {
+            if (events) {
+                if (events.length > 1) {
+                    $('#inputGroupFile01').next('.custom-file-label').html(`${events.length} files`);
+                } else {
+                    $('#inputGroupFile01').next('.custom-file-label').html(`${events[0].name}`);
+                }
+            }
+            this.numToUpload = events.length;
+            this.recurseEvents(this, Object.values(event));
+            this.createSmallAttach(this, Object.values(event));
+            console.log(this.smallAttach)
+
+
+        } else {
+            alert('Please only upload images that total to less than 5mb')
+        }
     }
 
     recurseEvents(self, events) {
         if (events.length === 0) {
-            document.getElementById('sendEmailBtn').classList.remove('disabled');
             return;
         }
         const image = events[0];
@@ -245,6 +271,38 @@ export class CustomComponent implements OnInit, AfterViewInit {
             self.recurseEvents(self, events);
             return;
         };
+    }
+
+    createSmallAttach(self, events){
+        if(events.length===0) {
+            return
+        }
+        const image = events[0];
+        let resizeFile: File;
+        ImageTools.resize(image, {
+            width: 320, // maximum width
+            height: 1000 // maximum height
+          }, async function(blob) {
+            // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
+            const b: any = blob;
+            b.lastModifiedDate = new Date();
+            resizeFile = new File([blob], image.name, { type: 'image/jpeg', lastModified: Date.now() });
+            const reader = new FileReader();
+            reader.readAsBinaryString(resizeFile);
+            reader.onload = async function () {
+                const dataUri = 'data:' + image.type + ';base64,' + btoa(reader.result as string);
+                const fileData = {
+                    name: image.name,
+                    data: dataUri
+                };
+                self.smallAttach.push(fileData);
+                events.shift();
+                self.createSmallAttach(self, events);
+                await self.imgur.auth(self.smallAttach);
+                document.getElementById('sendEmailBtn').classList.remove('disabled');
+                return
+            };
+          })
     }
 
     getDesiredService(event) {
@@ -295,7 +353,9 @@ export class CustomComponent implements OnInit, AfterViewInit {
         } else {
             this.descErr = false;
         }
-        event.ig = this.igHandle;
+        if(this.igHandle) {
+            event.ig = this.igHandle
+        }
         event.printOpt = this.printOption;
         event.imgs = this.imgur.uploadedImgs;
         if (!this.nameErr && !this.emailErr && !this.dateErr && !this.descErr && !this.serviceErr && !this.sizeErr) {
@@ -324,6 +384,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
             }
             event.complexity = 'Quote Pending';
             const self = this;
+            console.log(event)
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     const updates = {};
@@ -397,11 +458,11 @@ export class CustomComponent implements OnInit, AfterViewInit {
         if (event.ig != '') {
             const helloWorld = firebase.functions().httpsCallable('helloWorld');
             const data = {
-                user: event.ig,
-                sender: environment.ig.user,
+                recipient: event.ig,
+                // sender: environment.ig.user,
                 code: '245783',
                 // code: "",
-                pw: environment.ig.pass,
+                // pw: environment.ig.pass,
                 msg,
                 valid_code: true
             };
