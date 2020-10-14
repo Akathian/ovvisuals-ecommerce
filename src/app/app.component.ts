@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
       var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-      document.getElementById("days").innerHTML = days + "d "
-      document.getElementById("hours").innerHTML = hours + "h "
-      document.getElementById("mins").innerHTML = minutes + "m "
-      document.getElementById("secs").innerHTML = seconds + "s"
+      document.getElementById("days").innerHTML = days + "D "
+      document.getElementById("hours").innerHTML = hours + "H "
+      document.getElementById("mins").innerHTML = minutes + "M "
+      document.getElementById("secs").innerHTML = seconds + "S"
     }, 1000)
   }
 }
