@@ -1,39 +1,5 @@
 {
   "Admin": {
-    "Accounting": {
-      "qpZwxdOxt8YMVjso84oIxL9VxtD2": {
-        "1602297675679": {
-          "name": "Akathian Santhakumar",
-          "order": "Lamp  No Print",
-          "total": 25
-        }
-      }
-    },
-    "Open-orders-custom": {
-      "qpZwxdOxt8YMVjso84oIxL9VxtD2": {
-        "1602297675679": {
-          "complexity": "Quote Pending",
-          "date": {
-            "day": 16,
-            "month": 10,
-            "year": 2020
-          },
-          "desc": " n",
-          "email": "akathian05@gmail.com",
-          "framePrice": 0,
-          "ig": "",
-          "name": "Akathian Santhakumar",
-          "otherService": "",
-          "otherSize": "",
-          "phone": "6478827285",
-          "printOpt": "No Print",
-          "printPrice": 0,
-          "service": "Lamp",
-          "servicePrice": 25,
-          "size": ""
-        }
-      }
-    },
     "qpZwxdOxt8YMVjso84oIxL9VxtD2": "Akathian Santhakumar"
   },
   "Gallery": {
@@ -41,8 +7,8 @@
       {
         "caption": "Poster of Kobe ovvisuals.com/products/posters/1",
         "sku": 1,
-        "src": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "thumb": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
+        "src": "https://i.imgur.com/8qtqS5V.jpg",
+        "thumb": "https://i.imgur.com/8qtqS5V.jpg",
         "type": "Posters"
       },
       {
@@ -55,36 +21,36 @@
       {
         "caption": "Poster of Iron Man ovvisuals.com/products/posters/3",
         "sku": 3,
-        "src": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "thumb": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
+        "src": "https://i.imgur.com/pvA2Wzz.jpg",
+        "thumb": "https://i.imgur.com/pvA2Wzz.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Pop Smoke ovvisuals.com/products/posters/4",
         "sku": 4,
-        "src": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "thumb": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
+        "src": "https://i.imgur.com/azntW9c.jpg",
+        "thumb": "https://i.imgur.com/azntW9c.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Majin Buu ovvisuals.com/products/posters/5",
         "sku": 5,
-        "src": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "thumb": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
+        "src": "https://i.imgur.com/9Kwkmqm.jpg",
+        "thumb": "https://i.imgur.com/9Kwkmqm.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of a Tiger ovvisuals.com/products/posters/6",
         "sku": 6,
-        "src": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "thumb": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
+        "src": "https://i.imgur.com/iLrpDCg.jpg",
+        "thumb": "https://i.imgur.com/iLrpDCg.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Joker ovvisuals.com/products/posters/7",
         "sku": 7,
-        "src": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "thumb": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
+        "src": "https://i.imgur.com/zLPFOmD.jpg",
+        "thumb": "https://i.imgur.com/zLPFOmD.jpg",
         "type": "Posters"
       },
       {
@@ -416,14 +382,59 @@
         "caption": "Portrait for a client",
         "src": "https://i.postimg.cc/J0NskVcW/Untitled-Artwork2.jpg",
         "thumb": "https://i.postimg.cc/J0NskVcW/Untitled-Artwork2.jpg"
+      },
+      {
+        "caption": "Portrait for a client",
+        "src": "https://i.postimg.cc/W1mBtdV9/Sabeana.jpg",
+        "thumb": "https://i.postimg.cc/W1mBtdV9/Sabeana.jpg"
+      },
+      {
+        "caption": "A birthday present",
+        "src": "https://i.postimg.cc/1tHr7FQn/Birthday-Portrait.jpg",
+        "thumb": "https://i.postimg.cc/1tHr7FQn/Birthday-Portrait.jpg"
+      },
+      {
+        "caption": "A birthday present",
+        "src": "https://i.postimg.cc/DwJ5fmqH/Untitled-Artwork.jpg",
+        "thumb": "https://i.postimg.cc/DwJ5fmqH/Untitled-Artwork.jpg"
+      },
+      {
+        "caption": "A birthday present",
+        "src": "https://i.postimg.cc/nV31vq2N/Untitled-Artwork-10.jpg",
+        "thumb": "https://i.postimg.cc/nV31vq2N/Untitled-Artwork-10.jpg"
+      },
+      {
+        "caption": "Album cover for @_pravzm",
+        "src": "https://i.postimg.cc/1X7csZ4y/Untitled-Artwork-12.jpg",
+        "thumb": "https://i.postimg.cc/1X7csZ4y/Untitled-Artwork-12.jpg"
+      },
+      {
+        "caption": "Portrait for a client",
+        "src": "https://i.postimg.cc/GmWK4rK2/Untitled-Artwork-2.jpg",
+        "thumb": "https://i.postimg.cc/GmWK4rK2/Untitled-Artwork-2.jpg"
+      },
+      {
+        "caption": "Logo for client",
+        "src": "https://i.postimg.cc/pLFYb4vt/Untitled-Artwork-2-1.jpg",
+        "thumb": "https://i.postimg.cc/pLFYb4vt/Untitled-Artwork-2-1.jpg"
+      },
+      {
+        "caption": "Portrait for a client",
+        "src": "https://i.postimg.cc/kXZFH9kc/Untitled-Artwork-8.jpg",
+        "thumb": "https://i.postimg.cc/kXZFH9kc/Untitled-Artwork-8.jpg"
+      },
+      {
+        "caption": "Vector portrait for a client",
+        "src": "https://i.postimg.cc/cJG7sh1t/Untitled-Artworkk.jpg",
+        "thumb": "https://i.postimg.cc/cJG7sh1t/Untitled-Artworkk.jpg"
       }
     ],
     "for-sale": [
       {
         "caption": "Poster of Kobe ovvisuals.com/products/posters/1",
         "sku": 1,
-        "src": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "thumb": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
+        "src": "https://i.imgur.com/8qtqS5V.jpg",
+        "thumb": "https://i.imgur.com/8qtqS5V.jpg",
         "type": "Posters"
       },
       {
@@ -436,36 +447,36 @@
       {
         "caption": "Poster of Iron Man ovvisuals.com/products/posters/3",
         "sku": 3,
-        "src": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "thumb": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
+        "src": "https://i.imgur.com/pvA2Wzz.jpg",
+        "thumb": "https://i.imgur.com/pvA2Wzz.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Pop Smoke ovvisuals.com/products/posters/4",
         "sku": 4,
-        "src": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "thumb": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
+        "src": "https://i.imgur.com/azntW9c.jpg",
+        "thumb": "https://i.imgur.com/azntW9c.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Majin Buu ovvisuals.com/products/posters/5",
         "sku": 5,
-        "src": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "thumb": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
+        "src": "https://i.imgur.com/9Kwkmqm.jpg",
+        "thumb": "https://i.imgur.com/9Kwkmqm.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of a Tiger ovvisuals.com/products/posters/6",
         "sku": 6,
-        "src": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "thumb": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
+        "src": "https://i.imgur.com/iLrpDCg.jpg",
+        "thumb": "https://i.imgur.com/iLrpDCg.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Joker ovvisuals.com/products/posters/7",
         "sku": 7,
-        "src": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "thumb": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
+        "src": "https://i.imgur.com/zLPFOmD.jpg",
+        "thumb": "https://i.imgur.com/zLPFOmD.jpg",
         "type": "Posters"
       }
     ],
@@ -501,6 +512,13 @@
         "thumb": "https://i.postimg.cc/fyn3yTdK/121040421-369572150846697-8179395787248856167-n.jpg"
       }
     ],
+    "logos": [
+      {
+        "caption": "Logo for client",
+        "src": "https://i.postimg.cc/pLFYb4vt/Untitled-Artwork-2-1.jpg",
+        "thumb": "https://i.postimg.cc/pLFYb4vt/Untitled-Artwork-2-1.jpg"
+      }
+    ],
     "others": [
       {
         "caption": "Custom dbz guitar pick guard for @athis.guitar This was inspired by a Pinterest post",
@@ -521,6 +539,11 @@
         "caption": "My bestfriend's cat passed away and decided to draw a portrait printed on glass as something for her to remember him by. ❤",
         "src": "https://i.postimg.cc/8ztr4G8p/120654486-116324810236696-6726285082736399483-n.jpg",
         "thumb": "https://i.postimg.cc/8ztr4G8p/120654486-116324810236696-6726285082736399483-n.jpg"
+      },
+      {
+        "caption": "Album cover for @_pravzm",
+        "src": "https://i.postimg.cc/1X7csZ4y/Untitled-Artwork-12.jpg",
+        "thumb": "https://i.postimg.cc/1X7csZ4y/Untitled-Artwork-12.jpg"
       }
     ],
     "paintings": [
@@ -692,14 +715,49 @@
         "caption": "Portrait for a client",
         "src": "https://i.postimg.cc/J0NskVcW/Untitled-Artwork2.jpg",
         "thumb": "https://i.postimg.cc/J0NskVcW/Untitled-Artwork2.jpg"
+      },
+      {
+        "caption": "Portrait for a client",
+        "src": "https://i.postimg.cc/W1mBtdV9/Sabeana.jpg",
+        "thumb": "https://i.postimg.cc/W1mBtdV9/Sabeana.jpg"
+      },
+      {
+        "caption": "A birthday present",
+        "src": "https://i.postimg.cc/1tHr7FQn/Birthday-Portrait.jpg",
+        "thumb": "https://i.postimg.cc/1tHr7FQn/Birthday-Portrait.jpg"
+      },
+      {
+        "caption": "A birthday present",
+        "src": "https://i.postimg.cc/DwJ5fmqH/Untitled-Artwork.jpg",
+        "thumb": "https://i.postimg.cc/DwJ5fmqH/Untitled-Artwork.jpg"
+      },
+      {
+        "caption": "A birthday present",
+        "src": "https://i.postimg.cc/nV31vq2N/Untitled-Artwork-10.jpg",
+        "thumb": "https://i.postimg.cc/nV31vq2N/Untitled-Artwork-10.jpg"
+      },
+      {
+        "caption": "Portrait for a client",
+        "src": "https://i.postimg.cc/GmWK4rK2/Untitled-Artwork-2.jpg",
+        "thumb": "https://i.postimg.cc/GmWK4rK2/Untitled-Artwork-2.jpg"
+      },
+      {
+        "caption": "Portrait for a client",
+        "src": "https://i.postimg.cc/kXZFH9kc/Untitled-Artwork-8.jpg",
+        "thumb": "https://i.postimg.cc/kXZFH9kc/Untitled-Artwork-8.jpg"
+      },
+      {
+        "caption": "Vector portrait for a client",
+        "src": "https://i.postimg.cc/cJG7sh1t/Untitled-Artworkk.jpg",
+        "thumb": "https://i.postimg.cc/cJG7sh1t/Untitled-Artworkk.jpg"
       }
     ],
     "posters": [
       {
         "caption": "Poster of Kobe ovvisuals.com/products/posters/1",
         "sku": 1,
-        "src": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-        "thumb": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
+        "src": "https://i.imgur.com/8qtqS5V.jpg",
+        "thumb": "https://i.imgur.com/8qtqS5V.jpg",
         "type": "Posters"
       },
       {
@@ -712,36 +770,36 @@
       {
         "caption": "Poster of Iron Man ovvisuals.com/products/posters/3",
         "sku": 3,
-        "src": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-        "thumb": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
+        "src": "https://i.imgur.com/pvA2Wzz.jpg",
+        "thumb": "https://i.imgur.com/pvA2Wzz.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Pop Smoke ovvisuals.com/products/posters/4",
         "sku": 4,
-        "src": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-        "thumb": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
+        "src": "https://i.imgur.com/azntW9c.jpg",
+        "thumb": "https://i.imgur.com/azntW9c.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Majin Buu ovvisuals.com/products/posters/5",
         "sku": 5,
-        "src": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-        "thumb": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
+        "src": "https://i.imgur.com/9Kwkmqm.jpg",
+        "thumb": "https://i.imgur.com/9Kwkmqm.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of a Tiger ovvisuals.com/products/posters/",
         "sku": 6,
-        "src": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-        "thumb": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
+        "src": "https://i.imgur.com/iLrpDCg.jpg",
+        "thumb": "https://i.imgur.com/iLrpDCg.jpg",
         "type": "Posters"
       },
       {
         "caption": "Poster of Joker ovvisuals.com/products/posters/",
         "sku": 7,
-        "src": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-        "thumb": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
+        "src": "https://i.imgur.com/zLPFOmD.jpg",
+        "thumb": "https://i.imgur.com/zLPFOmD.jpg",
         "type": "Posters"
       },
       {
@@ -933,8 +991,8 @@
       {
         "description": "Poster of Kobe",
         "img": {
-          "1": "https://i.postimg.cc/W16VFPLB/kobe24.jpg",
-          "cover": "https://i.postimg.cc/qvfHbngn/Kobe-mockup.png"
+          "1": "https://i.imgur.com/8qtqS5V.jpg",
+          "cover": "https://i.imgur.com/1vSDs2s.png"
         },
         "name": "Kobe Poster",
         "price": {
@@ -951,7 +1009,7 @@
         "description": "Poster of Tamil Eelam",
         "img": {
           "1": "https://i.postimg.cc/DZYnvdkm/Eelam-No-Writing.jpg",
-          "cover": "https://i.postimg.cc/1Xf1Trp0/Eelam-mockup.png"
+          "cover": "https://i.imgur.com/K5i7Afo.png"
         },
         "name": "Eelam Poster",
         "price": {
@@ -967,8 +1025,8 @@
       {
         "desription": "Poster of Iron Man",
         "img": {
-          "1": "https://i.postimg.cc/tRwp85NM/Iron-Man-24x36.jpg",
-          "cover": "https://i.postimg.cc/bvpc8hxw/Iron-Man-mockup.png"
+          "1": "https://i.imgur.com/pvA2Wzz.jpg",
+          "cover": "https://i.imgur.com/MWDLKBT.png"
         },
         "name": "Iron Man Poster",
         "price": {
@@ -984,8 +1042,8 @@
       {
         "description": "Poster of Pop Smoke",
         "img": {
-          "1": "https://i.postimg.cc/x8wQHfd2/meet-the-woo.jpg",
-          "cover": "https://i.postimg.cc/xj42mB26/Woo-mockup.png"
+          "1": "https://i.imgur.com/azntW9c.jpg",
+          "cover": "https://i.imgur.com/ksL0qKX.png"
         },
         "name": "Pop Smoke Poster",
         "price": {
@@ -1001,8 +1059,8 @@
       {
         "description": "Poster of Majin Buu",
         "img": {
-          "1": "https://i.postimg.cc/J4XM8kT4/Majin.jpg",
-          "cover": "https://i.postimg.cc/CxjTW1f2/Majin-mockup.png"
+          "1": "https://i.imgur.com/9Kwkmqm.jpg",
+          "cover": "https://i.imgur.com/zuzgNMq.png"
         },
         "name": "Majin Buu Poster",
         "price": {
@@ -1024,8 +1082,8 @@
       {
         "description": "Poster of a Tiger",
         "img": {
-          "1": "https://i.postimg.cc/2SfmSSJd/Tiger.jpg",
-          "cover": "https://i.postimg.cc/5NQMSp9b/Tiger-mockup.png"
+          "1": "https://i.imgur.com/iLrpDCg.jpg",
+          "cover": "https://i.imgur.com/b7pEhku.png"
         },
         "name": "Tiger Poster",
         "price": {
@@ -1047,8 +1105,8 @@
       {
         "description": "Poster of Joker",
         "img": {
-          "1": "https://i.postimg.cc/2ybmVbrG/Joker.jpg",
-          "cover": "https://i.postimg.cc/3NVQH0Bs/Joker-mockup.png"
+          "1": "https://i.imgur.com/zLPFOmD.jpg",
+          "cover": "https://i.imgur.com/ThZpnUo.png"
         },
         "name": "Joker Poster",
         "price": {
@@ -1089,33 +1147,6 @@
     "eKe4z5AcywVdAnTUULKkM42CxWs1": {
       "ig": "anujah.r",
       "phone": "6475740049"
-    },
-    "qpZwxdOxt8YMVjso84oIxL9VxtD2": {
-      "Open-orders-custom": {
-        "1602297675679": {
-          "complexity": "Quote Pending",
-          "date": {
-            "day": 16,
-            "month": 10,
-            "year": 2020
-          },
-          "desc": " n",
-          "email": "akathian05@gmail.com",
-          "framePrice": 0,
-          "ig": "",
-          "name": "Akathian Santhakumar",
-          "otherService": "",
-          "otherSize": "",
-          "phone": "6478827285",
-          "printOpt": "No Print",
-          "printPrice": 0,
-          "service": "Lamp",
-          "servicePrice": 25,
-          "size": ""
-        }
-      },
-      "ig": "",
-      "phone": "6478827285"
     }
   }
 }

@@ -450,7 +450,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
             totalPrint = 'Quote Pending';
         }
         let msg =
-            `Hey! Just got your order from my website! Please reply to this message so that I can get to your order in a timely manner! Here's a quick summary: You requested a ${event.service} which starts at CAD$${event.servicePrice} and can go up depending on the complexity of the piece (it usually doesn't). You asked for ${event.printOpt} which will be CAD$${totalPrint} for ${event.size}. You've provided me with the following description: "${event.desc}". Finally, you've provided me with following images: `;
+            `Hey! Just got your order from my website! Please reply to this message so that I can get to your order in a timely manner! To confirm, you requested a ${event.service} which starts at CAD$${event.servicePrice} with ${event.printOpt} ${event.size} for CAD$${totalPrint}. This is the provided description: "${event.desc}" and the attached image(s): `;
         for (const img of this.imgur.uploadedImgs) {
             msg += `${img} `;
         }
