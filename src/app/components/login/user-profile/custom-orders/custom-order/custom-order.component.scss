@@ -1,5 +1,10 @@
+.attachCtrls {
+    cursor: pointer;
+    transition: background-color 0.5s;
+
+}
+
 .attachCtrls:hover {
-    transition: 1s;
     background-color: black;
     cursor: pointer;
 }
