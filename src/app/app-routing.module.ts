@@ -21,6 +21,7 @@ import { NewsletterComponent } from './components/newsletter/newsletter.componen
 import { BugReportComponent } from './components/bug-report/bug-report.component';
 
 firebase.initializeApp(environment.firebaseConfig);
+firebase.analytics();
 
 const routes: Routes = [
   { path: '', component: AboutComponent },

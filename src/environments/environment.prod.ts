@@ -8,5 +8,6 @@ export const environment = {
     storageBucket: 'ovvisuals-ecommerce.appspot.com',
     messagingSenderId: '391233476360',
     appId: '1:391233476360:web:74071ce2d003e88f82febd',
+    measurementId: 'G-CDEH2918Y5',
   },
 };
