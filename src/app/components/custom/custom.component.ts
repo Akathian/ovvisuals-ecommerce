@@ -172,10 +172,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
 
         firebase.auth().onAuthStateChanged(async function (user) {
             if (user) {
-                console.log(self.attachments.length)
-                console.log(self.numToUpload)
-                console.log(self.imgur.uploadedImgs)
-                console.log(self.imgur.uploadedImgs.length)
                 if ((self.attachments.length === self.numToUpload) && (self.numToUpload === self.imgur.uploadedImgs.length)) {
                     self.loadingModal.show();
                     const subject = 'OVVisuals Request Received';
@@ -224,7 +220,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
         // document.getElementById('sendEmailBtn').classList.add('disabled');
         let events = [];
         events = Object.values(event);
-        console.log(events)
         let totalSize = 0;
         let typesCorrect = true;
         for(const file of events) {
@@ -244,7 +239,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
             this.numToUpload = events.length;
             this.recurseEvents(this, Object.values(event));
             this.createSmallAttach(this, Object.values(event));
-            console.log(this.smallAttach)
 
 
         } else {
@@ -384,7 +378,6 @@ export class CustomComponent implements OnInit, AfterViewInit {
             }
             event.complexity = 'Quote Pending';
             const self = this;
-            console.log(event)
             firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     const updates = {};

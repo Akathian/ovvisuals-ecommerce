@@ -1,4 +1,4 @@
-<div id='site'>
+<div *ngIf="!counting" id='site'>
   <app-nav></app-nav>
 
   <div class="container">
@@ -11,4 +11,9 @@
   <div class='mt-auto'>
     <app-footer></app-footer>
   </div>
+</div>
+<div *ngIf='counting' id="top">
+  <body id="count">
+    <app-countdown></app-countdown>
+  </body>
 </div>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
-
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +16,19 @@ import { trigger, style, animate, transition } from '@angular/animations';
     ]),
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ovvisuals-ecommerce';
+  counting = true;
+
+  constructor() {
+    const self = this;
+    firebase
+      .database()
+      .ref('switch')
+      .on('value', function (switchData) {
+        console.log();
+        self.counting = !switchData.val();
+      });
+  }
+  ngOnInit() {}
 }
