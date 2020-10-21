@@ -18,7 +18,7 @@ import 'firebase/auth';
 })
 export class AppComponent implements OnInit {
   title = 'ovvisuals-ecommerce';
-  counting = true;
+  counting = false;
 
   constructor() {
     const self = this;
