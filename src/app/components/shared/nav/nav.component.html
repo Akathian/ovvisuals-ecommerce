@@ -77,91 +77,159 @@
     </div>
 </div> -->
 
-<body id='window'>
-    <div class="text-center text-white ">
-        <div class="">
-            <div class=" d-flex align-items-center justify-content-between px-3 flex-nowrap nav-r-1 pt-3">
-                <div class="d-flex align-items-center p-3 flex-nowrap ">
-                    <div class="p-2 fb">
-                        <a href="https://www.facebook.com/OVVisuals-108014684346868">
-                            <i class="fa fa-facebook-official" style="font-size:1.5em"></i>
-                        </a>
-                    </div>
-                    <div class="p-2 ig">
-                        <a href="https://www.instagram.com/ov.visuals/">
-                            <i class="fa fa-instagram" style="font-size:1.5em"></i>
-                        </a>
-                    </div>
-                </div>
-                <a routerLink="/"><img class="p-2 logo" src="../../../../assets/white-logo.png" /></a>
-                <div class="d-flex align-items-center p-3 flex-nowrap ">
-                    <a routerLink="/login">
-                        <div class="p-2 login" id="login">
-                            <svg id='logoutImg' width="1.5em" height="1.5em" viewBox="0 0 16 16"
-                                class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-                                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                <path fill-rule="evenodd"
-                                    d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
-                            </svg>
-                        </div>
-                    </a>
-                    <a routerLink="/checkout">
-                        <div class="p-2 cart">
-                            <i class="fa" style="font-size:24px">&#xf07a;</i>
-                            <span class='badge badge-warning' id='lblCartCount'></span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div
-                class="d-flex flex-column flex-md-row align-items-center justify-content-center p-3 border-bottom shadow-sm">
-                <nav class="my-2 my-md-0 mr-md-3 d-flex">
-                    <!-- <a class="p-2" [routerLink]="['/products', 'posters']">Posters</a> -->
-                    <a class="p-2" href="/products/posters">Posters</a>
-
-                    <a class="p-2" routerLink="/custom">Custom Request</a>
-                    <div class="btn-group text-white">
-                        <button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Gallery
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/gallery', 'all']">All
-                                Art</a>
-                            <div class=" divider dropdown-divider"></div>
-                            <a class="dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'for-sale']">For
-                                Sale</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'lamps']">Lamps</a>
-                                <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'logos']">Logos</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'others']">Others</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'paintings']">Paintings</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'pencil-and-inkings']">Pencil
-                                &
-                                Inkings</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'portraits']">Portraits</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'posters']">Posters</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'sketches']">Sketches</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'social-awareness']">Social
-                                Awareness</a>
-                            <a class=" dropdown-item waves-light" mdbWavesEffect
-                                [routerLink]="['/gallery', 'watercolors']">Watercolors</a>
-                        </div>
-                    </div>
-                    <a class="p-2" *ngIf='isAdmin' routerLink="/admin">Admin</a>
-                </nav>
-            </div>
+<body id="window">
+  <div class="text-center text-white">
+    <div class="">
+      <div
+        class="d-flex align-items-center justify-content-between px-3 flex-nowrap nav-r-1 pt-3"
+      >
+        <div class="d-flex align-items-center p-3 flex-nowrap">
+          <div class="p-2 fb">
+            <a href="https://www.facebook.com/OVVisuals-108014684346868">
+              <i class="fa fa-facebook-official" style="font-size: 1.5em"></i>
+            </a>
+          </div>
+          <div class="p-2 ig">
+            <a href="https://www.instagram.com/ov.visuals/">
+              <i class="fa fa-instagram" style="font-size: 1.5em"></i>
+            </a>
+          </div>
         </div>
+        <a routerLink="/"
+          ><img class="p-2 logo" src="../../../../assets/white-logo.png"
+        /></a>
+        <div class="d-flex align-items-center p-3 flex-nowrap">
+          <a routerLink="/login">
+            <div class="p-2 login" id="login">
+              <svg
+                id="logoutImg"
+                width="1.5em"
+                height="1.5em"
+                viewBox="0 0 16 16"
+                class="bi bi-person-circle"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
+                />
+              </svg>
+            </div>
+          </a>
+          <a routerLink="/checkout">
+            <div class="p-2 cart">
+              <i class="fa" style="font-size: 24px">&#xf07a;</i>
+              <span class="badge badge-warning" id="lblCartCount"></span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div
+        class="d-flex flex-column flex-md-row align-items-center justify-content-center p-3 border-bottom shadow-sm"
+      >
+        <nav class="my-2 my-md-0 mr-md-3 d-flex">
+          <!-- <a class="p-2" [routerLink]="['/products', 'posters']">Posters</a> -->
+          <a class="p-2" href="/products/posters">Posters</a>
+          <a class="p-2" href="/products/lamps">Lamps</a>
+
+          <a class="p-2" routerLink="/custom">Custom Request</a>
+          <div class="btn-group text-white">
+            <button
+              type="button"
+              class="btn dropdown-toggle text-white"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Gallery
+            </button>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'all']"
+                >All Art</a
+              >
+              <div class="divider dropdown-divider"></div>
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'for-sale']"
+                >For Sale</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'lamps']"
+                >Lamps</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'logos']"
+                >Logos</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'others']"
+                >Others</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'paintings']"
+                >Paintings</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'pencil-and-inkings']"
+                >Pencil & Inkings</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'portraits']"
+                >Portraits</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'posters']"
+                >Posters</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'sketches']"
+                >Sketches</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'social-awareness']"
+                >Social Awareness</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                [routerLink]="['/gallery', 'watercolors']"
+                >Watercolors</a
+              >
+            </div>
+          </div>
+          <a class="p-2" *ngIf="isAdmin" routerLink="/admin">Admin</a>
+        </nav>
+      </div>
     </div>
+  </div>
 </body>
