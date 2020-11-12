@@ -1,6 +1,40 @@
 {
   "Admin" : {
+    "Accounting" : {
+      "qAAixwlTOHRUZ0fTo82QLgdTiyn1" : {
+        "1605037635256" : {
+          "name" : "Christa",
+          "order" : "Tamil Eelam Lamp 3x6in, ",
+          "total" : 32
+        }
+      }
+    },
     "DacETnyjIfhYWI4jEWZeiTCqUn12" : "OVVisuals",
+    "Intermediate-orders" : {
+      "qAAixwlTOHRUZ0fTo82QLgdTiyn1" : {
+        "5TS60086K4911281S-1605037635256" : {
+          "8" : {
+            "sm" : {
+              "img" : "https://i.imgur.com/fOsr3l7.jpg",
+              "name" : "Tamil Eelam Lamp",
+              "price" : 32,
+              "qty" : 1,
+              "size" : "3x6in",
+              "sizeCode" : "sm",
+              "sku" : 8,
+              "type" : "lamps"
+            }
+          },
+          "itemQty" : 1,
+          "shipMethod" : "1",
+          "total" : 32,
+          "totalWithSH" : 32,
+          "trackingInfo" : {
+            "carrier" : ""
+          }
+        }
+      }
+    },
     "qpZwxdOxt8YMVjso84oIxL9VxtD2" : "Akathian Santhakumar",
     "sh8dcNvrJJPLr5CDMPvIgFN57tF2" : "Oviya Bose"
   },
@@ -359,6 +393,46 @@
       "caption" : "Anniversary present for a client's parents!",
       "src" : "https://i.imgur.com/3OBeudR.jpg",
       "thumb" : "https://i.imgur.com/3OBeudR.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/fOsr3l7.jpg",
+      "thumb" : "https://i.imgur.com/fOsr3l7.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/fOsr3l7.jpg",
+      "thumb" : "https://i.imgur.com/fOsr3l7.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/6E5ti21.jpg",
+      "thumb" : "https://i.imgur.com/6E5ti21.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/6E5ti21.jpg",
+      "thumb" : "https://i.imgur.com/6E5ti21.jpg"
+    }, {
+      "caption" : "Logo for a client",
+      "src" : "https://i.imgur.com/rb36sJM.jpg",
+      "thumb" : "https://i.imgur.com/rb36sJM.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/6l4e4oH.jpg",
+      "thumb" : "https://i.imgur.com/6l4e4oH.jpg"
+    }, {
+      "caption" : "Portrait printed and framed for a client (ft. me!)",
+      "src" : "https://i.imgur.com/N9YczsQ.jpg",
+      "thumb" : "https://i.imgur.com/N9YczsQ.jpg"
+    }, {
+      "caption" : "Portrait for a client",
+      "src" : "https://i.imgur.com/KOdUbVx.jpg",
+      "thumb" : "https://i.imgur.com/KOdUbVx.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/kIdukoM.jpg",
+      "thumb" : "https://i.imgur.com/kIdukoM.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/4YCPySd.jpg",
+      "thumb" : "https://i.imgur.com/4YCPySd.jpg"
     } ],
     "for-sale" : [ {
       "caption" : "Poster of Kobe ovvisuals.com/products/posters/1",
@@ -402,6 +476,14 @@
       "src" : "https://i.imgur.com/zLPFOmD.jpg",
       "thumb" : "https://i.imgur.com/zLPFOmD.jpg",
       "type" : "Posters"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/fOsr3l7.jpg",
+      "thumb" : "https://i.imgur.com/fOsr3l7.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/6E5ti21.jpg",
+      "thumb" : "https://i.imgur.com/6E5ti21.jpg"
     } ],
     "lamps" : [ {
       "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
@@ -427,11 +509,39 @@
       "caption" : "Peep the bunny🥺",
       "src" : "https://i.postimg.cc/fyn3yTdK/121040421-369572150846697-8179395787248856167-n.jpg",
       "thumb" : "https://i.postimg.cc/fyn3yTdK/121040421-369572150846697-8179395787248856167-n.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/fOsr3l7.jpg",
+      "thumb" : "https://i.imgur.com/fOsr3l7.jpg"
+    }, {
+      "caption" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "src" : "https://i.imgur.com/6E5ti21.jpg",
+      "thumb" : "https://i.imgur.com/6E5ti21.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/6l4e4oH.jpg",
+      "thumb" : "https://i.imgur.com/6l4e4oH.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/DrbdXK0.jpg",
+      "thumb" : "https://i.imgur.com/DrbdXK0.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/kIdukoM.jpg",
+      "thumb" : "https://i.imgur.com/kIdukoM.jpg"
+    }, {
+      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
+      "src" : "https://i.imgur.com/4YCPySd.jpg",
+      "thumb" : "https://i.imgur.com/4YCPySd.jpg"
     } ],
     "logos" : [ {
       "caption" : "Logo for client",
       "src" : "https://i.postimg.cc/pLFYb4vt/Untitled-Artwork-2-1.jpg",
       "thumb" : "https://i.postimg.cc/pLFYb4vt/Untitled-Artwork-2-1.jpg"
+    }, {
+      "caption" : "Logo for a client",
+      "src" : "https://i.imgur.com/rb36sJM.jpg",
+      "thumb" : "https://i.imgur.com/rb36sJM.jpg"
     } ],
     "others" : [ {
       "caption" : "Custom dbz guitar pick guard for @athis.guitar This was inspired by a Pinterest post",
@@ -628,6 +738,18 @@
       "caption" : "Anniversary present for a client's parents!",
       "src" : "https://i.imgur.com/3OBeudR.jpg",
       "thumb" : "https://i.imgur.com/3OBeudR.jpg"
+    }, {
+      "caption" : "Portrait printed and framed for a client (ft. me!)",
+      "src" : "https://i.imgur.com/N9YczsQ.jpg",
+      "thumb" : "https://i.imgur.com/N9YczsQ.jpg"
+    }, {
+      "caption" : "Family Portrait for a client",
+      "src" : "https://i.imgur.com/qi4N0b8.jpg",
+      "thumb" : "https://i.imgur.com/qi4N0b8.jpg"
+    }, {
+      "caption" : "Portrait for a client",
+      "src" : "https://i.imgur.com/KOdUbVx.jpg",
+      "thumb" : "https://i.imgur.com/KOdUbVx.jpg"
     } ],
     "posters" : [ {
       "caption" : "Poster of Kobe ovvisuals.com/products/posters/1",
@@ -829,6 +951,35 @@
         }
       }
     },
+    "Lamps" : [ {
+      "description" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "img" : {
+        "1" : "https://i.imgur.com/fOsr3l7.jpg",
+        "cover" : "https://i.imgur.com/fOsr3l7.jpg"
+      },
+      "name" : "Tamil Eelam Lamp",
+      "price" : {
+        "sm" : 32
+      },
+      "size" : {
+        "sm" : "3x6in"
+      },
+      "sku" : 8
+    }, {
+      "description" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+      "img" : {
+        "1" : "https://i.imgur.com/6E5ti21.jpg",
+        "cover" : "https://i.imgur.com/6E5ti21.jpg"
+      },
+      "name" : "Tamil Eelam Lamp",
+      "price" : {
+        "sm" : 32
+      },
+      "size" : {
+        "sm" : "3x6in"
+      },
+      "sku" : 9
+    } ],
     "Posters" : [ {
       "description" : "Poster of Kobe",
       "img" : {
@@ -954,23 +1105,22 @@
       },
       "sku" : 7
     } ],
-    "Lamps" : [
+    "Glass-paints": [
       {
-        "description" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
+        "description" : "**Only 1 avaiblable** Glass painting of Shoto Todoroki from the anime/manga series My Hero Academia",
         "img" : {
-          "1" : "https://instagram.fybz2-2.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/123279319_1333227507015763_5310291461254789998_n.jpg?_nc_ht=instagram.fybz2-2.fna.fbcdn.net&_nc_cat=107&_nc_ohc=VGM4nbpJyI8AX-oi07F&tp=19&oh=ac1d9b85d8e2bc8eeb0d61f2483eb7d5&oe=5FC8C030",
-          "cover" : "https://instagram.fybz2-2.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/123279319_1333227507015763_5310291461254789998_n.jpg?_nc_ht=instagram.fybz2-2.fna.fbcdn.net&_nc_cat=107&_nc_ohc=VGM4nbpJyI8AX-oi07F&tp=19&oh=ac1d9b85d8e2bc8eeb0d61f2483eb7d5&oe=5FC8C030"
+          "1" : "https://i.imgur.com/DF3oPba.jpg",
+          "cover" : "https://i.imgur.com/DF3oPba.jpg"
         },
-        "name" : "Tamil Eelam Lamp",
+        "name" : "Shoto Todoroki",
         "price" : {
-          "sm" : 32
+          "sm" : 35
         },
         "size" : {
-          "sm" : "24x36in"
+          "sm" : "4x6in"
         },
-        "sku" : 8
+        "sku" : 10
       }
-     
     ]
   },
   "Shipping" : [ {
@@ -980,11 +1130,11 @@
   }, {
     "add" : true,
     "name" : "Hand-Delivery",
-    "price" : 2
+    "price" : 5
   }, {
     "add" : true,
     "name" : "Standard",
-    "price" : 5
+    "price" : 7
   }, {
     "add" : true,
     "name" : "Express",
@@ -995,52 +1145,109 @@
       "ig" : "anujah.r",
       "phone" : "6475740049"
     },
+    "qAAixwlTOHRUZ0fTo82QLgdTiyn1" : {
+      "Cart" : {
+        "totalWithSH" : 0
+      },
+      "Intermediate-orders" : {
+        "5TS60086K4911281S-1605037635256" : {
+          "8" : {
+            "sm" : {
+              "img" : "https://i.imgur.com/fOsr3l7.jpg",
+              "name" : "Tamil Eelam Lamp",
+              "price" : 32,
+              "qty" : 1,
+              "size" : "3x6in",
+              "sizeCode" : "sm",
+              "sku" : 8,
+              "type" : "lamps"
+            }
+          },
+          "itemQty" : 1,
+          "shipMethod" : "1",
+          "total" : 32,
+          "totalWithSH" : 32,
+          "trackingInfo" : {
+            "carrier" : ""
+          }
+        }
+      }
+    },
     "qpZwxdOxt8YMVjso84oIxL9VxtD2" : {
       "Cart" : {
-        "3" : {
+        "8" : {
           "sm" : {
-            "img" : "https://i.imgur.com/MWDLKBT.png",
-            "name" : "Iron Man Poster",
-            "price" : 20,
+            "img" : "https://i.imgur.com/fOsr3l7.jpg",
+            "name" : "Tamil Eelam Lamp",
+            "price" : 32,
             "qty" : 1,
-            "size" : "12x18in",
+            "size" : "3x6in",
             "sizeCode" : "sm",
-            "sku" : 3,
-            "type" : "posters"
+            "sku" : 8,
+            "type" : "lamps"
           }
         },
         "itemQty" : 1,
-        "shipMethod" : 0,
-        "total" : 20,
-        "totalWithSH" : 0
+        "shipMethod" : "2",
+        "total" : 32,
+        "totalWithSH" : 37
       },
-      "Open-orders-custom" : {
-        "1603245632901" : {
-          "complexity" : "Quote Pending",
-          "date" : {
-            "day" : 31,
-            "month" : 10,
-            "year" : 2020
+      "Intermediate-orders" : {
+        "5TS60086K4911281S-1605037635256" : {
+          "8" : {
+            "sm" : {
+              "img" : "https://i.imgur.com/fOsr3l7.jpg",
+              "name" : "Tamil Eelam Lamp",
+              "price" : 32,
+              "qty" : 1,
+              "size" : "3x6in",
+              "sizeCode" : "sm",
+              "sku" : 8,
+              "type" : "lamps"
+            }
           },
-          "desc" : "aasdsadasdasd",
-          "email" : "akathian05@gmail.com",
-          "framePrice" : 0,
-          "ig" : "akathian.s",
-          "imgs" : [ "https://i.imgur.com/lmbqCyc.jpg", "https://i.imgur.com/a0sRNkl.jpg" ],
-          "name" : "Akathian Santhakumar",
-          "otherService" : "",
-          "otherSize" : "",
-          "phone" : "",
-          "printOpt" : "No Print",
-          "printPrice" : 0,
-          "service" : "Portrait",
-          "servicePrice" : 45,
-          "size" : "",
-          "uid" : "qpZwxdOxt8YMVjso84oIxL9VxtD2"
+          "itemQty" : 1,
+          "shipMethod" : "1",
+          "total" : 32,
+          "totalWithSH" : 32,
+          "trackingInfo" : {
+            "carrier" : ""
+          }
         }
+      },
+      "Wishlist" : {
+        "itemQty" : 0
       },
       "ig" : "akathian.s",
       "phone" : ""
+    },
+    "rsyn95iCkYeVsvVOJKM3b0hZdo02" : {
+      "Cart" : {
+        "8" : {
+          "sm" : {
+            "img" : "https://i.imgur.com/fOsr3l7.jpg",
+            "name" : "Tamil Eelam Lamp",
+            "price" : 32,
+            "qty" : 1,
+            "size" : "3x6in",
+            "sizeCode" : "sm",
+            "sku" : 8,
+            "type" : "lamps"
+          }
+        },
+        "itemQty" : 1,
+        "shipMethod" : "2",
+        "total" : 0,
+        "totalWithSH" : 2
+      }
+    },
+    "vCBD7jktPBVPotkgDZLgBBmiNBJ3" : {
+      "Cart" : {
+        "itemQty" : 0,
+        "shipMethod" : "2",
+        "total" : 0,
+        "totalWithSH" : 2
+      }
     }
   },
   "switch" : true

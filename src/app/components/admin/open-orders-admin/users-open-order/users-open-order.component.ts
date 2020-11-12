@@ -26,7 +26,7 @@ export class UsersOpenOrderComponent implements OnInit {
   parseOrder() {
     this.user = this.order[0];
     this.numOrders = Object.keys(this.order[1]).length;
-    if(!this.type){
+    if (!this.type) {
       this.getNumCustomOrders()
     }
   }
@@ -34,8 +34,10 @@ export class UsersOpenOrderComponent implements OnInit {
   getNumCustomOrders() {
     const up = (this.cat.charAt(0).toUpperCase() + this.cat.slice(1)).replace('_', '-');
     const self = this;
-    firebase.database().ref('Admin/' + up + '-custom/' + this.user).on('value', function(userCust) {
-      self.numOrders += Object.keys(userCust.val()).length;
+    firebase.database().ref('Admin/' + up + '-custom/' + this.user).on('value', function (userCust) {
+      if (userCust.val()) {
+        self.numOrders += Object.keys(userCust.val()).length;
+      }
     });
   }
 }

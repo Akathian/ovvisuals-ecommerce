@@ -137,9 +137,39 @@
       >
         <nav class="my-2 my-md-0 mr-md-3 d-flex">
           <!-- <a class="p-2" [routerLink]="['/products', 'posters']">Posters</a> -->
-          <a class="p-2" href="/products/posters">Posters</a>
-          <a class="p-2" href="/products/lamps">Lamps</a>
-
+          <!-- <a class="p-2" href="/products/posters">Posters</a>
+          <a class="p-2" href="/products/lamps">Lamps</a> -->
+          <div class="btn-group text-white">
+            <button
+              type="button"
+              class="btn dropdown-toggle text-white"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Products
+            </button>
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                href="/products/posters"
+                >Posters</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                href="/products/lamps"
+                >Lamps</a
+              >
+              <a
+                class="dropdown-item waves-light"
+                mdbWavesEffect
+                href="/products/glass-paints"
+                >Glass Paintings</a
+              >
+            </div>
+          </div>
           <a class="p-2" routerLink="/custom">Custom Request</a>
           <div class="btn-group text-white">
             <button

@@ -31,14 +31,16 @@ export class OpenOrdersComponent implements OnInit {
   getOpenOrders() {
     const self = this;
     self.openOrders = null;
-    firebase.database().ref('Users/' + self.user.uid + '/' + self.cat).on('value', function(orderData) {
+    firebase.database().ref('Users/' + self.user.uid + '/' + self.cat).on('value', function (orderData) {
       self.openOrders = Object.entries(orderData.val());
       self.openOrders = self.openOrders.reverse();
     });
     self.requests = null;
-    firebase.database().ref('Users/' + self.user.uid + '/' + self.cat + '-custom').on('value', function(customData) {
-      self.requests = Object.entries(customData.val());
-      self.requests = self.requests.reverse();
+    firebase.database().ref('Users/' + self.user.uid + '/' + self.cat + '-custom').on('value', function (customData) {
+      if (customData.val()) {
+        self.requests = Object.entries(customData.val());
+        self.requests = self.requests.reverse();
+      }
     });
   }
 
