@@ -9,8 +9,7 @@
         }
       }
     },
-    "DacETnyjIfhYWI4jEWZeiTCqUn12" : "OVVisuals",
-    "Intermediate-orders" : {
+    "Complete-orders" : {
       "qAAixwlTOHRUZ0fTo82QLgdTiyn1" : {
         "5TS60086K4911281S-1605037635256" : {
           "8" : {
@@ -25,6 +24,7 @@
               "type" : "lamps"
             }
           },
+          "completedAt" : 1605245090721,
           "itemQty" : 1,
           "shipMethod" : "1",
           "total" : 32,
@@ -35,6 +35,7 @@
         }
       }
     },
+    "DacETnyjIfhYWI4jEWZeiTCqUn12" : "OVVisuals",
     "qpZwxdOxt8YMVjso84oIxL9VxtD2" : "Akathian Santhakumar",
     "sh8dcNvrJJPLr5CDMPvIgFN57tF2" : "Oviya Bose"
   },
@@ -425,14 +426,14 @@
       "caption" : "Portrait for a client",
       "src" : "https://i.imgur.com/KOdUbVx.jpg",
       "thumb" : "https://i.imgur.com/KOdUbVx.jpg"
-    }, {
-      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
-      "src" : "https://i.imgur.com/kIdukoM.jpg",
-      "thumb" : "https://i.imgur.com/kIdukoM.jpg"
-    }, {
+    },  {
       "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
       "src" : "https://i.imgur.com/4YCPySd.jpg",
       "thumb" : "https://i.imgur.com/4YCPySd.jpg"
+    }, {
+      "caption" : "Painting of Shoto Todoroki",
+      "src" : "https://i.imgur.com/DF3oPba.jpg",
+      "thumb" : "https://i.imgur.com/DF3oPba.jpg"
     } ],
     "for-sale" : [ {
       "caption" : "Poster of Kobe ovvisuals.com/products/posters/1",
@@ -527,10 +528,6 @@
       "thumb" : "https://i.imgur.com/DrbdXK0.jpg"
     }, {
       "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
-      "src" : "https://i.imgur.com/kIdukoM.jpg",
-      "thumb" : "https://i.imgur.com/kIdukoM.jpg"
-    }, {
-      "caption" : "Get yourself a custom lamp, hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box. Also comes with a USB cable for power",
       "src" : "https://i.imgur.com/4YCPySd.jpg",
       "thumb" : "https://i.imgur.com/4YCPySd.jpg"
     } ],
@@ -584,6 +581,10 @@
       "caption" : "and a touch of gold",
       "src" : "https://i.postimg.cc/8CcfnYDh/120067074-332375961512413-2746276457646381803-n.jpg",
       "thumb" : "https://i.postimg.cc/8CcfnYDh/120067074-332375961512413-2746276457646381803-n.jpg"
+    }, {
+      "caption" : "Painting of Shoto Todoroki",
+      "src" : "https://i.imgur.com/DF3oPba.jpg",
+      "thumb" : "https://i.imgur.com/DF3oPba.jpg"
     } ],
     "pencil-and-inkings" : [ {
       "caption" : "Venom Color Pencil",
@@ -951,6 +952,35 @@
         }
       }
     },
+    "Glass-paints" : [ {
+      "description" : "**Only 1 avaiblable** Glass painting of Shoto Todoroki from the anime/manga series My Hero Academia",
+      "img" : {
+        "1" : "https://i.imgur.com/DF3oPba.jpg",
+        "cover" : "https://i.imgur.com/DF3oPba.jpg"
+      },
+      "name" : "Shoto Todoroki",
+      "price" : {
+        "sm" : 35
+      },
+      "size" : {
+        "sm" : "4x6in"
+      },
+      "sku" : 10
+    }, {
+      "description" : "Glass print of Prabhakaran",
+      "img" : {
+        "1" : "https://i.imgur.com/04syC93.jpg",
+        "cover" : "https://i.imgur.com/04syC93.jpg"
+      },
+      "name" : "Prabhakaran",
+      "price" : {
+        "sm" : 35
+      },
+      "size" : {
+        "sm" : "4x6in"
+      },
+      "sku" : 11
+    } ],
     "Lamps" : [ {
       "description" : "Lamp of Tamil Eelam. Hand made by me (no machinery all by hand). Comes with 7 colours and 2 colour flashes. Comes with a remote or you can tap the box to cycle through light options. Also comes with a USB cord for power.",
       "img" : {
@@ -1104,24 +1134,7 @@
         "sm" : "12x18in"
       },
       "sku" : 7
-    } ],
-    "Glass-paints": [
-      {
-        "description" : "**Only 1 avaiblable** Glass painting of Shoto Todoroki from the anime/manga series My Hero Academia",
-        "img" : {
-          "1" : "https://i.imgur.com/DF3oPba.jpg",
-          "cover" : "https://i.imgur.com/DF3oPba.jpg"
-        },
-        "name" : "Shoto Todoroki",
-        "price" : {
-          "sm" : 35
-        },
-        "size" : {
-          "sm" : "4x6in"
-        },
-        "sku" : 10
-      }
-    ]
+    } ]
   },
   "Shipping" : [ {
     "add" : false,
@@ -1149,7 +1162,7 @@
       "Cart" : {
         "totalWithSH" : 0
       },
-      "Intermediate-orders" : {
+      "Complete-orders" : {
         "5TS60086K4911281S-1605037635256" : {
           "8" : {
             "sm" : {
@@ -1163,6 +1176,7 @@
               "type" : "lamps"
             }
           },
+          "completedAt" : 1605245090721,
           "itemQty" : 1,
           "shipMethod" : "1",
           "total" : 32,
@@ -1175,22 +1189,22 @@
     },
     "qpZwxdOxt8YMVjso84oIxL9VxtD2" : {
       "Cart" : {
-        "8" : {
+        "10" : {
           "sm" : {
-            "img" : "https://i.imgur.com/fOsr3l7.jpg",
-            "name" : "Tamil Eelam Lamp",
-            "price" : 32,
+            "img" : "https://i.imgur.com/DF3oPba.jpg",
+            "name" : "Shoto Todoroki",
+            "price" : 35,
             "qty" : 1,
-            "size" : "3x6in",
+            "size" : "4x6in",
             "sizeCode" : "sm",
-            "sku" : 8,
-            "type" : "lamps"
+            "sku" : 10,
+            "type" : "glass-paints"
           }
         },
         "itemQty" : 1,
-        "shipMethod" : "2",
-        "total" : 32,
-        "totalWithSH" : 37
+        "shipMethod" : "1",
+        "total" : 35,
+        "totalWithSH" : 35
       },
       "Intermediate-orders" : {
         "5TS60086K4911281S-1605037635256" : {

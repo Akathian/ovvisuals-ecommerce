@@ -53,6 +53,7 @@ import { NewsletterComponent } from './components/newsletter/newsletter.componen
 import { GallUploadComponent } from './components/admin/gall-upload/gall-upload.component';
 import { BugReportComponent } from './components/bug-report/bug-report.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { CountdownComponent } from './components/countdown/countdown.component';
     GallUploadComponent,
     BugReportComponent,
     CountdownComponent,
+    ShopComponent,
   ],
   imports: [
     BrowserModule,

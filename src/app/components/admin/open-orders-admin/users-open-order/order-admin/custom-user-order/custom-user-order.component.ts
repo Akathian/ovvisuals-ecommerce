@@ -180,7 +180,7 @@ export class CustomUserOrderComponent implements OnInit {
     sendEmail().then((res) => {
       Email.send({
         SecureToken: res.data, // move to envir
-        To: `${data.email}`,
+        To: `${data.email}, `,
         From: 'oviya@ovvisuals.com',
         Subject: subject,
         Body: body,

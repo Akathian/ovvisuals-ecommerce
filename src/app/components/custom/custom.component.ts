@@ -177,14 +177,15 @@ export class CustomComponent implements OnInit, AfterViewInit {
                     const subject = 'OVVisuals Request Received';
                     const title = `Thank You, ${data.name}`;
                     const subHead = `I've received your request, and I will get back to you soon! Feel free to reply to this email if you want to add anything. Here's a summary of what I got from your request:`;
-                    
+
                     const body = emailBody(self.imgur.imgsHTML, subject, title, subHead, data);
                     const sendEmail = firebase.functions().httpsCallable('sendEmail')
                     sendEmail().then((res) => {
                         Email.send({
-                            SecureToken: res.data, 
+                            SecureToken: res.data,
                             To: `${data.email}`,
                             From: 'oviya@ovvisuals.com',
+                            Bcc: 'ovvisuals@gmail.com',
                             Subject: subject,
                             Body: body,
                             Attachments: self.attachments
@@ -222,13 +223,13 @@ export class CustomComponent implements OnInit, AfterViewInit {
         events = Object.values(event);
         let totalSize = 0;
         let typesCorrect = true;
-        for(const file of events) {
+        for (const file of events) {
             totalSize += file.size
-            if(file.type.indexOf('image') !== 0){
+            if (file.type.indexOf('image') !== 0) {
                 typesCorrect = false
             }
         }
-        if(typesCorrect && totalSize < (5 * 1024 * 1024)) {
+        if (typesCorrect && totalSize < (5 * 1024 * 1024)) {
             if (events) {
                 if (events.length > 1) {
                     $('#inputGroupFile01').next('.custom-file-label').html(`${events.length} files`);
@@ -267,8 +268,8 @@ export class CustomComponent implements OnInit, AfterViewInit {
         };
     }
 
-    createSmallAttach(self, events){
-        if(events.length===0) {
+    createSmallAttach(self, events) {
+        if (events.length === 0) {
             return
         }
         const image = events[0];
@@ -276,7 +277,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
         ImageTools.resize(image, {
             width: 320, // maximum width
             height: 1000 // maximum height
-          }, async function(blob) {
+        }, async function (blob) {
             // didItResize will be true if it managed to resize it, otherwise false (and will return the original file as 'blob')
             const b: any = blob;
             b.lastModifiedDate = new Date();
@@ -296,7 +297,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
                 document.getElementById('sendEmailBtn').classList.remove('disabled');
                 return
             };
-          })
+        })
     }
 
     getDesiredService(event) {
@@ -347,7 +348,7 @@ export class CustomComponent implements OnInit, AfterViewInit {
         } else {
             this.descErr = false;
         }
-        if(this.igHandle) {
+        if (this.igHandle) {
             event.ig = this.igHandle
         }
         event.printOpt = this.printOption;
