@@ -39,6 +39,9 @@ export class GalleryComponent implements OnInit {
   content;
   cap;
   subscription: Subscription;
+  options = {
+    horizontalOrder: true,
+  }
   // eslint-disable-next-line prettier/prettier 
   constructor(private lightbox: Lightbox, private lightboxEvent: LightboxEvent, private lighboxConfig: LightboxConfig, private _Activatedroute: ActivatedRoute, private titleService: Title) {
     this.allImages = this.allImages ? this.allImages : [];
@@ -66,51 +69,11 @@ export class GalleryComponent implements OnInit {
     if (!content) {
       content = 'all';
     }
-    firebase.database().ref('/Gallery/' + content).on('value', function(galData) {
-      self.allImages = self.shuffle(galData.val());
-      self.chunks = self.chunk(self.allImages, 3);
-      self.images1 = self.chunks[0];
-      self.images2 = self.chunks[1];
-      self.images3 = self.chunks[2];
+    firebase.database().ref('/Gallery/' + content).on('value', function (galData) {
+      self.allImages = Object.values(galData.val()).reverse();
     });
   }
 
-  shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
-
-  chunk(items, n) {
-    const result = [[], [], []]; // we create it, then we'll fill it
-    const wordsPerLine = Math.ceil(items.length / 3);
-
-    for (let line = 0; line < n; line++) {
-      for (let i = 0; i < wordsPerLine; i++) {
-        const value = items[i + line * wordsPerLine];
-        if (!value) { continue; } // avoid adding "undefined" values
-        result[line].push(value);
-      }
-    }
-    if ((result[1].length - result[2].length) > 1) {
-      result[2].push(result[1].pop());
-    }
-
-    return result;
-  }
 
   open(index: number, offs): void {
     const offsIndx = index + offs;

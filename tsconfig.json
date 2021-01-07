@@ -20,6 +20,10 @@
       "dom"
     ]
   },
+  "include":[
+    "node_modules/angular2-masonry",
+    "src/**/*"
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true

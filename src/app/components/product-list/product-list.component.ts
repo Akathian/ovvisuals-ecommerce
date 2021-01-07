@@ -32,6 +32,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductService, private _Activatedroute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
+
     this._Activatedroute.paramMap.subscribe(params => {
       this.type = params.get('type');
       this.cap = this.type.charAt(0).toUpperCase() + this.type.slice(1);
@@ -41,6 +42,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.titleService.setTitle(this.cap + ' | OVVisuals');
+
   }
 
   renderProducts(type: string) {

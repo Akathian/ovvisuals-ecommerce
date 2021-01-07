@@ -24,7 +24,11 @@ img:hover {
 }
 
 a {
-    color: inherit
+    color: inherit;
+
+    :hover {
+        cursor: pointer;
+    }
 }
 
 img {

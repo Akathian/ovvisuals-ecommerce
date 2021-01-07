@@ -54,6 +54,7 @@ import { GallUploadComponent } from './components/admin/gall-upload/gall-upload.
 import { BugReportComponent } from './components/bug-report/bug-report.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { ShopComponent } from './components/shop/shop.component';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 @NgModule({
   declarations: [
@@ -109,8 +110,11 @@ import { ShopComponent } from './components/shop/shop.component';
     DemoMaterialModule,
     BrowserAnimationsModule,
     NgbModule,
+    NgxMasonryModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  //
+}

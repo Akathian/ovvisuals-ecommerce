@@ -1,41 +1,22 @@
 <small>
-  <a routerLink="/">OVVisuals</a> / <a [routerLink]="['/gallery', 'all']">Gallery</a> / <a
-    [routerLink]="['/gallery', this.content]">{{ this.cap }}
-  </a>
+  <a routerLink="/">OVVisuals</a> /
+  <a [routerLink]="['/gallery', 'all']">Gallery</a> /
+  <a [routerLink]="['/gallery', this.content]">{{ this.cap }} </a>
   <hr class="mt-0" />
 </small>
-<!-- <div class="page-body">
-  <div class="card-columns">
-    <div class="card" style="border-style: none;">
-      <img class="card-img-top mb-3" *ngFor='let image of images1; let i=index' (click)="open(i, 0)" width="100%" [src]="image.src"
-        alt="Card image cap">
-    </div>
-    <div class="card" style="border-style: none;">
-      <img class="card-img-top mb-3" *ngFor='let image of images2; let j=index' (click)="open(j, images1.length)"
-        [src]="image.src" alt="Card image cap">
-    </div>
-    <div class="card" style="border-style: none;">
-      <img class="card-img-top mb-3" *ngFor='let image of images3; let k=index'
-        (click)="open(k, images1.length + images2.length)" [src]="image.src" alt="Card image cap">
-    </div>
+<ngx-masonry [options]="options" [ordered]="true">
+  <div
+    ngxMasonryItem
+    class="brick col-4 my-2"
+    *ngFor="let image of allImages; let i = index"
+    [prepend]="image.prepend"
+  >
+    <img
+      (click)="open(i, 0)"
+      width="100%"
+      [src]="image.src"
+      [alt]="image.caption"
+      style="border-radius: 1%"
+    />
   </div>
-</div> -->
-<div class='row'>
-  <div class='col mx-1' [@listAnimation]="images1.length">
-    <div class='row mb-2' *ngFor='let image of images1; let i=index'>
-      <img (click)="open(i, 0)" width="100%" [src]="image.src" alt="Card image cap" style="border-radius: 1%;">
-    </div>
-  </div>
-  <div class='col mx-1' [@listAnimation]="images2.length">
-    <div class='row mb-2' *ngFor='let image of images2; let j=index'>
-      <img (click)="open(j, images1.length)" width="100%" [src]="image.src" alt="Card image cap"
-        style="border-radius: 1%;">
-    </div>
-  </div>
-  <div class='col mx-1' [@listAnimation]="images3.length">
-    <div class='row mb-2' *ngFor='let image of images3; let k=index'>
-      <img (click)="open(k, images1.length + images2.length)" width="100%" [src]="image.src" alt="Card image cap"
-        style="border-radius: 1%;">
-    </div>
-  </div>
-</div>
+</ngx-masonry>
