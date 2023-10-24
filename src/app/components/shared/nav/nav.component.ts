@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
 /* eslint-disable no-undef */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
+import { NgxMasonryComponent } from 'ngx-masonry';
+import { GalleryComponent } from '../../gallery/gallery.component';
 
 @Component({
   selector: 'app-nav',
@@ -11,10 +13,35 @@ import 'firebase/auth';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
+  @ViewChild(NgxMasonryComponent, { static: true }) masonry: NgxMasonryComponent;
+  @ViewChild(GalleryComponent, {static: true}) galleryComponent: GalleryComponent
+ 
   isAdmin = false;
+  debugMode = false;
+  transitoned = false;
+
+  @HostListener('wheel', ['$event'])
+  onMouseWheel(event) {
+    const self = this
+
+    if (!this.transitoned) {
+      const logoElem = document.getElementsByClassName("logodiv")[0]
+      logoElem.classList.remove("logodiv");
+      logoElem.classList.add("transformedNav")
+      const gallery = document.getElementById("gallery")
+      const oviya = document.getElementById("oviya")
+      oviya.style.transform = 'translateY(-3.25em)'
+
+      setTimeout(() => {
+        gallery.classList.remove("d-none");
+      }, 2000)
+      this.transitoned = true;
+    }
+    console.log(this.galleryComponent)
+  }
 
   ngOnInit() {
-    this.onLogin();
+    // this.onLogin();
   }
 
   verifyAdmin() {
@@ -76,4 +103,21 @@ export class NavComponent implements OnInit {
       self.isAdmin = self.verifyAdmin();
     });
   }
+
+  toggleDebug() {
+    const cssRule = '* { outline: 1px red solid; }';
+
+    // Check if a style sheet already exists, or create a new one
+    const styleSheet = document.styleSheets[0] as CSSStyleSheet;
+
+    // Add the CSS rule to the style sheet
+    if (styleSheet.insertRule && !this.debugMode) {
+      styleSheet.insertRule(cssRule, 0);
+      this.debugMode = true
+    } else if (this.debugMode) {
+      styleSheet.deleteRule(0);
+      this.debugMode = false
+    }
+  }
+
 }

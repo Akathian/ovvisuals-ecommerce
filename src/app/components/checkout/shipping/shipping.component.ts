@@ -20,11 +20,11 @@ export class ShippingComponent implements AfterViewChecked, OnInit {
 
 
   ngOnInit() {
-    this.getShip();
+    // this.getShip();
   }
 
   ngAfterViewChecked() {
-    this.calculateShip();
+    // this.calculateShip();
   }
   calculateShip() {
     const d1 = this.addWorkDays(this.d, 12, 5);

@@ -26,3 +26,23 @@
     text-align: center;
     font-family: 'Poppins';
 }
+
+@font-face {
+    font-family: 'NotoSerifDisplayExtraCon';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/NotoSerifDisplay-ExtraCondensedItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Anton-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/Anton-Regular.ttf') format('truetype');
+}
+
+body {
+    background: radial-gradient(#898684, #f1f1ee);
+    height: 100vh;
+}
+

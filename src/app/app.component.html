@@ -1,19 +1,9 @@
-<div *ngIf="!counting" id="site">
-  <app-nav></app-nav>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
-  <div class="mt-auto">
+<div>
+  <app-nav></app-nav>
+</div> 
+<router-outlet #outlet="outlet"></router-outlet>
+
+  <!-- <div id='foot'>
     <app-footer></app-footer>
-  </div>
-</div>
-<div *ngIf="counting" id="top">
-  <body id="count">
-    <app-countdown></app-countdown>
-  </body>
-</div>
+  </div>  -->

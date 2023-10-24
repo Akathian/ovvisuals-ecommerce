@@ -34,3 +34,24 @@ a {
 img {
     height: 100% !important;
 }
+
+.logodiv {
+    height: 100vh;
+    // background: radial-gradient(#898684, #f1f1ee)
+}
+
+.transformedNav {
+    height: 7vh;
+    transition: all 1.5s ease-out;
+}
+
+#oviya {
+    transition: all 2.25s ease-out;
+}
+
+#caret {
+    height: 50px;
+    width: auto;
+    transition: all 2s ease-out;
+    z-index: -1;
+}
