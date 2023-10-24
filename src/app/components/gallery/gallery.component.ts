@@ -105,9 +105,17 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(document).on('touchmove', function() { //touchmove works for iOS, I don't know if Android supports it
-      this.doOnScroll()
-    });
+    const self = this
+    $(document).ready(function(){
+      const ua = navigator.userAgent;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
+        setTimeout(() => {
+          self.doOnScroll()
+        }, 2000)
+      }
+    })
+
+    
     // const self = this;
 
     // this._Activatedroute.paramMap.subscribe(params => {
