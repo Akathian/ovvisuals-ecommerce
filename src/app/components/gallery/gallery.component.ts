@@ -105,7 +105,11 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    const self = this;
+    $(document).on('touchmove', function() { //touchmove works for iOS, I don't know if Android supports it
+      $(document).trigger('mousewheel');
+      alert("hello")
+    });
+    // const self = this;
 
     // this._Activatedroute.paramMap.subscribe(params => {
     //   this.content = params.get('content');
