@@ -57,8 +57,19 @@ export class GalleryComponent implements OnInit {
     this.lighboxConfig.fadeDuration = 1;
   }
 
+
+
   @HostListener('wheel', ['$event'])
   onMouseWheel(event) {
+    this.doOnScroll()
+  }
+
+  @HostListener('scroll', ['$event'])
+  onMouseScroll(event) {
+    this.doOnScroll()
+  }
+
+  doOnScroll() {
     const self = this
 
     if (!this.transitioned) {
@@ -82,8 +93,7 @@ export class GalleryComponent implements OnInit {
       }, 2000)
       this.transitioned = true;
     }
-
-    // console.log(this.transitioned, Math.ceil($(window).scrollTop() + $(window).height()), $(document).height(), this.transitioning)
+        // console.log(this.transitioned, Math.ceil($(window).scrollTop() + $(window).height()), $(document).height(), this.transitioning)
     // if (this.transitioned && !this.transitioning) {
     //   if(Math.ceil($(window).scrollTop() + $(window).height()) >= $(document).height()) {
     //     self.currIdx = Math.min(self.currIdx + 10, self.numItems)
@@ -93,7 +103,6 @@ export class GalleryComponent implements OnInit {
     //   }
     // }
   }
-
 
   ngOnInit() {
     const self = this;
