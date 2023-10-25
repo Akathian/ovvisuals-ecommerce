@@ -23,7 +23,7 @@
 </div>
 
 <div id="gallery" class="d-none" style="transform: translateY(1%);">
-  <ngx-masonry [options]="options" [ordered]="true" >
+  <ngx-masonry [options]="options" [ordered]="true" (layoutComplete)="doStuff($event)">
     <div
       ngxMasonryItem
       class="brick col-3 my-3"
