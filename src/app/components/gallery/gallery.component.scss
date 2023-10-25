@@ -52,6 +52,6 @@ img {
 #caret {
     height: 50px;
     width: auto;
-    transition: all 2s ease-out;
+    transition: transform 1s, opacity 1.5s linear;
     z-index: -1;
 }

@@ -37,7 +37,6 @@ export class NavComponent implements OnInit {
       }, 2000)
       this.transitoned = true;
     }
-    console.log(this.galleryComponent)
   }
 
   ngOnInit() {

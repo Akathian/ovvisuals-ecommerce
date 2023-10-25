@@ -203,13 +203,11 @@ export class GalleryComponent implements OnInit {
                 "art.jpg",
                 "Untitled-Artwork-2.jpg",
                 "Untitled_Artwork 1.jpg",
-                "61042646-1098269930358525-4516071940625104745-n.jpg",
                 "119882482_417832882520214_524624545281748413_n.jpg",
                 "116369646-352630652394330-5111824718805050159-n.jpg",
                 "KOdUbVx.jpg",
                 "75545969-561320111079830-4919997992790833929-n.jpg",
                 "Untitled_Artwork 5.jpg",
-                "116839141-831621500706542-6144089292548844117-n.jpg",
                 "Untitled_Artwork 4.jpg",
                 "101244790-786316948566879-9081768222806188417-n.jpg",
                 "120203606_950881458736059_7955119525107149300_n.jpg",
@@ -239,11 +237,6 @@ export class GalleryComponent implements OnInit {
     this.doOnScroll()
   }
 
-
-  doStuff() {
-    console.log("hello")
-  }
-
   doOnScroll() {
     const self = this
 
@@ -256,19 +249,19 @@ export class GalleryComponent implements OnInit {
       oviya.style.transform = 'translateY(-3.25em)'
 
       const caret = document.getElementById("caret")
-      caret.style.transform = 'translateY(-400em)'
+      // caret.style.transform = 'translateY(-300em)'
+      caret.style.opacity = '0'
 
       setTimeout(() => {
         gallery.classList.remove("d-none");
         self.currIdx = Math.min(self.currIdx + 10, self.numItems)
-        // self.currImages = self.allImages
         self.masonry.reloadItems();
         self.masonry.layout();
         this.transitioning = false;
       }, 2000)
       this.transitioned = true;
     }
-        // console.log(this.transitioned, Math.ceil($(window).scrollTop() + $(window).height()), $(document).height(), this.transitioning)
+    // console.log(this.transitioned, Math.ceil($(window).scrollTop() + $(window).height()), $(document).height(), this.transitioning)
     // if (this.transitioned && !this.transitioning) {
     //   if(Math.ceil($(window).scrollTop() + $(window).height()) >= $(document).height()) {
     //     self.currIdx = Math.min(self.currIdx + 10, self.numItems)
@@ -320,14 +313,12 @@ export class GalleryComponent implements OnInit {
     const order = ["others", "glass-paints", "posters", "portraits", "social-awareness", "lamps", "paintings", "pencil-and-inkings", 'watercolors']
     for (const category of order) {
       const currList = []
-      console.log(category)
       for (const img of this.galleryStructure["."][category]["files"]) {
         const imgUrl = `${galleryUrl}/${category}/${img}`
         currList.push({"src": imgUrl, "caption": "", "thumb": imgUrl })
       }
       this.currImages = this.currImages.concat(currList)
     }
-    console.log(this.currImages)
 
     // const self = this
     // if (!content) {
