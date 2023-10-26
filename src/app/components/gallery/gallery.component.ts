@@ -46,7 +46,11 @@ export class GalleryComponent implements OnInit {
   subscription: Subscription;
   transitioned = false;
   options = {
-    horizontalOrder: true,
+    transitionDuration: '1.2s',
+		gutter: 10,
+		resize: true,
+		initLayout: true,
+		fitWidth: true
   }
   numItems = 0;
   currIdx = 1;
@@ -138,11 +142,11 @@ export class GalleryComponent implements OnInit {
         },
         "others": {
             "files": [
-                "IMG_1655.jpg",
+              "IMG_1655.jpg",
+                "Weddigng Invite.jpg",
                 "IMG_3280.jpg",
                 "118042227_3341435292580153_3736985001265089089_n.jpg",
                 "IMG_5320.jpg",
-                "Weddigng Invite.jpg"
             ]
         },
         "pencil-and-inkings": {
