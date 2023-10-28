@@ -1,43 +1,20 @@
-<!-- <small>
-  <a routerLink="/">OVVisuals</a> /
-  <a [routerLink]="['/gallery', 'all']">Gallery</a> /
-  <a [routerLink]="['/gallery', this.content]">{{ this.cap }} </a>
-  <hr class="mt-0" />
-</small> -->
-<div class="d-flex flex-column justify-content-center text-center align-middle logodiv">
-  <div class="row" id="bose">
-    <span class="mx-auto" style="color: #47484A;">
-      
-      BOSE
-    </span>
+<div class="main-content">
+  <div id="gallery" class="d-none">
+    <ngx-masonry [options]="options" class="mx-auto">
+      <div
+        ngxMasonryItem
+        class="masonry-item mx-3 my-3"
+        *ngFor="let image of currImages; let i = index"
+        [prepend]="image.prepend"
+      >
+        <img
+          (click)="open(i, 0)"
+          width="100%"
+          [src]="image.src"
+          [alt]="image.caption"
+          style="outline: 6px solid rgba(241,239,231,0.3);"
+        />
+      </div>
+    </ngx-masonry>
   </div>
-  <div class="row" id="oviya">
-    <span class="mx-auto" style="color: #F1EFE7;">
-      <b>oviya</b>
-    </span>
-  </div>
-  <div id="caret" class="row" style="position: absolute; bottom: 0; left: 50%;">
-    <!-- <span class="mx-auto" style="color: #3D3A3A;"> -->
-      <img src="assets/icons/caret-double-down.svg">
-    <!-- </span> -->
-  </div>
-</div>
-
-<div id="gallery" class="d-none">
-  <ngx-masonry [options]="options" class="mx-auto">
-    <div
-      ngxMasonryItem
-      class="masonry-item mx-3 my-3"
-      *ngFor="let image of currImages; let i = index"
-      [prepend]="image.prepend"
-    >
-      <img
-        (click)="open(i, 0)"
-        width="100%"
-        [src]="image.src"
-        [alt]="image.caption"
-        style="outline: 6px solid rgba(241,239,231,0.3);"
-      />
-    </div>
-  </ngx-masonry>
 </div>

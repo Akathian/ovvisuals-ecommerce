@@ -1,64 +1,30 @@
-.logo {
-    width: 150px;
-}
-
-.fb,
-.ig,
-.login,
-.cart {
-    transition: 0.5s;
-}
-
-.fb:hover {
-
-    background-color: rgb(218, 218, 218);
-    // transition: 1s;
-    cursor: pointer;
-}
-
-.ig:hover {
-    background-color: rgb(218, 218, 218);
-    // transition: 1s;
-    cursor: pointer;
-
-}
-
-.login:hover {
-    background-color: rgb(218, 218, 218);
-    // transition: 1s;
-    cursor: pointer;
-
-}
-
-.cart:hover {
-    background-color: rgb(218, 218, 218);
-    // transition: 1s;
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-}
-
-.logo {
-    width: 150px;
-}
-
-.bg-light {
-    background-color: #e0e0e0 !important;
-}
-
 .logodiv {
     height: 100vh;
-    // background: radial-gradient(#898684, #f1f1ee)
 }
 
 .transformedNav {
     height: 7vh;
-    transition: all 2s ease-out;
+    transition: all 1.5s ease-out;
+}
+#bose {
+    font-family: Anton-Regular, "Arial Black", sans-serif;
+    font-size: 25vw; 
+    letter-spacing: -0.05em;
+    color: #47484A;
 }
 
 #oviya {
-    transition: all 2.75s ease-out;
+    font-family: NotoSerifDisplayExtraCon, "Times New Roman", serif;
+    font-style: italic; 
+    font-size: 5vw;
+    transform: translateY(-2.4em);
+    transition: all 2.25s ease-out;
+    color: #F1EFE7;
 }
 
+#caret {
+    height: 50px;
+    width: 50px;
+    transition: transform 1s, opacity 1.5s linear;
+    z-index: -1;
+}

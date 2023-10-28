@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, } from '@angular/core';
 import { IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent }
   from 'ngx-lightbox';
 import { Title } from '@angular/platform-browser';
@@ -8,10 +8,9 @@ import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import { ActivatedRoute } from '@angular/router';
-
 import { trigger, transition, style, animate, query, stagger, keyframes } from '@angular/animations';
 import { NgxMasonryComponent } from 'ngx-masonry';
-import * as $ from "jquery";
+import { NavTransitionService } from 'src/app/services/nav-transition.service';
 
 
 @Component({
@@ -35,12 +34,8 @@ import * as $ from "jquery";
 })
 export class GalleryComponent implements OnInit {
   @ViewChild(NgxMasonryComponent, { static: true }) masonry: NgxMasonryComponent;
-  allImages;
-  content;
-  cap;
   currImages = [];
   subscription: Subscription;
-  transitioned = false;
   options = {
     transitionDuration: '1.2s',
 		gutter: 10,
@@ -48,116 +43,28 @@ export class GalleryComponent implements OnInit {
 		initLayout: true,
 		fitWidth: true
   }
-  numItems = 0;
-  currIdx = 1;
-  transitioning = true;
 
   
   // eslint-disable-next-line prettier/prettier 
-  constructor(private lightbox: Lightbox, private lightboxEvent: LightboxEvent, private lighboxConfig: LightboxConfig, private _Activatedroute: ActivatedRoute, private titleService: Title) {
-    this.allImages = this.allImages ? this.allImages : [];
+  constructor(private lightbox: Lightbox, private lightboxEvent: LightboxEvent, private lighboxConfig: LightboxConfig, private _Activatedroute: ActivatedRoute, private titleService: Title, private navTransitionService: NavTransitionService) {
     this.lighboxConfig.fadeDuration = 1;
-  }
-
-
-
-  @HostListener('wheel', ['$event'])
-  onMouseWheel(event) {
-    this.doOnScroll()
-  }
-
-  @HostListener('scroll', ['$event'])
-  onMouseScroll(event) {
-    this.doOnScroll()
-  }
-
-  doOnScroll() {
-    const self = this
-
-    if (!this.transitioned) {
-      const logoElem = document.getElementsByClassName("logodiv")[0]
-      logoElem.classList.remove("logodiv");
-      logoElem.classList.add("transformedNav")
-      const gallery = document.getElementById("gallery")
-      const oviya = document.getElementById("oviya")
-      oviya.style.transform = 'translateY(-3.25em)'
-
-      const caret = document.getElementById("caret")
-      // caret.style.transform = 'translateY(-300em)'
-      caret.style.opacity = '0'
-
-      setTimeout(() => {
-        gallery.classList.remove("d-none");
-        self.currIdx = Math.min(self.currIdx + 10, self.numItems)
-        self.masonry.reloadItems();
-        self.masonry.layout();
-        this.transitioning = false;
-      }, 2000)
-      this.transitioned = true;
-    }
-    // console.log(this.transitioned, Math.ceil($(window).scrollTop() + $(window).height()), $(document).height(), this.transitioning)
-    // if (this.transitioned && !this.transitioning) {
-    //   if(Math.ceil($(window).scrollTop() + $(window).height()) >= $(document).height()) {
-    //     self.currIdx = Math.min(self.currIdx + 10, self.numItems)
-    //     self.currImages = self.allImages.slice(0, self.currIdx);
-    //     self.masonry.reloadItems();
-    //     self.masonry.layout();
-    //   }
-    // }
   }
 
   ngOnInit() {
     this.getGallery(); 
+    const gallery = document.getElementById("gallery")
 
     const self = this
-    $(document).ready(function(){
-      const ua = navigator.userAgent;
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
-        setTimeout(() => {
-          self.doOnScroll()
-        }, 2000)
+    this.navTransitionService.transitioned.subscribe((transitioned) => {
+      if (transitioned) {
+        gallery.classList.remove("d-none");
+        self.masonry.reloadItems();
+        self.masonry.layout();
       }
-    })
-
-    
-    // const self = this;
-
-    // this._Activatedroute.paramMap.subscribe(params => {
-    //   this.content = params.get('content');
-    //   this.cap = this.content.charAt(0).toUpperCase() + this.content.slice(1);
-    //   this.cap = this.cap.replace('-', ' ');
-    //   this.cap = this.cap.replace('-', ' ');
-
-
-    //   this.titleService.setTitle('Gallery - ' + this.cap + ' | OVVisuals');
-    // });
+    });
   }
-
-
-  ngAfterViewInit() {
-    // this._Activatedroute.paramMap.subscribe(() => {
-    //   this.titleService.setTitle('Gallery - ' + this.cap + ' | OVVisuals');
-    // });
-  }
-
-
 
   getGallery() {
-    // const galleryUrl = `${window.location.origin}/assets/gallery`
-    // const order = ["others", "glass-paints", "posters", "portraits", "social-awareness", "lamps", "paintings", "pencil-and-inkings", 'watercolors']
-    // for (const category of order) {
-    //   const currList = []
-    //   for (const img of this.galleryStructure["."][category]["files"]) {
-    //     const imgUrl = `${galleryUrl}/${category}/${img}`
-    //     currList.push({"src": imgUrl, "caption": "", "thumb": imgUrl })
-    //   }
-    //   this.currImages = this.currImages.concat(currList)
-    // }
-
-    // const self = this
-    // if (!content) {
-    //   content = 'all';
-    //
     const self = this
     firebase.database().ref('/Gallery_new/active').once('value', function (galData) {
       self.currImages = Object.values(galData.val());

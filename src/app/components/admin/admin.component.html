@@ -1,58 +1,60 @@
-<span *ngIf="this.isAdmin">
-
-    <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="my-1" style="height: 100px;" *ngFor="let image of newOrder" cdkDrag>
-            <img height="100%" [src]="image.src" />
-        </div>
-    </div> -->
-    <div class="container text-white">
-        <div class="row mt-2">
-            <button (click)="signOut()" class="btn btn-outline-danger ml-auto">
-                Sign Out
+<div class="main-content">
+    <span *ngIf="this.isAdmin">
+    
+        <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="my-1" style="height: 100px;" *ngFor="let image of newOrder" cdkDrag>
+                <img height="100%" [src]="image.src" />
+            </div>
+        </div> -->
+        <div class="container text-white">
+            <div class="row mt-2">
+                <button (click)="signOut()" class="btn btn-outline-danger ml-auto">
+                    Sign Out
+                </button>
+            </div>
+            <label>Upload Files: </label>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01" (change)="handleFileInput($event.target.files)"
+                        accept="image/*" multiple />
+                    <label class="custom-file-label" for="inputGroupFile01">Choose Files</label>
+                </div>
+            </div>
+    
+            <button (click)="updateGallery()" class="btn btn-primary">
+                Save Changes
             </button>
-        </div>
-        <label>Upload Files: </label>
-        <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01" (change)="handleFileInput($event.target.files)"
-                    accept="image/*" multiple />
-                <label class="custom-file-label" for="inputGroupFile01">Choose Files</label>
-            </div>
-        </div>
-
-        <button (click)="updateGallery()" class="btn btn-primary">
-            Save Changes
-        </button>
-        <div class="row">
-            <div class="col-6">
-                <h2>Active</h2>
-
-                <div cdkDropList #activeList="cdkDropList" [cdkDropListData]="newActiveOrder"
-                    [cdkDropListConnectedTo]="[inactiveList]" (cdkDropListDropped)="drop($event)">
-                    <div class="my-1" style="height: 100px;" *ngFor="let image of newActiveOrder; let i = index"
-                        cdkDrag>
-                        {{i + 1}}. <img height="100%" [src]="image.src" (click)="open(i, 0, newActiveOrder)"/> <button (click)="moveToInactive($event)" 
-                            class="btn btn-danger ml-1" id="active-{{i}}">
-                            Hide
-                        </button>
+            <div class="row">
+                <div class="col-6">
+                    <h2>Active</h2>
+    
+                    <div cdkDropList #activeList="cdkDropList" [cdkDropListData]="newActiveOrder"
+                        [cdkDropListConnectedTo]="[inactiveList]" (cdkDropListDropped)="drop($event)">
+                        <div class="my-1" style="height: 100px;" *ngFor="let image of newActiveOrder; let i = index"
+                            cdkDrag>
+                            {{i + 1}}. <img height="100%" [src]="image.src" (click)="open(i, 0, newActiveOrder)"/> <button (click)="moveToInactive($event)" 
+                                class="btn btn-danger ml-1" id="active-{{i}}">
+                                Hide
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <h2>Inactive</h2>
-
-                <div cdkDropList #inactiveList="cdkDropList" [cdkDropListData]="newInactiveOrder"
-                    [cdkDropListConnectedTo]="[activeList]" (cdkDropListDropped)="drop($event)">
-                    <div class="my-1" style="height: 100px;" *ngFor="let image of newInactiveOrder; let i = index"
-                        cdkDrag>
-                        {{i + 1}}. <img height="100%" [src]="image.src" (click)="open(i, 0, newInactiveOrder)"/> <button (click)="moveToActive($event)"
-                            class="btn btn-success ml-1" id="inactive-{{i}}">
-                            Show
-                        </button>
+                <!-- <div class="col-6">
+                    <h2>Inactive</h2>
+    
+                    <div cdkDropList #inactiveList="cdkDropList" [cdkDropListData]="newInactiveOrder"
+                        [cdkDropListConnectedTo]="[activeList]" (cdkDropListDropped)="drop($event)">
+                        <div class="my-1" style="height: 100px;" *ngFor="let image of newInactiveOrder; let i = index"
+                            cdkDrag>
+                            {{i + 1}}. <img height="100%" [src]="image.src" (click)="open(i, 0, newInactiveOrder)"/> <button (click)="moveToActive($event)"
+                                class="btn btn-success ml-1" id="inactive-{{i}}">
+                                Show
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-    </div>
-</span>
+    </span>
+</div>
