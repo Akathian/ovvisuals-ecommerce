@@ -1,0 +1,52 @@
+<span *ngIf="this.isAdmin">
+    <small *ngIf='this.cat==="dashboard"'>
+        <a routerLink="/">OVVisuals</a> / <a routerLink="/admin">Admin</a> / <a
+            [routerLink]="['/login', this.cat]">{{ this.cat }}</a>
+        <hr class="mt-0" />
+    </small>
+    <section class="section-pagetop bg mt-3">
+        <div class="container">
+            <h2 class="title-page">Admin Dashboard</h2>
+        </div> <!-- container //  -->
+    </section>
+
+    <section class="section-content ">
+        <div class="container">
+            <div class="row">
+                <aside class="col-md-3 mb-3">
+                    <ul class="list-group">
+                        <a class="list-group-item bg-dark" id='dashboard' [routerLink]="['/admin', 'dashboard']"
+                            style="color: white;"> OVVisuals Dashboard
+                        </a>
+                        <a class="list-group-item" id='open_orders' [routerLink]="['/admin', 'open_orders']"> Open
+                            Orders
+                        </a>
+                        <a class="list-group-item" id='intermediate_orders'
+                            [routerLink]="['/admin', 'intermediate_orders']">
+                            Intermediate
+                            Orders
+                        </a>
+                        <a class="list-group-item" id='complete_orders'
+                            [routerLink]="['/admin', 'complete_orders']">Complete Orders </a>
+                        <a class="list-group-item" id='gall-upload'
+                            [routerLink]="['/admin', 'gall-upload']">Upload to Gallery</a>
+                        <a class="list-group-item" (click)='signOut()'>Sign
+                            Out</a>
+                    </ul>
+                </aside>
+                <main class="col-md-9">
+                    <span *ngIf='this.cat==="dashboard"'>
+                        <app-dashboard></app-dashboard>
+                        <app-accounting></app-accounting>
+                    </span>
+                    <app-open-orders-admin
+                        *ngIf='this.cat==="open_orders" || this.cat==="intermediate_orders" || this.cat==="complete_orders"'>
+                    </app-open-orders-admin>
+                    <span *ngIf='this.cat==="gall-upload"'>
+                        <app-gall-upload></app-gall-upload>
+                    </span>
+                </main>
+            </div>
+        </div> <!-- container .//  -->
+    </section>
+</span>

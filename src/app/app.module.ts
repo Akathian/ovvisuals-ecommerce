@@ -38,19 +38,20 @@ import { ShippingComponent } from './components/checkout/shipping/shipping.compo
 import { OpenOrdersComponent } from './components/login/user-profile/open-orders/open-orders.component';
 import { OrderComponent } from './components/login/user-profile/open-orders/order/order.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { OpenOrdersAdminComponent } from './components/admin/open-orders-admin/open-orders-admin.component';
-import { OrderAdminComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/order-admin.component';
-import { UsersOpenOrderComponent } from './components/admin/open-orders-admin/users-open-order/users-open-order.component';
-import { UserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/user-order/user-order.component';
+// import { AdminComponent } from './components/admin_old/admin.component';
+import { DashboardComponent } from './components/admin_old/dashboard/dashboard.component';
+import { OpenOrdersAdminComponent } from './components/admin_old/open-orders-admin/open-orders-admin.component';
+import { OrderAdminComponent } from './components/admin_old/open-orders-admin/users-open-order/order-admin/order-admin.component';
+import { UsersOpenOrderComponent } from './components/admin_old/open-orders-admin/users-open-order/users-open-order.component';
+import { UserOrderComponent } from './components/admin_old/open-orders-admin/users-open-order/order-admin/user-order/user-order.component';
 
 import { DemoMaterialModule } from './material-module';
 import { CustomOrdersComponent } from './components/login/user-profile/custom-orders/custom-orders.component';
 import { CustomOrderComponent } from './components/login/user-profile/custom-orders/custom-order/custom-order.component';
-import { CustomUserOrderComponent } from './components/admin/open-orders-admin/users-open-order/order-admin/custom-user-order/custom-user-order.component';
-import { AccountingComponent } from './components/admin/accounting/accounting.component';
+import { CustomUserOrderComponent } from './components/admin_old/open-orders-admin/users-open-order/order-admin/custom-user-order/custom-user-order.component';
+import { AccountingComponent } from './components/admin_old/accounting/accounting.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
-import { GallUploadComponent } from './components/admin/gall-upload/gall-upload.component';
+import { GallUploadComponent } from './components/admin_old/gall-upload/gall-upload.component';
 import { BugReportComponent } from './components/bug-report/bug-report.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { ShopComponent } from './components/shop/shop.component';

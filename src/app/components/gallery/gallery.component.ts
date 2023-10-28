@@ -36,11 +36,7 @@ import * as $ from "jquery";
 export class GalleryComponent implements OnInit {
   @ViewChild(NgxMasonryComponent, { static: true }) masonry: NgxMasonryComponent;
   allImages;
-  chunks;
-  images1;
-  images3;
   content;
-  images2;
   cap;
   currImages = [];
   subscription: Subscription;
@@ -277,7 +273,7 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getGallery(this.content); 
+    this.getGallery(); 
 
     const self = this
     $(document).ready(function(){
@@ -312,28 +308,26 @@ export class GalleryComponent implements OnInit {
 
 
 
-  getGallery(content) {
-    const galleryUrl = `${window.location.origin}/assets/gallery`
-    const order = ["others", "glass-paints", "posters", "portraits", "social-awareness", "lamps", "paintings", "pencil-and-inkings", 'watercolors']
-    for (const category of order) {
-      const currList = []
-      for (const img of this.galleryStructure["."][category]["files"]) {
-        const imgUrl = `${galleryUrl}/${category}/${img}`
-        currList.push({"src": imgUrl, "caption": "", "thumb": imgUrl })
-      }
-      this.currImages = this.currImages.concat(currList)
-    }
+  getGallery() {
+    // const galleryUrl = `${window.location.origin}/assets/gallery`
+    // const order = ["others", "glass-paints", "posters", "portraits", "social-awareness", "lamps", "paintings", "pencil-and-inkings", 'watercolors']
+    // for (const category of order) {
+    //   const currList = []
+    //   for (const img of this.galleryStructure["."][category]["files"]) {
+    //     const imgUrl = `${galleryUrl}/${category}/${img}`
+    //     currList.push({"src": imgUrl, "caption": "", "thumb": imgUrl })
+    //   }
+    //   this.currImages = this.currImages.concat(currList)
+    // }
 
     // const self = this
     // if (!content) {
     //   content = 'all';
-    // }
-  
-    // firebase.database().ref('/Gallery/' + content).on('value', function (galData) {
-    //   self.allImages = Object.values(galData.val());
-    //   self.currImages = self.allImages
-    //   console.log(self.currImages)
-    // });
+    //
+    const self = this
+    firebase.database().ref('/Gallery_new/active').once('value', function (galData) {
+      self.currImages = Object.values(galData.val());
+    });
 
   }
 

@@ -51,20 +51,21 @@ export class ImageTools {
             let width = image.width;
             let height = image.height;
             let isTooLarge = false;
-
             if (width >= height && width > maxDimensions.width) {
                 isTooLarge = true;
             } else if (height > maxDimensions.height) {
                 isTooLarge = true;
             }
-
-            if (!isTooLarge) {
+            
+            let scaleRatio = maxDimensions.width / width;
+            if (maxDimensions.width === Infinity || maxDimensions.height === Infinity) {
+                scaleRatio = 1
+            } else if (!isTooLarge) {
                 // early exit; no need to resize
                 callback(file, false);
                 return;
             }
 
-            const scaleRatio = maxDimensions.width / width;
 
             // TODO number of resampling steps
             // const steps = Math.ceil(Math.log(width / (width * scaleRatio)) / Math.log(2));

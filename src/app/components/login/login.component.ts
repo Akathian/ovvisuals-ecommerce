@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
       } else {
         self.user = '';
         self.userLoggedIn = false;
-        document.getElementById('login').innerHTML = loginIMG;
-        document.getElementById('logoutImg').style.fill = 'black';
+        // document.getElementById('login').innerHTML = loginIMG;
+        // document.getElementById('logoutImg').style.fill = 'black';
         const uiConfig = {
           signInSuccessUrl: '/login',
           signInOptions: [
