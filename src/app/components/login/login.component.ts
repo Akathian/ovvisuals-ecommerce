@@ -25,28 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.verifyAdmin();
-    // this.renderAccInfo();
+    this.renderAccInfo();
   }
 
-  verifyAdmin() {
-    const self = this;
-    firebase.auth().onAuthStateChanged(function(user) {
-      try {
-        firebase.database().ref('Admin/' + user.uid).once('value', (data) => {
-          if (data.val()) {
-            self.isAdmin = true;
-            self.router.navigate(['../admin'], { relativeTo: this.route });
-
-          } else {
-            self.router.navigate(['../'], { relativeTo: this.route });
-          }
-        });
-      } catch (e) {
-        self.router.navigate(['../'], { relativeTo: this.route });
-      }
-    });
-  }
 
   renderAccInfo() {
     const self = this;
@@ -81,6 +62,12 @@ export class LoginComponent implements OnInit {
             accessToken,
             providerData
           }, null, '  ');
+        });
+        firebase.database().ref('Admin/' + user.uid).once('value', (data) => {
+          if (data.val()) {
+            self.isAdmin = true;
+            self.router.navigate(['../admin'], { relativeTo: this.route });
+          }
         });
       } else {
         self.user = '';
