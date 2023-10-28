@@ -6,6 +6,11 @@
         </div>
     </div> -->
     <div class="container text-white">
+        <div class="row mt-2">
+            <button (click)="signOut()" class="btn btn-outline-danger ml-auto">
+                Sign Out
+            </button>
+        </div>
         <label>Upload Files: </label>
         <div class="input-group">
             <div class="custom-file">
@@ -27,8 +32,8 @@
                     [cdkDropListConnectedTo]="[inactiveList]" (cdkDropListDropped)="drop($event)">
                     <div class="my-1" style="height: 100px;" *ngFor="let image of newActiveOrder; let i = index"
                         cdkDrag>
-                        {{i + 1}}. <img height="100%" [src]="image.src" /> <button (click)="moveToInactive($event)"
-                            class="btn btn-danger" id="active-{{i}}">
+                        {{i + 1}}. <img height="100%" [src]="image.src" (click)="open(i, 0, newActiveOrder)"/> <button (click)="moveToInactive($event)" 
+                            class="btn btn-danger ml-1" id="active-{{i}}">
                             Hide
                         </button>
                     </div>
@@ -41,8 +46,8 @@
                     [cdkDropListConnectedTo]="[activeList]" (cdkDropListDropped)="drop($event)">
                     <div class="my-1" style="height: 100px;" *ngFor="let image of newInactiveOrder; let i = index"
                         cdkDrag>
-                        {{i + 1}}. <img height="100%" [src]="image.src" /> <button (click)="moveToActive()"
-                            class="btn btn-success">
+                        {{i + 1}}. <img height="100%" [src]="image.src" (click)="open(i, 0, newInactiveOrder)"/> <button (click)="moveToActive($event)"
+                            class="btn btn-success ml-1" id="inactive-{{i}}">
                             Show
                         </button>
                     </div>

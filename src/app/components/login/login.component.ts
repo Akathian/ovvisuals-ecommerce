@@ -4,6 +4,8 @@ import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import { Title } from '@angular/platform-browser';
+import { AdminCheckService } from 'src/app/services/admin-check.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -15,14 +17,35 @@ import { Title } from '@angular/platform-browser';
 export class LoginComponent implements OnInit {
 
   userLoggedIn = false;
+  isAdmin = false;
   user;
   // eslint-disable-next-line prettier/prettier
-  constructor(private titleService: Title) {
-    this.titleService.setTitle('Login | OVVisuals');
+  constructor(private titleService: Title, private admin: AdminCheckService, private route: ActivatedRoute, private router: Router) {
+    // this.titleService.setTitle('Login | OVVisuals');
   }
 
   ngOnInit() {
-    this.renderAccInfo();
+    this.verifyAdmin();
+    // this.renderAccInfo();
+  }
+
+  verifyAdmin() {
+    const self = this;
+    firebase.auth().onAuthStateChanged(function(user) {
+      try {
+        firebase.database().ref('Admin/' + user.uid).once('value', (data) => {
+          if (data.val()) {
+            self.isAdmin = true;
+            self.router.navigate(['../admin'], { relativeTo: this.route });
+
+          } else {
+            self.router.navigate(['../'], { relativeTo: this.route });
+          }
+        });
+      } catch (e) {
+        self.router.navigate(['../'], { relativeTo: this.route });
+      }
+    });
   }
 
   renderAccInfo() {

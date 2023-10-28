@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable prettier/prettier */
 import { Component, OnInit } from "@angular/core";
@@ -8,7 +9,9 @@ import * as firebase from "firebase/app";
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { AdminCheckService } from "src/app/services/admin-check.service";
 import { ActivatedRoute, Router } from "@angular/router";
-
+import { IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent }
+  from 'ngx-lightbox';
+import { Subscription } from "rxjs";
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",
@@ -22,13 +25,31 @@ export class AdminComponent implements OnInit {
   newActiveOrder = []
   newInactiveOrder = [];
   isAdmin = false;
+  subscription: Subscription;
 
 
-  constructor(private imgur: ImgurService, private admin: AdminCheckService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private imgur: ImgurService, private admin: AdminCheckService, private route: ActivatedRoute, private router: Router, private lightbox: Lightbox, private lightboxEvent: LightboxEvent, private lighboxConfig: LightboxConfig) {}
 
   ngOnInit() {
     this.verifyAdmin();
     this.getGallery()
+  }
+
+  open(index: number, offs, arr): void {
+    const offsIndx = index + offs;
+    this.subscription = this.lightboxEvent.lightboxEvent$.subscribe((event: IEvent) => this._onReceivedEvent(event));
+    this.lightbox.open(arr, offsIndx, { wrapAround: true, showImageNumberLabel: true });
+  }
+
+
+  private _onReceivedEvent(event: IEvent): void {
+    if (event.id === LIGHTBOX_EVENT.CLOSE) {
+      this.subscription.unsubscribe();
+    }
+  }
+  
+  signOut() {
+    firebase.auth().signOut();
   }
 
   verifyAdmin() {
@@ -49,10 +70,15 @@ export class AdminComponent implements OnInit {
   }
 
   moveToInactive(event) {
-    const activeIdx = event.target.id.replace("active-", "")
-    this.newInactiveOrder.push(this.newActiveOrder[activeIdx])
-    this.newActiveOrder.splice(activeIdx, 1)
-    console.log(this.newInactiveOrder)
+    const idx = event.target.id.replace("active-", "")
+    this.newInactiveOrder.unshift(this.newActiveOrder[idx])
+    this.newActiveOrder.splice(idx, 1)
+  }
+
+  moveToActive(event) {
+    const idx = event.target.id.replace("inactive-", "")
+    this.newActiveOrder.unshift(this.newInactiveOrder[idx])
+    this.newInactiveOrder.splice(idx, 1)
   }
  drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

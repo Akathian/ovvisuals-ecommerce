@@ -29,7 +29,7 @@ const routes: Routes = [
   // { path: "products/:type", component: ProductListComponent },
   // { path: "products/:type/:id", component: ProductPageComponent },
   { path: "login", component: LoginComponent },
-  { path: "login/:cat", component: LoginComponent },
+  // { path: "login/:cat", component: LoginComponent },
   // { path: "checkout", component: CheckoutComponent },
   // { path: "gallery/:content", component: GalleryComponent },
   // { path: "terms", component: TermsComponent },
