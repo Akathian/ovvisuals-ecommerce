@@ -62,6 +62,12 @@ export class GalleryComponent implements OnInit {
         self.masonry.layout();
       }
     });
+
+    const container = document.getElementById("gallery");
+
+    this.onImagesLoaded(container, function() {
+      alert("All the images have loaded");
+    });
   }
 
   getGallery() {
@@ -84,6 +90,28 @@ export class GalleryComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
+
+  onImagesLoaded(container, event) {
+    const images = container.getElementsByTagName("img");
+    let loaded = images.length;
+    for (let i = 0; i < images.length; i++) {
+        console.log(loaded)
+        if (images[i].complete) {
+            loaded--;
+        }
+        else {
+            images[i].addEventListener("load", function() {
+                loaded--;
+                if (loaded == 0) {
+                    event();
+                }
+            });
+        }
+        if (loaded == 0) {
+            event();
+        }
+    }
+}
 
 }
 
