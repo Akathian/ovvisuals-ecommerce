@@ -1,22 +1,18 @@
-.logodiv {
+#logodiv {
     height: 100vh;
-}
-
-.transformedNav {
-    height: 7vh;
     transition: all 1.5s ease-out;
 }
+
 #bose {
     font-family: Anton-Regular, "Arial Black", sans-serif;
     font-size: 25vw; 
     letter-spacing: -0.05em;
     color: #47484A;
+
 }
 
 #oviya {
     font-family: Quebecks, "Times New Roman", serif;
-    // font-family: tamil062, "Times New Roman", serif;
-    // font-style: italic; 
     font-size: 8vw;
     font-weight: 1;
     transform: translateY(-1.6em);

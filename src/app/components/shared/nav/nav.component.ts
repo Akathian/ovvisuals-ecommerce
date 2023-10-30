@@ -37,9 +37,8 @@ export class NavComponent implements OnInit {
     const self = this
 
     if (!this.transitioned) {
-      const logoElem = document.getElementsByClassName("logodiv")[0]
-      logoElem.classList.remove("logodiv");
-      logoElem.classList.add("transformedNav")
+      const logoElem = document.getElementById("logodiv")
+      logoElem.style.height = "7vh"
       const oviya = document.getElementById("oviya")
       oviya.style.transform = 'translateY(-1.8em)'
 
@@ -76,7 +75,9 @@ export class NavComponent implements OnInit {
       logoElem.style.height = "7vh"
       oviya.style.transform = 'translateY(-1.8em)'
       caret.style.opacity = '0'
-      this.changeLangOviya()
+
+      oviya.id = 'oviya-tamil'
+      oviya.innerHTML = "<span class='mx-auto'>åMò£</span>"
     }
   }
 
@@ -87,7 +88,7 @@ export class NavComponent implements OnInit {
       oviya.style.opacity = '0'
       setTimeout(() => {
         oviya.id = 'oviya-tamil'
-        oviya.style.transform = 'translateY(-1.9em)'
+        // oviya.style.transform = 'translateY(-2.7em)'
         oviya.innerHTML = "<span class='mx-auto'>åMò£</span>"
         oviya.style.opacity = '1'
       }, 510)
