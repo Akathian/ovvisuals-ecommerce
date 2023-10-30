@@ -41,6 +41,13 @@
     src: url('assets/fonts/Anton-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Quebecks';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/Quebecks.ttf') format('truetype');
+}
+
 body {
     // background: radial-gradient(#898684, #f1f1ee);
     background-color: #302F2E;
@@ -49,6 +56,6 @@ body {
 }
 
 .main-content {
-    transform: translateY(5vw);
+    transform: translateY(6vw);
 }
 

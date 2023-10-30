@@ -41,7 +41,7 @@ export class NavComponent implements OnInit {
       logoElem.classList.remove("logodiv");
       logoElem.classList.add("transformedNav")
       const oviya = document.getElementById("oviya")
-      oviya.style.transform = 'translateY(-3.25em)'
+      oviya.style.transform = 'translateY(-1.8em)'
 
       const caret = document.getElementById("caret")
       caret.style.opacity = '0'
@@ -72,7 +72,7 @@ export class NavComponent implements OnInit {
       const caret = document.getElementById("caret")
 
       logoElem.style.height = "7vh"
-      oviya.style.transform = 'translateY(-3.25em)'
+      oviya.style.transform = 'translateY(-1.8em)'
       caret.style.opacity = '0'
     }
   }

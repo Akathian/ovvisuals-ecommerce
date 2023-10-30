@@ -14,10 +14,13 @@
 }
 
 #oviya {
-    font-family: NotoSerifDisplayExtraCon, "Times New Roman", serif;
-    font-style: italic; 
-    font-size: 5vw;
-    transform: translateY(-2.4em);
+    font-family: Quebecks, "Times New Roman", serif;
+    // font-style: italic; 
+    font-size: 8vw;
+    font-weight: 1;
+
+
+    transform: translateY(-1.6em);
     transition: all 2.25s ease-out;
     color: #F1EFE7;
 }
@@ -27,4 +30,5 @@
     width: 50px;
     transition: transform 1s, opacity 1.5s linear;
     z-index: -1;
+    position: absolute; bottom: 0; left: 50%;
 }
