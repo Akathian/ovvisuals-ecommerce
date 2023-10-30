@@ -48,6 +48,13 @@
     src: url('assets/fonts/Quebecks.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'tamil062';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/tamil062.ttf') format('truetype');
+}
+
 body {
     // background: radial-gradient(#898684, #f1f1ee);
     background-color: #302F2E;
@@ -56,6 +63,6 @@ body {
 }
 
 .main-content {
-    transform: translateY(6vw);
+    transform: translateY(7vw);
 }
 

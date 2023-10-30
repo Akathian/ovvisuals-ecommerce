@@ -45,14 +45,16 @@ export class NavComponent implements OnInit {
 
       const caret = document.getElementById("caret")
       caret.style.opacity = '0'
-
       setTimeout(() => {
         self.navTransitionService.transitioned.next(true);
-      }, 2000)
+      }, 1200)
+      this.changeLangOviya()
+
       self.transitioned = true;
       sessionStorage.setItem("oviyabose-navTransition", "true");
     }
   }
+
 
   ngOnInit() {
     const self = this
@@ -74,7 +76,22 @@ export class NavComponent implements OnInit {
       logoElem.style.height = "7vh"
       oviya.style.transform = 'translateY(-1.8em)'
       caret.style.opacity = '0'
+      this.changeLangOviya()
     }
+  }
+
+  changeLangOviya () {
+    const oviya = document.getElementById("oviya")
+
+    setTimeout(() => {
+      oviya.style.opacity = '0'
+      setTimeout(() => {
+        oviya.id = 'oviya-tamil'
+        oviya.style.transform = 'translateY(-1.9em)'
+        oviya.innerHTML = "<span class='mx-auto'>åMò£</span>"
+        oviya.style.opacity = '1'
+      }, 510)
+    }, 1700)
   }
 
   toggleDebug() {
