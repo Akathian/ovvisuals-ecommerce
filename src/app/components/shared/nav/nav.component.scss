@@ -29,14 +29,14 @@
 }
 
 #caret {
-    height: 5vw;
-    width: 5vw;
+
     transition: transform 1s, opacity 1.5s linear;
     z-index: -1;
-    position: absolute; bottom: 0; left: 50%;
 
     img {
         max-width: 100%;
+        height: 5vw;
+        width: 5vw;
     }
 }
 
