@@ -57,6 +57,7 @@ export class GalleryComponent implements OnInit {
     const self = this
     this.navTransitionService.transitioned.subscribe((transitioned) => {
       if (transitioned) {
+        console.log("hey")
         gallery.classList.remove("d-none");
         self.masonry.reloadItems();
         self.masonry.layout();

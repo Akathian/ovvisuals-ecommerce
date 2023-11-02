@@ -57,14 +57,13 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     const self = this
-    $(document).ready(function(){
-      const ua = navigator.userAgent;
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
-        setTimeout(() => {
-          self.doOnScroll()
-        }, 2000)
-      }
-    })
+    const ua = navigator.userAgent;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)
+    if (isMobile) {
+      setTimeout(() => {
+        self.doOnScroll()
+      }, 2000)
+    }
 
     if (sessionStorage.getItem("oviyabose-navTransition") === "true") {
       self.navTransitionService.transitioned.next(true);

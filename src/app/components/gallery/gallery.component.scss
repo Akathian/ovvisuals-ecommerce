@@ -2,8 +2,16 @@ img {
     height: 100% !important;
 }
 
-.masonry-item {
-    max-width: 400px;
+
+@media (max-width: 500px) {
+    .masonry-item {
+        width: 250px;
+    }
+}
+@media (min-width: 500px) {
+    .masonry-item {
+        width: 400px;
+    }
 }
 
 .masonry-img {
