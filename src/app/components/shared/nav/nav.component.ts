@@ -88,7 +88,7 @@ export class NavComponent implements OnInit {
       setTimeout(() => {
         oviya.id = 'oviya-tamil'
         // oviya.style.transform = 'translateY(-2.7em)'
-        oviya.innerHTML = "<span class='mx-auto'>åMò£</span>"
+        oviya.innerHTML = "<span class='mx-auto'>æMò£</span>"
         oviya.style.opacity = '1'
       }, 510)
     }, 1700)
